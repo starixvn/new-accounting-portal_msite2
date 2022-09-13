@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SonarQubeExclude>True</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.AWS.xml" />
+    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.LOCAL.xml" />
+    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.PROD.xml" />
+    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.SIT.xml" />
+    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.UAT.xml" />
+    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.AWS.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.LOCAL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.PROD.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.SIT.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.UAT.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Auth\AccessDenied.cshtml" />
+    <None Include="Views\Auth\ChangePassword.cshtml" />
+    <None Include="Views\Auth\Error.cshtml" />
+    <None Include="Views\Auth\Index.cshtml" />
+    <None Include="Views\Auth\NotFound.cshtml" />
+    <None Include="Views\Auth\Offline.cshtml" />
+    <None Include="Views\Auth\OtpLoginFlow.cshtml" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Fanex.Data" Version="4.2.2" />
+    <PackageReference Include="Fanex.Data.Repository" Version="4.2.2" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.2" />
+    <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.1-beta1" />
+    <PackageReference Include="Fanex.Logging.Extensions.Database" Version="1.0.8" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.7" />
+    <PackageReference Include="Fanex.Logging.Sentry.RavenClient" Version="1.0.1" />
+    <PackageReference Include="Fanex.NAP.Client.AspNetCore" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.NAP.Signin.AspNetCore" Version="2.0.0.2" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="6.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
+    <PackageReference Include="ONEbook.UM" Version="3.1.3" />
+    <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0" />
+    <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
+    <PackageReference Include="Sentry" Version="3.15.0" />
+  </ItemGroup>
+</Project>
