@@ -1,0 +1,47 @@
+<div>
+  <form action="" (submit)="submit()">
+    <div class="filter">
+      <label for="">MatchId</label>
+      <input type="text" [(ngModel)]="matchId" />
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>DB Server</th>
+        <th>MatchId</th>
+        <th>Event Name</th>
+        <th>Created Date</th>
+        <th>SportType</th>
+        <th>Action</th>
+        <th>IsCal</th>
+        <th>Product</th>
+        <th>MarketID</th>
+        <th>ErrorMessage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="data && data.length; else noData">
+        <tr *ngFor="let d of data">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <tr>
+          <td colspan="10" class="no-data">No Information Available</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

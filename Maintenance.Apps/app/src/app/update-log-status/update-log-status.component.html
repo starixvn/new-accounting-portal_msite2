@@ -1,0 +1,37 @@
+<table>
+  <thead class="table-head">
+    <tr>
+      <th>DB Server</th>
+      <th>LogID</th>
+      <th>StatusID</th>
+      <th>StartTime</th>
+      <th>EndTime</th>
+      <th>StartTimeValidation</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="logs && logs.length; else noData">
+      <tr *ngFor="let log of logs">
+        <td>{{ log.dbServer }}</td>
+        <td>{{ log.statusID }}</td>
+        <td>{{ log.logID }}</td>
+        <td>{{ log.startTime }}</td>
+        <td>{{ log.endTime }}</td>
+        <td>{{ log.startTimeValidation }}</td>
+        <td class="action">
+          <button mat-flat-button color="primary" (click)="openDialog()">
+            Update
+          </button>
+          <button mat-flat-button color="warn">Delete</button>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-template #noData>
+      <tr>
+        <td colspan="7" class="no-data">No Information Available</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

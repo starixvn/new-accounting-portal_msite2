@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table {
+  border: 1px solid black;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  width: 100%;
+
+  thead {
+    background-color: rgb(122, 223, 223);
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: #f4f4f4;
+    }
+
+    th,
+    td {
+      padding: 5px 10px;
+      border: 1px solid black;
+    }
+  }
+  .no-data {
+    text-align: center;
+  }
+}
