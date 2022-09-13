@@ -8,31 +8,31 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.AWS.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.LOCAL.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.PROD.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.SIT.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.UAT.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.xml" />
+    <None Remove="App_Data\Fanex.Data\SpName.AWS.xml" />
+    <None Remove="App_Data\Fanex.Data\SpName.LOCAL.xml" />
+    <None Remove="App_Data\Fanex.Data\SpName.PROD.xml" />
+    <None Remove="App_Data\Fanex.Data\SpName.SIT.xml" />
+    <None Remove="App_Data\Fanex.Data\SpName.xml" />
+    <None Remove="App_Data\Fanex.Data\SpNameUAT.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.AWS.xml">
+    <Content Include="App_Data\Fanex.Data\SpName.AWS.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.LOCAL.xml">
+    <Content Include="App_Data\Fanex.Data\SpName.LOCAL.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.PROD.xml">
+    <Content Include="App_Data\Fanex.Data\SpName.PROD.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.SIT.xml">
+    <Content Include="App_Data\Fanex.Data\SpName.SIT.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.UAT.xml">
+    <Content Include="App_Data\Fanex.Data\SpNameUAT.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.xml">
+    <Content Include="App_Data\Fanex.Data\SpName.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -68,5 +68,10 @@
     <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0" />
     <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
     <PackageReference Include="Sentry" Version="3.15.0" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj" />
   </ItemGroup>
 </Project>

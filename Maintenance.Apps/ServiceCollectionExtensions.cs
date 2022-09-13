@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
@@ -13,6 +12,7 @@ using Fanex.NAP.Client.AspNetCore.Session;
 using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
 using Fanex.NAP.Client.Services;
+using Maintenance.DeleteTempVariable.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -92,7 +92,6 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-
     public static IServiceCollection AddFanexServices(this IServiceCollection services, IConfiguration configuration)
     {
         var connections = configuration.GetSection("ConnectionStrings")
@@ -130,13 +129,17 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddInternalServices(this IServiceCollection services)
     {
+        services.AddScoped<IDynamicRepository, DynamicRepository>();
+        services.AddTransient<ParlayLockingService, ParlayLockingServiceImp>();
+        services.AddTransient<SettlementLockService, SettlementLockServiceImp>();
+        services.AddTransient<SystemSettingService, SystemSettingServiceImp>();
+        services.AddTransient<TempVariableService, TempVariableServiceImp>();
 
         return services;
     }
 
     public static IServiceCollection AddMediator(this IServiceCollection services)
     {
-
         return services;
     }
 
