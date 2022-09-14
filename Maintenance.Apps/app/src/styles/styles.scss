@@ -15,10 +15,6 @@ table {
   border-collapse: collapse;
   width: 100%;
 
-  thead {
-    background-color: rgb(122, 223, 223);
-  }
-
   tr {
     &:nth-child(even) {
       background-color: #f4f4f4;

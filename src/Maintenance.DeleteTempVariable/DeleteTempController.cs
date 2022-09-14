@@ -77,7 +77,7 @@ namespace Maintenance.DeleteTempVariable
         public async Task<IActionResult> GetTempVariable(int? matchId)
         {
             var matches = await tempVariableService.GetMatches(matchId);
-            return Ok(JsonConvert.SerializeObject(matches));
+            return Ok(matches);
         }
 
         [HttpPost]

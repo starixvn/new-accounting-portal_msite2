@@ -10,12 +10,14 @@ import { UpdateLogStatusComponent } from './update-log-status/update-log-status.
 import { DeleteTempVariableNumberComponent } from './delete-temp-variable-number/delete-temp-variable-number.component';
 import { HttpService } from 'src/services/http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UpdateLogStatusComponent,
     DeleteTempVariableNumberComponent,
+    NavMenuComponent,
   ],
   imports: [
     BrowserModule,

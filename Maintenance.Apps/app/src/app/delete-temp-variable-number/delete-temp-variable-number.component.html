@@ -1,13 +1,11 @@
 <div>
-  <form action="" (submit)="submit()">
-    <div class="filter">
-      <label for="">MatchId</label>
-      <input type="text" [(ngModel)]="matchId" />
-      <button type="submit">Submit</button>
-    </div>
-  </form>
+  <div class="filter">
+    <label for="">MatchId</label>
+    <input type="text" [(ngModel)]="matchId" />
+    <button type="submit" (click)="submit()" class="btn-submit">Submit</button>
+  </div>
 
-  <table>
+  <table *ngIf="matches">
     <thead>
       <tr>
         <th>DB Server</th>
@@ -23,18 +21,18 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngIf="data && data.length; else noData">
-        <tr *ngFor="let d of data">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+      <ng-container *ngIf="matches && matches.length; else noData">
+        <tr *ngFor="let d of matches">
+          <td>{{ d.dbServer }}</td>
+          <td>{{ d.matchId }}</td>
+          <td>{{ d.eventName }}</td>
+          <td>{{ d.createdDateTime }}</td>
+          <td>{{ d.sportName }}</td>
+          <td>{{ d.action }}</td>
+          <td>{{ d.isCalculating }}</td>
+          <td>{{ d.productName }}</td>
+          <td>{{ d.marketId }}</td>
+          <td>{{ d.message }}</td>
         </tr>
       </ng-container>
       <ng-template #noData>

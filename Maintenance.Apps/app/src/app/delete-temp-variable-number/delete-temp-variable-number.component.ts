@@ -1,5 +1,7 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/services/http.service';
+import { Match } from './match.model';
 
 @Component({
   selector: 'app-delete-temp-variable-number',
@@ -9,18 +11,23 @@ import { HttpService } from 'src/services/http.service';
 export class DeleteTempVariableNumberComponent implements OnInit {
   constructor(private httpService: HttpService) {}
 
-  public data: any[] = [];
+  public matches: Match[] | null = null;
   public matchId!: string;
 
   ngOnInit(): void {}
 
   loadData() {
-    this.httpService.getData('api/values').subscribe((data) => {
-      console.log(data);
-    });
+    const params = new HttpParams();
+    params.set('matchId', this.matchId);
+
+    this.httpService
+      .post<Match[]>('api/delete-temp-variable/get-temp-variable', null, params)
+      .subscribe((data) => {
+        this.matches = data;
+      });
   }
 
   submit() {
-    console.log(this.matchId);
+    this.loadData();
   }
 }

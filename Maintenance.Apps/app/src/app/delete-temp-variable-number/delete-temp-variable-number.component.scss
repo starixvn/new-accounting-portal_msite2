@@ -2,33 +2,20 @@
   display: flex;
   column-gap: 20px;
   padding: 20px;
-  background-color: lightgrey;
-  border: 1px solid gray;
+  //   background-color: lightgrey;
+  //   border: 1px solid lightgrey;
   margin-bottom: 20px;
+
+  .btn-submit {
+    // background-color: rgb(72, 172, 211);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
 }
 
 table {
-  border: 1px solid black;
-  border-spacing: 0px;
-  border-collapse: collapse;
-  width: 100%;
-
   thead {
-    background-color: rgb(122, 223, 223);
-  }
-
-  tr {
-    &:nth-child(even) {
-      background-color: #f4f4f4;
-    }
-
-    th,
-    td {
-      padding: 5px 10px;
-      border: 1px solid black;
-    }
-  }
-  .no-data {
-    text-align: center;
+    // background-color: rgb(128, 148, 141);
   }
 }
