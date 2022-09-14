@@ -31,7 +31,7 @@ public class SettlementLockServiceImp : SettlementLockService
         };
 
         var dbtransData = (await repository.FetchAsync<MatchSettlementLock>(criteria)).ToList();
-        dbtransData.ForEach(m => m.DBServer = DataBaseServers.DBTrans);
+        dbtransData.ForEach(m => m.ServerName = DataBaseServers.DBTrans);
 
         var replicatedData = await GetDataReplicatedServer(request.MatchId);
 
@@ -43,7 +43,7 @@ public class SettlementLockServiceImp : SettlementLockService
         return dbtransData;
     }
 
-    private async Task<List<MatchSettlementLock>> GetDataReplicatedServer(int? matchId)
+    private async Task<List<MatchSettlementLock>> GetDataReplicatedServer(int matchId)
     {
         var replicatedData = new List<MatchSettlementLock>();
         var listReplicatedServer = new List<string> { "DB052", "DB053", "DB054", "DB055", "DB06", "DB061", "DBTP" };
@@ -56,7 +56,7 @@ public class SettlementLockServiceImp : SettlementLockService
             };
 
             var data = (await repository.FetchAsync<MatchSettlementLock>(replicatedServerCriteria)).ToList();
-            data.ForEach(m => m.DBServer = server);
+            data.ForEach(m => m.ServerName = server);
 
             if (data.Any())
             {

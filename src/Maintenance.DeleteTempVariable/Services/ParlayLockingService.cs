@@ -1,7 +1,9 @@
-﻿using Fanex.Data.Repository;
+﻿using AutoMapper;
+using Fanex.Data.Repository;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
+using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
 
@@ -16,29 +18,40 @@ public class ParlayLockingServiceImp : ParlayLockingService
 {
     private readonly IDynamicRepository repository;
 
-    public ParlayLockingServiceImp(IDynamicRepository repository)
+    private readonly AppSettingsKey appSettingsKey;
+
+    private readonly IMapper mapper;
+
+    public ParlayLockingServiceImp(
+        IDynamicRepository repository,
+        IOptions<AppSettingsKey> appSettingsKey,
+        IMapper mapper)
     {
         this.repository = repository;
+        this.appSettingsKey = appSettingsKey.Value;
+        this.mapper = mapper;
     }
 
     public async Task<List<MatchParlayLocking>> GetMatches(ParlayLockingRequest request)
     {
-        var criteria = new GetParlayLockingCriteria
-        {
-            MatchId = request.MatchId ?? 0,
-            TimeRange = request.TimeRange
-        };
+        var matchParlayLocking = new List<MatchParlayLocking>();
 
-        return (await repository.FetchAsync<MatchParlayLocking>(criteria)).ToList();
+        foreach (var server in appSettingsKey.SiteDbServer)
+        {
+            var criteria = mapper.Map<GetParlayLockingCriteria>(request);
+            criteria.DbServer = server;
+            var list = (await repository.FetchAsync<MatchParlayLocking>(criteria)).ToList();
+            list.ForEach(i => i.DbServer = server);
+
+            matchParlayLocking.AddRange(list);
+        }
+
+        return matchParlayLocking;
     }
 
     public async Task<int> DeleteMatch(DeleteParlayLockingRequest request)
     {
-        var criteria = new DeleteParlayLockingCriteria
-        {
-            Session = request.Session
-        };
-
+        var criteria = mapper.Map<DeleteParlayLockingCriteria>(request);
         return await repository.ExecuteAsync(criteria);
     }
 }

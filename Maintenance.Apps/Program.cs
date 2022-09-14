@@ -3,14 +3,16 @@ using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
 using Maintenance.Apps;
 using Maintenance.Apps.App_Start;
+using Maintenance.DeleteTempVariable.Model;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     ApplicationName = typeof(Program).Assembly.FullName,
-    ContentRootPath = Directory.GetCurrentDirectory(),
+    ContentRootPath = Directory.GetCurrentDirectory()
 });
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+builder.Services.Configure<AppSettingsKey>(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -54,4 +56,3 @@ app.Run();
 #endif
 
 await app.RunAsync("http://0.0.0.0:5000");
-

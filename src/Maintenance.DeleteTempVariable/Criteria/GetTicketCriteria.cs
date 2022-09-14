@@ -1,25 +1,22 @@
-﻿using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
-namespace Maintenance.DeleteTempVariable.Criteria
+namespace Maintenance.DeleteTempVariable.Criteria;
+
+public class GetTicketCriteria : CriteriaBase
 {
-    public class GetTicketCriteria : CriteriaBase
-    {
-        public int MatchId { get; set; }
+    public int MatchId { get; set; }
 
-        public int KeyId { get; set; }
+    public int KeyId { get; set; }
 
-        public string Action { get; set; }
+    public string Action { get; set; }
 
-        public string MarketId { get; set; }
+    public string MarketId { get; set; }
 
-        public override string GetSettingKey()
-        {
-            return "NAP_Set_MatchLockingTicketSel";
-        }
+    [SpParam(Ignored = true)]
+    public string DbServer { get; set; }
 
-        public override bool IsValid()
-        {
-            return MatchId > 0;
-        }
-    }
+    public override string GetSettingKey() => $"NAP_Set_MatchLockingTicketSel_{DbServer}";
+
+    public override bool IsValid() => MatchId > 0;
 }

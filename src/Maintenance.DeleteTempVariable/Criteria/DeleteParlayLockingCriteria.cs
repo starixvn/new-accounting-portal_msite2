@@ -1,16 +1,16 @@
-﻿using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
-namespace Maintenance.DeleteTempVariable.Criteria
+namespace Maintenance.DeleteTempVariable.Criteria;
+
+public class DeleteParlayLockingCriteria : NonQueryCommand
 {
-    public class DeleteParlayLockingCriteria : NonQueryCommand
-    {
-        public string Session { get; set; }
+    public string Session { get; set; }
 
-        public override string GetSettingKey()
-        {
-            return "NAP_Set_ParlayLockingDel";
-        }
+    [SpParam(Ignored = true)]
+    public string DbServer { get; set; }
 
-        public override bool IsValid() => true;
-    }
+    public override string GetSettingKey() => $"NAP_Set_ParlayLockingDel{DbServer}";
+
+    public override bool IsValid() => !string.IsNullOrWhiteSpace(DbServer);
 }

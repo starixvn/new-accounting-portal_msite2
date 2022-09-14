@@ -2,7 +2,9 @@
 
 public class Match
 {
-    public string DBServer { get; set; }
+    public string ServerName { get; set; }
+
+    public string DbServer { get; set; }
 
     public int MatchId { get; set; }
 

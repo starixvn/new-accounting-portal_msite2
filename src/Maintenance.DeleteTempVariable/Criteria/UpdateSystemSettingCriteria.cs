@@ -1,14 +1,14 @@
-﻿using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
-namespace Maintenance.DeleteTempVariable.Criteria
+namespace Maintenance.DeleteTempVariable.Criteria;
+
+public class UpdateSystemSettingCriteria : NonQueryCommand
 {
-    public class UpdateSystemSettingCriteria : NonQueryCommand
-    {
-        public override string GetSettingKey()
-        {
-            return "NAP_Set_SystemSettingsUpd";
-        }
+    [SpParam(Ignored = true)]
+    public string DbServer { get; set; }
 
-        public override bool IsValid() => true;
-    }
+    public override string GetSettingKey() => $"NAP_Set_SystemSettingsUpd_{DbServer}";
+
+    public override bool IsValid() => true;
 }

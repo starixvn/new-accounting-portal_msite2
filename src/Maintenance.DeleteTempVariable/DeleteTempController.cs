@@ -74,9 +74,9 @@ public class DeleteTempController : ControllerBase
 
     [HttpPost]
     [Route("get-temp-variable")]
-    public async Task<IActionResult> GetTempVariable(int? matchId)
+    public async Task<IActionResult> GetTempVariable(MatchRequest request)
     {
-        var matches = await tempVariableService.GetMatches(matchId);
+        var matches = await tempVariableService.GetMatches(request.MatchId);
         return Ok(matches);
     }
 
@@ -85,9 +85,10 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> DetailTempVariable(MatchTicketRequest request)
     {
         var ticketCount = await tempVariableService.TicketCount(request);
-        var detail = await tempVariableService.GetMatchDetail(request.MatchId);
+        var detail = await tempVariableService.GetMatchDetail(request);
         detail.TicketCount = ticketCount;
         detail.IsDelete = true; // Need get current permission for deleting
+        detail.DbServer = request.DbServer;
         return Ok(JsonConvert.SerializeObject(detail));
     }
 
@@ -99,7 +100,7 @@ public class DeleteTempController : ControllerBase
         return Ok(JsonConvert.SerializeObject(result));
     }
 
-    [HttpGet]
+    [HttpPost]
     [Route("get-system-setting")]
     public async Task<IActionResult> GetSystemSetting()
     {
@@ -109,9 +110,9 @@ public class DeleteTempController : ControllerBase
 
     [HttpPost]
     [Route("update-system-setting")]
-    public async Task<IActionResult> UpdateSystemSetting()
+    public async Task<IActionResult> UpdateSystemSetting(UpdateSystemSettingRequest request)
     {
-        var result = await systemSettingService.UpdateSystemSetting();
+        var result = await systemSettingService.UpdateSystemSetting(request.DbServer);
         return Ok(JsonConvert.SerializeObject(result));
     }
 }

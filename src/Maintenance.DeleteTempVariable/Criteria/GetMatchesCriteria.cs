@@ -1,19 +1,16 @@
-﻿using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
-namespace Maintenance.DeleteTempVariable.Criteria
+namespace Maintenance.DeleteTempVariable.Criteria;
+
+public class GetMatchesCriteria : CriteriaBase
 {
-    public class GetMatchesCriteria : CriteriaBase
-    {
-        public int? MatchId { get; set; }
+    public int MatchId { get; set; }
 
-        public override string GetSettingKey()
-        {
-            return "NAP_Set_MatchLockingSel";
-        }
+    [SpParam(Ignored = true)]
+    public string DbServer { get; set; }
 
-        public override bool IsValid()
-        {
-            return true;
-        }
-    }
+    public override string GetSettingKey() => $"NAP_Set_MatchLockingSel_{DbServer}";
+
+    public override bool IsValid() => !string.IsNullOrWhiteSpace(DbServer);
 }

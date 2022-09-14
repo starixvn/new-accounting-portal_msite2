@@ -1,31 +1,59 @@
-﻿using Fanex.Data.Repository;
+﻿using AutoMapper;
+using Fanex.Data.Repository;
 using Maintenance.DeleteTempVariable.Criteria;
+using Maintenance.DeleteTempVariable.Model;
+using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
 
 public interface SystemSettingService
 {
-    Task<string> GetSystemSettings();
+    Task<List<SystemSettings>> GetSystemSettings();
 
-    Task<int> UpdateSystemSetting();
+    Task<int> UpdateSystemSetting(string dbServer);
 }
 
 public class SystemSettingServiceImp : SystemSettingService
 {
     private readonly IDynamicRepository repository;
 
-    public SystemSettingServiceImp(IDynamicRepository repository)
+    private readonly AppSettingsKey appSettingsKey;
+
+    private readonly IMapper mapper;
+
+    public SystemSettingServiceImp(
+        IDynamicRepository repository,
+        IOptions<AppSettingsKey> appSettingsKey,
+        IMapper mapper)
     {
         this.repository = repository;
+        this.appSettingsKey = appSettingsKey.Value;
+        this.mapper = mapper;
     }
 
-    public async Task<string> GetSystemSettings()
+    public async Task<List<SystemSettings>> GetSystemSettings()
     {
-        return await repository.GetAsync<string>(new GetSystemSettingCriteria());
+        var list = new List<SystemSettings>();
+
+        foreach (var server in appSettingsKey.SiteDbServer)
+        {
+            var criteria = new GetSystemSettingCriteria
+            {
+                DbServer = server
+            };
+            var setting = await repository.GetAsync<SystemSettings>(criteria);
+            if (setting != null)
+            {
+                setting.DbServer = server;
+                list.Add(setting);
+            }
+        }
+
+        return list;
     }
 
-    public async Task<int> UpdateSystemSetting()
+    public async Task<int> UpdateSystemSetting(string dbServer)
     {
-        return await repository.ExecuteAsync(new UpdateSystemSettingCriteria());
+        return await repository.ExecuteAsync(new UpdateSystemSettingCriteria { DbServer = dbServer });
     }
 }

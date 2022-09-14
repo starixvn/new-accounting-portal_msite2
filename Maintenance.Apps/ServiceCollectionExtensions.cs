@@ -31,6 +31,7 @@ public static class ServiceCollectionExtensions
     {
         var mapperConfig = new MapperConfiguration(mc =>
         {
+            mc.AddProfile(new DeleteTempVariable.AutoMapperProfile());
         });
 
         var mapper = mapperConfig.CreateMapper();

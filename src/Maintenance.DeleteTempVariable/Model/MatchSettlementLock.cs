@@ -14,7 +14,7 @@ public class MatchSettlementLock
 
     public int TotalSettlementProcessing { get; set; }
 
-    public string DBServer { get; set; }
+    public string ServerName { get; set; }
 
     public string ErrorMessage { get; set; }
 }
