@@ -1,3 +1,5 @@
+<h1>Update Log Status</h1>
+
 <table>
   <thead class="table-head">
     <tr>
@@ -26,10 +28,12 @@
         <td>{{ log.startTime }}</td>
         <td>{{ log.endTime }}</td>
         <td>{{ log.startTimeValidation }}</td>
-        <!-- <td class="action">
-          <button color="primary" (click)="openDialog()">Update</button>
-          <button color="warn">Delete</button>
-        </td> -->
+        <td>
+          <div class="action">
+            <button class="btn-update" (click)="openDialog()">Update</button>
+            <button class="btn-delete">Delete</button>
+          </div>
+        </td>
       </tr>
     </ng-container>
 

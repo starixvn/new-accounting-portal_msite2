@@ -1,1 +1,56 @@
 <h1>Delete Parlay Locking</h1>
+
+<div>
+  <div class="filter">
+    <div class="match">
+      <label for="">MatchId</label>
+      <input type="text" name="matchId" [(ngModel)]="filter.matchId" />
+    </div>
+
+    <div class="time">
+      <label for="">Time</label>
+      <select [(ngModel)]="filter.timeRange">
+        <option *ngFor="let item of timeRanges" [value]="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+
+    <button (click)="submit()">Submit</button>
+  </div>
+
+  <table *ngIf="matches">
+    <thead>
+      <tr>
+        <th>MachtId</th>
+        <th>Total Affected Refno(s)</th>
+        <th>Session</th>
+        <th>SpName</th>
+        <th>CreatedTime</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngIf="matches.length; else noData">
+        <tr *ngFor="let match of matches">
+          <td>{{ match.matchId }}</td>
+          <td>{{ match.totalAffectedRefno }}</td>
+          <td>{{ match.session }}</td>
+          <td>{{ match.sPName }}</td>
+          <td>{{ match.createdDate }}</td>
+          <td>
+            <div class="action">
+              <button (click)="onDelete(match.session)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <tr>
+          <td colspan="6" class="no-data">No Information Available</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

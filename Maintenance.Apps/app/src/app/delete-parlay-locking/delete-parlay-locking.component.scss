@@ -1,0 +1,19 @@
+.filter {
+  display: flex;
+  column-gap: 10px;
+
+  margin-bottom: 20px;
+  label {
+    margin-right: 10px;
+  }
+  select {
+    width: 100px;
+  }
+}
+
+table {
+  text-align: center;
+  thead {
+    background-color: #92cddc;
+  }
+}

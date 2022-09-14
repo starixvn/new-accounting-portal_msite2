@@ -11,6 +11,7 @@ import { DeleteTempVariableNumberComponent } from './delete-temp-variable-number
 import { HttpService } from 'src/services/http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     UpdateLogStatusComponent,
     DeleteTempVariableNumberComponent,
     NavMenuComponent,
+    DeleteParlayLockingComponent,
   ],
   imports: [
     BrowserModule,
