@@ -3,72 +3,71 @@ using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
 
-namespace Maintenance.DeleteTempVariable.Services
+namespace Maintenance.DeleteTempVariable.Services;
+
+public interface TempVariableService
 {
-    public interface TempVariableService
+    Task<int> TicketCount(MatchTicketRequest request);
+
+    Task<List<Match>> GetMatches(int? matchId);
+
+    Task<Match> GetMatchDetail(int matchId);
+
+    Task<int> DeleteMatch(DeleteTempRequest request);
+}
+
+public class TempVariableServiceImp : TempVariableService
+{
+    private readonly IDynamicRepository repository;
+
+    public TempVariableServiceImp(IDynamicRepository repository)
     {
-        Task<int> TicketCount(MatchTicketRequest request);
-
-        Task<List<Match>> GetMatches(int? matchId);
-
-        Task<Match> GetMatchDetail(int matchId);
-
-        Task<int> DeleteMatch(DeleteTempRequest request);
+        this.repository = repository;
     }
 
-    public class TempVariableServiceImp : TempVariableService
+    public async Task<int> TicketCount(MatchTicketRequest request)
     {
-        private readonly IDynamicRepository repository;
-
-        public TempVariableServiceImp(IDynamicRepository repository)
+        var criteria = new GetTicketCriteria
         {
-            this.repository = repository;
-        }
+            MatchId = request.MatchId,
+            KeyId = request.KeyId,
+            Action = request.ActionName,
+            MarketId = request.MarketId
+        };
 
-        public async Task<int> TicketCount(MatchTicketRequest request)
+        var model = await repository.GetAsync<MatchTicket>(criteria);
+        return model.TicketCount;
+    }
+
+    public async Task<List<Match>> GetMatches(int? matchId)
+    {
+        var criteria = new GetMatchesCriteria
         {
-            var criteria = new GetTicketCriteria
-            {
-                MatchId = request.MatchId,
-                KeyId = request.KeyId,
-                Action = request.ActionName,
-                MarketId = request.MarketId ?? string.Empty
-            };
+            MatchId = matchId ?? 0
+        };
 
-            var model = await repository.GetAsync<MatchTicket>(criteria);
-            return model.TicketCount;
-        }
+        return (await repository.FetchAsync<Match>(criteria)).ToList();
+    }
 
-        public async Task<List<Match>> GetMatches(int? matchId)
+    public async Task<Match> GetMatchDetail(int matchId)
+    {
+        var criteria = new GetMatchesCriteria
         {
-            var criteria = new GetMatchesCriteria
-            {
-                MatchId = matchId ?? 0
-            };
+            MatchId = matchId
+        };
 
-            return (await repository.FetchAsync<Match>(criteria)).ToList();
-        }
+        return await repository.GetAsync<Match>(criteria);
+    }
 
-        public async Task<Match> GetMatchDetail(int matchId)
+    public async Task<int> DeleteMatch(DeleteTempRequest request)
+    {
+        var criteria = new DeleteMatchCriteria
         {
-            var criteria = new GetMatchesCriteria
-            {
-                MatchId = matchId
-            };
+            MatchId = request.MatchId,
+            KeyId = request.KeyId,
+            MarketId = request.MarketId
+        };
 
-            return await repository.GetAsync<Match>(criteria);
-        }
-
-        public async Task<int> DeleteMatch(DeleteTempRequest request)
-        {
-            var criteria = new DeleteMatchCriteria
-            {
-                MatchId = request.MatchId,
-                KeyId = request.KeyId,
-                MarketId = request.MarketId
-            };
-
-            return await repository.ExecuteAsync(criteria);
-        }
+        return await repository.ExecuteAsync(criteria);
     }
 }

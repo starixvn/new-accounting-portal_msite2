@@ -1,7 +1,6 @@
-﻿namespace Maintenance.DeleteTempVariable.Model
+﻿namespace Maintenance.DeleteTempVariable.Model;
+
+public class MatchTicket
 {
-    public class MatchTicket
-    {
-        public int TicketCount { get; set; }
-    }
+    public int TicketCount { get; set; }
 }

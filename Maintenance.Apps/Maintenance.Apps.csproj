@@ -8,31 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="App_Data\Fanex.Data\SpName.AWS.xml" />
-    <None Remove="App_Data\Fanex.Data\SpName.LOCAL.xml" />
-    <None Remove="App_Data\Fanex.Data\SpName.PROD.xml" />
-    <None Remove="App_Data\Fanex.Data\SpName.SIT.xml" />
-    <None Remove="App_Data\Fanex.Data\SpName.xml" />
-    <None Remove="App_Data\Fanex.Data\SpNameUAT.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="App_Data\Fanex.Data\SpName.AWS.xml">
+    <Content Include="App_Data\SpName.AWS.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\SpName.LOCAL.xml">
+    <Content Include="App_Data\SpName.LOCAL.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\SpName.PROD.xml">
+    <Content Include="App_Data\SpName.PROD.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\SpName.SIT.xml">
+    <Content Include="App_Data\SpName.SIT.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\SpNameUAT.xml">
+    <Content Include="App_Data\SpNameUAT.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\SpName.xml">
+    <Content Include="App_Data\SpName.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -3,43 +3,42 @@ using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
 
-namespace Maintenance.DeleteTempVariable.Services
-{
-    public interface ParlayLockingService
-    {
-        Task<List<MatchParlayLocking>> GetMatches(ParlayLockingRequest request);
+namespace Maintenance.DeleteTempVariable.Services;
 
-        Task<int> DeleteMatch(DeleteParlayLockingRequest request);
+public interface ParlayLockingService
+{
+    Task<List<MatchParlayLocking>> GetMatches(ParlayLockingRequest request);
+
+    Task<int> DeleteMatch(DeleteParlayLockingRequest request);
+}
+
+public class ParlayLockingServiceImp : ParlayLockingService
+{
+    private readonly IDynamicRepository repository;
+
+    public ParlayLockingServiceImp(IDynamicRepository repository)
+    {
+        this.repository = repository;
     }
 
-    public class ParlayLockingServiceImp : ParlayLockingService
+    public async Task<List<MatchParlayLocking>> GetMatches(ParlayLockingRequest request)
     {
-        private readonly IDynamicRepository repository;
-
-        public ParlayLockingServiceImp(IDynamicRepository repository)
+        var criteria = new GetParlayLockingCriteria
         {
-            this.repository = repository;
-        }
+            MatchId = request.MatchId ?? 0,
+            TimeRange = request.TimeRange
+        };
 
-        public async Task<List<MatchParlayLocking>> GetMatches(ParlayLockingRequest request)
+        return (await repository.FetchAsync<MatchParlayLocking>(criteria)).ToList();
+    }
+
+    public async Task<int> DeleteMatch(DeleteParlayLockingRequest request)
+    {
+        var criteria = new DeleteParlayLockingCriteria
         {
-            var criteria = new GetParlayLockingCriteria
-            {
-                MatchId = request.MatchId ?? 0,
-                TimeRange = request.TimeRange
-            };
+            Session = request.Session
+        };
 
-            return (await repository.FetchAsync<MatchParlayLocking>(criteria)).ToList();
-        }
-
-        public async Task<int> DeleteMatch(DeleteParlayLockingRequest request)
-        {
-            var criteria = new DeleteParlayLockingCriteria
-            {
-                Session = request.Session
-            };
-
-            return await repository.ExecuteAsync(criteria);
-        }
+        return await repository.ExecuteAsync(criteria);
     }
 }

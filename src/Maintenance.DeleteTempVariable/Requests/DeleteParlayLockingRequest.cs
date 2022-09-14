@@ -1,7 +1,6 @@
-﻿namespace Maintenance.DeleteTempVariable.Requests
+﻿namespace Maintenance.DeleteTempVariable.Requests;
+
+public class DeleteParlayLockingRequest
 {
-    public class DeleteParlayLockingRequest
-    {
-        public string Session { get; set; }
-    }
+    public string Session { get; set; }
 }

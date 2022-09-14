@@ -1,11 +1,12 @@
-﻿namespace Maintenance.DeleteTempVariable.Model
+﻿namespace Maintenance.DeleteTempVariable.Model;
+
+public class SystemSettings
 {
-    public class SystemSettings
-    {
-        public int VId { get; set; }
+    public string DBServer { get; set; }
 
-        public string VValue { get; set; }
+    public int VId { get; set; }
 
-        public string VName { get; set; }
-    }
+    public string VValue { get; set; }
+
+    public string VName { get; set; }
 }

@@ -1,9 +1,8 @@
-﻿namespace Maintenance.DeleteTempVariable.Requests
-{
-    public class ParlayLockingRequest
-    {
-        public int? MatchId { get; set; }
+﻿namespace Maintenance.DeleteTempVariable.Requests;
 
-        public int TimeRange { get; set; }
-    }
+public class ParlayLockingRequest
+{
+    public int? MatchId { get; set; }
+
+    public int TimeRange { get; set; }
 }

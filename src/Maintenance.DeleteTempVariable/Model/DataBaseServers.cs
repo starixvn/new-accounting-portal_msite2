@@ -1,7 +1,6 @@
-﻿namespace Maintenance.DeleteTempVariable.Model
+﻿namespace Maintenance.DeleteTempVariable.Model;
+
+public static class DataBaseServers
 {
-    public static class DataBaseServers
-    {
-        public const string DBTrans = "DBTrans";
-    }
+    public const string DBTrans = "DBTrans";
 }
