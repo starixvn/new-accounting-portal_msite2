@@ -12,6 +12,8 @@ import { HttpService } from 'src/services/http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
+import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-par
     DeleteTempVariableNumberComponent,
     NavMenuComponent,
     DeleteParlayLockingComponent,
+    DeleteSettlementLockComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

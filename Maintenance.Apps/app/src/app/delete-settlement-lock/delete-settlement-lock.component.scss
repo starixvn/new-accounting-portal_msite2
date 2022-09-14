@@ -1,0 +1,19 @@
+.filter {
+  display: flex;
+  column-gap: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  label {
+    margin-right: 10px;
+  }
+  input[type="text"] {
+    box-sizing: border-box;
+    border: 1px solid #92cddc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+}

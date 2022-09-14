@@ -2,15 +2,16 @@
   display: flex;
   column-gap: 20px;
   padding: 20px;
-  //   background-color: lightgrey;
-  //   border: 1px solid lightgrey;
+  background-color: #f4f4f4;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-bottom: 20px;
 
-  .btn-submit {
-    // background-color: rgb(72, 172, 211);
-    border: none;
-    padding: 5px;
-    cursor: pointer;
+  input[type="text"] {
+    box-sizing: border-box;
+    border: 1px solid #92cddc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
   }
 }
 

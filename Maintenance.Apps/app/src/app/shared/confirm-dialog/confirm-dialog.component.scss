@@ -1,0 +1,44 @@
+.dialog-header {
+  background-color: #4f81bd;
+  color: white;
+}
+
+.mat-dialog-container {
+  padding: 0;
+  overflow: unset;
+}
+
+.mat-dialog-actions {
+  min-height: auto;
+  margin-bottom: 0;
+  padding: 15px;
+  justify-content: end;
+  column-gap: 10px;
+}
+
+.mat-dialog-title {
+  padding: 0 15px;
+}
+
+.mat-dialog-content {
+  padding: 0 15px;
+  margin: 0;
+}
+
+.btn {
+  padding: 5px 15px;
+  color: white;
+  border: 1px solid rgb(233, 221, 221);
+}
+
+.btn-update {
+  background-color: #558ed5;
+}
+
+.btn-delete {
+  background-color: #c50000;
+}
+
+.btn-cancel {
+  background-color: grey;
+}

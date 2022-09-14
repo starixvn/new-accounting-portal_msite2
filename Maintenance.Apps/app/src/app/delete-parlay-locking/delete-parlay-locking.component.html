@@ -11,12 +11,12 @@
       <label for="">Time</label>
       <select [(ngModel)]="filter.timeRange">
         <option *ngFor="let item of timeRanges" [value]="item">
-          {{ item }}
+          {{ item + "h" }}
         </option>
       </select>
     </div>
 
-    <button (click)="submit()">Submit</button>
+    <button (click)="submit()" class="btn-submit">SUBMIT</button>
   </div>
 
   <table *ngIf="matches">

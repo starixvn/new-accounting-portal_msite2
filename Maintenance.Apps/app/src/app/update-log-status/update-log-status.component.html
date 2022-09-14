@@ -30,8 +30,12 @@
         <td>{{ log.startTimeValidation }}</td>
         <td>
           <div class="action">
-            <button class="btn-update" (click)="openDialog()">Update</button>
-            <button class="btn-delete">Delete</button>
+            <button class="btn-update" (click)="openUpdateConfirmDialog(log)">
+              Update
+            </button>
+            <button class="btn-delete" (click)="openDeleteConfirmDialog(log)">
+              Delete
+            </button>
           </div>
         </td>
       </tr>

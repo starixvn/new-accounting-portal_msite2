@@ -3,12 +3,12 @@
   <div class="filter">
     <div class="match">
       <label for="">MatchId</label>
-      <input type="text" name="matchId" />
+      <input type="text" name="matchId" [(ngModel)]="matchId" />
     </div>
-    <button>Submit</button>
+    <button (click)="submit()" class="btn-submit">SUBMIT</button>
   </div>
 
-  <table>
+  <table *ngIf="matches">
     <thead>
       <tr>
         <th>DB Server</th>
@@ -23,17 +23,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+      <ng-container *ngIf="matches.length; else noData">
+        <tr *ngFor="let item of matches">
+          <td>{{ item.dBServer }}</td>
+          <td>{{ item.matchId }}</td>
+          <td>{{ item.sessionId }}</td>
+          <td>{{ item.createdTime }}</td>
+          <td>{{ item.homeTeam + " -vs- " + item.awayTeam }}</td>
+          <td>{{ item.errorMessage }}</td>
+          <td></td>
+          <td>{{ item.totalSettlementProcessing }}</td>
+          <td></td>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <tr>
+          <td colspan="9" class="no-data">No Information Available</td>
+        </tr>
+      </ng-template>
     </tbody>
   </table>
 </div>
