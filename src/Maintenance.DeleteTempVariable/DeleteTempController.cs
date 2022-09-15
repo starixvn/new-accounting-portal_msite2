@@ -105,7 +105,7 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> GetSystemSetting()
     {
         var matches = await systemSettingService.GetSystemSettings();
-        return Ok(JsonConvert.SerializeObject(matches));
+        return Ok(matches);
     }
 
     [HttpPost]

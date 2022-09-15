@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { HttpService } from 'src/services/http.service';
+import { HttpService } from '../shared/services/http.service';
 import { Match } from './match.model';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class Service {
     const url = `${this.baseUrl}/delete-temp-variable`;
     const body = { ...data };
 
-    this.httpService.post(url, body).subscribe((res) => {
+    this.httpService.post(url, body).subscribe((res: any) => {
       this.dataUpdateSource.next(null);
     });
   }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/services/http.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
+import { SnackbarService } from '../shared/components/snackbar/snackbar.service';
+import { SystemSettings } from './system-settings.model';
+import { UpdateSystemSettingService } from './update-system-settings.service';
 
 @Component({
   selector: 'app-update-system-settings',
@@ -7,25 +11,49 @@ import { HttpService } from 'src/services/http.service';
   styleUrls: ['./update-system-settings.component.scss'],
 })
 export class UpdateSystemSettingsComponent implements OnInit {
-  public data: any[] | null = null;
+  public systemSettings: SystemSettings[] | null = null;
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private service: UpdateSystemSettingService,
+    private dialog: MatDialog,
+    private snackbarService: SnackbarService
+  ) {}
 
-  ngOnInit(): void {}
-
-  loadData() {
-    this.httpService
-      .post('api/delete-temp-variable/get-system-setting')
-      .subscribe((data) => {
-        console.log('get-system-setting', data);
-      });
+  ngOnInit(): void {
+    this.loadData();
   }
 
-  onUpdate() {
-    this.httpService
-      .post('api/delete-temp-variable/update-system-setting')
-      .subscribe((data) => {
-        console.log('update-system-setting', data);
-      });
+  loadData() {
+    this.service.getAll().subscribe((data) => {
+      console.log('get-system-setting', data);
+      this.systemSettings = data;
+    });
+  }
+
+  openUpdateConfirmDialog(item: SystemSettings) {
+    const message = `
+        <div>Info:<div>
+        <div>DB Server: ${item.dbServer}<div>
+        <div>VID: ${item.vId}<div>
+        <div> Vname: ${item.vName}<div>
+        <div>Vvalue: ${item.vValue}<div>
+        <div>Are you sure you want to <b>UPDATE</b> this row!<div>
+    `;
+    const confirmText = 'Update';
+    const cancelText = 'Cancel';
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message, confirmText, cancelText },
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      dialogResult && this.handleUpdate(item.dbServer);
+    });
+  }
+  handleUpdate(dbServer: string) {
+    this.service.update(dbServer).subscribe((res) => {
+      this.snackbarService.openSnackBar();
+    });
   }
 }

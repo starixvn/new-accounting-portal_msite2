@@ -8,14 +8,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from './angular-material.module';
 import { UpdateLogStatusComponent } from './update-log-status/update-log-status.component';
 import { DeleteTempVariableNumberComponent } from './delete-temp-variable-number/delete-temp-variable-number.component';
-import { HttpService } from 'src/services/http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
 import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
-import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 import { DeleteTempVariableNumberDetailComponent } from './delete-temp-variable-number/delete-temp-number-detail.component';
 import { Service } from './delete-temp-variable-number/delete-temp-variable-number.service';
+import { HttpService } from './shared/services/http.service';
+import { UpdateSystemSettingService } from './update-system-settings/update-system-settings.service';
+import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
+import { SnackbarService } from './shared/components/snackbar/snackbar.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { Service } from './delete-temp-variable-number/delete-temp-variable-numb
     DeleteSettlementLockComponent,
     ConfirmDialogComponent,
     DeleteTempVariableNumberDetailComponent,
+    UpdateSystemSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,12 @@ import { Service } from './delete-temp-variable-number/delete-temp-variable-numb
     AngularMaterialModule,
     BrowserAnimationsModule,
   ],
-  providers: [HttpService, Service],
+  providers: [
+    HttpService,
+    Service,
+    UpdateSystemSettingService,
+    SnackbarService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

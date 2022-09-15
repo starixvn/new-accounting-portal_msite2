@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/services/http.service';
+import { HttpService } from '../shared/services/http.service';
 
 export interface MatchSettlementLock {
   matchId: number;

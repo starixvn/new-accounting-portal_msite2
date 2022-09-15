@@ -1,6 +1,6 @@
 <h1>Update System Settings</h1>
 
-<table *ngIf="data">
+<table *ngIf="systemSettings">
   <thead>
     <tr>
       <th>DB Server</th>
@@ -12,16 +12,24 @@
   </thead>
 
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>
-        <div class="action">
-          <button>Update</button>
-        </div>
-      </td>
-    </tr>
+    <ng-container *ngIf="systemSettings.length; else noData">
+      <tr *ngFor="let item of systemSettings">
+        <td>{{ item.dbServer }}</td>
+        <td>{{ item.vId }}</td>
+        <td>{{ item.vValue }}</td>
+        <td>{{ item.vName }}</td>
+        <td>
+          <div class="action">
+            <button (click)="openUpdateConfirmDialog(item)">Update</button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-template #noData>
+      <tr>
+        <td colspan="5"></td>
+      </tr>
+    </ng-template>
   </tbody>
 </table>
