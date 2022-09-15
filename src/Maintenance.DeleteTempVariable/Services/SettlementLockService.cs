@@ -1,13 +1,15 @@
-﻿using Fanex.Data.Repository;
+﻿using AutoMapper;
+using Fanex.Data.Repository;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
+using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
 
 public interface SettlementLockService
 {
-    Task<List<MatchSettlementLock>> GetMatches(DeleteTempRequest request);
+    Task<List<MatchSettlementLock>> GetMatches(MatchRequest request);
 
     Task<int> Delete(DeleteSettlementProcessingRequest request);
 
@@ -18,36 +20,51 @@ public class SettlementLockServiceImp : SettlementLockService
 {
     private readonly IDynamicRepository repository;
 
-    public SettlementLockServiceImp(IDynamicRepository repository)
+    private readonly AppSettingsKey appSettingsKey;
+
+    private readonly IMapper mapper;
+
+    public SettlementLockServiceImp(
+        IDynamicRepository repository,
+        IOptions<AppSettingsKey> appSettingsKey,
+        IMapper mapper)
     {
         this.repository = repository;
+        this.appSettingsKey = appSettingsKey.Value;
+        this.mapper = mapper;
     }
 
-    public async Task<List<MatchSettlementLock>> GetMatches(DeleteTempRequest request)
+    public async Task<List<MatchSettlementLock>> GetMatches(MatchRequest request)
     {
-        var criteria = new GetSettlementLockCriteria
+        var listSettlementLock = new List<MatchSettlementLock>();
+
+        foreach (var server in appSettingsKey.SiteDbServer)
         {
-            MatchId = request.MatchId,
-        };
+            var criteria = new GetSettlementLockCriteria
+            {
+                MatchId = request.MatchId,
+                DbServer = server
+            };
 
-        var dbtransData = (await repository.FetchAsync<MatchSettlementLock>(criteria)).ToList();
-        dbtransData.ForEach(m => m.ServerName = DataBaseServers.DBTrans);
+            var list = (await repository.FetchAsync<MatchSettlementLock>(criteria)).ToList();
+            list.ForEach(i => i.DbServer = server);
 
-        var replicatedData = await GetDataReplicatedServer(request.MatchId);
+            listSettlementLock.AddRange(list);
 
-        if (replicatedData.Any())
-        {
-            dbtransData.AddRange(replicatedData);
+            if (server.Equals(DataBaseServers.DBTrans))
+            {
+                var replicatedData = await GetDataReplicatedServer(request.MatchId);
+                listSettlementLock.AddRange(replicatedData);
+            }
         }
 
-        return dbtransData;
+        return listSettlementLock;
     }
 
     private async Task<List<MatchSettlementLock>> GetDataReplicatedServer(int matchId)
     {
         var replicatedData = new List<MatchSettlementLock>();
-        var listReplicatedServer = new List<string> { "DB052", "DB053", "DB054", "DB055", "DB06", "DB061", "DBTP" };
-        foreach (var server in listReplicatedServer)
+        foreach (var server in appSettingsKey.SubDbServer)
         {
             var replicatedServerCriteria = new GetSettlementLockReplicatedServerCriteria
             {
@@ -56,12 +73,9 @@ public class SettlementLockServiceImp : SettlementLockService
             };
 
             var data = (await repository.FetchAsync<MatchSettlementLock>(replicatedServerCriteria)).ToList();
-            data.ForEach(m => m.ServerName = server);
+            data.ForEach(m => m.DbServer = server);
 
-            if (data.Any())
-            {
-                replicatedData.AddRange(data);
-            }
+            replicatedData.AddRange(data);
         }
 
         return replicatedData;
@@ -69,26 +83,13 @@ public class SettlementLockServiceImp : SettlementLockService
 
     public async Task<int> Delete(DeleteSettlementProcessingRequest request)
     {
-        var criteria = new DeleteSettlementLockCriteria
-        {
-            SessionId = request.SessionId,
-            DbServer = request.DbServer,
-            IsSettleLock = request.isSettleLock
-        };
-
+        var criteria = mapper.Map<DeleteSettlementLockCriteria>(request);
         return await repository.ExecuteAsync(criteria);
     }
 
     public async Task<int> UpdateSettlementLogs(UpdateSettlementLogRequest request)
     {
-        var row = 0;
-        var criteria = new UpdateSettlementLogCriteria
-        {
-            SessionId = request.SessionId,
-            DbServer = request.DbServer,
-            StartTime = request.StartTime
-        };
-
+        var criteria = mapper.Map<UpdateSettlementLogCriteria>(request);
         return await repository.ExecuteAsync(criteria);
     }
 }

@@ -2,5 +2,5 @@
 
 public static class DataBaseServers
 {
-    public const string DBTrans = "DBTrans";
+    public const string DBTrans = "DBTXN";
 }

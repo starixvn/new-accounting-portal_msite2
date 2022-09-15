@@ -2,6 +2,10 @@
 
 public class MatchSettlementLock
 {
+    public string ServerName { get; set; }
+
+    public string DbServer { get; set; }
+
     public int MatchId { get; set; }
 
     public string SessionId { get; set; }
@@ -13,8 +17,6 @@ public class MatchSettlementLock
     public string AwayTeam { get; set; }
 
     public int TotalSettlementProcessing { get; set; }
-
-    public string ServerName { get; set; }
 
     public string ErrorMessage { get; set; }
 }

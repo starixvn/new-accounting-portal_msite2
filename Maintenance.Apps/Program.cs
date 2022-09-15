@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 });
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-builder.Services.Configure<AppSettingsKey>(builder.Configuration);
+builder.Services.Configure<AppSettingsKey>(builder.Configuration.GetSection(AppSettingsKey.MultiDbServer));
 
 // Add services to the container.
 builder.Services.AddRazorPages();

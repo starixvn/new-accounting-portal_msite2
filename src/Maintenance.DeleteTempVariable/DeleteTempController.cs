@@ -50,7 +50,7 @@ public class DeleteTempController : ControllerBase
 
     [HttpPost]
     [Route("get-settlement-lock")]
-    public async Task<IActionResult> GetSettlementLock(DeleteTempRequest request)
+    public async Task<IActionResult> GetSettlementLock(MatchRequest request)
     {
         var matches = await settlementLockService.GetMatches(request);
         return Ok(JsonConvert.SerializeObject(matches));

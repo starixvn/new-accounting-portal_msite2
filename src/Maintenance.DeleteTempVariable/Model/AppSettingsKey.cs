@@ -2,5 +2,9 @@
 
 public class AppSettingsKey
 {
+    public const string MultiDbServer = "MultiDbServer";
+
     public List<string> SiteDbServer { get; set; }
+
+    public List<string> SubDbServer { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Microsoft.Extensions.Options;
@@ -19,16 +18,12 @@ public class SystemSettingServiceImp : SystemSettingService
 
     private readonly AppSettingsKey appSettingsKey;
 
-    private readonly IMapper mapper;
-
     public SystemSettingServiceImp(
         IDynamicRepository repository,
-        IOptions<AppSettingsKey> appSettingsKey,
-        IMapper mapper)
+        IOptions<AppSettingsKey> appSettingsKey)
     {
         this.repository = repository;
         this.appSettingsKey = appSettingsKey.Value;
-        this.mapper = mapper;
     }
 
     public async Task<List<SystemSettings>> GetSystemSettings()

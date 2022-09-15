@@ -14,5 +14,8 @@ public class AutoMapperProfile : Profile
 
         CreateMap<ParlayLockingRequest, GetParlayLockingCriteria>();
         CreateMap<DeleteParlayLockingRequest, DeleteParlayLockingCriteria>();
+
+        CreateMap<DeleteSettlementProcessingRequest, DeleteSettlementLockCriteria>();
+        CreateMap<UpdateSettlementLogRequest, UpdateSettlementLogCriteria>();
     }
 }
