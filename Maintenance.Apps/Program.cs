@@ -1,9 +1,12 @@
 using Fanex.NAP.Client;
 using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
+using Fanex.NAP.Signin.AspNetCore.Attribute;
 using Maintenance.Apps;
 using Maintenance.Apps.App_Start;
 using Maintenance.DeleteTempVariable.Model;
+using Microsoft.AspNetCore.Mvc;
+using ONEbook.UM.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -16,16 +19,28 @@ builder.Services.Configure<AppSettingsKey>(builder.Configuration.GetSection(AppS
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
+    options.Filters.Add(new SessionAuthorizeAttribute());
+}).AddNewtonsoftJson();
+
 builder.Services.AddControllerAuthorization();
 builder.Services.AddCookieAuthentication(builder.Configuration);
 builder.Services.AddRedisSession(builder.Configuration);
 
 builder.Services.AddNapServices(builder.Configuration);
 builder.Services.AddFanexServices(builder.Configuration);
+builder.Services.AddOnebookUM(builder.Configuration);
 builder.Services.AddCoreServices();
 builder.Services.AddMediator();
 builder.Services.AddAutoMapper();
 builder.Services.AddInternalServices();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
+    options.Filters.Add(new SessionAuthorizeAttribute());
+}).AddNewtonsoftJson();
 
 // Configure app
 var app = builder.Build();

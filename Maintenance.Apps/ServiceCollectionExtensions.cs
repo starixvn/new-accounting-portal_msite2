@@ -25,9 +25,12 @@ using ONEbook.UM.Transport;
 
 namespace Maintenance.Apps;
 
+using App_Start;
+using HttpContextHelper = ONEbook.UM.Helpers.HttpContextHelper;
+
 public static class ServiceCollectionExtensions
 {
-    public static void AddAutoMapper(this IServiceCollection services)
+    public static IServiceCollection AddAutoMapper(this IServiceCollection services)
     {
         var mapperConfig = new MapperConfiguration(mc =>
         {
@@ -38,9 +41,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(mapper);
 
         services.AddMvc();
+
+        return services;
     }
 
-    public static void AddControllerAuthorization(this IServiceCollection services)
+    public static IServiceCollection AddControllerAuthorization(this IServiceCollection services)
     {
         services.AddControllers(config =>
         {
@@ -55,9 +60,11 @@ public static class ServiceCollectionExtensions
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             }
         );
+
+        return services;
     }
 
-    public static void AddCookieAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddCookieAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
@@ -76,14 +83,17 @@ public static class ServiceCollectionExtensions
                             return Task.CompletedTask;
                         };
                     });
+
+        return services;
     }
 
-    public static void AddCoreServices(this IServiceCollection services)
+    public static IServiceCollection AddCoreServices(this IServiceCollection services)
     {
         services.AddScoped<IDynamicRepository, DynamicRepository>();
+        return services;
     }
 
-    public static void AddFanexServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddFanexServices(this IServiceCollection services, IConfiguration configuration)
     {
         var connections = configuration.GetSection("ConnectionStrings")
                                .GetChildren()
@@ -114,22 +124,27 @@ public static class ServiceCollectionExtensions
         ExceptionHandler
             .UseConfig(new LoggingConfiguration())
             .UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo);
+
+        return services;
     }
 
-    public static void AddInternalServices(this IServiceCollection services)
+    public static IServiceCollection AddInternalServices(this IServiceCollection services)
     {
         services.AddTransient<ParlayLockingService, ParlayLockingServiceImp>();
         services.AddTransient<SettlementLockService, SettlementLockServiceImp>();
         services.AddTransient<SystemSettingService, SystemSettingServiceImp>();
         services.AddTransient<TempVariableService, TempVariableServiceImp>();
         services.AddTransient<LogStatusService, LogStatusServiceImp>();
+
+        return services;
     }
 
-    public static void AddMediator(this IServiceCollection services)
+    public static IServiceCollection AddMediator(this IServiceCollection services)
     {
+        return services;
     }
 
-    public static void AddNapServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddNapServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddTransient<Fanex.Logging.ILogger, Logger>();
@@ -147,9 +162,19 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IUMCacheService, UMCacheService>();
         services.AddSingleton<IUMRestClient, UMRestClient>();
         services.AddSingleton<IHttpContextHelper, HttpContextHelper>();
+
+        return services;
     }
 
-    public static void AddRedisSession(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddOnebookUM(this IServiceCollection services, IConfiguration configuration)
+    {
+        OnebookUMInitializer.RegisterServiceCollection(services, configuration);
+        OnebookUMInitializer.InitializeUMClientManager();
+
+        return services;
+    }
+
+    public static IServiceCollection AddRedisSession(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSession(options =>
         {
@@ -157,5 +182,7 @@ public static class ServiceCollectionExtensions
             options.IdleTimeout = TimeSpan.FromMinutes(int.Parse(configuration.GetSection("AuthSettings:SessionTimeOut").Value));
             options.Cookie.Name = "Fanex.mSite2.Session";
         });
+
+        return services;
     }
 }
