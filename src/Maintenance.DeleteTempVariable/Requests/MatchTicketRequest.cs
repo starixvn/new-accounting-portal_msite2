@@ -8,7 +8,7 @@ public class MatchTicketRequest
 
     public int KeyId { get; set; }
 
-    public string ActionName { get; set; }
+    public string? ActionName { get; set; }
 
     public string MarketId { get; set; }
 }

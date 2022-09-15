@@ -8,17 +8,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   encapsulation: ViewEncapsulation.None,
 })
 export class ConfirmDialogComponent implements OnInit {
-  public title!: string;
-  public message!: string;
-  public confirmText!: string;
-  public cancelText!: string;
+  public title?: string;
+  public message?: string;
+  public confirmText?: string;
+  public cancelText?: string;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData
   ) {
-    console.log(data);
-    this.title = data.title;
+    this.title = data.title ?? 'Please confirm';
     this.message = data.message;
     this.cancelText = data.cancelText ?? 'Yes';
     this.confirmText = data.confirmText ?? 'No';

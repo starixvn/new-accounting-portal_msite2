@@ -1,7 +1,9 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/services/http.service';
+import { MatDialog } from '@angular/material/dialog';
+import { lastValueFrom } from 'rxjs';
+import { DeleteTempVariableNumberDetailComponent } from './delete-temp-number-detail.component';
 import { Match } from './match.model';
+import { Service } from './delete-temp-variable-number.service';
 
 @Component({
   selector: 'app-delete-temp-variable-number',
@@ -9,25 +11,35 @@ import { Match } from './match.model';
   styleUrls: ['./delete-temp-variable-number.component.scss'],
 })
 export class DeleteTempVariableNumberComponent implements OnInit {
-  constructor(private httpService: HttpService) {}
+  constructor(private dialog: MatDialog, private service: Service) {}
 
   public matches: Match[] | null = null;
   public matchId!: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.dataUpdate$.subscribe((res) => {
+      this.loadData();
+      this.dialog.closeAll();
+    });
+  }
 
   loadData() {
-    const params = new HttpParams();
-    params.set('matchId', this.matchId);
-
-    this.httpService
-      .post<Match[]>('api/delete-temp-variable/get-temp-variable', null, params)
-      .subscribe((data) => {
-        this.matches = data;
-      });
+    this.service.getAll(this.matchId).subscribe((data) => {
+      this.matches = data;
+    });
   }
 
   submit() {
     this.loadData();
+  }
+
+  async openDetailMatchDialog(data: Match) {
+    const result = await lastValueFrom(this.service.getDetail(data));
+    const config = {
+      data: result,
+      width: '600px',
+    };
+
+    this.dialog.open(DeleteTempVariableNumberDetailComponent, config);
   }
 }

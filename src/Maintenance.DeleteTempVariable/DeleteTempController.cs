@@ -89,7 +89,7 @@ public class DeleteTempController : ControllerBase
         detail.TicketCount = ticketCount;
         detail.IsDelete = true; // Need get current permission for deleting
         detail.DbServer = request.DbServer;
-        return Ok(JsonConvert.SerializeObject(detail));
+        return Ok(detail);
     }
 
     [HttpPost]

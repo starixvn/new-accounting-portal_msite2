@@ -14,6 +14,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
 import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { DeleteTempVariableNumberDetailComponent } from './delete-temp-variable-number/delete-temp-number-detail.component';
+import { Service } from './delete-temp-variable-number/delete-temp-variable-number.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     DeleteParlayLockingComponent,
     DeleteSettlementLockComponent,
     ConfirmDialogComponent,
+    DeleteTempVariableNumberDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     AngularMaterialModule,
     BrowserAnimationsModule,
   ],
-  providers: [HttpService],
+  providers: [HttpService, Service],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

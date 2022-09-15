@@ -1,0 +1,23 @@
+<div class="dialog-content">
+  <h2 mat-dialog-title>Detail of match {{ data.matchId }}</h2>
+
+  <div mat-dialog-content>
+    <div>DB Server: {{ data.dbServer }}</div>
+    <div>MatchId: {{ data.matchId }}</div>
+    <div>SportName: {{ data.sportName }}</div>
+    <div>Event Name: {{ data.eventName }}</div>
+    <div>Product: {{ data.productName }}</div>
+    <div>Running Tickets: {{ data.ticketCount }}</div>
+    <div>Action: {{ data.action }}</div>
+    <div>IsCal: {{ data.isCalculating }}</div>
+    <div>Wrong Balance: {{ data.wrongBalance }}</div>
+    <div>Error Message: {{ data.message }}</div>
+    <div>Remark: {{ data.remark }}</div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button (click)="openDeleteConfirmDialog()" class="btn-delete">
+      Delete
+    </button>
+  </div>
+</div>
