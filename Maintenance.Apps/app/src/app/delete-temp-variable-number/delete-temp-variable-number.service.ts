@@ -4,7 +4,7 @@ import { HttpService } from '../shared/services/http.service';
 import { Match } from './match.model';
 
 @Injectable()
-export class Service {
+export class DeleteTempVariableNumberService {
   private baseUrl = 'api/delete-temp-variable';
 
   private dataUpdateSource = new Subject();

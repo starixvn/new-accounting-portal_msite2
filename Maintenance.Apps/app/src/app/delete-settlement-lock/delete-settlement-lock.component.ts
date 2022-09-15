@@ -1,16 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../shared/services/http.service';
-
-export interface MatchSettlementLock {
-  matchId: number;
-  sessionId: string;
-  createdTime: string;
-  homeTeam: string;
-  awayTeam: string;
-  totalSettlementProcessing: number;
-  dBServer: string;
-  errorMessage: string;
-}
+import { MatchSettlementLock } from './match-settlement-lock.model';
+import { MatchSettlementLockService } from './match-settlement-lock.service';
 
 @Component({
   selector: 'app-delete-settlement-lock',
@@ -21,24 +11,37 @@ export class DeleteSettlementLockComponent implements OnInit {
   public matches: MatchSettlementLock[] | null = null;
   public matchId!: string;
 
-  constructor(private httpService: HttpService) {}
+  constructor(private matchService: MatchSettlementLockService) {}
 
   ngOnInit(): void {}
 
-  loadData() {
-    this.httpService
-      .post<MatchSettlementLock[]>(
-        'api/delete-temp-variable/get-settlement-lock',
-        {
-          matchId: this.matchId,
-        }
-      )
-      .subscribe((data) => {
-        this.matches = data ?? [];
-      });
-  }
-
   submit() {
     this.loadData();
+  }
+
+  loadData() {
+    // this.matchService.getAll(this.matchId).subscribe((data) => {
+    //   this.matches = data;
+    // });
+    this.matches = [
+      {
+        dBServer: 'DBTXN',
+        matchId: 12223,
+        sessionId: '34343',
+        errorMessage: '',
+        createdTime: '',
+        homeTeam: 'ab',
+        awayTeam: 'ABC',
+        totalSettlementProcessing: 0,
+      },
+    ];
+  }
+
+  deleteItem(item: MatchSettlementLock) {
+    // this.matchService.deleteItem(null)
+  }
+
+  updateItem(item: MatchSettlementLock) {
+    // this.matchService.updateItem(item)
   }
 }

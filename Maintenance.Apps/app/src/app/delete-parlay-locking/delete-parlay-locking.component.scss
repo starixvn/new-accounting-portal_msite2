@@ -12,10 +12,15 @@
   select {
     width: 100px;
   }
-  input,
+  input {
+    border: 1px solid #92cddc;
+    outline: none;
+    height: 17px;
+  }
   select {
     border: 1px solid #92cddc;
     outline: none;
+    height: 17px;
   }
 }
 

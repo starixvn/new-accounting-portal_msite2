@@ -31,9 +31,37 @@
           <td>{{ item.createdTime }}</td>
           <td>{{ item.homeTeam + " -vs- " + item.awayTeam }}</td>
           <td>{{ item.errorMessage }}</td>
-          <td></td>
-          <td>{{ item.totalSettlementProcessing }}</td>
-          <td></td>
+          <td>
+            <button
+              *ngIf="item.dBServer !== 'DBTXN'"
+              class="btn-submit"
+              (click)="deleteItem(item)"
+            >
+              Delete
+            </button>
+          </td>
+          <td>
+            <button
+              [ngClass]="
+                item.totalSettlementProcessing > 0
+                  ? 'btn-submit'
+                  : 'btn-disable'
+              "
+              [disabled]="item.totalSettlementProcessing <= 0"
+              (click)="deleteItem(item)"
+            >
+              Delete
+            </button>
+          </td>
+          <td>
+            <button
+              [ngClass]="item.errorMessage ? 'btn-submit' : 'btn-disable'"
+              (click)="updateItem(item)"
+              [disabled]="!item.errorMessage"
+            >
+              Update
+            </button>
+          </td>
         </tr>
       </ng-container>
       <ng-template #noData>

@@ -22,7 +22,8 @@
   <table *ngIf="matches">
     <thead>
       <tr>
-        <th>MachtId</th>
+        <th>DB Server</th>
+        <th>MatchId</th>
         <th>Total Affected Refno(s)</th>
         <th>Session</th>
         <th>SpName</th>
@@ -34,6 +35,7 @@
     <tbody>
       <ng-container *ngIf="matches.length; else noData">
         <tr *ngFor="let match of matches">
+          <td>{{ match.dbServer }}</td>
           <td>{{ match.matchId }}</td>
           <td>{{ match.totalAffectedRefno }}</td>
           <td>{{ match.session }}</td>
@@ -41,7 +43,7 @@
           <td>{{ match.createdDate }}</td>
           <td>
             <div class="action">
-              <button (click)="onDelete(match.session)">Delete</button>
+              <button (click)="onDelete(match)">Delete</button>
             </div>
           </td>
         </tr>

@@ -9,11 +9,18 @@
   label {
     margin-right: 10px;
   }
-  input[type="text"] {
-    box-sizing: border-box;
+  input {
     border: 1px solid #92cddc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
     outline: none;
+    height: 17px;
+  }
+}
+
+table {
+  .btn-disable {
+    background: grey;
+    border: 0;
+    cursor: default;
+    padding: 2px 4px;
   }
 }

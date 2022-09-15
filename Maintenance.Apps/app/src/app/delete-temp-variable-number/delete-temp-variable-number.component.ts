@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { lastValueFrom } from 'rxjs';
 import { DeleteTempVariableNumberDetailComponent } from './delete-temp-number-detail.component';
 import { Match } from './match.model';
-import { Service } from './delete-temp-variable-number.service';
+import { DeleteTempVariableNumberService } from './delete-temp-variable-number.service';
 
 @Component({
   selector: 'app-delete-temp-variable-number',
@@ -11,7 +11,10 @@ import { Service } from './delete-temp-variable-number.service';
   styleUrls: ['./delete-temp-variable-number.component.scss'],
 })
 export class DeleteTempVariableNumberComponent implements OnInit {
-  constructor(private dialog: MatDialog, private service: Service) {}
+  constructor(
+    private dialog: MatDialog,
+    private service: DeleteTempVariableNumberService
+  ) {}
 
   public matches: Match[] | null = null;
   public matchId!: string;

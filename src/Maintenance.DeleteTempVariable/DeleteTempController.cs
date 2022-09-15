@@ -2,7 +2,6 @@
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Maintenance.DeleteTempVariable;
 
@@ -37,7 +36,7 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> GetParlayLocking(ParlayLockingRequest request)
     {
         var matches = await parlayLockingService.GetMatches(request);
-        return Ok(JsonConvert.SerializeObject(matches));
+        return Ok(matches);
     }
 
     [HttpPost]
@@ -45,7 +44,7 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> DeleteParlayLocking(DeleteParlayLockingRequest request)
     {
         var result = await parlayLockingService.DeleteMatch(request);
-        return Ok(JsonConvert.SerializeObject(result));
+        return Ok(result);
     }
 
     [HttpPost]
@@ -61,7 +60,7 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> DeleteSettlementLock(DeleteSettlementProcessingRequest request)
     {
         var result = await settlementLockService.Delete(request);
-        return Ok(JsonConvert.SerializeObject(result));
+        return Ok(result);
     }
 
     [HttpPost]
@@ -69,7 +68,7 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> UpdateSettlementLock(UpdateSettlementLogRequest request)
     {
         var result = await settlementLockService.UpdateSettlementLogs(request);
-        return Ok(JsonConvert.SerializeObject(result));
+        return Ok(result);
     }
 
     [HttpPost]
@@ -97,7 +96,7 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> DeleteTempVariable(DeleteTempRequest request)
     {
         var result = await tempVariableService.DeleteMatch(request);
-        return Ok(JsonConvert.SerializeObject(result));
+        return Ok(result);
     }
 
     [HttpPost]
@@ -113,6 +112,6 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> UpdateSystemSetting(UpdateSystemSettingRequest request)
     {
         var result = await systemSettingService.UpdateSystemSetting(request.DbServer);
-        return Ok(JsonConvert.SerializeObject(result));
+        return Ok(result);
     }
 }

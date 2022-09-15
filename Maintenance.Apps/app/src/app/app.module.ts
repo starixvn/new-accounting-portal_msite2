@@ -14,11 +14,13 @@ import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-par
 import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 import { DeleteTempVariableNumberDetailComponent } from './delete-temp-variable-number/delete-temp-number-detail.component';
-import { Service } from './delete-temp-variable-number/delete-temp-variable-number.service';
+import { DeleteTempVariableNumberService } from './delete-temp-variable-number/delete-temp-variable-number.service';
 import { HttpService } from './shared/services/http.service';
 import { UpdateSystemSettingService } from './update-system-settings/update-system-settings.service';
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
 import { SnackbarService } from './shared/components/snackbar/snackbar.service';
+import { MatchSettlementLockService } from './delete-settlement-lock/match-settlement-lock.service';
+import { MatchParlayLockingService } from './delete-parlay-locking/delete-parlay-locking.service';
 
 @NgModule({
   declarations: [
@@ -43,9 +45,11 @@ import { SnackbarService } from './shared/components/snackbar/snackbar.service';
   ],
   providers: [
     HttpService,
-    Service,
+    DeleteTempVariableNumberService,
     UpdateSystemSettingService,
+    MatchSettlementLockService,
     SnackbarService,
+    MatchParlayLockingService,
   ],
   bootstrap: [AppComponent],
 })

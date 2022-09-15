@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
-import { Service } from './delete-temp-variable-number.service';
+import { DeleteTempVariableNumberService } from './delete-temp-variable-number.service';
 import { Match } from './match.model';
 
 @Component({
@@ -13,7 +13,7 @@ export class DeleteTempVariableNumberDetailComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: Match,
-    private service: Service
+    private service: DeleteTempVariableNumberService
   ) {}
 
   get dataEntries() {
