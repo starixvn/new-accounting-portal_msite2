@@ -1,26 +1,47 @@
 .filter {
   display: flex;
-  column-gap: 10px;
+  align-items: center;
+  column-gap: 100px;
   margin-bottom: 20px;
   padding: 20px;
   background-color: #f4f4f4;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-  label {
-    margin-right: 10px;
+  .form {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    label {
+      margin-right: 10px;
+    }
+    .match {
+      input {
+        border: 1px solid #92cddc;
+        outline: none;
+        height: 22px;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
   }
-  input {
-    border: 1px solid #92cddc;
-    outline: none;
-    height: 17px;
+
+  .guideline {
+    display: flex;
+    column-gap: 50px;
+  }
+  .bold {
+    font-weight: bold;
   }
 }
 
-table {
-  .btn-disable {
-    background: grey;
-    border: 0;
-    cursor: default;
-    padding: 2px 4px;
+.table {
+  .action {
+    text-align: center;
   }
 }

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatchSettlementLock } from './match-settlement-lock.model';
+import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
+import { SnackbarService } from '../shared/services/snackbar.service';
+import {
+  DeleteSettlementLog,
+  MatchSettlementLock,
+} from './match-settlement-lock.model';
 import { MatchSettlementLockService } from './match-settlement-lock.service';
 
 @Component({
@@ -11,37 +16,87 @@ export class DeleteSettlementLockComponent implements OnInit {
   public matches: MatchSettlementLock[] | null = null;
   public matchId!: string;
 
-  constructor(private matchService: MatchSettlementLockService) {}
+  constructor(
+    private matchService: MatchSettlementLockService,
+    private dialogService: ConfirmDialogService,
+    private snackbarService: SnackbarService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadData();
+  }
 
   submit() {
     this.loadData();
   }
 
   loadData() {
-    // this.matchService.getAll(this.matchId).subscribe((data) => {
-    //   this.matches = data;
-    // });
-    this.matches = [
-      {
-        dBServer: 'DBTXN',
-        matchId: 12223,
-        sessionId: '34343',
-        errorMessage: '',
-        createdTime: '',
-        homeTeam: 'ab',
-        awayTeam: 'ABC',
-        totalSettlementProcessing: 0,
-      },
-    ];
+    this.matchService.getAll(this.matchId).subscribe((data) => {
+      this.matches = data;
+    });
   }
 
-  deleteItem(item: MatchSettlementLock) {
-    // this.matchService.deleteItem(null)
+  openDeleteConfirmDialog(item: MatchSettlementLock, isSettleLock: boolean) {
+    let message = '';
+    if (isSettleLock) {
+      message = `
+        <div>MatchId: ${item.matchId}</div>
+        <div>Session: ${item.sessionId}</div>
+        <div>Action: Delete SettlementLock </div>
+        <div>Are you sure you want to DELETE this row?</div>`;
+    } else {
+      message =
+        item.dbServer === 'DBTrans'
+          ? 'Please check and delete locked match from function Delete Temp Variable Number before recalculate.\n'
+          : '';
+      message = `
+      <div> ${message}</div>
+        <div>MatchId:
+        ${item.matchId} </div>
+        <div>Delete  ${item.totalSettlementProcessing} rows belong to sessionid ${item.sessionId} </div>
+        <div>Action: Delete SettlementProcessing </div>
+        <div>Are you sure you want to DELETE this row?</div>`;
+    }
+
+    this.dialogService
+      .open({ message })
+      .afterClosed()
+      .subscribe((res) => {
+        res &&
+          this.deleteSettlementProcessing({
+            dbServer: item.dbServer,
+            sessionId: item.sessionId,
+            isSettleLock,
+          });
+      });
   }
 
-  updateItem(item: MatchSettlementLock) {
-    // this.matchService.updateItem(item)
+  deleteSettlementProcessing(item: DeleteSettlementLog) {
+    this.matchService.deleteItem(item).subscribe((res) => {
+      this.snackbarService.openSuccessSnackBar();
+      this.loadData();
+    });
+  }
+
+  openUpdateConfirmDialog(item: MatchSettlementLock) {
+    const message = `
+    <div>Please ensure you check and delete data in table SettlementProcessing before updating:</div>
+    <div>MatchId: ${item.matchId}</div>
+    <div>Session: ${item.sessionId}</div>
+    <div>Are you sure you want to UPDATE Resolved?</div>`;
+
+    this.dialogService
+      .open({ message })
+      .afterClosed()
+      .subscribe((res) => {
+        res && this.updateSettlementLogs(item);
+      });
+  }
+
+  updateSettlementLogs(item: MatchSettlementLock) {
+    this.matchService.updateItem(item).subscribe((res) => {
+      this.snackbarService.openSuccessSnackBar();
+      this.loadData();
+    });
   }
 }

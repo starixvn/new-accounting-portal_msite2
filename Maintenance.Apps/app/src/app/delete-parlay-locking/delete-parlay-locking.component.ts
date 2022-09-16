@@ -21,7 +21,9 @@ export class DeleteParlayLockingComponent implements OnInit {
     private dialogService: ConfirmDialogService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadData();
+  }
 
   submit() {
     this.loadData();
@@ -35,12 +37,11 @@ export class DeleteParlayLockingComponent implements OnInit {
 
   openDeleteConfirmDialog(item: MatchParlayLocking) {
     const message = `
-      <div>Info: </div>
       <div>DB Server: ${item.dbServer}</div>
       <div>MatchId:  ${item.matchId} </div>
       <div>Total Affected Refno(s): ${item.totalAffectedRefno} </div>
       <div>Session: ${item.session}</div>
-      <div>Are you sure you want to DELETE this row!
+      <div>Are you sure you want to DELETE this row?
     `;
 
     this.dialogService

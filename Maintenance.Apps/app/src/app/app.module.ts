@@ -18,7 +18,7 @@ import { DeleteTempVariableNumberService } from './delete-temp-variable-number/d
 import { HttpService } from './shared/services/http.service';
 import { UpdateSystemSettingService } from './update-system-settings/update-system-settings.service';
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
-import { SnackbarService } from './shared/components/snackbar/snackbar.service';
+import { SnackbarService } from './shared/services/snackbar.service';
 import { MatchSettlementLockService } from './delete-settlement-lock/match-settlement-lock.service';
 import { MatchParlayLockingService } from './delete-parlay-locking/delete-parlay-locking.service';
 import { ConfirmDialogService } from './shared/components/confirm-dialog/confirm-dialog.service';

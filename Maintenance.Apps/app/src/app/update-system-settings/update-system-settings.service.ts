@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { SnackbarService } from '../shared/components/snackbar/snackbar.service';
 import { HttpService } from '../shared/services/http.service';
-import { SystemSettings } from './system-settings.model';
+import { SystemSettings } from './update-system-settings.model';
 
 @Injectable()
 export class UpdateSystemSettingService {
   private baseUrl = 'api/delete-temp-variable';
+
   constructor(private httpService: HttpService) {}
 
   getAll() {

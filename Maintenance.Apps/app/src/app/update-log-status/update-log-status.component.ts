@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
-import { Log } from './log.model';
+import { Log } from './update-log-status.model';
 import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
 import { HttpService } from '../shared/services/http.service';
+import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-update-log-status',
@@ -13,7 +12,10 @@ import { HttpService } from '../shared/services/http.service';
 export class UpdateLogStatusComponent implements OnInit {
   public logs!: Log[];
 
-  constructor(private http: HttpService, public dialog: MatDialog) {}
+  constructor(
+    private http: HttpService,
+    public dialogService: ConfirmDialogService
+  ) {}
 
   ngOnInit(): void {
     this.logs = [
@@ -38,14 +40,8 @@ export class UpdateLogStatusComponent implements OnInit {
 
   openUpdateConfirmDialog(log: Log) {
     const message = `Are your you want to <b>UPDATE</b> StatusId of LogID ${log.logID} to <b>Completed(2) for ${log.dbServer} ?`;
-    const title = 'Please confirm';
-    const confirmText = 'Update';
-    const cancelText = 'Cancel';
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { message, title, confirmText, cancelText },
-      width: '400px',
-    });
+    const dialogRef = this.dialogService.open({ message });
 
     dialogRef.afterClosed().subscribe((dialogResult) => {
       dialogResult && this.handleUpdateLog();
@@ -59,14 +55,8 @@ export class UpdateLogStatusComponent implements OnInit {
 
   openDeleteConfirmDialog(log: Log) {
     const message = `Are your you want to <b>DELETE</b> StatusId of LogID ${log.logID} to <b>Completed(2) for ${log.dbServer} ?`;
-    const title = 'Please confirm';
-    const confirmText = 'Delete';
-    const cancelText = 'Cancel';
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { message, title, confirmText, cancelText },
-      width: '400px',
-    });
+    const dialogRef = this.dialogService.open({ message });
 
     dialogRef.afterClosed().subscribe((dialogResult) => {
       dialogResult && this.handleDeleteLog();

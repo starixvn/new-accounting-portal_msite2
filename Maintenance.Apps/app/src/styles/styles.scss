@@ -51,8 +51,23 @@ body {
   font-weight: bold;
   padding: 5px 10px;
   border: 1px solid #c10000;
+  cursor: pointer;
 }
 
-.snack-style {
-  background-color: green;
+.btn-disable {
+  background: rgb(122, 116, 116);
+  color: #fff;
+  border: 1px solid;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.snackbar-success {
+  background-color: rgb(57, 216, 57);
+  color: #fff;
+}
+
+.snackbar-error {
+  background-color: rgb(240, 89, 89);
+  color: #fff;
 }

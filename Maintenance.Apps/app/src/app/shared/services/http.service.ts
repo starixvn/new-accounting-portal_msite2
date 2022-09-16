@@ -6,10 +6,14 @@ import {
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable()
 export class HttpService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private snackbarService: SnackbarService
+  ) {}
 
   public getData<T>(url: string, params?: HttpParams): Observable<T> {
     return this.httpClient
@@ -28,7 +32,7 @@ export class HttpService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error);
+    this.snackbarService.openErrorSnackBar(error.message);
     return throwError(
       () => new Error('Something bad happened; please try again later.')
     );

@@ -8,16 +8,23 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 20px;
 
-    input[type="text"] {
+    input {
       border: 1px solid #92cddc;
       outline: none;
-      height: 17px;
+      height: 22px;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
     }
   }
 
-  .mat-button {
-    line-height: unset;
-    min-width: unset;
+  .btn-detail {
+    cursor: pointer;
     color: rgb(52, 160, 223);
   }
 }

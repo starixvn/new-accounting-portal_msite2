@@ -20,6 +20,8 @@ export class DeleteTempVariableNumberComponent implements OnInit {
   public matchId!: string;
 
   ngOnInit(): void {
+    this.loadData();
+
     this.service.dataUpdate$.subscribe((res) => {
       this.loadData();
       this.dialog.closeAll();

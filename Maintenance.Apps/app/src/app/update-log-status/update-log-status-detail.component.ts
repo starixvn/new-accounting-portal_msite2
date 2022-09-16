@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Log } from '../update-log-status/log.model';
+import { Log } from './update-log-status.model';
 
 @Component({
   selector: 'app-update-log-status-detail',

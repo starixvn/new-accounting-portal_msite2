@@ -1,15 +1,14 @@
 .dialog-content {
+  .mat-dialog-container {
+    padding: 0px;
+  }
   .mat-dialog-title {
-    text-align: center;
+    font-weight: bold;
+  }
+  .mat-dialog-content {
+    font-weight: bold;
   }
   .mat-dialog-actions {
-    justify-content: center !important;
-    .btn-delete {
-      padding: 5px 15px;
-      background-color: #c10000;
-      color: #fff;
-      border: 1px solid rgb(233, 221, 221);
-      padding: 10 20px;
-    }
+    justify-content: center;
   }
 }

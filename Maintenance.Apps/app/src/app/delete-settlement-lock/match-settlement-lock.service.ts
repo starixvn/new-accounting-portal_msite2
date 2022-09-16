@@ -11,9 +11,6 @@ import {
 export class MatchSettlementLockService {
   private baseUrl = 'api/delete-temp-variable';
 
-  private dataUpdateSource = new Subject();
-  public dataUpdate$ = this.dataUpdateSource.asObservable();
-
   constructor(private httpService: HttpService) {}
 
   getAll(matchId: string) {
@@ -27,16 +24,12 @@ export class MatchSettlementLockService {
   deleteItem(data: DeleteSettlementLog) {
     const url = `${this.baseUrl}/delete-settlement-lock`;
 
-    this.httpService.post(url, data).subscribe((res) => {
-      this.dataUpdateSource.next(res);
-    });
+    return this.httpService.post(url, data);
   }
 
   updateItem(data: UpdateSettlementLog) {
     const url = `${this.baseUrl}/update-settlement-lock`;
 
-    this.httpService.post(url, data).subscribe((res) => {
-      this.dataUpdateSource.next(res);
-    });
+    return this.httpService.post(url, data);
   }
 }

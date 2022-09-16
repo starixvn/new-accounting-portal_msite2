@@ -1,6 +1,6 @@
 <h1>Update Log Status</h1>
 
-<table>
+<table class="table">
   <thead class="table-head">
     <tr>
       <th>DB Server</th>
@@ -30,7 +30,7 @@
         <td>{{ log.startTimeValidation }}</td>
         <td>
           <div class="action">
-            <button class="btn-update" (click)="openUpdateConfirmDialog(log)">
+            <button class="btn-submit" (click)="openUpdateConfirmDialog(log)">
               Update
             </button>
             <button class="btn-delete" (click)="openDeleteConfirmDialog(log)">

@@ -1,6 +1,6 @@
 <h1>Update System Settings</h1>
 
-<table *ngIf="systemSettings">
+<table class="table" *ngIf="systemSettings">
   <thead>
     <tr>
       <th>DB Server</th>
@@ -20,7 +20,9 @@
         <td>{{ item.vName }}</td>
         <td>
           <div class="action">
-            <button (click)="openUpdateConfirmDialog(item)">Update</button>
+            <button class="btn-submit" (click)="openUpdateConfirmDialog(item)">
+              Update
+            </button>
           </div>
         </td>
       </tr>
@@ -28,7 +30,7 @@
 
     <ng-template #noData>
       <tr>
-        <td colspan="5"></td>
+        <td colspan="5">No Information Available</td>
       </tr>
     </ng-template>
   </tbody>

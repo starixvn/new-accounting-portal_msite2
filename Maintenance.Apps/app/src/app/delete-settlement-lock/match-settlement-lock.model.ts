@@ -5,18 +5,18 @@ export interface MatchSettlementLock {
   homeTeam: string;
   awayTeam: string;
   totalSettlementProcessing: number;
-  dBServer: string;
+  dbServer: string;
   errorMessage: string;
 }
 
 export interface DeleteSettlementLog {
-  sessionId: number;
+  sessionId: string;
   dbServer: string;
   isSettleLock: boolean;
 }
 
 export interface UpdateSettlementLog {
-  sessionId: number;
-  startTime: string;
+  sessionId: string;
+  createdTime: string;
   dbServer: string;
 }

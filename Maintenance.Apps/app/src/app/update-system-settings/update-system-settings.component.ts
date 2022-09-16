@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
-import { SnackbarService } from '../shared/components/snackbar/snackbar.service';
-import { SystemSettings } from './system-settings.model';
+import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
+import { SnackbarService } from '../shared/services/snackbar.service';
+import { SystemSettings } from './update-system-settings.model';
 import { UpdateSystemSettingService } from './update-system-settings.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class UpdateSystemSettingsComponent implements OnInit {
 
   constructor(
     private service: UpdateSystemSettingService,
-    private dialog: MatDialog,
+    private dialogService: ConfirmDialogService,
     private snackbarService: SnackbarService
   ) {}
 
@@ -25,35 +24,30 @@ export class UpdateSystemSettingsComponent implements OnInit {
 
   loadData() {
     this.service.getAll().subscribe((data) => {
-      console.log('get-system-setting', data);
       this.systemSettings = data;
     });
   }
 
   openUpdateConfirmDialog(item: SystemSettings) {
     const message = `
-        <div>Info:<div>
         <div>DB Server: ${item.dbServer}<div>
         <div>VID: ${item.vId}<div>
         <div> Vname: ${item.vName}<div>
         <div>Vvalue: ${item.vValue}<div>
-        <div>Are you sure you want to <b>UPDATE</b> this row!<div>
+        <div>Are you sure you want to <b>UPDATE</b> this row?<div>
     `;
-    const confirmText = 'Update';
-    const cancelText = 'Cancel';
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { message, confirmText, cancelText },
-      width: '400px',
-    });
-
-    dialogRef.afterClosed().subscribe((dialogResult) => {
-      dialogResult && this.handleUpdate(item.dbServer);
-    });
+    this.dialogService
+      .open({ message })
+      .afterClosed()
+      .subscribe((dialogResult) => {
+        dialogResult && this.handleUpdate(item.dbServer);
+      });
   }
   handleUpdate(dbServer: string) {
     this.service.update(dbServer).subscribe((res) => {
-      this.snackbarService.openSnackBar();
+      this.snackbarService.openSuccessSnackBar();
+      this.loadData();
     });
   }
 }

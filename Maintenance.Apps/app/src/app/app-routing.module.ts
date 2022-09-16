@@ -3,13 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
 import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
 import { DeleteTempVariableNumberComponent } from './delete-temp-variable-number/delete-temp-variable-number.component';
-import { UpdateLogStatusDetailComponent } from './update-log-status-detail/update-log-status-detail.component';
+import { HomeComponent } from './home/home.component';
+import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { UpdateLogStatusComponent } from './update-log-status/update-log-status.component';
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
 
 const routes: Routes = [
   {
-    path: 'update-log',
+    path: 'update-log-status',
     component: UpdateLogStatusComponent,
   },
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
     component: UpdateLogStatusDetailComponent,
   },
   {
-    path: 'delete-temp',
+    path: 'delete-temp-variable',
     component: DeleteTempVariableNumberComponent,
   },
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'delete-settlement-lock',
     component: DeleteSettlementLockComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
   },
 ];
 

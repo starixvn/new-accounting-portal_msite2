@@ -1,5 +1,5 @@
 <div class="delete-temp-page">
-  <h1>Delete Temp Variable Number</h1>
+  <h1 class="title-page">Delete Temp Variable Number</h1>
   <div>
     <div class="filter">
       <label for="">MatchId</label>
@@ -9,7 +9,7 @@
       </button>
     </div>
 
-    <table *ngIf="matches">
+    <table class="table" *ngIf="matches">
       <thead>
         <tr>
           <th>DB Server</th>
@@ -29,9 +29,9 @@
           <tr *ngFor="let d of matches">
             <td>{{ d.dbServer }}</td>
             <td>
-              <button (click)="openDetailMatchDialog(d)" mat-button>
+              <span (click)="openDetailMatchDialog(d)" class="btn-detail">
                 {{ d.matchId }}
-              </button>
+              </span>
             </td>
             <td>{{ d.eventName }}</td>
             <td>{{ d.createdDateTime }}</td>

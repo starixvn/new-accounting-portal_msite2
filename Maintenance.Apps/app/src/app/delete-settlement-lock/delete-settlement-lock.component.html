@@ -1,14 +1,36 @@
-<h1>Delete Settlement Lock</h1>
+<h1 class="title-page">Delete Settlement Lock</h1>
 <div>
   <div class="filter">
-    <div class="match">
-      <label for="">MatchId</label>
-      <input type="text" name="matchId" [(ngModel)]="matchId" />
+    <div class="form">
+      <div class="match">
+        <label for="">MatchId</label>
+        <input type="text" name="matchId" [(ngModel)]="matchId" />
+      </div>
+      <button (click)="submit()" class="btn-submit">SUBMIT</button>
     </div>
-    <button (click)="submit()" class="btn-submit">SUBMIT</button>
+
+    <div class="guideline">
+      <div>
+        <div class="bold">Guideline: You need to do step by step</div>
+        <div>
+          <span class="bold">Step 1:</span> Delete Settlement Processing
+        </div>
+        <div><span class="bold">Step 2:</span> Update SSB_SettlementLogs</div>
+      </div>
+      <div>
+        <div>
+          <span class="bold">Step 3:</span> Delete SettlementLock (If having)
+        </div>
+        <div>
+          <span class="bold"> Step 4:</span> Please check and delete locked
+          match from function
+        </div>
+        <div>Delete Temp Variable Number before recalculate (If having)</div>
+      </div>
+    </div>
   </div>
 
-  <table *ngIf="matches">
+  <table class="table" *ngIf="matches">
     <thead>
       <tr>
         <th>DB Server</th>
@@ -25,38 +47,40 @@
     <tbody>
       <ng-container *ngIf="matches.length; else noData">
         <tr *ngFor="let item of matches">
-          <td>{{ item.dBServer }}</td>
+          <td>{{ item.dbServer }}</td>
           <td>{{ item.matchId }}</td>
           <td>{{ item.sessionId }}</td>
           <td>{{ item.createdTime }}</td>
           <td>{{ item.homeTeam + " -vs- " + item.awayTeam }}</td>
           <td>{{ item.errorMessage }}</td>
-          <td>
+          <td class="action">
             <button
-              *ngIf="item.dBServer !== 'DBTXN'"
-              class="btn-submit"
-              (click)="deleteItem(item)"
+              *ngIf="item.dbServer !== 'DBTXN'"
+              class="btn-delete"
+              (click)="openDeleteConfirmDialog(item, true)"
             >
               Delete
             </button>
           </td>
-          <td>
+          <td class="action">
             <button
+              class="btn"
               [ngClass]="
                 item.totalSettlementProcessing > 0
-                  ? 'btn-submit'
+                  ? 'btn-delete'
                   : 'btn-disable'
               "
               [disabled]="item.totalSettlementProcessing <= 0"
-              (click)="deleteItem(item)"
+              (click)="openDeleteConfirmDialog(item, false)"
             >
               Delete
             </button>
           </td>
-          <td>
+          <td class="action">
             <button
-              [ngClass]="item.errorMessage ? 'btn-submit' : 'btn-disable'"
-              (click)="updateItem(item)"
+              class="btn"
+              [ngClass]="!!item.errorMessage ? 'btn-submit' : 'btn-disable'"
+              (click)="openUpdateConfirmDialog(item)"
               [disabled]="!item.errorMessage"
             >
               Update
