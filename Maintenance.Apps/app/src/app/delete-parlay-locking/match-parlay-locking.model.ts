@@ -1,4 +1,4 @@
-export interface Filter {
+export interface ParlayLockingRequest {
   matchId?: number;
   timeRange: number;
 }
@@ -11,4 +11,9 @@ export interface MatchParlayLocking {
   session: string;
   sPName: string;
   createdDate: string;
+}
+
+export interface DeleteParlayLockingRequest {
+  dbServer: string;
+  session: string;
 }

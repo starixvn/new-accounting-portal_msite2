@@ -1,3 +1,6 @@
+.title-page {
+  color: #59cdf0;
+}
 .filter {
   display: flex;
   column-gap: 10px;
@@ -9,22 +12,33 @@
   label {
     margin-right: 10px;
   }
-  select {
-    width: 100px;
+  .match {
+    input {
+      border: 1px solid #92cddc;
+      outline: none;
+      height: 22px;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
   }
-  input {
-    border: 1px solid #92cddc;
-    outline: none;
-    height: 17px;
-  }
-  select {
-    border: 1px solid #92cddc;
-    outline: none;
-    height: 17px;
+  .time {
+    select {
+      border: 1px solid #92cddc;
+      outline: none;
+      height: 27px;
+      line-height: 27px;
+      width: 130px;
+    }
   }
 }
 
-table {
+.table-parlay {
   text-align: center;
   thead {
     background-color: #92cddc;

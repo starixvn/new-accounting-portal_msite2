@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConfirmDialogData } from './confirm-dialog.model';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -19,8 +20,8 @@ export class ConfirmDialogComponent implements OnInit {
   ) {
     this.title = data.title ?? 'Please confirm';
     this.message = data.message;
-    this.cancelText = data.cancelText ?? 'Yes';
-    this.confirmText = data.confirmText ?? 'No';
+    this.cancelText = data.cancelText ?? 'Cancel';
+    this.confirmText = data.confirmText ?? 'Ok';
   }
 
   ngOnInit(): void {}
@@ -32,11 +33,4 @@ export class ConfirmDialogComponent implements OnInit {
   onCancel() {
     this.dialogRef.close(false);
   }
-}
-
-export interface ConfirmDialogData {
-  title: string;
-  message: string;
-  confirmText?: string;
-  cancelText?: string;
 }

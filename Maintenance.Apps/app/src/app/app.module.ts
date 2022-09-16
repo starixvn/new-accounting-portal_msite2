@@ -21,6 +21,7 @@ import { UpdateSystemSettingsComponent } from './update-system-settings/update-s
 import { SnackbarService } from './shared/components/snackbar/snackbar.service';
 import { MatchSettlementLockService } from './delete-settlement-lock/match-settlement-lock.service';
 import { MatchParlayLockingService } from './delete-parlay-locking/delete-parlay-locking.service';
+import { ConfirmDialogService } from './shared/components/confirm-dialog/confirm-dialog.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MatchParlayLockingService } from './delete-parlay-locking/delete-parlay
     MatchSettlementLockService,
     SnackbarService,
     MatchParlayLockingService,
+    ConfirmDialogService,
   ],
   bootstrap: [AppComponent],
 })

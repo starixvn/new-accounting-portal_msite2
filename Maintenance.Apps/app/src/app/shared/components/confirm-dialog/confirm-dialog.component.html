@@ -7,10 +7,16 @@
 <div mat-dialog-actions>
   <button
     class="btn"
-    [ngClass]="confirmText === 'Update' ? 'btn-update' : 'btn-delete'"
+    [ngClass]="{
+      'btn-confirm-update': confirmText === 'Update',
+      'btn-confirm-delete': confirmText === 'Delete',
+      'btn-confirm-ok': confirmText === 'Ok'
+    }"
     (click)="onOk()"
   >
     {{ confirmText }}
   </button>
-  <button class="btn btn-cancel" (click)="onCancel()">{{ cancelText }}</button>
+  <button class="btn btn-confirm-cancel" (click)="onCancel()">
+    {{ cancelText }}
+  </button>
 </div>

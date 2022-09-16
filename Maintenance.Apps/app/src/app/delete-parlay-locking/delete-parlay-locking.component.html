@@ -1,10 +1,10 @@
-<h1>Delete Parlay Locking</h1>
+<h1 class="title-page">Delete Parlay Locking</h1>
 
 <div>
   <div class="filter">
     <div class="match">
       <label for="">MatchId</label>
-      <input type="text" name="matchId" [(ngModel)]="filter.matchId" />
+      <input type="number" name="matchId" [(ngModel)]="filter.matchId" />
     </div>
 
     <div class="time">
@@ -19,7 +19,7 @@
     <button (click)="submit()" class="btn-submit">SUBMIT</button>
   </div>
 
-  <table *ngIf="matches">
+  <table class="table table-parlay" *ngIf="matches">
     <thead>
       <tr>
         <th>DB Server</th>
@@ -43,7 +43,12 @@
           <td>{{ match.createdDate }}</td>
           <td>
             <div class="action">
-              <button (click)="onDelete(match)">Delete</button>
+              <button
+                (click)="openDeleteConfirmDialog(match)"
+                class="btn-delete"
+              >
+                Delete
+              </button>
             </div>
           </td>
         </tr>

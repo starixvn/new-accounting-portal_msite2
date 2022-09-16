@@ -9,7 +9,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-table {
+.table {
   border: 1px solid black;
   border-spacing: 0px;
   border-collapse: collapse;
@@ -37,11 +37,20 @@ table {
 
 .btn-submit {
   color: white;
-
   background-color: #5073bc;
   border: 1px solid #5073bc;
   cursor: pointer;
-  padding: 2px 4px;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #c10000;
+  border-radius: 2px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 1px solid #c10000;
 }
 
 .snack-style {
