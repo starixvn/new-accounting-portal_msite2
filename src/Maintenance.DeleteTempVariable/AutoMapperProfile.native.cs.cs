@@ -17,5 +17,7 @@ public class AutoMapperProfile : Profile
 
         CreateMap<DeleteSettlementProcessingRequest, DeleteSettlementLockCriteria>();
         CreateMap<UpdateSettlementLogRequest, UpdateSettlementLogCriteria>();
+
+        CreateMap<UpdateLogStatusRequest, UpdateLogStatusCriteria>();
     }
 }

@@ -122,6 +122,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<SettlementLockService, SettlementLockServiceImp>();
         services.AddTransient<SystemSettingService, SystemSettingServiceImp>();
         services.AddTransient<TempVariableService, TempVariableServiceImp>();
+        services.AddTransient<LogStatusService, LogStatusServiceImp>();
     }
 
     public static void AddMediator(this IServiceCollection services)

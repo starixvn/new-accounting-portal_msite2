@@ -1,6 +1,6 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
-using Maintenance.DeleteTempVariable.Model;
+using Maintenance.DeleteTempVariable.Constants;
 
 namespace Maintenance.DeleteTempVariable.Criteria;
 

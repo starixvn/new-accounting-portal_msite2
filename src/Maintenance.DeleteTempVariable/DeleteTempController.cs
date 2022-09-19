@@ -19,16 +19,20 @@ public class DeleteTempController : ControllerBase
 
     private readonly SystemSettingService systemSettingService;
 
+    private readonly LogStatusService logStatusService;
+
     public DeleteTempController(
         ParlayLockingService parlayLockingService,
         SettlementLockService settlementLockService,
         TempVariableService tempVariableService,
-        SystemSettingService systemSettingService)
+        SystemSettingService systemSettingService,
+        LogStatusService logStatusService)
     {
         this.parlayLockingService = parlayLockingService;
         this.settlementLockService = settlementLockService;
         this.tempVariableService = tempVariableService;
         this.systemSettingService = systemSettingService;
+        this.logStatusService = logStatusService;
     }
 
     [HttpPost]
@@ -112,6 +116,22 @@ public class DeleteTempController : ControllerBase
     public async Task<IActionResult> UpdateSystemSetting(UpdateSystemSettingRequest request)
     {
         var result = await systemSettingService.UpdateSystemSetting(request.DbServer);
+        return Ok(result);
+    }
+
+    [HttpPost]
+    [Route("get-log-status")]
+    public async Task<IActionResult> GetLogStatus()
+    {
+        var matches = await logStatusService.GetLogStatus();
+        return Ok(matches);
+    }
+
+    [HttpPost]
+    [Route("update-log-status")]
+    public async Task<IActionResult> UpdateLogStatus(UpdateLogStatusRequest request)
+    {
+        var result = await logStatusService.UpdateLogStatus(request);
         return Ok(result);
     }
 }
