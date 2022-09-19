@@ -1,0 +1,33 @@
+.detail-log-dialog {
+  .dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #569ebc;
+    color: #fff;
+    .mat-dialog-title {
+      padding: 5px 15px;
+      margin: 0px;
+    }
+  }
+  .mat-dialog-container {
+    padding: 0px;
+    overflow: unset;
+  }
+  .mat-dialog-content {
+    padding: 15px;
+    margin: unset;
+  }
+  .mat-dialog-actions {
+    justify-content: center;
+    display: flex;
+    column-gap: 10px;
+    padding: 0px 15px 15px;
+    margin-bottom: unset;
+    min-height: unset;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+}

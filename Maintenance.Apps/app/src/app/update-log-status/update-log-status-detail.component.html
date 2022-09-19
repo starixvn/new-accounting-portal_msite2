@@ -1,18 +1,48 @@
-<h1>Update Log Status >> Details</h1>
+<div class="detail-log-status">
+  <div class="dialog-header">
+    <h1 mat-dialog-title>Details Log Status {{ data.logId }}</h1>
+    <button mat-icon-button [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 
-<div><span class="label">Server:</span></div>
-<div><span class="label">LogId:</span></div>
-<div><span class="label">System Name:</span></div>
-<div><span class="label">Function Name:</span></div>
-<div><span class="label">Table Name:</span></div>
-<div><span class="label">TransInfo:</span></div>
-<div><span class="label">SettlementAction:</span></div>
-<div><span class="label">TicketType:</span></div>
-<div><span class="lable">StatusId:</span></div>
-<div><span class="label">Starttime:</span></div>
-<div><span class="label">Endtime:</span></div>
-<div><span class="label">StartTimeValidation:</span></div>
-<div class="action">
-  <button class="btn-update">Update</button>
-  <button class="btn-delete">Delete</button>
+  <div mat-dialog-content>
+    <div><span class="label">Server:</span> {{ data.dbServer }}</div>
+    <div><span class="label">LogId:</span>{{ data.logId }}</div>
+    <div><span class="label">System Name:</span>{{ data.systemName }}</div>
+    <div><span class="label">Function Name:</span>{{ data.functionName }}</div>
+    <div><span class="label">Table Name:</span>{{ data.tableName }}</div>
+    <div>
+      <span class="label">TransInfo:</span>
+      <button
+        mat-icon-button
+        [cdkCopyToClipboard]="data.transInfo"
+        matTooltip="Info about the action"
+        aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
+        matTooltipHideDelay="4000"
+      >
+        <mat-icon class="icon-display">file_copy</mat-icon>
+      </button>
+    </div>
+    <div>
+      <span class="label">Settlement Action:</span>{{ data.settlementAction }}
+    </div>
+    <div><span class="label">Ticket Type:</span>{{ data.ticketType }}</div>
+    <div><span class="label">StatusId:</span>{{ data.statusId }}</div>
+    <div><span class="label">Start Time:</span>{{ data.startTime }}</div>
+    <div><span class="label">End Time:</span>{{ data.endTime }}</div>
+    <div>
+      <span class="label">Start Time Validation:</span
+      >{{ data.startTimeValidation }}
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button class="btn-submit" (click)="openUpdateConfirmDialog()">
+      Update
+    </button>
+    <button class="btn-delete" (click)="openDeleteConfirmDialog()">
+      Delete
+    </button>
+  </div>
 </div>

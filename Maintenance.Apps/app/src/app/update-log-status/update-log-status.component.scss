@@ -1,5 +1,15 @@
-.action {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
+.table {
+  text-align: center;
+  .action {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+  .btn-detail {
+    cursor: pointer;
+    color: rgb(52, 160, 223);
+  }
+  .orange {
+    background-color: #ff4d00;
+  }
 }

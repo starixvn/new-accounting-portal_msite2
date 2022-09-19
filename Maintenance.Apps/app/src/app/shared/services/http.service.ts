@@ -31,10 +31,11 @@ export class HttpService {
     return environment.baseUrl + url;
   }
 
-  private handleError(error: HttpErrorResponse) {
-    this.snackbarService.openErrorSnackBar(error.message);
+  private handleError = (error: HttpErrorResponse) => {
+    console.log(error);
+    this.snackbarService.openErrorSnackBar();
     return throwError(
       () => new Error('Something bad happened; please try again later.')
     );
-  }
+  };
 }

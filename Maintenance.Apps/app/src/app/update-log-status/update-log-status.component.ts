@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Log } from './update-log-status.model';
+import { LogStatus } from './update-log-status.model';
 import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
 import { HttpService } from '../shared/services/http.service';
 import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
+import { UpdateLogStatusService } from './update-log-status.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateLogStatusDetailComponent } from './update-log-status-detail.component';
 
 @Component({
   selector: 'app-update-log-status',
@@ -10,61 +13,43 @@ import { ConfirmDialogService } from '../shared/components/confirm-dialog/confir
   styleUrls: ['./update-log-status.component.scss'],
 })
 export class UpdateLogStatusComponent implements OnInit {
-  public logs!: Log[];
+  public logs!: LogStatus[];
 
   constructor(
-    private http: HttpService,
-    public dialogService: ConfirmDialogService
+    private updateLogStatusService: UpdateLogStatusService,
+    public dialogService: ConfirmDialogService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.logs = [
-      {
-        dbServer: '',
-        logID: 'ABc',
-        statusID: 'St',
-        startTime: new Date(),
-        endTime: new Date(),
-        startTimeValidation: new Date(),
-      },
-    ];
-    // this.loadData();
+    this.loadData();
+
+    this.updateLogStatusService.dataUpdate$.subscribe((res) => {
+      this.loadData();
+      this.dialog.closeAll();
+    });
   }
 
   loadData() {
-    // this.http.getData<Log[]>('api/values').subscribe((data) => {
-    //   this.logs = data;
-    // });
-    this.logs = [];
-  }
-
-  openUpdateConfirmDialog(log: Log) {
-    const message = `Are your you want to <b>UPDATE</b> StatusId of LogID ${log.logID} to <b>Completed(2) for ${log.dbServer} ?`;
-
-    const dialogRef = this.dialogService.open({ message });
-
-    dialogRef.afterClosed().subscribe((dialogResult) => {
-      dialogResult && this.handleUpdateLog();
+    this.updateLogStatusService.getAll().subscribe((res) => {
+      this.logs = res;
     });
   }
 
-  handleUpdateLog() {
-    //TO DO
-    console.log('handle Update log');
+  openDetailLogStatusDialog(log: LogStatus) {
+    const config = {
+      data: log,
+      width: '600px',
+      panelClass: 'detail-log-dialog',
+    };
+    this.dialog.open(UpdateLogStatusDetailComponent, config);
   }
 
-  openDeleteConfirmDialog(log: Log) {
-    const message = `Are your you want to <b>DELETE</b> StatusId of LogID ${log.logID} to <b>Completed(2) for ${log.dbServer} ?`;
-
-    const dialogRef = this.dialogService.open({ message });
-
-    dialogRef.afterClosed().subscribe((dialogResult) => {
-      dialogResult && this.handleDeleteLog();
-    });
+  openUpdateConfirmDialog(log: LogStatus) {
+    this.updateLogStatusService.openUpdateConfirmDialog(log);
   }
 
-  handleDeleteLog() {
-    //TO DO
-    console.log('handle Delete log');
+  openDeleteConfirmDialog(log: LogStatus) {
+    this.updateLogStatusService.openDeleteConfirmDialog(log);
   }
 }

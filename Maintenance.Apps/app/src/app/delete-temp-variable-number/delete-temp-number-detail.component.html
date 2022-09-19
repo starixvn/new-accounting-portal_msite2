@@ -1,23 +1,23 @@
-<div class="dialog-content">
-  <h2 mat-dialog-title>Details of match {{ data.matchId }}</h2>
+<div class="dialog-header">
+  <h1 mat-dialog-title>Details of match {{ data.matchId }}</h1>
+  <button mat-icon-button [mat-dialog-close]="false">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <div><span class="label">DB Server:</span> {{ data.dbServer }}</div>
+  <div><span class="label">MatchId:</span> {{ data.matchId }}</div>
+  <div><span class="label">SportName:</span> {{ data.sportName }}</div>
+  <div><span class="label">Event Name:</span> {{ data.eventName }}</div>
+  <div><span class="label">Product:</span> {{ data.productName }}</div>
+  <div><span class="label">Running Tickets:</span> {{ data.ticketCount }}</div>
+  <div><span class="label">Action:</span> {{ data.action }}</div>
+  <div><span class="label">IsCal:</span> {{ data.isCalculating }}</div>
+  <div><span class="label">Wrong Balance:</span> {{ data.wrongBalance }}</div>
+  <div><span class="label">Error Message:</span> {{ data.message }}</div>
+  <div><span class="label">Remark:</span> {{ data.remark }}</div>
+</div>
 
-  <div mat-dialog-content>
-    <div>DB Server: {{ data.dbServer }}</div>
-    <div>MatchId: {{ data.matchId }}</div>
-    <div>SportName: {{ data.sportName }}</div>
-    <div>Event Name: {{ data.eventName }}</div>
-    <div>Product: {{ data.productName }}</div>
-    <div>Running Tickets: {{ data.ticketCount }}</div>
-    <div>Action: {{ data.action }}</div>
-    <div>IsCal: {{ data.isCalculating }}</div>
-    <div>Wrong Balance: {{ data.wrongBalance }}</div>
-    <div>Error Message: {{ data.message }}</div>
-    <div>Remark: {{ data.remark }}</div>
-  </div>
-
-  <div mat-dialog-actions>
-    <button (click)="openDeleteConfirmDialog()" class="btn-delete">
-      Delete
-    </button>
-  </div>
+<div mat-dialog-actions>
+  <button (click)="openDeleteConfirmDialog()" class="btn-delete">Delete</button>
 </div>

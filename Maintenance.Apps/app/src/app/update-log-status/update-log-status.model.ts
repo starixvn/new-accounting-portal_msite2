@@ -1,8 +1,24 @@
-export interface Log {
+export interface LogStatus {
+  serverName: string;
   dbServer: string;
-  logID: string;
-  statusID: string;
-  startTime: Date;
-  endTime: Date;
-  startTimeValidation: Date;
+  logId: number;
+  statusId: number;
+  startTime: string;
+  endTime: string;
+  startTimeValidation: string;
+  systemName: string;
+  functionName: string;
+  tableName: string;
+  action: string;
+  matchId: number;
+  transInfo: string;
+  logDate: string;
+  settlementAction: string;
+  ticketType: string;
+}
+
+export interface UpdateLogStatusRequest {
+  dbServer: string;
+  logId: number;
+  action: 'Update' | 'Delete';
 }

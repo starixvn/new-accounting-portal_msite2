@@ -6,6 +6,7 @@
       <th>DB Server</th>
       <th>LogID</th>
       <th>StatusID</th>
+      <th>Real Data</th>
       <th>StartTime</th>
       <th>EndTime</th>
       <th>StartTimeValidation</th>
@@ -17,14 +18,12 @@
       <tr *ngFor="let log of logs">
         <td>{{ log.dbServer }}</td>
         <td>
-          <a
-            [routerLink]="['/update-log', log.logID]"
-            routerLinkActive="router-link-active"
-            >{{ log.logID }}</a
-          >
+          <span (click)="openDetailLogStatusDialog(log)" class="btn-detail">{{
+            log.logId
+          }}</span>
         </td>
-        <td>{{ log.statusID }}</td>
-
+        <td class="orange">{{ log.statusId }}</td>
+        <td><input type="checkbox" [value]="!!log.transInfo" disabled /></td>
         <td>{{ log.startTime }}</td>
         <td>{{ log.endTime }}</td>
         <td>{{ log.startTimeValidation }}</td>

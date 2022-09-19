@@ -1,18 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Log } from './update-log-status.model';
+import { LogStatus } from './update-log-status.model';
+import { UpdateLogStatusService } from './update-log-status.service';
 
 @Component({
   selector: 'app-update-log-status-detail',
   templateUrl: './update-log-status-detail.component.html',
   styleUrls: ['./update-log-status-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class UpdateLogStatusDetailComponent implements OnInit {
-  public log!: Log;
-  constructor(private activeRoute: ActivatedRoute) {}
+  constructor(
+    private updateLogStatusService: UpdateLogStatusService,
+    @Inject(MAT_DIALOG_DATA) public data: LogStatus
+  ) {}
 
-  ngOnInit(): void {
-    const id = this.activeRoute.snapshot.params['id'];
-    console.log(id);
+  ngOnInit(): void {}
+
+  openUpdateConfirmDialog() {
+    this.updateLogStatusService.openUpdateConfirmDialog(this.data);
+  }
+
+  openDeleteConfirmDialog() {
+    this.updateLogStatusService.openDeleteConfirmDialog(this.data);
   }
 }

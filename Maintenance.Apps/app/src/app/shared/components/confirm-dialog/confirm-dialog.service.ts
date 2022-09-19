@@ -11,6 +11,8 @@ export class ConfirmDialogService {
     return this.dialog.open(ConfirmDialogComponent, {
       data: { message, title, confirmText, cancelText },
       width: '400px',
+      disableClose: true,
+      panelClass: 'confirm-dialog',
     });
   }
 }

@@ -43,6 +43,7 @@ export class DeleteTempVariableNumberComponent implements OnInit {
     const config = {
       data: result,
       width: '600px',
+      panelClass: 'temp-number-dialog',
     };
 
     this.dialog.open(DeleteTempVariableNumberDetailComponent, config);

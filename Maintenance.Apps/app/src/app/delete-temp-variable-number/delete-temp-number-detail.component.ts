@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
 import { DeleteTempVariableNumberService } from './delete-temp-variable-number.service';
 import { Match } from './match.model';
 
@@ -11,7 +11,7 @@ import { Match } from './match.model';
 })
 export class DeleteTempVariableNumberDetailComponent implements OnInit {
   constructor(
-    private dialog: MatDialog,
+    public dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: Match,
     private service: DeleteTempVariableNumberService
   ) {}
@@ -31,12 +31,8 @@ export class DeleteTempVariableNumberDetailComponent implements OnInit {
         <div>Are you sure you want to <b>DELETE</b> this row?<div>
     `;
 
-    const confirmText = 'Delete';
-    const cancelText = 'Cancel';
-
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { message, confirmText, cancelText },
-      width: '400px',
+    const dialogRef = this.dialogService.open({
+      message,
     });
 
     dialogRef.afterClosed().subscribe((dialogResult) => {
