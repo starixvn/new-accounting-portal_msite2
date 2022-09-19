@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="linen" ng-app="app">
+<head>
+	<base href=@Url.Content("~/") />
+	<title>@ViewBag.Title</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<a href="~/?ref=logo">mSite</a>
+		</div>
+		@{
+			Html.RenderPartial("~/Views/Menu.cshtml");
+		}
+		<div class="user-info">
+			<div class="greeting">
+				<h2>
+					Welcome, @User.Identity.Name
+				</h2>
+				<ul>
+					<li>@Html.ActionLink("Sign Out", "LogOut", "Auth")</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<section>
+		<div class="content">
+			@RenderBody()
+		</div>
+	</section>
+</body>
+</html>
