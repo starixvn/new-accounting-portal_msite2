@@ -3,7 +3,7 @@
 @{
 	var session = new NapSession(new HttpContextAccessor());
 	var menuItemList = session.MenuItemList;
-	var lvl0MenuItemList = menuItemList.Where(m => m.Id == 846).OrderBy(m => m.DisplayOrder).ToList();
+	var lvl0MenuItemList = menuItemList.Where(m => m.ParentId == 0).OrderBy(m => m.DisplayOrder).ToList();
 }
 <nav>
 	<ul class="menu">
@@ -11,22 +11,23 @@
 		{
 			var menuItem = lvl0MenuItemList[i];
 			var lvl1MenuItemList = menuItemList.Where(x => x.ParentId == menuItem.Id)
-				.OrderBy(x => x.DisplayOrder).ToList();
+			.OrderBy(x => x.DisplayOrder).ToList();
 
 			if (lvl1MenuItemList.Any())
 			{
-				<li mid="@menuItem.Id" class="has-kids"><a href="javascript:;">@menuItem.Name</a>
+				<li class="has-kids">
+					<a href="javascript:;">@menuItem.Name</a>
 					<ul>
 						@foreach (var subMenuItem in lvl1MenuItemList)
 						{
-							<li mid="@subMenuItem.Id"><a href="@Url.Content(subMenuItem.ValidUrl)">@subMenuItem.Name</a></li>
+							<li><a href="@Url.Content(subMenuItem.ValidUrl)">@subMenuItem.Name</a></li>
 						}
 					</ul>
 				</li>
 			}
 			else
 			{
-				<li mid="@menuItem.Id"><a href="@Url.Content(menuItem.ValidUrl)">@menuItem.Name</a></li>
+				<li><a href="@Url.Content(menuItem.ValidUrl)">@menuItem.Name</a></li>
 			}
 		}
 	</ul>

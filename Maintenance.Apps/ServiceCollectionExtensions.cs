@@ -197,9 +197,11 @@ public static class ServiceCollectionExtensions
         services.AddStackExchangeRedisCache(options =>
         {
             options.Configuration = redisConfig;
-            options.InstanceName = $"Fanex.mSite2.Session-";
+            options.InstanceName = "Fanex.mSite2.Session-";
         });
 
         services.AddRedisCache(configuration.GetSection("fanex.caching.redis"));
+
+        return services;
     }
 }

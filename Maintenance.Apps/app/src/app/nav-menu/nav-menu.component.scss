@@ -1,22 +1,94 @@
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin-bottom: 10px;
-  background-color: #484848;
-  color: white;
-  a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-  }
+@import "common.component.scss";
 
-  .active {
-    color: #569ebc;
-  }
-  .nav-menu {
-    display: flex;
-    column-gap: 30px;
+nav {
+  margin-left: 140px;
+  float: left;
+
+  .menu {
+    margin: 0;
+
+    li {
+      display: block;
+      float: left;
+      list-style-type: none;
+      position: relative;
+      font-weight: normal !important;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    > li {
+      > a {
+        display: block;
+        font-size: 1.4em;
+        padding: 20px 16px;
+      }
+
+      ul {
+        position: absolute;
+        top: 96px;
+        left: 0px;
+        background-color: #fff;
+        border-bottom: 5px solid $menu-border;
+        @extend .box-shadow;
+        margin: 0;
+        padding: 6px 0;
+        text-align: left;
+        z-index: 999;
+        visibility: hidden;
+        opacity: 0;
+        @extend .transition;
+
+        li {
+          display: block;
+          clear: both;
+          width: 100%;
+
+          a {
+            color: $brand-color;
+            display: block;
+            padding: 8px 16px;
+            white-space: nowrap;
+            min-width: 140px;
+            font-size: 1.2em;
+          }
+
+          &:hover a {
+            text-decoration: none;
+            background-color: #549cba;
+            color: #fff;
+          }
+        }
+      }
+
+      &:hover {
+        > a {
+          text-decoration: none;
+          background-color: #fff;
+          color: $brand-color;
+          text-shadow: 0 0 3px #fff;
+        }
+
+        ul {
+          top: 70px;
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+
+    > li.first {
+      border-left: 0 none;
+    }
+
+    > li.last {
+      border-right: 0 none;
+    }
+
+    > li.has-kids:hover > a {
+      cursor: default;
+    }
   }
 }

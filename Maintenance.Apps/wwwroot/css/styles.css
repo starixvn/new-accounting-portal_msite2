@@ -1,6 +1,3 @@
-.font_yanone {
-  font-family: 'Yanone Kaffeesatz', 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
-}
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   tap-highlight-color: rgba(0, 0, 0, 0);
@@ -48,14 +45,11 @@ header {
   float: left;
   width: 100%;
   background: #333 url(images/bg_header.png);
-  font-family: 'Yanone Kaffeesatz', 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
   position: relative;
+  padding: 0 0;
 }
 header .logo {
   position: absolute;
-  top: 6px;
-  left: 6px;
-  padding: 0 8px;
 }
 header .logo a {
   display: block;
@@ -80,6 +74,7 @@ header nav .menu li {
   float: left;
   list-style-type: none;
   position: relative;
+  font-weight: normal !important;
 }
 header nav .menu li a {
   color: #fff;

@@ -1,0 +1,18 @@
+$menu-border: color-mix(#549cba, #111);
+$brand-color: #549cba;
+$brand-color: #549cba;
+
+.box-shadow {
+  $value: 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: $value;
+  -moz-box-shadow: $value;
+  -webkit-box-shadow: &value;
+}
+
+.transition {
+  $value: all 0.2s ease-in-out;
+  transition: $value;
+  -moz-transition: $value;
+  -webkit-transition: $value;
+  -o-transition: $value;
+}

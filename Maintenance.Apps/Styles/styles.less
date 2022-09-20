@@ -1,10 +1,6 @@
 ﻿@import "colors.less";
 @import "common.less";
 
-.font_yanone {
-    font-family: 'Yanone Kaffeesatz', 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
-}
-
 html {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     tap-highlight-color: rgba(0,0,0,0);
@@ -54,14 +50,11 @@ header {
     float: left;
     width: 100%;
     background: #333 url(images/bg_header.png);
-    .font_yanone;
     position: relative;
+    padding: 0 0;
 
     .logo {
         position: absolute;
-        top: 6px;
-        left: 6px;
-        padding: 0 8px;
 
         a {
             display: block;
@@ -89,6 +82,7 @@ header {
                 float: left;
                 list-style-type: none;
                 position: relative;
+                font-weight: normal !important;
 
                 a {
                     color: @white;

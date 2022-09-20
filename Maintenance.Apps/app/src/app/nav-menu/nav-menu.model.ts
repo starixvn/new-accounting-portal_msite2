@@ -4,4 +4,5 @@ export interface Menu {
   id: number;
   parentId: number;
   displayOrder: number;
+  subMenu: Menu[];
 }

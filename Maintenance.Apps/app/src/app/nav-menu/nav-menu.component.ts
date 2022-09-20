@@ -17,7 +17,18 @@ export class NavMenuComponent implements OnInit {
 
   loadMenu() {
     this.menuService.getMenu().subscribe((data) => {
-      this.menus = data;
+      var menuList = data
+        .filter((m) => m.parentId == 0)
+        .sort((x) => x.displayOrder);
+
+      menuList.forEach((menu) => {
+        var subMenus = data
+          .filter((x) => x.parentId == menu.id)
+          .sort((x) => x.displayOrder);
+        menu.subMenu = subMenus;
+      });
+
+      this.menus = menuList;
     });
   }
 }

@@ -27,7 +27,8 @@ namespace Maintenance.Apps.Controllers
         {
             var session = new NapSession(new HttpContextAccessor());
             var menuItemList = session.MenuItemList;
-            var list = menuItemList.Where(m => m.Id == 846).OrderBy(m => m.DisplayOrder).ToList();
+            var list = menuItemList.OrderBy(m => m.DisplayOrder).ToList();
+
             return Ok(list);
         }
     }
