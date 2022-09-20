@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
@@ -15,6 +16,7 @@ using Fanex.NAP.Client.Services;
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Newtonsoft.Json;
 using ONEbook.UM.AspNetCore;
@@ -22,6 +24,7 @@ using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.Services;
 using ONEbook.UM.Transport;
+using StackExchange.Redis;
 
 namespace Maintenance.Apps;
 
@@ -183,6 +186,20 @@ public static class ServiceCollectionExtensions
             options.Cookie.Name = "Fanex.mSite2.Session";
         });
 
-        return services;
+        var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
+        var redisMultiplexer = ConnectionMultiplexer.Connect(redisConfig);
+
+        services.AddDataProtection()
+            .PersistKeysToStackExchangeRedis(redisMultiplexer, "Fanex.nSite2-ProtectionKeys");
+
+        services.AddSingleton(redisMultiplexer);
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConfig;
+            options.InstanceName = $"Fanex.mSite2.Session-";
+        });
+
+        services.AddRedisCache(configuration.GetSection("fanex.caching.redis"));
     }
 }

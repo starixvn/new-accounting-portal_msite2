@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "delete-temp": "ng build --configuration production --project=delete-temp",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

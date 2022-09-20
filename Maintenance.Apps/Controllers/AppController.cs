@@ -18,5 +18,10 @@ namespace Maintenance.Apps.Controllers
 
             return Content(html, "text/html", Encoding.UTF8);
         }
+
+        public IActionResult DeleteTemp()
+        {
+            return View("~/wwwroot/delete-temp/index.cshtml");
+        }
     }
 }

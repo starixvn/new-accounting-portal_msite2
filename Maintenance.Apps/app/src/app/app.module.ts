@@ -22,6 +22,7 @@ import { SnackbarService } from './shared/services/snackbar.service';
 import { MatchSettlementLockService } from './delete-settlement-lock/match-settlement-lock.service';
 import { MatchParlayLockingService } from './delete-parlay-locking/delete-parlay-locking.service';
 import { ConfirmDialogService } from './shared/components/confirm-dialog/confirm-dialog.service';
+import { NavMenuService } from './nav-menu/nav-menu.service';
 import { UpdateLogStatusService } from './update-log-status/update-log-status.service';
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
@@ -60,6 +61,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     UpdateLogStatusService,
 
     ConfirmDialogService,
+    NavMenuService,
   ],
   bootstrap: [AppComponent],
 })

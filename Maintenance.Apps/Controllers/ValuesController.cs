@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Fanex.NAP.Client.AspNetCore.Session;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Maintenance.Apps.Controllers
 {
@@ -18,8 +19,16 @@ namespace Maintenance.Apps.Controllers
         endTime =  DateTime.Now,
         startTimeValidation =  DateTime.Now,
               }
-
             });
+        }
+
+        [Route("get-menu")]
+        public IActionResult Menu()
+        {
+            var session = new NapSession(new HttpContextAccessor());
+            var menuItemList = session.MenuItemList;
+            var list = menuItemList.Where(m => m.Id == 846).OrderBy(m => m.DisplayOrder).ToList();
+            return Ok(list);
         }
     }
 }
