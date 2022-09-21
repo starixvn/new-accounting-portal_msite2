@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LogStatus } from './update-log-status.model';
-import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
-import { HttpService } from '../shared/services/http.service';
 import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
 import { UpdateLogStatusService } from './update-log-status.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -33,6 +31,26 @@ export class UpdateLogStatusComponent implements OnInit {
   loadData() {
     this.updateLogStatusService.getAll().subscribe((res) => {
       this.logs = res;
+      this.logs = [
+        {
+          serverName: 'abc',
+          dbServer: 'cbc',
+          logId: 123,
+          statusId: 13,
+          startTime: '',
+          endTime: '',
+          startTimeValidation: '',
+          systemName: 'ab',
+          functionName: 'ab',
+          tableName: 'ab',
+          action: 'ag',
+          matchId: 123,
+          ticketType: 're',
+          transInfo: 'aee,e',
+          logDate: '',
+          settlementAction: 'ag',
+        },
+      ];
     });
   }
 

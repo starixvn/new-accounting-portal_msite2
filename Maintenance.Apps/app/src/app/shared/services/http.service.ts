@@ -44,6 +44,7 @@ export class HttpService {
 
   private handleError = (error: HttpErrorResponse) => {
     console.log(error);
+    this.blockUIService.stopBlock();
     this.snackbarService.openErrorSnackBar();
     return throwError(
       () => new Error('Something bad happened; please try again later.')
