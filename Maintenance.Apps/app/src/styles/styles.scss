@@ -80,7 +80,7 @@ header {
   }
 }
 .table {
-  border: 1px solid black;
+  border: solid 1px #c7c7c7;
   border-spacing: 0px;
   border-collapse: collapse;
   width: 100%;
@@ -96,12 +96,13 @@ header {
 
     th {
       padding: 5px 10px;
-      border: 1px solid black;
+      border: solid 1px #c7c7c7;
       color: white;
+      font-weight: normal;
     }
     td {
       padding: 5px 10px;
-      border: 1px solid black;
+      border: solid 1px #c7c7c7;
     }
   }
   .no-data {
