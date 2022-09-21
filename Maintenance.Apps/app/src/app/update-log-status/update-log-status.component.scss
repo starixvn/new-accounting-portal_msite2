@@ -1,6 +1,9 @@
 .table {
   text-align: center;
   .action {
+    width: 150px;
+  }
+  .action-button {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;

@@ -10,7 +10,7 @@
       <th>StartTime</th>
       <th>EndTime</th>
       <th>StartTimeValidation</th>
-      <th>Action</th>
+      <th class="action">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -28,7 +28,7 @@
         <td>{{ log.endTime }}</td>
         <td>{{ log.startTimeValidation }}</td>
         <td>
-          <div class="action">
+          <div class="action-button">
             <button class="btn-submit" (click)="openUpdateConfirmDialog(log)">
               Update
             </button>
