@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Maintenance.DeleteTempVariable;
 
 [Route("api/delete-temp-variable")]
-// [Authorize]
-[AllowAnonymous]
+[Authorize]
 [ApiController]
 public class DeleteTempController : ControllerBase
 {

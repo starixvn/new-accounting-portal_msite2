@@ -27,9 +27,13 @@ namespace Maintenance.Apps.Controllers
         {
             var session = new NapSession(new HttpContextAccessor());
             var menuItemList = session.MenuItemList;
-            var list = menuItemList.OrderBy(m => m.DisplayOrder).ToList();
-
-            return Ok(list);
+            var menus = menuItemList.OrderBy(m => m.DisplayOrder).ToList();
+            var userName = session.UserName;
+            return Ok(new
+            {
+                menus,
+                userName
+            });
         }
     }
 }

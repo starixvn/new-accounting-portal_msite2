@@ -6,3 +6,8 @@ export interface Menu {
   displayOrder: number;
   subMenu: Menu[];
 }
+
+export interface Header {
+  userName: string;
+  menus: Menu[];
+}

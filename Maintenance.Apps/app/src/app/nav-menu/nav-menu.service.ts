@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../shared/services/http.service';
-import { Menu } from './nav-menu.model';
+import { Header } from './nav-menu.model';
 
 @Injectable()
 export class NavMenuService {
@@ -11,6 +11,6 @@ export class NavMenuService {
   getMenu() {
     const url = `${this.baseUrl}/get-menu`;
 
-    return this.httpService.getData<Menu[]>(url);
+    return this.httpService.getData<Header>(url);
   }
 }

@@ -23,7 +23,7 @@ nav {
       > a {
         display: block;
         font-size: 1.4em;
-        padding: 20px 16px;
+        padding: 12px;
       }
 
       ul {
@@ -72,7 +72,7 @@ nav {
         }
 
         ul {
-          top: 70px;
+          top: 50px;
           visibility: visible;
           opacity: 1;
         }
@@ -89,6 +89,78 @@ nav {
 
     > li.has-kids:hover > a {
       cursor: default;
+    }
+  }
+}
+.user-info {
+  float: right;
+  font-family: "Yanone Kaffeesatz", "Segoe UI", Tahoma, Arial, Helvetica,
+    sans-serif;
+
+  .greeting {
+    position: relative;
+    float: right;
+
+    h2 {
+      background: url(setting.png) no-repeat right 15px;
+      display: block;
+      clear: none;
+      margin: 0;
+      float: left;
+      height: 12px;
+      padding: 14px 36px 25px 15px;
+      color: #fff;
+      font-weight: normal;
+      font-size: 1em;
+    }
+
+    ul {
+      position: absolute;
+      right: 0;
+      top: 0;
+      min-width: 102px;
+      visibility: hidden;
+      opacity: 0;
+      background-color: #fff;
+      list-style-type: none;
+      margin: 0;
+      padding: 5px 0;
+
+      li {
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+
+        a {
+          display: block;
+          padding: 6px 10px;
+          font-size: 1em;
+          color: $brand-color;
+          font-size: 1.2em;
+        }
+
+        &:hover a {
+          text-decoration: none;
+          background-color: #549cba;
+          color: #fff;
+        }
+      }
+    }
+
+    &:hover {
+      h2 {
+        color: $brand-color;
+        background: url("setting.png") no-repeat scroll right -69px #f9f9f9;
+        text-decoration: none;
+      }
+
+      ul {
+        top: 50px;
+        visibility: visible;
+        opacity: 1;
+        @extend .box-shadow;
+        border-bottom: 5px solid $brand-color;
+      }
     }
   }
 }

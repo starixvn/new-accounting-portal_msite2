@@ -9,6 +9,7 @@ import { Menu } from './nav-menu.model';
 })
 export class NavMenuComponent implements OnInit {
   public menus: Menu[] | null = null;
+  public userName!: string;
   constructor(private menuService: NavMenuService) {}
 
   ngOnInit(): void {
@@ -17,18 +18,20 @@ export class NavMenuComponent implements OnInit {
 
   loadMenu() {
     this.menuService.getMenu().subscribe((data) => {
-      var menuList = data
+      var listMenus = data.menus;
+      var menuList = listMenus
         .filter((m) => m.parentId == 0)
         .sort((x) => x.displayOrder);
 
       menuList.forEach((menu) => {
-        var subMenus = data
+        var subMenus = listMenus
           .filter((x) => x.parentId == menu.id)
           .sort((x) => x.displayOrder);
         menu.subMenu = subMenus;
       });
 
       this.menus = menuList;
+      this.userName = data.userName;
     });
   }
 }
