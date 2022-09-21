@@ -2,7 +2,7 @@ FROM hub.nexdev.net/base/dotnet/core/sdk:6.0 AS builder
 
 WORKDIR /src
 
-COPY ./src/Maintenance/. ./src/Maintenance
+COPY ./src/Maintenance.DeleteTempVariable/. ./src/Maintenance.DeleteTempVariable
 COPY ./Maintenance.Apps/Maintenance.Apps.csproj ./Maintenance.Apps/Maintenance.Apps.csproj
 
 WORKDIR /src/Maintenance.Apps
