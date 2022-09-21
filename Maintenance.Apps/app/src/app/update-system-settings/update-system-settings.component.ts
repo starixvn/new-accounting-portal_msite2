@@ -30,7 +30,7 @@ export class UpdateSystemSettingsComponent implements OnInit {
 
   openUpdateConfirmDialog(item: SystemSettings) {
     const message = `
-        <div>DB Server: ${item.dbServer}<div>
+        <div>DB Server: ${item.serverName}<div>
         <div>VID: ${item.vId}<div>
         <div> Vname: ${item.vName}<div>
         <div>Vvalue: ${item.vValue}<div>

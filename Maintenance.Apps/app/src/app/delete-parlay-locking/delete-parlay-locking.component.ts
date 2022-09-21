@@ -37,7 +37,7 @@ export class DeleteParlayLockingComponent implements OnInit {
 
   openDeleteConfirmDialog(item: MatchParlayLocking) {
     const message = `
-      <div>DB Server: ${item.dbServer}</div>
+      <div>DB Server: ${item.serverName}</div>
       <div>MatchId:  ${item.matchId} </div>
       <div>Total Affected Refno(s): ${item.totalAffectedRefno} </div>
       <div>Session: ${item.session}</div>

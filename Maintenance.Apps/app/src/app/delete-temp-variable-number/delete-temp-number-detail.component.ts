@@ -24,7 +24,7 @@ export class DeleteTempVariableNumberDetailComponent implements OnInit {
 
   openDeleteConfirmDialog() {
     const message = `
-        <div>DB Server: ${this.data.dbServer}<div>
+        <div>DB Server: ${this.data.serverName}<div>
         <div>MatchId: ${this.data.matchId}<div>
         <div> EventName: ${this.data.eventName}<div>
         <div>Product: ${this.data.productName}<div>

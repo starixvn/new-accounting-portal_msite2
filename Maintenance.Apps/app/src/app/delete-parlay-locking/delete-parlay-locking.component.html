@@ -35,7 +35,7 @@
     <tbody>
       <ng-container *ngIf="matches.length; else noData">
         <tr *ngFor="let match of matches">
-          <td>{{ match.dbServer }}</td>
+          <td>{{ match.serverName }}</td>
           <td>{{ match.matchId }}</td>
           <td>{{ match.totalAffectedRefno }}</td>
           <td>{{ match.session }}</td>

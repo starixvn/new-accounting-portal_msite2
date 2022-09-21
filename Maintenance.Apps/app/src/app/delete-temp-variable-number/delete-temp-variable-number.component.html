@@ -27,7 +27,7 @@
       <tbody>
         <ng-container *ngIf="matches && matches.length; else noData">
           <tr *ngFor="let d of matches">
-            <td>{{ d.dbServer }}</td>
+            <td>{{ d.serverName }}</td>
             <td>
               <span (click)="openDetailMatchDialog(d)" class="btn-detail">
                 {{ d.matchId }}

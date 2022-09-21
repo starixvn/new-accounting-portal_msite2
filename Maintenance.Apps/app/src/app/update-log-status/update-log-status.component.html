@@ -16,7 +16,7 @@
   <tbody>
     <ng-container *ngIf="logs && logs.length; else noData">
       <tr *ngFor="let log of logs">
-        <td>{{ log.dbServer }}</td>
+        <td>{{ log.serverName }}</td>
         <td>
           <span (click)="openDetailLogStatusDialog(log)" class="btn-detail">{{
             log.logId

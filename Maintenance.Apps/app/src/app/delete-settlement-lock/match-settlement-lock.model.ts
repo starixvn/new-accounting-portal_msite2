@@ -6,6 +6,7 @@ export interface MatchSettlementLock {
   awayTeam: string;
   totalSettlementProcessing: number;
   dbServer: string;
+  serverName: string;
   errorMessage: string;
 }
 

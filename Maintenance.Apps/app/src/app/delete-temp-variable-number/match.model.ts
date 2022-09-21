@@ -19,4 +19,5 @@ export interface Match {
   keyId: number;
   marketId: string;
   remark: string;
+  serverName: string;
 }

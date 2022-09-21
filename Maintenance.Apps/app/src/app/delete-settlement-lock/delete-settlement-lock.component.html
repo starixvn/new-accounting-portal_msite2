@@ -47,7 +47,7 @@
     <tbody>
       <ng-container *ngIf="matches.length; else noData">
         <tr *ngFor="let item of matches">
-          <td>{{ item.dbServer }}</td>
+          <td>{{ item.serverName }}</td>
           <td>{{ item.matchId }}</td>
           <td>{{ item.sessionId }}</td>
           <td>{{ item.createdTime }}</td>
