@@ -33,6 +33,26 @@ export class UpdateLogStatusComponent implements OnInit {
   loadData() {
     this.updateLogStatusService.getAll().subscribe((res) => {
       this.logs = res;
+      this.logs = [
+        {
+          serverName: 'abc',
+          dbServer: 'cbc',
+          logId: 123,
+          statusId: 13,
+          startTime: '',
+          endTime: '',
+          startTimeValidation: '',
+          systemName: 'ab',
+          functionName: 'ab',
+          tableName: 'ab',
+          action: 'ag',
+          matchId: 123,
+          ticketType: 're',
+          transInfo: 'aee,e',
+          logDate: '',
+          settlementAction: 'ag',
+        },
+      ];
     });
   }
 
