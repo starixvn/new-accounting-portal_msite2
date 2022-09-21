@@ -40,9 +40,9 @@ export class DeleteSettlementLockComponent implements OnInit {
     let message = '';
     if (isSettleLock) {
       message = `
-        <div>MatchId: ${item.matchId}</div>
-        <div>Session: ${item.sessionId}</div>
-        <div>Action: Delete SettlementLock </div>
+        <div><b>MatchId:</b> ${item.matchId}</div>
+        <div><b>Session:</b> ${item.sessionId}</div>
+        <div><b>Action:</b> Delete SettlementLock </div>
         <div>Are you sure you want to <span class="red">DELETE</span> this row?</div>`;
     } else {
       message =
@@ -51,10 +51,10 @@ export class DeleteSettlementLockComponent implements OnInit {
           : '';
       message = `
       <div> ${message}</div>
-        <div>MatchId:
+        <div><b>MatchId:</b>
         ${item.matchId} </div>
         <div>Delete  ${item.totalSettlementProcessing} rows belong to sessionid ${item.sessionId} </div>
-        <div>Action: Delete SettlementProcessing </div>
+        <div><b>Action:</b> Delete SettlementProcessing </div>
         <div>Are you sure you want to <span class="red">DELETE</span> this row?</div>`;
     }
 
@@ -81,8 +81,8 @@ export class DeleteSettlementLockComponent implements OnInit {
   openUpdateConfirmDialog(item: MatchSettlementLock) {
     const message = `
     <div>Please ensure you check and delete data in table SettlementProcessing before updating:</div>
-    <div>MatchId: ${item.matchId}</div>
-    <div>Session: ${item.sessionId}</div>
+    <div><b>MatchId:</b> ${item.matchId}</div>
+    <div><b>Session:</b> ${item.sessionId}</div>
     <div>Are you sure you want to UPDATE Resolved?</div>`;
 
     this.dialogService

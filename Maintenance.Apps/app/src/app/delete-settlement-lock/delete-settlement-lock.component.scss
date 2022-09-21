@@ -41,6 +41,12 @@
 }
 
 .table {
+  td:first-child {
+    text-align: left;
+  }
+  td {
+    text-align: center;
+  }
   .action {
     text-align: center;
   }

@@ -34,7 +34,10 @@
               </span>
             </td>
             <td>{{ d.eventName }}</td>
-            <td>{{ d.createdDateTime }}</td>
+            <td>
+              {{ d.createdDateTime | date: "mediumDate" }}
+              {{ d.createdDateTime | date: "hh:mm:ss a" }}
+            </td>
             <td>{{ d.sportName }}</td>
             <td>{{ d.action }}</td>
             <td>{{ d.isCalculating }}</td>

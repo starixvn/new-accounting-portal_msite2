@@ -27,11 +27,20 @@
     </div>
     <div><span class="label">Ticket Type: </span>{{ data.ticketType }}</div>
     <div><span class="label">StatusId: </span>{{ data.statusId }}</div>
-    <div><span class="label">Start Time: </span>{{ data.startTime }}</div>
-    <div><span class="label">End Time: </span>{{ data.endTime }}</div>
     <div>
-      <span class="label">Start Time Validation: </span
-      >{{ data.startTimeValidation }}
+      <span class="label">Start Time: </span>
+      {{ data.startTime | date: "mediumDate" }}
+      {{ data.startTime | date: "hh:mm:ss a" }}
+    </div>
+    <div>
+      <span class="label">End Time: </span>
+      {{ data.endTime | date: "mediumDate" }}
+      {{ data.endTime | date: "hh:mm:ss a" }}
+    </div>
+    <div>
+      <span class="label">Start Time Validation: </span>
+      {{ data.startTimeValidation | date: "mediumDate" }}
+      {{ data.startTimeValidation | date: "hh:mm:ss a" }}
     </div>
   </div>
 

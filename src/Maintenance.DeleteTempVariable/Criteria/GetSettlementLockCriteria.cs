@@ -12,8 +12,5 @@ public class GetSettlementLockCriteria : CriteriaBase
 
     public override string GetSettingKey() => $"NAP_Set_SSBErrorMessageSel_{DbServer}";
 
-    public override bool IsValid()
-    {
-        return MatchId > 0;
-    }
+    public override bool IsValid() => true;
 }

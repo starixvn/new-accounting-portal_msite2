@@ -1,5 +1,4 @@
 <h1 class="title-page">Update Log Status</h1>
-
 <table class="table">
   <thead class="table-head">
     <tr>
@@ -24,9 +23,18 @@
         </td>
         <td class="orange">{{ log.statusId }}</td>
         <td><input type="checkbox" [value]="!!log.transInfo" disabled /></td>
-        <td>{{ log.startTime }}</td>
-        <td>{{ log.endTime }}</td>
-        <td>{{ log.startTimeValidation }}</td>
+        <td>
+          {{ log.startTime | date: "mediumDate" }}
+          {{ log.startTime | date: "hh:mm:ss a" }}
+        </td>
+        <td>
+          {{ log.endTime | date: "mediumDate" }}
+          {{ log.endTime | date: "hh:mm:ss a" }}
+        </td>
+        <td>
+          {{ log.startTimeValidation | date: "mediumDate" }}
+          {{ log.startTimeValidation | date: "hh:mm:ss a" }}
+        </td>
         <td>
           <div class="action-button">
             <button class="btn-submit" (click)="openUpdateConfirmDialog(log)">

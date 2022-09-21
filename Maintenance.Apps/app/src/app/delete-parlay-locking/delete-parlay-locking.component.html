@@ -39,7 +39,10 @@
           <td>{{ match.totalAffectedRefno }}</td>
           <td>{{ match.session }}</td>
           <td>{{ match.spName }}</td>
-          <td>{{ match.createdDate }}</td>
+          <td>
+            {{ match.createdDate | date: "mediumDate" }}
+            {{ match.createdDate | date: "hh:mm:ss a" }}
+          </td>
           <td>
             <div class="action">
               <button

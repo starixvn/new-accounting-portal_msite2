@@ -30,10 +30,10 @@ export class UpdateSystemSettingsComponent implements OnInit {
 
   openUpdateConfirmDialog(item: SystemSettings) {
     const message = `
-        <div>DB Server: ${item.serverName}<div>
-        <div>VID: ${item.vId}<div>
-        <div> Vname: ${item.vName}<div>
-        <div>Vvalue: ${item.vValue}<div>
+        <div><b>DB Server:</b> ${item.serverName}<div>
+        <div><b>VID:</b> ${item.vId}<div>
+        <div><b>Vname:</b> ${item.vName}<div>
+        <div><b>Vvalue:</b> ${item.vValue}<div>
         <div>Are you sure you want to <span class="red">DELETE</span> this row?<div>
     `;
 

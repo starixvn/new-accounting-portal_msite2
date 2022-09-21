@@ -103,10 +103,11 @@ header {
     td {
       padding: 5px 10px;
       border: solid 1px #c7c7c7;
+      color: #333;
     }
   }
   .no-data {
-    text-align: center;
+    text-align: center !important;
   }
 }
 

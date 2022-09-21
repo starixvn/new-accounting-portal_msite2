@@ -50,9 +50,14 @@
           <td>{{ item.serverName }}</td>
           <td>{{ item.matchId }}</td>
           <td>{{ item.sessionId }}</td>
-          <td>{{ item.createdTime }}</td>
+          <td>
+            {{ item.createdTime | date: "mediumDate" }}
+            {{ item.createdTime | date: "hh:mm:ss a" }}
+          </td>
           <td>{{ item.homeTeam + " -vs- " + item.awayTeam }}</td>
-          <td>{{ item.errorMessage }}</td>
+          <td>
+            <span [outerHTML]="item.errorMessage | replaceLineBreaks"></span>
+          </td>
           <td class="action">
             <button
               *ngIf="item.dbServer !== 'DBTXN'"

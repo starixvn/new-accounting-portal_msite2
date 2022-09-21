@@ -1,5 +1,11 @@
 .table {
   text-align: center;
+  td:first-child {
+    text-align: left;
+  }
+  td {
+    text-align: center;
+  }
   .action {
     width: 150px;
   }
@@ -13,6 +19,6 @@
     color: rgb(52, 160, 223);
   }
   .orange {
-    background-color: #ff4d00;
+    background-color: #e26b0a;
   }
 }

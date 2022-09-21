@@ -17,6 +17,9 @@
   .mat-dialog-content {
     padding: 15px;
     margin: unset;
+    div {
+      padding-bottom: 7px;
+    }
   }
   .mat-dialog-actions {
     justify-content: flex-end;
