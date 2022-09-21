@@ -27,7 +27,6 @@ export class DeleteTempVariableNumberComponent implements OnInit {
   }
 
   loadData() {
-    this.matches = [];
     this.service.getAll(this.matchId).subscribe((data: Match[]) => {
       this.matches = data;
     });

@@ -2,37 +2,35 @@
   <div class="dialog-header">
     <h1 mat-dialog-title>Details Log Status {{ data.logId }}</h1>
     <button mat-icon-button [mat-dialog-close]="false">
-      <mat-icon>close</mat-icon>
+      <mat-icon>X</mat-icon>
     </button>
   </div>
 
   <div mat-dialog-content>
-    <div><span class="label">Server:</span> {{ data.serverName }}</div>
-    <div><span class="label">LogId:</span>{{ data.logId }}</div>
-    <div><span class="label">System Name:</span>{{ data.systemName }}</div>
-    <div><span class="label">Function Name:</span>{{ data.functionName }}</div>
-    <div><span class="label">Table Name:</span>{{ data.tableName }}</div>
+    <div><span class="label">Server: </span> {{ data.serverName }}</div>
+    <div><span class="label">LogId: </span>{{ data.logId }}</div>
+    <div><span class="label">System Name: </span>{{ data.systemName }}</div>
+    <div><span class="label">Function Name: </span>{{ data.functionName }}</div>
+    <div><span class="label">Table Name: </span>{{ data.tableName }}</div>
     <div>
-      <span class="label">TransInfo:</span>
+      <span class="label">TransInfo: </span>
       <button
         mat-icon-button
         [cdkCopyToClipboard]="data.transInfo"
-        matTooltip="Info about the action"
-        aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
-        matTooltipHideDelay="4000"
+        class="btn-copy"
       >
-        <mat-icon class="icon-display">file_copy</mat-icon>
+        <paster-icon></paster-icon>
       </button>
     </div>
     <div>
-      <span class="label">Settlement Action:</span>{{ data.settlementAction }}
+      <span class="label">Settlement Action: </span>{{ data.settlementAction }}
     </div>
-    <div><span class="label">Ticket Type:</span>{{ data.ticketType }}</div>
-    <div><span class="label">StatusId:</span>{{ data.statusId }}</div>
-    <div><span class="label">Start Time:</span>{{ data.startTime }}</div>
-    <div><span class="label">End Time:</span>{{ data.endTime }}</div>
+    <div><span class="label">Ticket Type: </span>{{ data.ticketType }}</div>
+    <div><span class="label">StatusId: </span>{{ data.statusId }}</div>
+    <div><span class="label">Start Time: </span>{{ data.startTime }}</div>
+    <div><span class="label">End Time: </span>{{ data.endTime }}</div>
     <div>
-      <span class="label">Start Time Validation:</span
+      <span class="label">Start Time Validation: </span
       >{{ data.startTimeValidation }}
     </div>
   </div>

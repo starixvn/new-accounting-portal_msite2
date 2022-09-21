@@ -9,7 +9,7 @@ export interface MatchParlayLocking {
   matchId: number;
   totalAffectedRefno: number;
   session: string;
-  sPName: string;
+  spName: string;
   createdDate: string;
 }
 

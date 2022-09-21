@@ -10,7 +10,7 @@ public class DeleteParlayLockingCriteria : NonQueryCommand
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
 
-    public override string GetSettingKey() => $"NAP_Set_ParlayLockingDel{DbServer}";
+    public override string GetSettingKey() => $"NAP_Set_ParlayLockingDel_{DbServer}";
 
     public override bool IsValid() => !string.IsNullOrWhiteSpace(DbServer);
 }

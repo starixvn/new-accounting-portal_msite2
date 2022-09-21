@@ -19,7 +19,7 @@
     margin: unset;
   }
   .mat-dialog-actions {
-    justify-content: center;
+    justify-content: flex-end;
     display: flex;
     column-gap: 10px;
     padding: 0px 15px 15px;
@@ -29,5 +29,10 @@
 
   .label {
     font-weight: bold;
+  }
+  .btn-copy {
+    width: 20px;
+    height: 16px;
+    line-height: unset;
   }
 }

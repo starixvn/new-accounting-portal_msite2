@@ -27,6 +27,7 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
 import { UpdateLogStatusService } from './update-log-status/update-log-status.service';
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { PasteIconComponent } from './update-log-status/paste-icon.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     DeleteTempVariableNumberDetailComponent,
     UpdateSystemSettingsComponent,
     UpdateLogStatusDetailComponent,
+    PasteIconComponent,
   ],
   imports: [
     BrowserModule,

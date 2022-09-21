@@ -41,7 +41,7 @@ export class DeleteParlayLockingComponent implements OnInit {
       <div>MatchId:  ${item.matchId} </div>
       <div>Total Affected Refno(s): ${item.totalAffectedRefno} </div>
       <div>Session: ${item.session}</div>
-      <div>Are you sure you want to DELETE this row?
+      <div>Are you sure you want to <span class="red">DELETE</span> this row?
     `;
 
     this.dialogService

@@ -43,7 +43,7 @@ export class DeleteSettlementLockComponent implements OnInit {
         <div>MatchId: ${item.matchId}</div>
         <div>Session: ${item.sessionId}</div>
         <div>Action: Delete SettlementLock </div>
-        <div>Are you sure you want to DELETE this row?</div>`;
+        <div>Are you sure you want to <span class="red">DELETE</span> this row?</div>`;
     } else {
       message =
         item.dbServer === 'DBTrans'
@@ -55,7 +55,7 @@ export class DeleteSettlementLockComponent implements OnInit {
         ${item.matchId} </div>
         <div>Delete  ${item.totalSettlementProcessing} rows belong to sessionid ${item.sessionId} </div>
         <div>Action: Delete SettlementProcessing </div>
-        <div>Are you sure you want to DELETE this row?</div>`;
+        <div>Are you sure you want to <span class="red">DELETE</span> this row?</div>`;
     }
 
     this.dialogService
