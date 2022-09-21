@@ -47,7 +47,7 @@ export class UpdateLogStatusService {
   }
 
   openUpdateConfirmDialog(log: LogStatus) {
-    const message = `Are your you want to <span class="blue">UPDATE</span> StatusID of LogID ${log.logId} to <b>Completed(2) for ${log.serverName}?`;
+    const message = `Are your you want to <span class="blue">UPDATE</span> StatusID of LogID ${log.logId} to <b>Completed</b> for ${log.serverName}?`;
 
     const dialogRef = this.dialogService.open({ message });
 

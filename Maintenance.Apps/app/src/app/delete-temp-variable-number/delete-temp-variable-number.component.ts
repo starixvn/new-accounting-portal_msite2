@@ -18,7 +18,6 @@ export class DeleteTempVariableNumberComponent implements OnInit {
 
   public matches: Match[] | null = null;
   public matchId!: string;
-  public loading: boolean = false;
 
   ngOnInit(): void {
     this.service.dataUpdate$.subscribe((res) => {
@@ -29,10 +28,8 @@ export class DeleteTempVariableNumberComponent implements OnInit {
 
   loadData() {
     this.matches = [];
-    this.loading = true;
     this.service.getAll(this.matchId).subscribe((data: Match[]) => {
       this.matches = data;
-      this.loading = false;
     });
   }
 
