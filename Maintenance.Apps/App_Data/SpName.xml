@@ -50,13 +50,11 @@
     </Function>
 
     <Function Name="NAP_Set_SettlementProcessingDel">
-      <Setting Key="NAP_Set_SettlementProcessingDel_DBTXN" SpName="NAP_Set_SettlementProcessingDel_xtest" DbName="DBTXN.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_SettlementProcessingDel_DBSID01" SpName="NAP_Set_SettlementProcessingDel_xtest" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SettlementProcessingDel" SpName="NAP_Set_SettlementProcessingDel_xtest" DbName="DBTXN.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_SSBSettlementLogUpd">
-      <Setting Key="NAP_Set_SSBSettlementLogUpd_DBTXN" SpName="NAP_Set_SSBSettlementLogUpd_xtest" DbName="DBTXN.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_SSBSettlementLogUpd_DBSID01" SpName="NAP_Set_SSBSettlementLogUpd_xtest" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SSBSettlementLogUpd" SpName="NAP_Set_SSBSettlementLogUpd_xtest" DbName="DBTXN.bodb02.bodbAdminNet" />
     </Function>
   </Function>
 
