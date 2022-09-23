@@ -10,7 +10,7 @@
           <li *ngFor="let subMenu of menu.subMenu">
             <a
               [routerLink]="[subMenu.validUrl]"
-              [routerLinkActive]="['active']"
+              [routerLinkActive]="['active-link']"
               >{{ subMenu.name }}</a
             >
           </li>

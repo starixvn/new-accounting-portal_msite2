@@ -46,6 +46,13 @@ nav {
           clear: both;
           width: 100%;
 
+          .active-link {
+            text-decoration: none;
+            background-color: #777;
+            color: #fff;
+            cursor: not-allowed;
+          }
+
           a {
             color: $brand-color;
             display: block;
@@ -59,6 +66,9 @@ nav {
             text-decoration: none;
             background-color: #549cba;
             color: #fff;
+            &.active-link {
+              background-color: #777;
+            }
           }
         }
       }
