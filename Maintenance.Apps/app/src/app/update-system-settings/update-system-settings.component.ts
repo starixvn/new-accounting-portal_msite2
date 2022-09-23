@@ -34,7 +34,7 @@ export class UpdateSystemSettingsComponent implements OnInit {
         <div><b>VID:</b> ${item.vId}<div>
         <div><b>Vname:</b> ${item.vName}<div>
         <div><b>Vvalue:</b> ${item.vValue}<div>
-        <div>Are you sure you want to <span class="red">DELETE</span> this row?<div>
+        <div>Are you sure you want to <span class="blue">UPDATE</span> System Settings?<div>
     `;
 
     this.dialogService

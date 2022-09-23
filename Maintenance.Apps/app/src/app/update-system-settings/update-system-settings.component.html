@@ -23,7 +23,12 @@
         <td>{{ item.vName }}</td>
         <td>
           <div class="action">
-            <button class="btn-submit" (click)="openUpdateConfirmDialog(item)">
+            <button
+              [ngClass]="item.vValue === '0' ? 'btn-disable' : 'btn-submit'"
+              [disabled]="item.vValue === '0'"
+              class=""
+              (click)="openUpdateConfirmDialog(item)"
+            >
               Update
             </button>
           </div>
