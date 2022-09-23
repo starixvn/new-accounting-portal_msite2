@@ -26,7 +26,7 @@ namespace Maintenance.Apps.Controllers
         public IActionResult Menu()
         {
             var session = new NapSession(new HttpContextAccessor());
-            var menuItemList = session.MenuItemList;
+            var menuItemList = session.MenuItemList.Where(m => m.Name != "Delete Settlement Lock");
             var menus = menuItemList.OrderBy(m => m.DisplayOrder).ToList();
             var userName = session.UserName;
             return Ok(new
