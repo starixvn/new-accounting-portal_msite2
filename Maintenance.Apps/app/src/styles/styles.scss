@@ -185,3 +185,10 @@ header {
   left: 0;
   z-index: 10000;
 }
+
+.refresh {
+  background: url("refresh.png") no-repeat;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+}
