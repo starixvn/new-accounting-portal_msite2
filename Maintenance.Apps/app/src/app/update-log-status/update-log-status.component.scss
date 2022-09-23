@@ -22,3 +22,16 @@
     background-color: #e26b0a;
   }
 }
+
+.head-page {
+  flex: auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  column-gap: 20px;
+  .refresh {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+  }
+}

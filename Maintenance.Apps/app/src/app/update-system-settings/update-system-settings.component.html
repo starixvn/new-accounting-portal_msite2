@@ -1,4 +1,12 @@
-<h1 class="title-page">Update System Settings</h1>
+<div class="head-page">
+  <h1 class="title-page">Update System Settings</h1>
+  <img
+    class="refresh"
+    src="../../assets/refresh.png"
+    alt="refresh"
+    (click)="loadData()"
+  />
+</div>
 
 <table class="table" *ngIf="systemSettings">
   <thead>

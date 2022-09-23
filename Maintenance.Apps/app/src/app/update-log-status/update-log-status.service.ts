@@ -47,7 +47,7 @@ export class UpdateLogStatusService {
   }
 
   openUpdateConfirmDialog(log: LogStatus) {
-    const message = `Are your you want to <span class="blue">UPDATE</span> StatusID of LogID ${log.logId} to <b>Completed</b> for ${log.serverName}?`;
+    const message = `Are you sure you want to <span class="blue">UPDATE</span> StatusID of LogID ${log.logId} to <b>Completed</b> for ${log.serverName}?`;
 
     const dialogRef = this.dialogService.open({ message });
 
@@ -57,7 +57,7 @@ export class UpdateLogStatusService {
   }
 
   openDeleteConfirmDialog(log: LogStatus) {
-    const message = `Are your you want to <span class="red">DELETE</span> log of LogID ${log.logId} for ${log.serverName}?`;
+    const message = `Are you sure you want to <span class="red">DELETE</span> log of LogID ${log.logId} for ${log.serverName}?`;
 
     const dialogRef = this.dialogService.open({ message });
 
