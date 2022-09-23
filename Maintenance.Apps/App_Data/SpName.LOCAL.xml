@@ -10,8 +10,8 @@
     </Function>
 
     <Function Name="NAP_Set_MatchLockingDel">
-      <Setting Key="NAP_Set_MatchLockingDel_DBTXN" SpName="NAP_Set_MatchLockingDel" DbName="DBTXN.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_MatchLockingDel_DBSID01" SpName="NAP_Set_MatchLockingDel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_MatchLockingDel_DBTXN" SpName="NAP_Set_MatchLockingDel" DbName="DBTXN.bodb02.bodbAdminNet" TimeOut="40"/>
+      <Setting Key="NAP_Set_MatchLockingDel_DBSID01" SpName="NAP_Set_MatchLockingDel" DbName="DBSID01.bodb02.bodbAdminNet" TimeOut="40"/>
     </Function>
 
     <Function Name="NAP_Set_MatchLockingSel">

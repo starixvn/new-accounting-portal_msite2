@@ -15,8 +15,8 @@
     </Function>
 
     <Function Name="NAP_Set_MatchLockingSel">
-      <Setting Key="NAP_Set_MatchLockingSel_DBTXN" SpName="NAP_Set_MatchLockingSel_xtest" DbName="DBTXN.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_MatchLockingSel_DBSID01" SpName="NAP_Set_MatchLockingSel_xtest" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_MatchLockingSel_DBTXN" SpName="NAP_Set_MatchLockingSel_xtest" DbName="DBTXN.bodb02.bodbAdminNet"  TimeOut="40"/>
+      <Setting Key="NAP_Set_MatchLockingSel_DBSID01" SpName="NAP_Set_MatchLockingSel_xtest"  DbName="DBSID01.bodb02.bodbAdminNet" TimeOut="40"/>
     </Function>
 
     <Function Name="NAP_Set_MatchLockingTicketSel">

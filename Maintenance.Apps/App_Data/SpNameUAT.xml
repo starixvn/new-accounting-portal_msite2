@@ -2,7 +2,7 @@
 <Functions SiteId="73" SiteName="mSite2">
   <Function Name="TempVariableNumber ">
     <Setting Key="NAP_Set_MatchLockingDel" SpName="NAP_Set_MatchLockingDel" DbName="DBTXN.bodb02.bodbAdminNet" />
-    <Setting Key="NAP_Set_MatchLockingSel" SpName="NAP_Set_MatchLockingSel" DbName="DBTXN.bodb02.bodbAdminNet" />
+    <Setting Key="NAP_Set_MatchLockingSel" SpName="NAP_Set_MatchLockingSel" DbName="DBTXN.bodb02.bodbAdminNet" TimeOut="40"/>
     <Setting Key="NAP_Set_MatchLockingTicketSel" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBTXN.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_ParlayLockingDel" SpName="NAP_Set_ParlayLockingDel" DbName="DBTXN.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_ParlayLockingSel" SpName="NAP_Set_ParlayLockingSel" DbName="DBTXN.bodb02.bodbAdminNet" />
