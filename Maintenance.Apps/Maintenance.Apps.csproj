@@ -68,4 +68,7 @@
   <ItemGroup>
     <ProjectReference Include="..\src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj" />
   </ItemGroup>
+
+ 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1local_1json__JsonSchema="https://docs.strmprivacy.io/jsonschema/BatchJob.json" /></VisualStudio></ProjectExtensions>
 </Project>
