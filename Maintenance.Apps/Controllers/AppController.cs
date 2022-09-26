@@ -3,6 +3,7 @@ using System.Text;
 
 namespace Maintenance.Apps.Controllers
 {
+
     public class AppController : Controller
     {
         private readonly IWebHostEnvironment env;
@@ -12,9 +13,10 @@ namespace Maintenance.Apps.Controllers
             this.env = env;
         }
 
+        [Route("delete-temp/{*path}")]
         public IActionResult Index()
         {
-            var html = System.IO.File.ReadAllText($"{env.WebRootPath}/app/index.html");
+            var html = System.IO.File.ReadAllText($"{env.WebRootPath}/delete-temp/index.html");
 
             return Content(html, "text/html", Encoding.UTF8);
         }
