@@ -1,6 +1,5 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
-using Maintenance.DeleteTempVariable.Constants;
 
 namespace Maintenance.DeleteTempVariable.Criteria;
 
@@ -13,12 +12,7 @@ public class UpdateSettlementLogCriteria : NonQueryCommand
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
 
-    public override string GetSettingKey()
-    {
-        return string.Equals(DbServer, DataBaseServers.DBTrans)
-            ? "NAP_Set_SSBSettlementLogUpd"
-            : $"NAP_Set_SSBSettlementLogUpd_{DbServer}";
-    }
+    public override string GetSettingKey() => $"NAP_Set_SSBSettlementLogUpd_{DbServer}";
 
     public override bool IsValid() => true;
 }

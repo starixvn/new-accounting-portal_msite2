@@ -48,14 +48,6 @@
       <Setting Key="NAP_Set_SSBErrorMessageSel_DBTXN" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_SSBErrorMessageSel_DBSID01" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID01.bodb02.bodbAdminNet" />
     </Function>
-
-    <Function Name="NAP_Set_SettlementProcessingDel">
-      <Setting Key="NAP_Set_SettlementProcessingDel" SpName="NAP_Set_SettlementProcessingDel" DbName="DBTXN.bodb02.bodbAdminNet" />
-    </Function>
-
-    <Function Name="NAP_Set_SSBSettlementLogUpd">
-      <Setting Key="NAP_Set_SSBSettlementLogUpd" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBTXN.bodb02.bodbAdminNet" />
-    </Function>
   </Function>
 
   <Function Name="TempVariableNumber Sub DB">
@@ -67,6 +59,7 @@
     <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DB061" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DBTP" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
+    <Setting Key="NAP_Set_SettlementLockDel_DBTXN" SpName="NAP_Set_SettlementLockDel" DbName="DBTXN.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementLockDel_DB052" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementLockDel_DB053" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementLockDel_DB054" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
@@ -75,6 +68,7 @@
     <Setting Key="NAP_Set_SettlementLockDel_DB061" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementLockDel_DBTP" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
+    <Setting Key="NAP_Set_SettlementProcessingDel_DBTXN" SpName="NAP_Set_SettlementProcessingDel" DbName="DBTXN.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementProcessingDel_DB052" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementProcessingDel_B053" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementProcessingDel_DB054" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
@@ -83,6 +77,8 @@
     <Setting Key="NAP_Set_SettlementProcessingDel_DB061" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SettlementProcessingDel_DBTP" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
+    <Setting Key="NAP_Set_SSBSettlementLogUpd_DBTXN" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBTXN.bodb02.bodbAdminNet" />
+    <Setting Key="NAP_Set_SSBSettlementLogUpd_DBSID01" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID01.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB052" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB053" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB054" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
