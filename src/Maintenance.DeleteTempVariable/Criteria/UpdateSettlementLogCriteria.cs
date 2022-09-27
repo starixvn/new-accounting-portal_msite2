@@ -9,6 +9,8 @@ public class UpdateSettlementLogCriteria : NonQueryCommand
 
     public DateTime StartTime { get; set; }
 
+    public string MessageId { get; set; }
+
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
 

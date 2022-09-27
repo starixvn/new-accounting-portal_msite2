@@ -7,4 +7,6 @@ public class UpdateSettlementLogRequest
     public DateTime CreatedTime { get; set; }
 
     public string DbServer { get; set; }
+
+    public string MessageId { get; set; }
 }
