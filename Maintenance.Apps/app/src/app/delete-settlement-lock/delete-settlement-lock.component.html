@@ -36,6 +36,7 @@
         <th>DB Server</th>
         <th>MatchId</th>
         <th>SessionId</th>
+        <th>MessageId</th>
         <th>Created Time</th>
         <th>Event Name</th>
         <th>Error message</th>
@@ -50,6 +51,7 @@
           <td>{{ item.serverName }}</td>
           <td>{{ item.matchId }}</td>
           <td>{{ item.sessionId }}</td>
+          <td>{{ item.messageId }}</td>
           <td>
             {{ item.createdTime | date: "mediumDate" }}
             {{ item.createdTime | date: "hh:mm:ss a" }}

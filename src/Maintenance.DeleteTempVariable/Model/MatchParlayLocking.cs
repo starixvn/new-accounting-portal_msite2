@@ -8,7 +8,7 @@ public class MatchParlayLocking
 
     public int MatchId { get; set; }
 
-    public Int64 TotalAffectedRefno { get; set; }
+    public long TotalAffectedRefno { get; set; }
 
     public string Session { get; set; }
 

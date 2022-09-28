@@ -6,7 +6,7 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class DeleteSettlementLockCriteria : NonQueryCommand
 {
-    public Int64 SessionId { get; set; }
+    public long SessionId { get; set; }
 
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }

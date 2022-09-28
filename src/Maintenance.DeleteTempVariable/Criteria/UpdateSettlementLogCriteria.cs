@@ -5,7 +5,7 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class UpdateSettlementLogCriteria : NonQueryCommand
 {
-    public Int64 SessionId { get; set; }
+    public long SessionId { get; set; }
 
     public DateTime StartTime { get; set; }
 

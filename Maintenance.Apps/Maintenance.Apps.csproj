@@ -70,5 +70,5 @@
   </ItemGroup>
 
  
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1local_1json__JsonSchema="https://docs.strmprivacy.io/jsonschema/BatchJob.json" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1local_1json__JsonSchema="https://docs.strmprivacy.io/jsonschema/BatchJob.json" appsettings_1uat_1json__JsonSchema="https://appsemble.app/api.json" /></VisualStudio></ProjectExtensions>
 </Project>

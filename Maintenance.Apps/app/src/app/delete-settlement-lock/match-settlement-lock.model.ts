@@ -8,6 +8,7 @@ export interface MatchSettlementLock {
   dbServer: string;
   serverName: string;
   errorMessage: string;
+  messageId: string;
 }
 
 export interface DeleteSettlementLog {
@@ -20,4 +21,5 @@ export interface UpdateSettlementLog {
   sessionId: string;
   createdTime: string;
   dbServer: string;
+  messageId: string;
 }

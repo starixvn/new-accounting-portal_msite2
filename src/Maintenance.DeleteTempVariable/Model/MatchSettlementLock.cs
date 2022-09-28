@@ -19,4 +19,5 @@ public class MatchSettlementLock
     public int TotalSettlementProcessing { get; set; }
 
     public string ErrorMessage { get; set; }
+    public string MessageId { get; set; }
 }
