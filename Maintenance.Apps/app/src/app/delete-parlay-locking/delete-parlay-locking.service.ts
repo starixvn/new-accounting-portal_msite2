@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import * as _ from 'lodash';
 import { HttpService } from '../shared/services/http.service';
 import {
   DeleteParlayLockingRequest,
@@ -14,9 +14,14 @@ export class MatchParlayLockingService {
   constructor(private httpService: HttpService) {}
 
   getAll(data: ParlayLockingRequest) {
+    const params: ParlayLockingRequest = {
+      matchId: _.isNumber(data.matchId) ? data.matchId : 0,
+      timeRange: data.timeRange,
+    };
+
     const url = `${this.baseUrl}/get-parlay-locking`;
 
-    return this.httpService.post<MatchParlayLocking[]>(url, data);
+    return this.httpService.post<MatchParlayLocking[]>(url, params);
   }
 
   deleteItem(data: DeleteParlayLockingRequest) {

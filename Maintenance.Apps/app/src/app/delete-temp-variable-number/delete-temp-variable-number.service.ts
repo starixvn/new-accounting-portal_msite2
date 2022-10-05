@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
 import { Subject } from 'rxjs';
 import { HttpService } from '../shared/services/http.service';
 import { Match } from './match.model';
@@ -12,7 +13,8 @@ export class DeleteTempVariableNumberService {
 
   constructor(private httpService: HttpService) {}
 
-  getAll(matchId: string) {
+  getAll(matchId?: number) {
+    matchId = _.isNumber(matchId) ? matchId : 0;
     const url = `${this.baseUrl}/get-temp-variable`;
     const body = {
       matchId,

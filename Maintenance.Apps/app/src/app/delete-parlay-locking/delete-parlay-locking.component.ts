@@ -14,7 +14,7 @@ import {
 export class DeleteParlayLockingComponent implements OnInit {
   public filter: ParlayLockingRequest = { timeRange: 1 };
   public timeRanges: number[] = [1, 12, 24];
-  public matches: MatchParlayLocking[] | null = null;
+  public matches: MatchParlayLocking[] = [];
 
   constructor(
     private matchService: MatchParlayLockingService,

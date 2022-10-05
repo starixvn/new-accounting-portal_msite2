@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import * as _ from 'lodash';
 import { HttpService } from '../shared/services/http.service';
 import {
   DeleteSettlementLog,
@@ -13,7 +13,8 @@ export class MatchSettlementLockService {
 
   constructor(private httpService: HttpService) {}
 
-  getAll(matchId: string) {
+  getAll(matchId?: number) {
+    matchId = _.isNumber(matchId) ? matchId : 0;
     const url = `${this.baseUrl}/get-settlement-lock`;
 
     return this.httpService.post<MatchSettlementLock[]>(url, {

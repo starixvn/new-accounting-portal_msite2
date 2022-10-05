@@ -13,8 +13,8 @@ import { MatchSettlementLockService } from './match-settlement-lock.service';
   styleUrls: ['./delete-settlement-lock.component.scss'],
 })
 export class DeleteSettlementLockComponent implements OnInit {
-  public matches: MatchSettlementLock[] | null = null;
-  public matchId!: string;
+  public matches: MatchSettlementLock[] = [];
+  public matchId?: number;
 
   constructor(
     private matchService: MatchSettlementLockService,

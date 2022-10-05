@@ -16,11 +16,11 @@ export class DeleteTempVariableNumberComponent implements OnInit {
     private service: DeleteTempVariableNumberService
   ) {}
 
-  public matches: Match[] | null = null;
-  public matchId!: string;
+  public matches: Match[] = [];
+  public matchId?: number;
 
   ngOnInit(): void {
-    this.service.dataUpdate$.subscribe((res) => {
+    this.service.dataUpdate$.subscribe(() => {
       this.loadData();
       this.dialog.closeAll();
     });

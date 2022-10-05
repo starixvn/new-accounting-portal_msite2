@@ -15,5 +15,5 @@ public class GetSettlementLockReplicatedServerCriteria : CriteriaBase
         return $"NAP_Set_MatchLockingReplicatedServerSel_{DbServer}";
     }
 
-    public override bool IsValid() => MatchId > 0;
+    public override bool IsValid() => !string.IsNullOrWhiteSpace(DbServer);
 }
