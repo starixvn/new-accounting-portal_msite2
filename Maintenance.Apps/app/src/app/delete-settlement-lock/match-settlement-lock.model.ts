@@ -1,6 +1,6 @@
 export interface MatchSettlementLock {
   matchId: number;
-  sessionId: string;
+  sessionId: number;
   createdTime: string;
   homeTeam: string;
   awayTeam: string;
@@ -12,13 +12,13 @@ export interface MatchSettlementLock {
 }
 
 export interface DeleteSettlementLog {
-  sessionId: string;
+  sessionId: number;
   dbServer: string;
   isSettleLock: boolean;
 }
 
 export interface UpdateSettlementLog {
-  sessionId: string;
+  sessionId: number;
   createdTime: string;
   dbServer: string;
   messageId: string;

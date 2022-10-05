@@ -1,6 +1,5 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
-using Maintenance.DeleteTempVariable.Constants;
 
 namespace Maintenance.DeleteTempVariable.Criteria;
 
@@ -17,15 +16,8 @@ public class DeleteSettlementLockCriteria : NonQueryCommand
     public override string GetSettingKey()
     {
         return IsSettleLock
-            ? GetSPName("NAP_Set_SettlementLockDel")
-            : GetSPName("NAP_Set_SettlementProcessingDel");
-    }
-
-    private string GetSPName(string name)
-    {
-        return string.Equals(DbServer, DataBaseServers.DBTrans)
-            ? name
-            : $"{name}_{DbServer}";
+            ? $"NAP_Set_SettlementLockDel_{DbServer}"
+            : $"NAP_Set_SettlementProcessingDel_{DbServer}";
     }
 
     public override bool IsValid() => true;

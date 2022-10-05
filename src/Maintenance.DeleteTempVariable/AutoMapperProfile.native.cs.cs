@@ -16,7 +16,8 @@ public class AutoMapperProfile : Profile
         CreateMap<DeleteParlayLockingRequest, DeleteParlayLockingCriteria>();
 
         CreateMap<DeleteSettlementProcessingRequest, DeleteSettlementLockCriteria>();
-        CreateMap<UpdateSettlementLogRequest, UpdateSettlementLogCriteria>();
+        CreateMap<UpdateSettlementLogRequest, UpdateSettlementLogCriteria>()
+            .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.CreatedTime));
 
         CreateMap<UpdateLogStatusRequest, UpdateLogStatusCriteria>();
     }

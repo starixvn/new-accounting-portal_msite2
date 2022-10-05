@@ -42,7 +42,7 @@
         <th>Error message</th>
         <th>SettlementLock</th>
         <th>SettlementProcessing</th>
-        <th>SSD_SettlementLogs</th>
+        <th>SSB_SettlementLogs</th>
       </tr>
     </thead>
     <tbody>
@@ -63,7 +63,12 @@
           <td class="action">
             <button
               *ngIf="item.dbServer !== 'DBTXN'"
-              class="btn-delete"
+              [ngClass]="
+                item.messageId == null || item.messageId == ''
+                  ? 'btn-delete'
+                  : 'btn-disable'
+              "
+              [disabled]="item.messageId != null && item.messageId != ''"
               (click)="openDeleteConfirmDialog(item, true)"
             >
               Delete

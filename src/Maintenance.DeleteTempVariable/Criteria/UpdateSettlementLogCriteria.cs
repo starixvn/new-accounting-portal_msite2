@@ -5,11 +5,11 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class UpdateSettlementLogCriteria : NonQueryCommand
 {
-    public long SessionId { get; set; }
+    public long? SessionId { get; set; }
 
     public DateTime StartTime { get; set; }
 
-    public string MessageId { get; set; }
+    public string? MessageId { get; set; }
 
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }

@@ -4,6 +4,7 @@ import { SnackbarService } from '../shared/services/snackbar.service';
 import {
   DeleteSettlementLog,
   MatchSettlementLock,
+  UpdateSettlementLog,
 } from './match-settlement-lock.model';
 import { MatchSettlementLockService } from './match-settlement-lock.service';
 
@@ -94,7 +95,7 @@ export class DeleteSettlementLockComponent implements OnInit {
   }
 
   updateSettlementLogs(item: MatchSettlementLock) {
-    this.matchService.updateItem(item).subscribe((res) => {
+    this.matchService.updateItem(item).subscribe(() => {
       this.snackbarService.openSuccessSnackBar();
       this.loadData();
     });

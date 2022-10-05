@@ -28,9 +28,16 @@ export class MatchSettlementLockService {
     return this.httpService.post(url, data);
   }
 
-  updateItem(data: UpdateSettlementLog) {
+  updateItem(item: MatchSettlementLock) {
+    const params: UpdateSettlementLog = {
+      sessionId: item.sessionId,
+      createdTime: item.createdTime,
+      dbServer: item.dbServer,
+      messageId: item.messageId,
+    };
+
     const url = `${this.baseUrl}/update-settlement-lock`;
 
-    return this.httpService.post(url, data);
+    return this.httpService.post(url, params);
   }
 }
