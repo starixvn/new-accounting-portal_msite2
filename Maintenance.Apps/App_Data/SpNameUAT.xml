@@ -3,50 +3,60 @@
   <Function Name="TempVariableNumber and Scale Out DB">
     <Function Name="NAP_Set_SiteDBServiceLog_Sel">
       <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_SiteDBServiceLog_Del">
       <Setting Key="NAP_Set_SiteDBServiceLog_Del_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Del" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Del_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Del" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_MatchLockingDel">
       <Setting Key="NAP_Set_MatchLockingDel_DBTXN" SpName="NAP_Set_MatchLockingDel" DbName="DBTXN.bodb02.bodbAdminNet" TimeOut="40" />
       <Setting Key="NAP_Set_MatchLockingDel_DBSID01" SpName="NAP_Set_MatchLockingDel" DbName="DBSID01.bodb02.bodbAdminNet" TimeOut="40" />
+      <Setting Key="NAP_Set_MatchLockingDel_DBSID02" SpName="NAP_Set_MatchLockingDel" DbName="DBSID02.bodb02.bodbAdminNet" TimeOut="40" />
     </Function>
 
     <Function Name="NAP_Set_MatchLockingSel">
       <Setting Key="NAP_Set_MatchLockingSel_DBTXN" SpName="NAP_Set_MatchLockingSel" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_MatchLockingSel_DBSID01" SpName="NAP_Set_MatchLockingSel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_MatchLockingSel_DBSID02" SpName="NAP_Set_MatchLockingSel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_MatchLockingTicketSel">
       <Setting Key="NAP_Set_MatchLockingTicketSel_DBTXN" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_MatchLockingTicketSel_DBSID01" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_MatchLockingTicketSel_DBSID02" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_ParlayLockingDel">
       <Setting Key="NAP_Set_ParlayLockingDel_DBTXN" SpName="NAP_Set_ParlayLockingDel" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_ParlayLockingDel_DBSID01" SpName="NAP_Set_ParlayLockingDel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_ParlayLockingDel_DBSID02" SpName="NAP_Set_ParlayLockingDel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_ParlayLockingSel">
       <Setting Key="NAP_Set_ParlayLockingSel_DBTXN" SpName="NAP_Set_ParlayLockingSel" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_ParlayLockingSel_DBSID01" SpName="NAP_Set_ParlayLockingSel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_ParlayLockingSel_DBSID02" SpName="NAP_Set_ParlayLockingSel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_SystemSettingsSel">
       <Setting Key="NAP_Set_SystemSettingsSel_DBTXN" SpName="NAP_Set_SystemSettingsSel" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_SystemSettingsSel_DBSID01" SpName="NAP_Set_SystemSettingsSel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SystemSettingsSel_DBSID02" SpName="NAP_Set_SystemSettingsSel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_SystemSettingsUpd">
       <Setting Key="NAP_Set_SystemSettingsUpd_DBTXN" SpName="NAP_Set_SystemSettingsUpd" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_SystemSettingsUpd_DBSID01" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SystemSettingsUpd_DBSID02" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_SSBErrorMessageSel">
       <Setting Key="NAP_Set_SSBErrorMessageSel_DBTXN" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBTXN.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_SSBErrorMessageSel_DBSID01" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SSBErrorMessageSel_DBSID02" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
   </Function>
 
@@ -79,6 +89,7 @@
 
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DBTXN" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBTXN.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DBSID01" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID01.bodb02.bodbAdminNet" />
+    <Setting Key="NAP_Set_SSBSettlementLogUpd_DBSID02" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID02.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB052" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB053" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB054" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
