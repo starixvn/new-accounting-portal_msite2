@@ -8,31 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.AWS.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.LOCAL.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.PROD.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.SIT.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.UAT.xml" />
-    <None Remove="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.AWS.xml">
+    <Content Include="App_Data\SpName.AWS.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.LOCAL.xml">
+    <Content Include="App_Data\SpName.LOCAL.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.PROD.xml">
+    <Content Include="App_Data\SpName.PROD.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.SIT.xml">
+    <Content Include="App_Data\SpName.SIT.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.UAT.xml">
+    <Content Include="App_Data\SpNameUAT.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Fanex.Data\DBOWP.bodb_OWP.bodbOWPNet.xml">
+    <Content Include="App_Data\SpName.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -51,6 +42,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.3" />
     <PackageReference Include="Fanex.Data" Version="4.2.2" />
     <PackageReference Include="Fanex.Data.Repository" Version="4.2.2" />
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.2" />
@@ -64,9 +56,19 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="6.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.9" />
     <PackageReference Include="ONEbook.UM" Version="3.1.3" />
     <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0" />
+    <PackageReference Include="ONEbook.UM.AspNetCore.Filters" Version="3.1.0-beta10" />
     <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
     <PackageReference Include="Sentry" Version="3.15.0" />
   </ItemGroup>
+
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj" />
+  </ItemGroup>
+
+ 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1local_1json__JsonSchema="https://docs.strmprivacy.io/jsonschema/BatchJob.json" appsettings_1uat_1json__JsonSchema="https://appsemble.app/api.json" /></VisualStudio></ProjectExtensions>
 </Project>

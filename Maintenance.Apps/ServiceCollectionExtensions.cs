@@ -1,5 +1,5 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
+using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
@@ -13,9 +13,10 @@ using Fanex.NAP.Client.AspNetCore.Session;
 using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
 using Fanex.NAP.Client.Services;
-using MediatR;
+using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Newtonsoft.Json;
 using ONEbook.UM.AspNetCore;
@@ -24,9 +25,11 @@ using ONEbook.UM.Helpers;
 using ONEbook.UM.Services;
 using ONEbook.UM.Transport;
 using StackExchange.Redis;
-using System.Reflection;
 
 namespace Maintenance.Apps;
+
+using App_Start;
+using HttpContextHelper = ONEbook.UM.Helpers.HttpContextHelper;
 
 public static class ServiceCollectionExtensions
 {
@@ -34,6 +37,7 @@ public static class ServiceCollectionExtensions
     {
         var mapperConfig = new MapperConfiguration(mc =>
         {
+            mc.AddProfile(new DeleteTempVariable.AutoMapperProfile());
         });
 
         var mapper = mapperConfig.CreateMapper();
@@ -73,7 +77,7 @@ public static class ServiceCollectionExtensions
                         options.ExpireTimeSpan = TimeSpan.FromMinutes(int.Parse(configuration.GetSection("AuthSettings:CookieTimeOut").Value));
                         options.Cookie = new CookieBuilder
                         {
-                            Name = "Fanex.OWP.Cookie",
+                            Name = "Fanex.mSite2.Cookie",
                             SecurePolicy = CookieSecurePolicy.SameAsRequest
                         };
                         options.Events.OnSigningOut = context =>
@@ -91,7 +95,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IDynamicRepository, DynamicRepository>();
         return services;
     }
-
 
     public static IServiceCollection AddFanexServices(this IServiceCollection services, IConfiguration configuration)
     {
@@ -130,13 +133,17 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddInternalServices(this IServiceCollection services)
     {
+        services.AddTransient<ParlayLockingService, ParlayLockingServiceImp>();
+        services.AddTransient<SettlementLockService, SettlementLockServiceImp>();
+        services.AddTransient<SystemSettingService, SystemSettingServiceImp>();
+        services.AddTransient<TempVariableService, TempVariableServiceImp>();
+        services.AddTransient<LogStatusService, LogStatusServiceImp>();
 
         return services;
     }
 
     public static IServiceCollection AddMediator(this IServiceCollection services)
     {
-
         return services;
     }
 
@@ -162,14 +169,38 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
+    public static IServiceCollection AddOnebookUM(this IServiceCollection services, IConfiguration configuration)
+    {
+        OnebookUMInitializer.RegisterServiceCollection(services, configuration);
+        OnebookUMInitializer.InitializeUMClientManager();
+
+        return services;
+    }
+
     public static IServiceCollection AddRedisSession(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSession(options =>
         {
             options.Cookie.IsEssential = true;
             options.IdleTimeout = TimeSpan.FromMinutes(int.Parse(configuration.GetSection("AuthSettings:SessionTimeOut").Value));
-            options.Cookie.Name = "Fanex.OWP.Session";
+            options.Cookie.Name = "Fanex.mSite2.Session";
         });
+
+        var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
+        var redisMultiplexer = ConnectionMultiplexer.Connect(redisConfig);
+
+        services.AddDataProtection()
+            .PersistKeysToStackExchangeRedis(redisMultiplexer, "Fanex.nSite2-ProtectionKeys");
+
+        services.AddSingleton(redisMultiplexer);
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConfig;
+            options.InstanceName = "Fanex.mSite2.Session-";
+        });
+
+        services.AddRedisCache(configuration.GetSection("fanex.caching.redis"));
 
         return services;
     }

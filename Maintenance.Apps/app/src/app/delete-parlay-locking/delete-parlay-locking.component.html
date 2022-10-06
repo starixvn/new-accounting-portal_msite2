@@ -1,0 +1,65 @@
+<h1 class="title-page">Delete Parlay Locking</h1>
+<div>
+  <div class="filter">
+    <div class="match">
+      <label for="">MatchId</label>
+      <input type="number" name="matchId" [(ngModel)]="filter.matchId" />
+    </div>
+
+    <div class="time">
+      <label for="">Time</label>
+      <select [(ngModel)]="filter.timeRange">
+        <option *ngFor="let item of timeRanges" [value]="item">
+          {{ item + "h" }}
+        </option>
+      </select>
+    </div>
+
+    <button (click)="submit()" class="btn-submit">SUBMIT</button>
+  </div>
+
+  <table class="table" *ngIf="matches">
+    <thead>
+      <tr>
+        <th>DB Server</th>
+        <th>MatchId</th>
+        <th>Total Affected Refno(s)</th>
+        <th>Session</th>
+        <th>SpName</th>
+        <th>CreatedTime</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngIf="matches.length; else noData">
+        <tr *ngFor="let match of matches">
+          <td>{{ match.serverName }}</td>
+          <td>{{ match.matchId }}</td>
+          <td>{{ match.totalAffectedRefno }}</td>
+          <td>{{ match.session }}</td>
+          <td>{{ match.spName }}</td>
+          <td>
+            {{ match.createdDate | date: "mediumDate" }}
+            {{ match.createdDate | date: "hh:mm:ss a" }}
+          </td>
+          <td>
+            <div class="action">
+              <button
+                (click)="openDeleteConfirmDialog(match)"
+                class="btn-delete"
+              >
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <tr>
+          <td colspan="7" class="no-data">No Information Available</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

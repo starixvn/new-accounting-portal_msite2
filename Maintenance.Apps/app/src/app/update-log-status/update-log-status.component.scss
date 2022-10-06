@@ -1,0 +1,32 @@
+.table {
+  text-align: center;
+  td:first-child {
+    text-align: left;
+  }
+  td {
+    text-align: center;
+  }
+  .action {
+    width: 150px;
+  }
+  .action-button {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+  .btn-detail {
+    cursor: pointer;
+    color: rgb(52, 160, 223);
+  }
+  .orange {
+    background-color: #e26b0a;
+  }
+}
+
+.head-page {
+  flex: auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  column-gap: 20px;
+}

@@ -1,0 +1,8 @@
+<app-nav-menu></app-nav-menu>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+<div *ngIf="blockUI" class="modal-backdrop">
+  <div class="loading"></div>
+</div>

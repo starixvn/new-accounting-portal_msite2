@@ -1,0 +1,236 @@
+﻿@import "colors.less";
+@import "common.less";
+
+html {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    background-color: @body_bg;
+    width: 100%;
+    margin: 0;
+}
+
+body, button, input, textarea {
+    font-family: 'Yanone Kaffeesatz', 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: @text;
+}
+
+input, select {
+    outline: 0 none;
+}
+
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+p, ul, ol, dl {
+    margin-bottom: 16px;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    outline: 0 none;
+    color: @link;
+
+    &:hover {
+        text-decoration: underline;
+        color: @link;
+    }
+}
+
+header {
+    float: left;
+    width: 100%;
+    background: #333 url(images/bg_header.png);
+    position: relative;
+    padding: 0 0;
+
+    .logo {
+        position: absolute;
+
+        a {
+            display: block;
+            background-color: @logo_bg;
+            padding: 0 10px 2px;
+            font-size: 46px;
+            font-weight: bold;
+            color: @white;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    nav {
+        margin-left: 140px;
+        float: left;
+
+        .menu {
+            margin: 0;
+
+            li {
+                display: block;
+                float: left;
+                list-style-type: none;
+                position: relative;
+                font-weight: normal !important;
+
+                a {
+                    color: @white;
+                }
+            }
+
+            > li {
+                > a {
+                    display: block;
+                    font-size: 1.4em;
+                    padding: 24px 16px;
+                }
+
+                ul {
+                    position: absolute;
+                    top: 96px;
+                    left: 0px;
+                    background-color: @white;
+                    border-bottom: 5px solid @menu_border;
+                    .box_shadow(0 0 3px rgba(0,0,0,0.5));
+                    margin: 0;
+                    padding: 6px 0;
+                    text-align: left;
+                    z-index: 999;
+                    visibility: hidden;
+                    opacity: 0;
+                    .transition;
+
+                    li {
+                        display: block;
+                        clear: both;
+                        width: 100%;
+
+                        a {
+                            color: @brand_color;
+                            display: block;
+                            padding: 8px 16px;
+                            white-space: nowrap;
+                            min-width: 140px;
+                            font-size: 1.2em;
+                        }
+
+                        &:hover a {
+                            text-decoration: none;
+                            background-color: @menu_border;
+                            color: @white;
+                        }
+                    }
+                }
+
+                &:hover {
+                    > a {
+                        text-decoration: none;
+                        background-color: @white;
+                        color: @brand_color;
+                        text-shadow: 0 0 3px #fff;
+                    }
+
+                    ul {
+                        top: 70px;
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            > li.first {
+                border-left: 0 none;
+            }
+
+            > li.last {
+                border-right: 0 none;
+            }
+
+            > li.has-kids:hover > a {
+                cursor: default;
+            }
+        }
+    }
+
+    .user-info {
+        float: right;
+        font-family: 'Yanone Kaffeesatz','Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+
+        .greeting {
+            position: relative;
+            float: right;
+
+            h2 {
+                background: url(images/setting.png) no-repeat right 27px;
+                display: block;
+                clear: none;
+                margin: 0;
+                float: left;
+                height: 22px;
+                padding: 23px 32px 25px 10px;
+                color: @white;
+                font-weight: normal;
+                font-size: 1em;
+            }
+
+            ul {
+                position: absolute;
+                right: 0;
+                top: 0;
+                min-width: 102px;
+                visibility: hidden;
+                opacity: 0;
+                background-color: @white;
+                list-style-type: none;
+                margin: 0;
+                padding: 5px 0;
+
+                li {
+                    display: block;
+                    text-align: left;
+                    white-space: nowrap;
+
+                    a {
+                        display: block;
+                        padding: 6px 10px;
+                        font-size: 1em;
+                        color: @brand_color;
+                        font-size: 1.2em;
+                    }
+
+                    &:hover a {
+                        text-decoration: none;
+                        background-color: @brand_color_dark;
+                        color: @white;
+                    }
+                }
+            }
+
+            &:hover {
+                h2 {
+                    background-color: @white;
+                    color: @brand_color;
+                }
+
+                ul {
+                    top: 70px;
+                    visibility: visible;
+                    opacity: 1;
+                    .box_shadow(0 0 3px rgba(0,0,0,0.5));
+                    border-bottom: 5px solid @brand_color;
+                }
+            }
+        }
+    }
+}

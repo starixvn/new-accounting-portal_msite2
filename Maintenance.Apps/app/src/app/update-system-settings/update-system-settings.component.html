@@ -1,0 +1,45 @@
+<div class="head-page">
+  <h1 class="title-page">Update System Settings</h1>
+  <div class="refresh" alt="refresh" (click)="loadData()"></div>
+</div>
+
+<table class="table" *ngIf="systemSettings">
+  <thead>
+    <tr>
+      <th>DB Server</th>
+      <th>VID</th>
+      <th>Vname</th>
+      <th>Vvalue</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <ng-container *ngIf="systemSettings.length; else noData">
+      <tr *ngFor="let item of systemSettings">
+        <td>{{ item.serverName }}</td>
+        <td>{{ item.vId }}</td>
+        <td>{{ item.vName }}</td>
+        <td>{{ item.vValue }}</td>
+        <td>
+          <div class="action">
+            <button
+              [ngClass]="item.vValue === '0' ? 'btn-disable' : 'btn-submit'"
+              [disabled]="item.vValue === '0'"
+              class=""
+              (click)="openUpdateConfirmDialog(item)"
+            >
+              Update
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-template #noData>
+      <tr>
+        <td colspan="5">No Information Available</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

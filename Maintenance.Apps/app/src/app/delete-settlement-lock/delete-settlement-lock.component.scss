@@ -1,0 +1,53 @@
+.filter {
+  display: flex;
+  align-items: center;
+  column-gap: 100px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  .form {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    label {
+      margin-right: 10px;
+    }
+    .match {
+      input {
+        border: 1px solid #92cddc;
+        outline: none;
+        height: 22px;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
+  }
+
+  .guideline {
+    display: flex;
+    column-gap: 50px;
+  }
+  .bold {
+    font-weight: bold;
+  }
+}
+
+.table {
+  td:first-child {
+    text-align: left;
+  }
+  td {
+    text-align: center;
+  }
+  .action {
+    text-align: center;
+  }
+}

@@ -1,0 +1,55 @@
+<div class="detail-log-status">
+  <div class="dialog-header">
+    <h1 mat-dialog-title>Details Log Status {{ data.logId }}</h1>
+    <button mat-icon-button [mat-dialog-close]="false">
+      <mat-icon>X</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content>
+    <div><span class="label">Server: </span> {{ data.serverName }}</div>
+    <div><span class="label">LogId: </span>{{ data.logId }}</div>
+    <div><span class="label">System Name: </span>{{ data.systemName }}</div>
+    <div><span class="label">Function Name: </span>{{ data.functionName }}</div>
+    <div><span class="label">Table Name: </span>{{ data.tableName }}</div>
+    <div>
+      <span class="label">TransInfo: </span>
+      <button
+        mat-icon-button
+        [cdkCopyToClipboard]="transformTransInfo(data.transInfo)"
+        class="btn-copy"
+      >
+        <paster-icon></paster-icon>
+      </button>
+    </div>
+    <div>
+      <span class="label">Settlement Action: </span>{{ data.settlementAction }}
+    </div>
+    <div><span class="label">Ticket Type: </span>{{ data.ticketType }}</div>
+    <div><span class="label">StatusId: </span>{{ data.statusId }}</div>
+    <div>
+      <span class="label">Start Time: </span>
+      {{ data.startTime | date: "mediumDate" }}
+      {{ data.startTime | date: "hh:mm:ss a" }}
+    </div>
+    <div>
+      <span class="label">End Time: </span>
+      {{ data.endTime | date: "mediumDate" }}
+      {{ data.endTime | date: "hh:mm:ss a" }}
+    </div>
+    <div>
+      <span class="label">Start Time Validation: </span>
+      {{ data.startTimeValidation | date: "mediumDate" }}
+      {{ data.startTimeValidation | date: "hh:mm:ss a" }}
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button class="btn-submit" (click)="openUpdateConfirmDialog()">
+      Update
+    </button>
+    <button class="btn-delete" (click)="openDeleteConfirmDialog()">
+      Delete
+    </button>
+  </div>
+</div>

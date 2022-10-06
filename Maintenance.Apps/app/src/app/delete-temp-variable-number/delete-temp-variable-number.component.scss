@@ -1,0 +1,30 @@
+.delete-temp-page {
+  .filter {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 20px;
+
+    input {
+      border: 1px solid #92cddc;
+      outline: none;
+      height: 22px;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  .btn-detail {
+    cursor: pointer;
+    color: rgb(52, 160, 223);
+  }
+}

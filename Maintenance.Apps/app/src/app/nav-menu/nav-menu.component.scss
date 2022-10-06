@@ -1,0 +1,176 @@
+@import "common.component.scss";
+
+nav {
+  margin-left: 140px;
+  float: left;
+
+  .menu {
+    margin: 0;
+
+    li {
+      display: block;
+      float: left;
+      list-style-type: none;
+      position: relative;
+      font-weight: normal !important;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    > li {
+      > a {
+        display: block;
+        font-size: 1.4em;
+        padding: 12px;
+      }
+
+      ul {
+        position: absolute;
+        top: 96px;
+        left: 0px;
+        background-color: #fff;
+        border-bottom: 5px solid $menu-border;
+        @extend .box-shadow;
+        margin: 0;
+        padding: 6px 0;
+        text-align: left;
+        z-index: 999;
+        visibility: hidden;
+        opacity: 0;
+        @extend .transition;
+
+        li {
+          display: block;
+          clear: both;
+          width: 100%;
+
+          .active-link {
+            text-decoration: none;
+            background-color: #777;
+            color: #fff;
+            cursor: not-allowed;
+          }
+
+          a {
+            color: $brand-color;
+            display: block;
+            padding: 8px 16px;
+            white-space: nowrap;
+            min-width: 140px;
+            font-size: 1.2em;
+          }
+
+          &:hover a {
+            text-decoration: none;
+            background-color: #549cba;
+            color: #fff;
+            &.active-link {
+              background-color: #777;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        > a {
+          text-decoration: none;
+          background-color: #fff;
+          color: $brand-color;
+          text-shadow: 0 0 3px #fff;
+        }
+
+        ul {
+          top: 50px;
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+
+    > li.first {
+      border-left: 0 none;
+    }
+
+    > li.last {
+      border-right: 0 none;
+    }
+
+    > li.has-kids:hover > a {
+      cursor: default;
+    }
+  }
+}
+.user-info {
+  float: right;
+  font-family: "Yanone Kaffeesatz", "Segoe UI", Tahoma, Arial, Helvetica,
+    sans-serif;
+
+  .greeting {
+    position: relative;
+    float: right;
+
+    h2 {
+      background: url(setting.png) no-repeat right 15px;
+      display: block;
+      clear: none;
+      margin: 0;
+      float: left;
+      height: 12px;
+      padding: 14px 36px 25px 15px;
+      color: #fff;
+      font-weight: normal;
+      font-size: 1em;
+    }
+
+    ul {
+      position: absolute;
+      right: 0;
+      top: 0;
+      min-width: 102px;
+      visibility: hidden;
+      opacity: 0;
+      background-color: #fff;
+      list-style-type: none;
+      margin: 0;
+      padding: 5px 0;
+
+      li {
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+
+        a {
+          display: block;
+          padding: 6px 10px;
+          font-size: 1em;
+          color: $brand-color;
+          font-size: 1.2em;
+        }
+
+        &:hover a {
+          text-decoration: none;
+          background-color: #549cba;
+          color: #fff;
+        }
+      }
+    }
+
+    &:hover {
+      h2 {
+        color: $brand-color;
+        background: url("setting.png") no-repeat scroll right -69px #f9f9f9;
+        text-decoration: none;
+      }
+
+      ul {
+        top: 50px;
+        visibility: visible;
+        opacity: 1;
+        @extend .box-shadow;
+        border-bottom: 5px solid $brand-color;
+      }
+    }
+  }
+}

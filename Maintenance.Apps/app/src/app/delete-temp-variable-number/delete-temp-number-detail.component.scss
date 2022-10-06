@@ -1,0 +1,39 @@
+.temp-number-dialog {
+  .dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #569ebc;
+    color: #fff;
+    .mat-dialog-title {
+      padding: 5px 15px;
+      margin: 0px;
+    }
+  }
+  .mat-dialog-container {
+    padding: 0px;
+    overflow: unset;
+  }
+  .mat-dialog-content {
+    padding: 15px 15px;
+    margin: unset;
+    div {
+      padding-bottom: 7px;
+    }
+    .label {
+      font-weight: bold;
+    }
+  }
+  .mat-dialog-actions {
+    justify-content: flex-end;
+    display: flex;
+    column-gap: 10px;
+    padding: 0px 15px 15px;
+    margin-bottom: unset;
+    min-height: unset;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,194 @@
+$link: #4f82c6;
+$body-bg: #f9f9f9;
+$text: #666;
+
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  background-color: $body-bg;
+  width: 100%;
+  margin: 0;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: "Yanone Kaffeesatz", "Segoe UI", Tahoma, Arial, Helvetica,
+    sans-serif;
+  font-size: 13px;
+  color: $text;
+}
+
+input,
+select {
+  outline: 0 none;
+}
+
+:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+p,
+ul,
+ol,
+dl {
+  margin-bottom: 16px;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  outline: 0 none;
+  color: $link;
+
+  &:hover {
+    text-decoration: underline;
+    color: $link;
+  }
+}
+
+header {
+  float: left;
+  width: 100%;
+  background: #333 url(bg_header.png);
+  position: relative;
+  padding: 0 0;
+  height: 49px;
+  margin-bottom: 10px;
+  .logo {
+    position: absolute;
+
+    a {
+      display: block;
+      background-color: #549cba;
+      padding: 0 10px 2px;
+      font-size: 35px;
+      font-weight: bold;
+      color: #fff;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+.table {
+  border: solid 1px #c7c7c7;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  width: 100%;
+
+  thead {
+    background-color: #569ebc;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: #f4f4f4;
+    }
+
+    th {
+      padding: 5px 10px;
+      border: solid 1px #c7c7c7;
+      color: white;
+      font-weight: normal;
+    }
+    td {
+      padding: 5px 10px;
+      border: solid 1px #c7c7c7;
+      color: #333;
+    }
+  }
+  .no-data {
+    text-align: center !important;
+  }
+}
+
+.btn-submit {
+  color: white;
+  background-color: #5073bc;
+  border: 1px solid #5073bc;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #c10000;
+  border-radius: 2px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 1px solid #c10000;
+  cursor: pointer;
+}
+
+.btn-disable {
+  background: rgb(122, 116, 116);
+  color: #fff;
+  border: 1px solid;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.snackbar-success {
+  background-color: rgb(57, 216, 57);
+  color: #fff;
+}
+
+.snackbar-error {
+  background-color: rgb(240, 89, 89);
+  color: #fff;
+}
+
+.blue {
+  color: #5073bc;
+}
+
+.red {
+  color: #c10000;
+}
+
+.title-page {
+  color: #549cba;
+  font-size: 1.7em;
+  font-weight: normal;
+}
+.loading {
+  background: url("loader.gif") no-repeat;
+  position: absolute;
+  top: 33%;
+  left: 42%;
+  width: 100px;
+  height: 100px;
+  z-index: 30000;
+}
+.modal-backdrop {
+  background: transparent;
+  border: none;
+  background-color: #fff;
+  position: fixed;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  -webkit-opacity: 0.7;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.refresh {
+  background: url("refresh.png") no-repeat;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+}

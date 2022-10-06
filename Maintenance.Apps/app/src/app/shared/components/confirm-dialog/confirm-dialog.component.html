@@ -1,0 +1,25 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title [innerHtml]="title"></h2>
+  <button mat-icon-button [mat-dialog-close]="false">
+    <mat-icon>X</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content [innerHtml]="message"></div>
+
+<div mat-dialog-actions>
+  <button
+    class="btn"
+    [ngClass]="{
+      'btn-confirm-update': confirmText === 'Update',
+      'btn-confirm-delete': confirmText === 'Delete',
+      'btn-confirm-ok': confirmText === 'Ok'
+    }"
+    (click)="onOk()"
+  >
+    {{ confirmText }}
+  </button>
+  <button class="btn btn-confirm-cancel" (click)="onCancel()">
+    {{ cancelText }}
+  </button>
+</div>

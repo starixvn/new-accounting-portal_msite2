@@ -1,0 +1,57 @@
+<div class="delete-temp-page">
+  <h1 class="title-page">Delete Temp Variable Number</h1>
+  <div>
+    <div class="filter">
+      <label for="">MatchId</label>
+      <input type="number" [(ngModel)]="matchId" />
+      <button type="submit" (click)="submit()" class="btn-submit">
+        SUBMIT
+      </button>
+    </div>
+
+    <table class="table" *ngIf="matches">
+      <thead>
+        <tr>
+          <th>DB Server</th>
+          <th>MatchId</th>
+          <th>Event Name</th>
+          <th>Created Date</th>
+          <th>SportType</th>
+          <th>Action</th>
+          <th>IsCal</th>
+          <th>Product</th>
+          <th>MarketID</th>
+          <th>ErrorMessage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="matches && matches.length; else noData">
+          <tr *ngFor="let d of matches">
+            <td>{{ d.serverName }}</td>
+            <td>
+              <span (click)="openDetailMatchDialog(d)" class="btn-detail">
+                {{ d.matchId }}
+              </span>
+            </td>
+            <td>{{ d.eventName }}</td>
+            <td>
+              {{ d.createdDateTime | date: "mediumDate" }}
+              {{ d.createdDateTime | date: "hh:mm:ss a" }}
+            </td>
+            <td>{{ d.sportName }}</td>
+            <td>{{ d.action }}</td>
+            <td>{{ d.isCalculating }}</td>
+            <td>{{ d.productName }}</td>
+            <td>{{ d.marketId }}</td>
+            <td>{{ d.message }}</td>
+          </tr>
+        </ng-container>
+        <ng-template #noData>
+          <tr>
+            <td colspan="10" class="no-data">No Information Available</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>
