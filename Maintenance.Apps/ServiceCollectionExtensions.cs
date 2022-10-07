@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
@@ -199,8 +198,6 @@ public static class ServiceCollectionExtensions
             options.Configuration = redisConfig;
             options.InstanceName = "Fanex.mSite2.Session-";
         });
-
-        services.AddRedisCache(configuration.GetSection("fanex.caching.redis"));
 
         return services;
     }
