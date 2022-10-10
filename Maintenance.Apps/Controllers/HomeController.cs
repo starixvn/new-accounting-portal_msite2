@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿namespace Maintenance.Apps.Controllers;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Maintenance.Apps.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    [HttpGet]
+    [Authorize]
+    public IActionResult Index()
     {
-        [HttpGet]
-        [Authorize]
-        public IActionResult Index()
-        {
-            return Redirect("/delete-temp/index.html");
-        }
+        return Redirect("/delete-temp/index.html");
     }
 }

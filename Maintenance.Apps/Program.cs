@@ -18,6 +18,7 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 builder.Services.Configure<AppSettingsKey>(builder.Configuration.GetSection(AppSettingsKey.MultiDbServer));
 
 // Add services to the container.
+builder.Services.AddSession();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews(options =>
 {
@@ -55,17 +56,20 @@ app.UseCors("AllowOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
 
-NapClientManager
-  .UseConfig(app.Services.GetService<INapSettings>())
-  .UseSession(app.Services.GetService<INapSession>());
-
 app.MapRazorPages();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
 });
+
+NapClientManager
+    .UseConfig(app.Services.GetService<INapSettings>())
+    .UseSession(app.Services.GetService<INapSession>());
+
+
 #if DEBUG
 app.Run();
 #endif

@@ -127,6 +127,8 @@ public static class ServiceCollectionExtensions
             .UseConfig(new LoggingConfiguration())
             .UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo);
 
+        services.AddSingleton(Logger.Log);
+
         return services;
     }
 
@@ -148,10 +150,7 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddNapServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddTransient<Fanex.Logging.ILogger, Logger>();
-        services.AddSingleton(new UMClientConfiguration().Initialize(configuration));
-
         services.AddSingleton<INapSettings>(new NapSettings(configuration));
         services.AddSingleton<INapSession, NapSession>();
 
@@ -160,19 +159,13 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ISecurityService, SecurityService>();
         services.AddSingleton<ISiteService, SiteService>();
 
-        services.AddSingleton<IMaintenanceService, MaintenanceService>();
-        services.AddSingleton<IUMCacheService, UMCacheService>();
-        services.AddSingleton<IUMRestClient, UMRestClient>();
-        services.AddSingleton<IHttpContextHelper, HttpContextHelper>();
-
         return services;
     }
 
     public static IServiceCollection AddOnebookUM(this IServiceCollection services, IConfiguration configuration)
     {
-        OnebookUMInitializer.RegisterServiceCollection(services, configuration);
-        OnebookUMInitializer.InitializeUMClientManager();
-
+        services.RegisterServiceCollection(configuration);
+        
         return services;
     }
 
