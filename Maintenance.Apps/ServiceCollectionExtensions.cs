@@ -28,6 +28,8 @@ using StackExchange.Redis;
 namespace Maintenance.Apps;
 
 using App_Start;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
 using HttpContextHelper = ONEbook.UM.Helpers.HttpContextHelper;
 
 public static class ServiceCollectionExtensions
@@ -119,7 +121,7 @@ public static class ServiceCollectionExtensions
         {
                 new SentryLogging(new SentryEngineOptions
                 {
-                    Dsn = configuration.GetSection("SentryEngineOptions:Dsn").Value
+                    Dsn = new Dsn(configuration.GetSection("SentryEngineOptions:Dsn").Value)
                 })
         });
 
@@ -165,7 +167,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddOnebookUM(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterServiceCollection(configuration);
-        
+
         return services;
     }
 
