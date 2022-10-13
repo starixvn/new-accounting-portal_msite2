@@ -29,6 +29,7 @@ import { UpdateLogStatusService } from './update-log-status/update-log-status.se
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { PasteIconComponent } from './update-log-status/paste-icon.component';
+import { ControlSyncServiceComponent } from './control-sync-service/control-sync-service.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PasteIconComponent } from './update-log-status/paste-icon.component';
     DeleteTempVariableNumberDetailComponent,
     UpdateSystemSettingsComponent,
     UpdateLogStatusDetailComponent,
+    ControlSyncServiceComponent,
     PasteIconComponent,
     ReplaceLineBreaks,
   ],

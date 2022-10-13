@@ -1,0 +1,47 @@
+<h1 class="title-page">On/Off Sync Service</h1>
+
+<div class="timer-filter">
+  <select class="timer" [value]="selectedSeconds" (change)="onChanged($event)">
+    <option value="10">10s</option>
+    <option value="20">20s</option>
+  </select>
+  <div class="seconds">
+    <span class="content">{{ seconds }}</span>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>DB Server</th>
+      <th>Last LogId</th>
+      <th>Last Log Status</th>
+      <th>Waiting Tasks</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <ng-container>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <mat-slide-toggle
+            color="primary"
+            [checked]="true"
+            (change)="openConfirmDialog($event)"
+          >
+          </mat-slide-toggle>
+        </td>
+      </tr>
+    </ng-container>
+    <ng-template #noData>
+      <tr>
+        <td colspan="7" class="no-data">No Information Available</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

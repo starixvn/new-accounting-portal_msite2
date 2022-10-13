@@ -29,6 +29,7 @@ builder.Services.AddControllersWithViews(options =>
 builder.Services.AddControllerAuthorization();
 builder.Services.AddCookieAuthentication(builder.Configuration);
 builder.Services.AddRedisSession(builder.Configuration);
+builder.Services.AddConfigRedisCache(builder.Configuration);
 
 builder.Services.AddNapServices(builder.Configuration);
 builder.Services.AddFanexServices(builder.Configuration);

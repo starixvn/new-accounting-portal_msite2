@@ -51,6 +51,7 @@
 
  
   <ItemGroup>
+    <ProjectReference Include="..\src\ControlSyncService\ControlSyncService.csproj" />
     <ProjectReference Include="..\src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj" />
   </ItemGroup>
 
