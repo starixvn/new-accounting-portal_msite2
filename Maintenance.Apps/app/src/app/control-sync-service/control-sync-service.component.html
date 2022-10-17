@@ -1,12 +1,17 @@
 <h1 class="title-page">On/Off Sync Service</h1>
 
 <div class="timer-filter">
-  <select class="timer" [value]="selectedSeconds" (change)="onChanged($event)">
-    <option value="10">10s</option>
-    <option value="20">20s</option>
+  <select
+    class="timer"
+    [value]="selectedSeconds"
+    (change)="onChangedTimerDropdown($event)"
+  >
+    <option *ngFor="let item of secondsOptions" [value]="item">
+      {{ item }}s
+    </option>
   </select>
   <div class="seconds">
-    <span class="content">{{ seconds }}</span>
+    <span class="content">{{ countDownSeconds }}</span>
   </div>
 </div>
 
@@ -24,14 +29,14 @@
   <tbody>
     <ng-container>
       <tr>
-        <td></td>
+        <td>SiteDB</td>
         <td></td>
         <td></td>
         <td></td>
         <td>
           <mat-slide-toggle
             color="primary"
-            [checked]="true"
+            [checked]="currentStatus"
             (change)="openConfirmDialog($event)"
           >
           </mat-slide-toggle>

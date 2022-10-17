@@ -30,6 +30,7 @@ import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-s
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { PasteIconComponent } from './update-log-status/paste-icon.component';
 import { ControlSyncServiceComponent } from './control-sync-service/control-sync-service.component';
+import { ControlSyncService } from './control-sync-service/control-sync-service.service';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ControlSyncServiceComponent } from './control-sync-service/control-sync
     BlockUIService,
     ConfirmDialogService,
     NavMenuService,
+    ControlSyncService,
   ],
   bootstrap: [AppComponent],
 })

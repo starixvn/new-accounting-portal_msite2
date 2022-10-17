@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
+import { ControlSyncService } from './control-sync-service.service';
 
 @Component({
   selector: 'app-control-sync-service',
@@ -7,56 +8,74 @@ import { ConfirmDialogService } from '../shared/components/confirm-dialog/confir
   styleUrls: ['./control-sync-service.component.scss'],
 })
 export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
-  public seconds = 0;
-  public selectedSeconds = 20;
-  private defaultTime: any;
+  public countDownSeconds = 0;
+  public selectedSeconds = 0;
+  public secondsOptions = [20, 40, 60];
+  public currentStatus = false;
+  private defaultTimer: any;
+  readonly INTERVAL_TIME = 1000;
 
-  constructor(private dialogService: ConfirmDialogService) {}
+  constructor(
+    private dialogService: ConfirmDialogService,
+    private controlSyncService: ControlSyncService
+  ) {}
 
   ngAfterViewInit(): void {
-    this.defaultTime = this.handleInterval();
+    this.defaultTimer = this.handleInterval();
   }
 
   ngOnInit(): void {
-    this.seconds = this.selectedSeconds;
+    this.selectedSeconds = 60;
+    this.countDownSeconds = this.selectedSeconds;
+    this.loadData();
   }
 
-  onChanged(e: any) {
-    clearInterval(this.defaultTime);
+  onChangedTimerDropdown(e: any) {
+    clearInterval(this.defaultTimer);
     this.loadData();
 
     this.selectedSeconds = e.target.value;
-    this.seconds = this.selectedSeconds;
+    this.countDownSeconds = this.selectedSeconds;
 
     this.handleInterval();
   }
 
   handleInterval() {
     return setInterval(() => {
-      this.seconds = this.seconds - 1;
-      if (this.seconds <= 0) {
-        this.seconds = this.selectedSeconds;
+      this.countDownSeconds = this.countDownSeconds - 1;
+      if (this.countDownSeconds <= 0) {
+        this.countDownSeconds = this.selectedSeconds;
         this.loadData();
-        this.seconds = this.selectedSeconds;
       }
-    }, 1000);
+    }, this.INTERVAL_TIME);
   }
 
   loadData() {
-    console.log('Load Data');
+    this.controlSyncService.getInfoService().subscribe((res) => {
+      this.currentStatus = res.status;
+    });
   }
 
   openConfirmDialog(e: any) {
-    const status = e.checked ? 'START' : 'STOP';
-    const message = `Are you sure you want to ${status} Sync service for all SiteDB`;
+    this.currentStatus = e.checked;
+    const contentStatus = e.checked ? 'START' : 'STOP';
+    const message = `Are you sure you want to <span class="${
+      e.checked ? 'blue' : 'red'
+    }">${contentStatus}</span> Sync service for all SiteDB`;
 
     this.dialogService
       .open({ message })
       .afterClosed()
-      .subscribe((res: Boolean) => {
-        this.handleConfirm(res);
+      .subscribe((confirm: Boolean) => {
+        confirm && this.handleConfirm();
       });
   }
 
-  handleConfirm(status: Boolean) {}
+  handleConfirm() {
+    this.controlSyncService
+      .updateStatus(this.currentStatus)
+      .subscribe((res) => {
+        this.loadData();
+      });
+  }
 }

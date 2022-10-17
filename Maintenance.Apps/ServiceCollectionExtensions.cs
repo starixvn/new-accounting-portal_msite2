@@ -22,6 +22,7 @@ using StackExchange.Redis;
 namespace Maintenance.Apps;
 
 using App_Start;
+using ControlSyncService.Services;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;
@@ -136,6 +137,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<SystemSettingService, SystemSettingServiceImp>();
         services.AddTransient<TempVariableService, TempVariableServiceImp>();
         services.AddTransient<LogStatusService, LogStatusServiceImp>();
+        services.AddTransient<ControlSyncServices, ControlSyncServicesImp>();
 
         return services;
     }
@@ -195,10 +197,11 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddConfigRedisCache(this IServiceCollection service, IConfiguration configuration)
     {
         var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
+        var applicationName = configuration.GetSection("AuthSettings:ChannelPrefix").Value;
         service.AddSingleton<ICache>(new RedisCache(new RedisCacheOptions
         {
             ConnectionString = redisConfig,
-            ApplicationName = "mSiteApp_DEV",
+            ApplicationName = applicationName,
         }));
         service.AddSingleton<ICacheService>(new CacheService());
 

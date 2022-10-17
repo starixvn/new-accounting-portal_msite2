@@ -1,4 +1,5 @@
-﻿using Fanex.Caching;
+﻿using ControlSyncService.Models;
+using ControlSyncService.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,25 +10,22 @@ namespace ControlSyncService;
 [ApiController]
 public class ControlSyncServiceController : ControllerBase
 {
-    private readonly ICache cache;
+    private readonly ControlSyncServices controlSyncServices;
 
-    public ControlSyncServiceController(ICache cache)
+    public ControlSyncServiceController(ControlSyncServices controlSyncServices)
     {
-        this.cache = cache;
+        this.controlSyncServices = controlSyncServices;
     }
 
-    [HttpGet("GetInfo")]
+    [HttpPost("GetInfoService")]
     public IActionResult GetInfo()
     {
-        return Ok();
+        return Ok(controlSyncServices.GetInfoService());
     }
 
-    [HttpGet("ControlService")]
-    public IActionResult ControlService()
+    [HttpPost("UpdateStatus")]
+    public IActionResult UpdateStatus(UpdateStatusRequest request)
     {
-        const int cacheExpiredInDays = 1095;
-        var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(cacheExpiredInDays));
-        cache.Set("", true, cachePolicy);
-        return Ok();
+        return Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
     }
 }
