@@ -6,7 +6,11 @@
     [value]="selectedSeconds"
     (change)="onChangedTimerDropdown($event)"
   >
-    <option *ngFor="let item of secondsOptions" [value]="item">
+    <option
+      *ngFor="let item of secondsOptions"
+      [value]="item"
+      [selected]="item === selectedSeconds"
+    >
       {{ item }}s
     </option>
   </select>

@@ -9,8 +9,8 @@ import { ControlSyncService } from './control-sync-service.service';
 })
 export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
   public countDownSeconds = 0;
-  public selectedSeconds = 0;
-  public secondsOptions = [20, 40, 60];
+  public selectedSeconds = 60;
+  public secondsOptions = [30, 60, 90, 120];
   public currentStatus = false;
   private defaultTimer: any;
   readonly INTERVAL_TIME = 1000;
@@ -25,7 +25,6 @@ export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.selectedSeconds = 20;
     this.countDownSeconds = this.selectedSeconds;
     this.loadData();
   }
