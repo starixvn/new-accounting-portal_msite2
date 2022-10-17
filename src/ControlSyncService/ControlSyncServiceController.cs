@@ -18,14 +18,9 @@ public class ControlSyncServiceController : ControllerBase
     }
 
     [HttpPost("GetInfoService")]
-    public IActionResult GetInfo()
-    {
-        return Ok(controlSyncServices.GetInfoService());
-    }
+    public IActionResult GetInfo() => Ok(controlSyncServices.GetInfoService());
+
 
     [HttpPost("UpdateStatus")]
-    public IActionResult UpdateStatus(UpdateStatusRequest request)
-    {
-        return Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
-    }
+    public IActionResult UpdateStatus(UpdateStatusRequest request) => Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
 }

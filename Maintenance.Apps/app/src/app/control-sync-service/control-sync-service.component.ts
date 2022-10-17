@@ -25,7 +25,7 @@ export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.selectedSeconds = 60;
+    this.selectedSeconds = 20;
     this.countDownSeconds = this.selectedSeconds;
     this.loadData();
   }

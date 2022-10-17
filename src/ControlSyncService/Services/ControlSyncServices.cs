@@ -31,8 +31,9 @@ public class ControlSyncServicesImp : ControlSyncServices
 
     public bool UpdateStatusServiceInRedis(UpdateStatusRequest request)
     {
-        const int cacheExpiredInDays = 1095;
+        const int cacheExpiredInDays = 3650;
         var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(cacheExpiredInDays));
+
         cache.Set(CacheKey, request.Status, cachePolicy);
 
         return request.Status;
