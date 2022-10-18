@@ -43,7 +43,6 @@ export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
     return setInterval(() => {
       this.countDownSeconds = this.countDownSeconds - 1;
       if (this.countDownSeconds <= 0) {
-        this.countDownSeconds = this.selectedSeconds;
         this.loadData();
       }
     }, this.INTERVAL_TIME);
@@ -52,11 +51,11 @@ export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
   loadData() {
     this.controlSyncService.getInfoService().subscribe((res) => {
       this.currentStatus = res.status;
+      this.countDownSeconds = this.selectedSeconds;
     });
   }
 
   openConfirmDialog(e: any) {
-    this.currentStatus = e.checked;
     const contentStatus = e.checked ? 'START' : 'STOP';
     const message = `Are you sure you want to <span class="${
       e.checked ? 'blue' : 'red'
@@ -66,7 +65,12 @@ export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
       .open({ message })
       .afterClosed()
       .subscribe((confirm: Boolean) => {
-        confirm && this.handleConfirm();
+        if (confirm) {
+          this.currentStatus = e.checked;
+          this.handleConfirm();
+        } else {
+          e.source.checked = this.currentStatus;
+        }
       });
   }
 
