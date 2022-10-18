@@ -1,7 +1,8 @@
-﻿using ControlSyncService.Models;
+﻿
 using Fanex.Caching;
+using Maintenance.DeleteTempVariable.Requests;
 
-namespace ControlSyncService.Services;
+namespace Maintenance.DeleteTempVariable.Services;
 public interface ControlSyncServices
 {
     bool UpdateStatusServiceInRedis(UpdateStatusRequest request);

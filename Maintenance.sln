@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintenance.DeleteTempVaria
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintenance.DeleteTempVariable", "src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj", "{2DC83242-165E-4637-ABD1-5C171C5EB27D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlSyncService", "src\ControlSyncService\ControlSyncService.csproj", "{29864983-D8C7-406D-BE2C-3BCA27354711}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{2DC83242-165E-4637-ABD1-5C171C5EB27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DC83242-165E-4637-ABD1-5C171C5EB27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DC83242-165E-4637-ABD1-5C171C5EB27D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29864983-D8C7-406D-BE2C-3BCA27354711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29864983-D8C7-406D-BE2C-3BCA27354711}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29864983-D8C7-406D-BE2C-3BCA27354711}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29864983-D8C7-406D-BE2C-3BCA27354711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,7 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C472B27B-0B9C-4E68-85CD-7F1F3D925573} = {2C6DC532-851D-478D-8942-ED2EF0437188}
 		{2DC83242-165E-4637-ABD1-5C171C5EB27D} = {FA55D8E6-7E79-45DE-8E76-D45F7D208B9A}
-		{29864983-D8C7-406D-BE2C-3BCA27354711} = {FA55D8E6-7E79-45DE-8E76-D45F7D208B9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B307E835-7AA1-4D9B-8A64-AC1455A4457C}

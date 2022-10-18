@@ -11,27 +11,27 @@ namespace Maintenance.DeleteTempVariable;
 public class DeleteTempController : ControllerBase
 {
     private readonly ParlayLockingService parlayLockingService;
-
     private readonly SettlementLockService settlementLockService;
-
     private readonly TempVariableService tempVariableService;
-
     private readonly SystemSettingService systemSettingService;
-
     private readonly LogStatusService logStatusService;
+    private readonly ControlSyncServices controlSyncServices;
+
 
     public DeleteTempController(
         ParlayLockingService parlayLockingService,
         SettlementLockService settlementLockService,
         TempVariableService tempVariableService,
         SystemSettingService systemSettingService,
-        LogStatusService logStatusService)
+        LogStatusService logStatusService,
+        ControlSyncServices controlSyncServices)
     {
         this.parlayLockingService = parlayLockingService;
         this.settlementLockService = settlementLockService;
         this.tempVariableService = tempVariableService;
         this.systemSettingService = systemSettingService;
         this.logStatusService = logStatusService;
+        this.controlSyncServices = controlSyncServices;
     }
 
     [HttpPost]
@@ -133,4 +133,11 @@ public class DeleteTempController : ControllerBase
         var result = await logStatusService.UpdateLogStatus(request);
         return Ok(result);
     }
+
+    [HttpPost("get-info-service")]
+    public IActionResult GetInfo() => Ok(controlSyncServices.GetInfoService());
+
+
+    [HttpPost("update-status")]
+    public IActionResult UpdateStatus(UpdateStatusRequest request) => Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
 }

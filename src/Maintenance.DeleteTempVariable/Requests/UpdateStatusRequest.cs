@@ -1,4 +1,4 @@
-﻿namespace ControlSyncService.Models;
+﻿namespace Maintenance.DeleteTempVariable.Requests;
 
 public class UpdateStatusRequest
 {

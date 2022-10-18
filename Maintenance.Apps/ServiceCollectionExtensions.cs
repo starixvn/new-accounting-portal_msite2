@@ -22,7 +22,6 @@ using StackExchange.Redis;
 namespace Maintenance.Apps;
 
 using App_Start;
-using ControlSyncService.Services;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;

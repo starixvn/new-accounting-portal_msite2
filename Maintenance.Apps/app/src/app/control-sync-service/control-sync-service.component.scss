@@ -27,7 +27,7 @@
   &.mat-checked {
     ::ng-deep.mat-slide-toggle-bar::after {
       content: "ON";
-      font-size: 45%;
+      font-size: 50%;
       font-weight: 700;
       position: absolute;
       color: white;
@@ -38,7 +38,7 @@
   &:not(.mat-checked) {
     ::ng-deep.mat-slide-toggle-bar::after {
       content: "OFF";
-      font-size: 45%;
+      font-size: 50%;
       font-weight: 700;
       color: white;
       position: absolute;
@@ -46,4 +46,8 @@
       top: -5px;
     }
   }
+}
+
+.action {
+  text-align: center;
 }
