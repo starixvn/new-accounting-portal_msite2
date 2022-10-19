@@ -1,4 +1,6 @@
-﻿namespace Maintenance.DeleteTempVariable.Model;
+﻿using Maintenance.DeleteTempVariable.Constants;
+
+namespace Maintenance.DeleteTempVariable.Model;
 
 public class Match
 {
@@ -30,25 +32,25 @@ public class Match
         {
             switch (KeyId)
             {
-                case 1:
+                case ProductNameId.Sportbook:
                     return $"{KeyId}-Sportbook, Numbergame";
 
-                case 2:
+                case ProductNameId.Outright:
                     return $"{KeyId}-Outright";
 
-                case 3:
+                case ProductNameId.MetricGaming:
                     return $"{KeyId}-Metric Gaming";
 
-                case 4:
+                case ProductNameId.Racing:
                     return $"{KeyId}-VS Racing";
 
-                case 5:
+                case ProductNameId.BetBuilder:
                     return $"{KeyId}-BetBuilder";
 
-                case 6:
+                case ProductNameId.FastMarket:
                     return $"{KeyId}-Fast Market";
 
-                case 7:
+                case ProductNameId.FastMarketSABA:
                     return $"{KeyId}-Fast Market SABA Time Machine";
 
                 default:

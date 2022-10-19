@@ -17,11 +17,10 @@ public class ControlSyncServicesImp : ControlSyncServices
     private readonly ICache cache;
     private const string CacheKey = "Settlement-Auto-Sync-Sportsbook";
     private const int CacheExpiredInDays = 3650;
-    private CacheItemOptions cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheExpiredInDays));
+    private readonly CacheItemOptions cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheExpiredInDays));
+
     private readonly ILogger logger;
     private readonly INapSession session;
-
-
 
     public ControlSyncServicesImp(ICache cache, ILogger logger, INapSession session)
     {
