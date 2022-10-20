@@ -16,7 +16,7 @@ public class Match
 
     public string LeagueName { get; set; }
 
-    public string EventName => KeyId is 2 or 4 ? LeagueName : $"{HomeTeam} - vs - {AwayTeam}";
+    public string EventName => KeyId is ProductNameKey.Outright or ProductNameKey.Racing ? LeagueName : $"{HomeTeam} - vs - {AwayTeam}";
 
     public DateTime CreatedDateTime { get; set; }
 
@@ -26,39 +26,18 @@ public class Match
 
     public string Message { get; set; }
 
-    public string ProductName
-    {
-        get
+    public string ProductName =>
+        KeyId switch
         {
-            switch (KeyId)
-            {
-                case ProductNameId.Sportbook:
-                    return $"{KeyId}-Sportbook, Numbergame";
-
-                case ProductNameId.Outright:
-                    return $"{KeyId}-Outright";
-
-                case ProductNameId.MetricGaming:
-                    return $"{KeyId}-Metric Gaming";
-
-                case ProductNameId.Racing:
-                    return $"{KeyId}-VS Racing";
-
-                case ProductNameId.BetBuilder:
-                    return $"{KeyId}-BetBuilder";
-
-                case ProductNameId.FastMarket:
-                    return $"{KeyId}-Fast Market";
-
-                case ProductNameId.FastMarketSABA:
-                    return $"{KeyId}-Fast Market SABA Time Machine";
-
-                default:
-                    return string.Empty;
-            }
-        }
-    }
-
+            ProductNameKey.Sportbook => $"{KeyId}-Sportbook, Numbergame",
+            ProductNameKey.Outright => $"{KeyId}-Outright",
+            ProductNameKey.MetricGaming => $"{KeyId}-Metric Gaming",
+            ProductNameKey.Racing => $"{KeyId}-VS Racing",
+            ProductNameKey.BetBuilder => $"{KeyId}-BetBuilder",
+            ProductNameKey.FastMarket => $"{KeyId}-Fast Market",
+            ProductNameKey.FastMarketSABA => $"{KeyId}-Fast Market SABA Time Machine",
+            _ => string.Empty
+        };
     public int Value { get; set; }
 
     public int TicketCount { get; set; }
@@ -69,23 +48,15 @@ public class Match
 
     public int IsCalculating { get; set; }
 
-    public string Status
-    {
-        get
-        {
-            switch (IsCalculating)
-            {
-                case 1:
-                    return "Running";
+    public string Status =>
+           IsCalculating switch
+           {
+               StatusKey.Running => "Running",
 
-                case 3:
-                    return "Failed";
+               StatusKey.Failed => "Failed",
 
-                default:
-                    return string.Empty;
-            }
-        }
-    }
+               _ => string.Empty
+           };
 
     public int KeyId { get; set; }
 

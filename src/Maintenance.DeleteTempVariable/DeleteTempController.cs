@@ -135,7 +135,7 @@ public class DeleteTempController : ControllerBase
     }
 
     [HttpPost("get-info-service")]
-    public IActionResult GetInfo() => Ok(controlSyncServices.GetInfoService());
+    public async Task<IActionResult> GetInfo() => Ok(await controlSyncServices.GetInfoService());
 
 
     [HttpPost("update-status")]

@@ -1,6 +1,6 @@
 ﻿namespace Maintenance.DeleteTempVariable.Constants;
 
-public class ProductNameId
+public static class ProductNameKey
 {
     public const int Sportbook = 1;
     public const int Outright = 2;
@@ -9,4 +9,10 @@ public class ProductNameId
     public const int BetBuilder = 5;
     public const int FastMarket = 6;
     public const int FastMarketSABA = 7;
+}
+
+public static class StatusKey
+{
+    public const int Running = 1;
+    public const int Failed = 3;
 }

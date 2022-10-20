@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="73" SiteName="mSite2">
   <Function Name="TempVariableNumber and Scale Out DB">
+	  <Function Name="NAP_Set_SiteDBServiceLastLog_Sel">
+		  <Setting Key="NAP_Set_SiteDBServiceLastLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLastLog_Sel_xtest" DbName="DBSID01.bodb02.bodbAdminNet"/>
+	  </Function>
+	  
     <Function Name="NAP_Set_SiteDBServiceLog_Sel">
       <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID01.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID02.bodb02.bodbAdminNet" />

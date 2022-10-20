@@ -15,12 +15,12 @@
   </thead>
 
   <tbody>
-    <ng-container>
-      <tr>
-        <td>SiteDB</td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <ng-container *ngIf="lastLogs.length; else noData">
+      <tr *ngFor="let log of lastLogs">
+        <td>{{ log.serverName }}</td>
+        <td>{{ log.lastLogId }}</td>
+        <td>{{ log.lastStatusId }}</td>
+        <td>{{ log.waitingCount }}</td>
         <td class="action">
           <mat-slide-toggle
             color="primary"

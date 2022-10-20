@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
+import { LastLog } from './control-sync-service.model';
 import { ControlSyncService } from './control-sync-service.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { ControlSyncService } from './control-sync-service.service';
 })
 export class ControlSyncServiceComponent implements OnInit {
   public currentStatus = false;
+  public lastLogs: LastLog[] = [];
 
   constructor(
     private dialogService: ConfirmDialogService,
@@ -21,7 +23,8 @@ export class ControlSyncServiceComponent implements OnInit {
 
   loadData() {
     this.controlSyncService.getInfoService().subscribe((res) => {
-      this.currentStatus = res.status;
+      this.lastLogs = res;
+      this.currentStatus = res[0].currentStatus;
     });
   }
 

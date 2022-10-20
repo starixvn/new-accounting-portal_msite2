@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../shared/services/http.service';
-
-interface InfoService {
-  status: boolean;
-}
+import { LastLog } from './control-sync-service.model';
 
 @Injectable()
 export class ControlSyncService {
@@ -19,6 +16,6 @@ export class ControlSyncService {
   public getInfoService() {
     const url = `${this.baseUrl}/get-info-service`;
 
-    return this.httpService.post<InfoService>(url);
+    return this.httpService.post<LastLog[]>(url);
   }
 }
