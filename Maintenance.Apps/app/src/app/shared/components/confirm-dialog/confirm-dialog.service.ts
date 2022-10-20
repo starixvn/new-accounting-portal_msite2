@@ -7,9 +7,15 @@ import { ConfirmDialogData } from './confirm-dialog.model';
 export class ConfirmDialogService {
   constructor(private dialog: MatDialog) {}
 
-  public open({ message, title, confirmText, cancelText }: ConfirmDialogData) {
+  public open({
+    message,
+    title,
+    confirmText,
+    cancelText,
+    confirmStyle,
+  }: ConfirmDialogData) {
     return this.dialog.open(ConfirmDialogComponent, {
-      data: { message, title, confirmText, cancelText },
+      data: { message, title, confirmText, cancelText, confirmStyle },
       width: '400px',
       disableClose: true,
       panelClass: 'confirm-dialog',

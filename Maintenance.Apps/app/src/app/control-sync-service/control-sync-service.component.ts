@@ -7,51 +7,21 @@ import { ControlSyncService } from './control-sync-service.service';
   templateUrl: './control-sync-service.component.html',
   styleUrls: ['./control-sync-service.component.scss'],
 })
-export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
-  public countDownSeconds = 0;
-  public selectedSeconds = 60;
-  public secondsOptions = [30, 60, 90, 120];
+export class ControlSyncServiceComponent implements OnInit {
   public currentStatus = false;
-  private defaultTimer: any;
-  readonly INTERVAL_TIME = 1000;
 
   constructor(
     private dialogService: ConfirmDialogService,
     private controlSyncService: ControlSyncService
   ) {}
 
-  ngAfterViewInit(): void {
-    this.defaultTimer = this.handleInterval();
-  }
-
   ngOnInit(): void {
-    this.countDownSeconds = this.selectedSeconds;
     this.loadData();
-  }
-
-  onChangedTimerDropdown(e: any) {
-    clearInterval(this.defaultTimer);
-    this.loadData();
-
-    this.selectedSeconds = e.target.value;
-    this.countDownSeconds = this.selectedSeconds;
-
-    this.handleInterval();
-  }
-
-  handleInterval() {
-    return setInterval(() => {
-      this.countDownSeconds = this.countDownSeconds - 1;
-      if (this.countDownSeconds <= 0) {
-        this.loadData();
-      }
-    }, this.INTERVAL_TIME);
   }
 
   loadData() {
     this.controlSyncService.getInfoService().subscribe((res) => {
       this.currentStatus = res.status;
-      this.countDownSeconds = this.selectedSeconds;
     });
   }
 
@@ -59,10 +29,13 @@ export class ControlSyncServiceComponent implements OnInit, AfterViewInit {
     const contentStatus = e.checked ? 'START' : 'STOP';
     const message = `Are you sure you want to <span class="${
       e.checked ? 'blue' : 'red'
-    }">${contentStatus}</span> Sync service for all SiteDB`;
+    }"><b>${contentStatus}</b></span> Sync service for all SiteDB`;
+
+    const confirmText = e.checked ? 'Start' : 'Stop';
+    const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
 
     this.dialogService
-      .open({ message })
+      .open({ message, confirmText, confirmStyle })
       .afterClosed()
       .subscribe((confirm: Boolean) => {
         if (confirm) {

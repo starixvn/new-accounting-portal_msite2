@@ -8,18 +8,10 @@
 <div mat-dialog-content [innerHtml]="message"></div>
 
 <div mat-dialog-actions>
-  <button
-    class="btn"
-    [ngClass]="{
-      'btn-confirm-update': confirmText === 'Update',
-      'btn-confirm-delete': confirmText === 'Delete',
-      'btn-confirm-ok': confirmText === 'Ok'
-    }"
-    (click)="onOk()"
-  >
+  <button class="btn" [ngClass]="confirmStyle" (click)="onOk()">
     {{ confirmText }}
   </button>
-  <button class="btn btn-confirm-cancel" (click)="onCancel()">
+  <button class="btn" [ngClass]="cancelStyle" (click)="onCancel()">
     {{ cancelText }}
   </button>
 </div>

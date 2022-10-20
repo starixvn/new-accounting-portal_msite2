@@ -36,9 +36,10 @@ export class UpdateSystemSettingsComponent implements OnInit {
         <div><b>Vvalue:</b> ${item.vValue}<div>
         <div>Are you sure you want to <span class="blue">UPDATE</span> System Settings?<div>
     `;
+    const confirmStyle = 'btn-confirm-update';
 
     this.dialogService
-      .open({ message })
+      .open({ message, confirmStyle })
       .afterClosed()
       .subscribe((dialogResult) => {
         dialogResult && this.handleUpdate(item.dbServer);

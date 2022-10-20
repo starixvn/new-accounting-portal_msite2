@@ -1,28 +1,10 @@
-.timer-filter {
+.head-page {
+  flex: auto;
   display: flex;
-  justify-content: flex-end;
+  width: 100%;
   align-items: center;
   column-gap: 20px;
-  padding: 10px;
-  .timer {
-    padding: 5px;
-    width: 200px;
-  }
-
-  .seconds {
-    color: white;
-    background-color: #26bdac;
-    border-radius: 2px;
-    padding: 5px;
-    width: 50px;
-    text-align: center;
-    .content {
-      font-size: 16px;
-      margin-left: 20px;
-    }
-  }
 }
-
 .mat-slide-toggle {
   &.mat-checked {
     ::ng-deep.mat-slide-toggle-bar::after {

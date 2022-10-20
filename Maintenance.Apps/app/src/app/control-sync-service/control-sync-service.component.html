@@ -1,22 +1,6 @@
-<h1 class="title-page">On/Off Sync Service</h1>
-
-<div class="timer-filter">
-  <select
-    class="timer"
-    [value]="selectedSeconds"
-    (change)="onChangedTimerDropdown($event)"
-  >
-    <option
-      *ngFor="let item of secondsOptions"
-      [value]="item"
-      [selected]="item === selectedSeconds"
-    >
-      {{ item }}s
-    </option>
-  </select>
-  <div class="seconds">
-    <span class="content">{{ countDownSeconds }}</span>
-  </div>
+<div class="head-page">
+  <h1 class="title-page">On/Off Sync Service</h1>
+  <div class="refresh" alt="refresh" (click)="loadData()"></div>
 </div>
 
 <table class="table">

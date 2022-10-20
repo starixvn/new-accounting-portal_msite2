@@ -43,9 +43,10 @@ export class DeleteParlayLockingComponent implements OnInit {
       <div>Session: ${item.session}</div>
       <div>Are you sure you want to <span class="red">DELETE</span> this row?
     `;
+    const confirmStyle = 'btn-confirm-delete';
 
     this.dialogService
-      .open({ message })
+      .open({ message, confirmStyle })
       .afterClosed()
       .subscribe((res: Boolean) => {
         res && this.handleDeleteItem(item);
