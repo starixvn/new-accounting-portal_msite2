@@ -3,6 +3,7 @@ export interface LogStatus {
   dbServer: string;
   logId: number;
   statusId: number;
+  statusName: string;
   startTime: string;
   endTime: string;
   startTimeValidation: string;

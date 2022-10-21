@@ -29,7 +29,13 @@
     }
   }
 }
-
-.action {
+.table {
+  width: 40%;
   text-align: center;
+  td:first-child {
+    text-align: left;
+  }
+  td {
+    text-align: center;
+  }
 }

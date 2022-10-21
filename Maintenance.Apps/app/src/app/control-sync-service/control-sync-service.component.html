@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th>DB Server</th>
-      <th>Last LogId</th>
+      <th>LogID</th>
       <th>Last Log Status</th>
       <th>Waiting Tasks</th>
       <th>Action</th>
@@ -16,15 +16,15 @@
 
   <tbody>
     <ng-container *ngIf="lastLogs.length; else noData">
-      <tr *ngFor="let log of lastLogs">
+      <tr *ngFor="let log of lastLogs; first as isFirst">
         <td>{{ log.serverName }}</td>
         <td>{{ log.lastLogId }}</td>
-        <td>{{ log.lastStatusId }}</td>
+        <td>{{ log.statusName }}</td>
         <td>{{ log.waitingCount }}</td>
-        <td class="action">
+        <td *ngIf="isFirst" [attr.rowspan]="lastLogs.length">
           <mat-slide-toggle
             color="primary"
-            [checked]="currentStatus"
+            [checked]="log.currentStatus"
             (change)="openConfirmDialog($event)"
           >
           </mat-slide-toggle>

@@ -13,6 +13,8 @@ public static class ProductNameKey
 
 public static class StatusKey
 {
+    public const byte Waiting = 0;
     public const int Running = 1;
+    public const byte Completed = 2;
     public const int Failed = 3;
 }

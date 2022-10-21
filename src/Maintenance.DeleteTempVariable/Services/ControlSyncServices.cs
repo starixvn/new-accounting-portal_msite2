@@ -2,18 +2,20 @@
 using Fanex.Data.Repository;
 using Fanex.Logging;
 using Fanex.NAP.Client.Helpers.Web;
+using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
 using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
+
 public interface ControlSyncServices
 {
     bool UpdateStatusServiceInRedis(UpdateStatusRequest request);
+
     Task<List<LastLog>> GetInfoService();
 }
-
 
 public class ControlSyncServicesImp : ControlSyncServices
 {
@@ -43,17 +45,24 @@ public class ControlSyncServicesImp : ControlSyncServices
 
     public async Task<List<LastLog>> GetInfoService()
     {
-        var criteria = new GetServiceLastLogCriteria()
+        var latestLog = new List<LastLog>();
+        foreach (var server in appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBTrans))
         {
-            DbServer = "DBSID01"
-        };
+            var criteria = new GetServiceLastLogCriteria()
+            {
+                DbServer = server,
+            };
 
-        var result = (await repository.FetchAsync<LastLog>(criteria)).ToList();
+            var list = (await repository.FetchAsync<LastLog>(criteria)).ToList();
+            list.ForEach(i => i.DbServer = server);
+
+            latestLog.AddRange(list);
+        }
+
         var isStartService = GetStatusFromCache();
+        latestLog.ForEach(x => x.CurrentStatus = isStartService);
 
-        result.ForEach(x => x.CurrentStatus = isStartService);
-
-        return result;
+        return latestLog;
     }
 
     public bool UpdateStatusServiceInRedis(UpdateStatusRequest request)

@@ -7,7 +7,7 @@
     <tr>
       <th>DB Server</th>
       <th>LogID</th>
-      <th>StatusID</th>
+      <th>Log Status</th>
       <th>Real Data</th>
       <th>StartTime</th>
       <th>EndTime</th>
@@ -24,7 +24,7 @@
             log.logId
           }}</span>
         </td>
-        <td class="orange">{{ log.statusId }}</td>
+        <td class="orange">{{ log.statusName }}</td>
         <td><input type="checkbox" [value]="!!log.transInfo" disabled /></td>
         <td>
           {{ log.startTime | date: "mediumDate" }}
