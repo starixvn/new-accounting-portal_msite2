@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ControlSyncServiceComponent } from './control-sync-service/control-sync-service.component';
 import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
 import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
 import { DeleteTempVariableNumberComponent } from './delete-temp-variable-number/delete-temp-variable-number.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'control-sync-service',
+    component: ControlSyncServiceComponent,
   },
 ];
 

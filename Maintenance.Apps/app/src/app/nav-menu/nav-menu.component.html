@@ -9,7 +9,7 @@
         <ul>
           <li *ngFor="let subMenu of menu.subMenu">
             <a
-              [routerLink]="[subMenu.validUrl]"
+              [routerLink]="['', getUrl(subMenu.validUrl)]"
               [routerLinkActive]="['active-link']"
               >{{ subMenu.name }}</a
             >

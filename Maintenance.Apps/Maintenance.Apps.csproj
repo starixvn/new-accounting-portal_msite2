@@ -2,11 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>disable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
     <SonarQubeExclude>True</SonarQubeExclude>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="app\**" />
+    <Content Remove="app\**" />
+    <EmbeddedResource Remove="app\**" />
+    <None Remove="app\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="App_Data\SpName.xml">

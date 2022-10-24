@@ -60,7 +60,7 @@
           <td>
             <span [outerHTML]="item.errorMessage | replaceLineBreaks"></span>
           </td>
-          <td class="action">
+          <td>
             <button
               *ngIf="item.dbServer !== 'DBTXN'"
               [ngClass]="

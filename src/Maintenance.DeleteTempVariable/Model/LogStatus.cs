@@ -1,4 +1,6 @@
-﻿namespace Maintenance.DeleteTempVariable.Model;
+﻿using Maintenance.DeleteTempVariable.Constants;
+
+namespace Maintenance.DeleteTempVariable.Model;
 
 public class LogStatus
 {
@@ -9,6 +11,14 @@ public class LogStatus
     public int LogId { get; set; }
 
     public int StatusId { get; set; }
+
+    public string StatusName => StatusId switch
+    {
+        StatusKey.Running => "Running",
+        StatusKey.Completed => "Completed",
+        StatusKey.Failed => "Failed",
+        _ => "Waiting"
+    };
 
     public DateTime StartTime { get; set; }
 

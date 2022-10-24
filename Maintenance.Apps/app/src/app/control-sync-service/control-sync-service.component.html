@@ -1,0 +1,40 @@
+<div class="head-page">
+  <h1 class="title-page">On/Off Sync Service</h1>
+  <div class="refresh" alt="refresh" (click)="loadData()"></div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>DB Server</th>
+      <th>LogID</th>
+      <th>Last Log Status</th>
+      <th>Waiting Tasks</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <ng-container *ngIf="lastLogs.length; else noData">
+      <tr *ngFor="let log of lastLogs; first as isFirst">
+        <td>{{ log.serverName }}</td>
+        <td>{{ log.lastLogId }}</td>
+        <td>{{ log.statusName }}</td>
+        <td>{{ log.waitingCount }}</td>
+        <td *ngIf="isFirst" [attr.rowspan]="lastLogs.length">
+          <mat-slide-toggle
+            color="primary"
+            [checked]="log.currentStatus"
+            (change)="openConfirmDialog($event)"
+          >
+          </mat-slide-toggle>
+        </td>
+      </tr>
+    </ng-container>
+    <ng-template #noData>
+      <tr>
+        <td colspan="7" class="no-data">No Information Available</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

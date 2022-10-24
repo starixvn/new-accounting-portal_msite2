@@ -6,7 +6,6 @@ using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;
 using Fanex.Logging.Extensions.Database;
-using Fanex.Logging.Sentry;
 using Fanex.NAP.Client.AspNetCore.Configuration;
 using Fanex.NAP.Client.AspNetCore.Session;
 using Fanex.NAP.Client.Configuration;
@@ -18,19 +17,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Newtonsoft.Json;
-using ONEbook.UM.AspNetCore;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Helpers;
-using ONEbook.UM.Services;
-using ONEbook.UM.Transport;
 using StackExchange.Redis;
 
 namespace Maintenance.Apps;
 
 using App_Start;
+using Fanex.Caching;
+using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
-using HttpContextHelper = ONEbook.UM.Helpers.HttpContextHelper;
 
 public static class ServiceCollectionExtensions
 {
@@ -141,6 +136,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<SystemSettingService, SystemSettingServiceImp>();
         services.AddTransient<TempVariableService, TempVariableServiceImp>();
         services.AddTransient<LogStatusService, LogStatusServiceImp>();
+        services.AddTransient<ControlSyncServices, ControlSyncServicesImp>();
 
         return services;
     }
@@ -195,5 +191,19 @@ public static class ServiceCollectionExtensions
         });
 
         return services;
+    }
+
+    public static IServiceCollection AddConfigRedisCache(this IServiceCollection service, IConfiguration configuration)
+    {
+        var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
+        var applicationName = configuration.GetSection("AuthSettings:ChannelPrefix").Value;
+        service.AddSingleton<ICache>(new RedisCache(new RedisCacheOptions
+        {
+            ConnectionString = redisConfig,
+            ApplicationName = applicationName,
+        }));
+        service.AddSingleton<ICacheService>(new CacheService());
+
+        return service;
     }
 }

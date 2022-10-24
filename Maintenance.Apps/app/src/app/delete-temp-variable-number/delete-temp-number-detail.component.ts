@@ -30,9 +30,11 @@ export class DeleteTempVariableNumberDetailComponent implements OnInit {
         <div>Product: ${this.data.productName}<div>
         <div>Are you sure you want to <b>DELETE</b> this row?<div>
     `;
+    const confirmStyle = 'btn-confirm-delete';
 
     const dialogRef = this.dialogService.open({
       message,
+      confirmStyle,
     });
 
     dialogRef.afterClosed().subscribe((dialogResult) => {

@@ -13,6 +13,8 @@ export class ConfirmDialogComponent implements OnInit {
   public message?: string;
   public confirmText?: string;
   public cancelText?: string;
+  public confirmStyle?: string;
+  public cancelStyle?: string;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
@@ -22,9 +24,13 @@ export class ConfirmDialogComponent implements OnInit {
     this.message = data.message;
     this.cancelText = data.cancelText ?? 'Cancel';
     this.confirmText = data.confirmText ?? 'Ok';
+    this.confirmStyle = data.confirmStyle ?? 'btn-confirm-ok';
+    this.cancelStyle = data.cancelStyle ?? 'btn-confirm-cancel';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('confirmStyle', this.confirmStyle);
+  }
 
   onOk() {
     this.dialogRef.close(true);

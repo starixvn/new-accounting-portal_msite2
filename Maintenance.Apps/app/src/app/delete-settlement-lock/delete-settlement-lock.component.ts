@@ -58,9 +58,10 @@ export class DeleteSettlementLockComponent implements OnInit {
         <div><b>Action:</b> Delete SettlementProcessing </div>
         <div>Are you sure you want to <span class="red">DELETE</span> this row?</div>`;
     }
+    const confirmStyle = 'btn-confirm-delete';
 
     this.dialogService
-      .open({ message })
+      .open({ message, confirmStyle })
       .afterClosed()
       .subscribe((res) => {
         res &&
