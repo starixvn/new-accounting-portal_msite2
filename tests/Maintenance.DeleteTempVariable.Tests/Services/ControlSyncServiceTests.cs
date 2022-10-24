@@ -20,7 +20,10 @@ namespace Maintenance.DeleteTempVariable.Tests.Services
 
         public ControlSyncServiceTests()
         {
-            var settings = new AppSettingsKey();
+            var settings = new AppSettingsKey
+            {
+                SiteDbServer = new List<string> { "ABC" }
+            };
             appSettingsKey = Options.Create(settings);
             session = Substitute.For<INapSession>();
             logger = Substitute.For<ILogger>();
