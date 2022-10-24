@@ -12,19 +12,14 @@ public class LastLog
 
     public int LastStatusId { get; set; }
 
-    public string StatusName
+    public string StatusName => LastStatusId switch
     {
-        get
-        {
-            return LastStatusId switch
-            {
-                StatusKey.Running => "Running",
-                StatusKey.Completed => "Completed",
-                StatusKey.Failed => "Failed",
-                _ => "Waiting"
-            };
-        }
-    }
+
+        StatusKey.Running => "Running",
+        StatusKey.Completed => "Completed",
+        StatusKey.Failed => "Failed",
+        _ => "Waiting"
+    };
 
     public bool CurrentStatus { get; set; }
 

@@ -12,19 +12,13 @@ public class LogStatus
 
     public int StatusId { get; set; }
 
-    public string StatusName
+    public string StatusName => StatusId switch
     {
-        get
-        {
-            return StatusId switch
-            {
-                StatusKey.Running => "Running",
-                StatusKey.Completed => "Completed",
-                StatusKey.Failed => "Failed",
-                _ => "Waiting"
-            };
-        }
-    }
+        StatusKey.Running => "Running",
+        StatusKey.Completed => "Completed",
+        StatusKey.Failed => "Failed",
+        _ => "Waiting"
+    };
 
     public DateTime StartTime { get; set; }
 
