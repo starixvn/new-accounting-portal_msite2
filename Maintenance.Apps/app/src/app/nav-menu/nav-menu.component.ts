@@ -16,6 +16,10 @@ export class NavMenuComponent implements OnInit {
     this.loadMenu();
   }
 
+  getUrl(validUrl: string) {
+    return validUrl.split("/").pop()
+  }
+
   loadMenu() {
     this.menuService.getMenu().subscribe((data) => {
       var listMenus = data.menus;
