@@ -136,7 +136,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<SystemSettingService, SystemSettingServiceImp>();
         services.AddTransient<TempVariableService, TempVariableServiceImp>();
         services.AddTransient<LogStatusService, LogStatusServiceImp>();
-        services.AddTransient<ControlSyncServices, ControlSyncServicesImp>();
+        services.AddTransient<ControlSyncService, ControlSyncServicesImp>();
 
         return services;
     }

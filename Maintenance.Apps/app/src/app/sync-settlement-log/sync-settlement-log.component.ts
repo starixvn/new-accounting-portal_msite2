@@ -1,18 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from '../shared/components/confirm-dialog/confirm-dialog.service';
+import { DetailsSettlementLogComponent } from './details-settlement-log.component';
+import { SettlementErrorLog } from './sync-settlement-log.model';
+import { SettlementErrorLogService } from './sync-settlement-log.service';
 
 @Component({
-    selector: 'app-sync-settlement-log-tool',
-    templateUrl: './sync-settlement-log-tool.component.html',
-    styleUrls: ['./sync-settlement-log-tool.component.scss']
+    selector: 'app-sync-settlement-log',
+    templateUrl: './sync-settlement-log.component.html',
+    styleUrls: ['./sync-settlement-log.component.scss']
 })
-export class SyncSettlementLogToolComponent implements OnInit {
+export class SyncSettlementLogComponent implements OnInit {
+
+    public logs!: SettlementErrorLog[];
+    public matchId?: number;
 
     constructor(
-        public dialogService: ConfirmDialogService
+        public dialogService: ConfirmDialogService,
+        public settlementErrorLogService: SettlementErrorLogService,
+        private dialog: MatDialog
     ) { }
 
     ngOnInit(): void {
+    }
+
+    loadData() {
+        this.settlementErrorLogService.getAll(this.matchId ?? 0).subscribe(res => {
+            this.logs = res;
+        })
     }
 
     openConfirmDeleteSettlementLockDialog() {
@@ -113,5 +128,15 @@ export class SyncSettlementLogToolComponent implements OnInit {
         });
     }
     confirmActiveParallelQueue() { }
+
+
+    openDetailsDialog() {
+        const config = {
+            data: null,
+            width: '600px',
+            panelClass: 'detail-log-dialog',
+        };
+        this.dialog.open(DetailsSettlementLogComponent, config);
+    }
 
 }

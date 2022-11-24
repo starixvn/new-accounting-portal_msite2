@@ -1,0 +1,78 @@
+<div class="filter">
+  <form class="form">
+    <label for="match-id">MatchId</label>
+    <input type="text" id="match-id" [(ngModel)]="matchId" />
+    <button class="btn-submit">Submit</button>
+  </form>
+  <div class="guideline">
+    <div>
+      <div class="bold">Guideline: You need to do step by step</div>
+      <div>
+        <span class="bold">Step 1:</span> Check SessionId detail and copy
+        TransId <span class="red">(backup)</span>
+      </div>
+      <div>
+        <span class="bold">Step 2:</span>Update/Delete
+        SiteDB_SettlementProcessing
+      </div>
+    </div>
+    <div>
+      <div>
+        <span class="bold">Step 3:</span> Delete SiteDB_SettlementLock (if
+        exceed 5min)
+      </div>
+      <div><span class="bold"> Step 4:</span> Update SSB_SettlementLogs</div>
+    </div>
+  </div>
+</div>
+
+<div class="data-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>DB Server</th>
+        <th>SiteDBGroupId</th>
+        <th>MatchId</th>
+        <th>SessionId</th>
+        <th>MessageId</th>
+        <th>EventName</th>
+        <th>CreatedTime</th>
+        <th>Error Message</th>
+        <th>SiteDB_SettlementProcessing</th>
+        <th>SiteDB_SettlementLock</th>
+        <th>SSB_SettlementLogs</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="session" (click)="openDetailsDialog()">session</div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="action">
+            <button class="btn-submit">UPDATE</button>
+            <button class="btn-delete">DELETE</button>
+          </div>
+        </td>
+        <td>
+          <div class="action">
+            <button class="btn-delete">DELETE</button>
+          </div>
+        </td>
+        <td>
+          <div class="action">
+            <button class="btn-submit">UPDATE</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

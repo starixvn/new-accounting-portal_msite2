@@ -31,46 +31,52 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { PasteIconComponent } from './update-log-status/paste-icon.component';
 import { ControlSyncServiceComponent } from './control-sync-service/control-sync-service.component';
 import { ControlSyncService } from './control-sync-service/control-sync-service.service';
+import { SyncSettlementLogComponent } from './sync-settlement-log/sync-settlement-log.component';
+import { SettlementErrorLogService } from './sync-settlement-log/sync-settlement-log.service';
+import { DetailsSettlementLogComponent } from './sync-settlement-log/details-settlement-log.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UpdateLogStatusComponent,
-    DeleteTempVariableNumberComponent,
-    NavMenuComponent,
-    DeleteParlayLockingComponent,
-    DeleteSettlementLockComponent,
-    ConfirmDialogComponent,
-    DeleteTempVariableNumberDetailComponent,
-    UpdateSystemSettingsComponent,
-    UpdateLogStatusDetailComponent,
-    ControlSyncServiceComponent,
-    PasteIconComponent,
-    ReplaceLineBreaks,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AngularMaterialModule,
-    BrowserAnimationsModule,
-    ClipboardModule,
-  ],
-  providers: [
-    SnackbarService,
-    HttpService,
-    DeleteTempVariableNumberService,
-    UpdateSystemSettingService,
-    MatchSettlementLockService,
-    MatchParlayLockingService,
-    UpdateLogStatusService,
-    BlockUIService,
-    ConfirmDialogService,
-    NavMenuService,
-    ControlSyncService,
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        UpdateLogStatusComponent,
+        DeleteTempVariableNumberComponent,
+        NavMenuComponent,
+        DeleteParlayLockingComponent,
+        DeleteSettlementLockComponent,
+        ConfirmDialogComponent,
+        DeleteTempVariableNumberDetailComponent,
+        UpdateSystemSettingsComponent,
+        UpdateLogStatusDetailComponent,
+        ControlSyncServiceComponent,
+        PasteIconComponent,
+        ReplaceLineBreaks,
+        SyncSettlementLogComponent,
+        DetailsSettlementLogComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AngularMaterialModule,
+        BrowserAnimationsModule,
+        ClipboardModule,
+    ],
+    providers: [
+        SnackbarService,
+        HttpService,
+        DeleteTempVariableNumberService,
+        UpdateSystemSettingService,
+        MatchSettlementLockService,
+        MatchParlayLockingService,
+        UpdateLogStatusService,
+        BlockUIService,
+        ConfirmDialogService,
+        NavMenuService,
+        ControlSyncService,
+        SettlementErrorLogService
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -15,7 +15,8 @@ public class DeleteTempController : ControllerBase
     private readonly TempVariableService tempVariableService;
     private readonly SystemSettingService systemSettingService;
     private readonly LogStatusService logStatusService;
-    private readonly ControlSyncServices controlSyncServices;
+    private readonly ControlSyncService controlSyncServices;
+    private readonly SettlementErrorLogService settlementErrorLogService;
 
 
     public DeleteTempController(
@@ -24,7 +25,8 @@ public class DeleteTempController : ControllerBase
         TempVariableService tempVariableService,
         SystemSettingService systemSettingService,
         LogStatusService logStatusService,
-        ControlSyncServices controlSyncServices)
+        ControlSyncService controlSyncServices,
+        SettlementErrorLogService settlementErrorLogService)
     {
         this.parlayLockingService = parlayLockingService;
         this.settlementLockService = settlementLockService;
@@ -32,6 +34,7 @@ public class DeleteTempController : ControllerBase
         this.systemSettingService = systemSettingService;
         this.logStatusService = logStatusService;
         this.controlSyncServices = controlSyncServices;
+        this.settlementErrorLogService = settlementErrorLogService;
     }
 
     [HttpPost]
@@ -140,4 +143,11 @@ public class DeleteTempController : ControllerBase
 
     [HttpPost("update-status")]
     public IActionResult UpdateStatus(UpdateStatusRequest request) => Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
+
+    [HttpPost("get-settlement-error-logs")]
+    public async Task<IActionResult> GetSettlementErrorLogs(SettlementErrorLogRequest request) => Ok(await settlementErrorLogService.GetLogs(request));
+
+
+    [HttpPost("get-details-settlement-error-log")]
+    public async Task<IActionResult> GetDetailsSettlementErrorLog() => Ok(await settlementErrorLogService.GetLogDetails());
 }
