@@ -1,12 +1,11 @@
 ﻿using Maintenance.DeleteTempVariable.Requests;
 using Maintenance.DeleteTempVariable.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Maintenance.DeleteTempVariable;
 
 [Route("api/delete-temp-variable")]
-[Authorize]
+//[Authorize]
 [ApiController]
 public class DeleteTempController : ControllerBase
 {
@@ -137,6 +136,10 @@ public class DeleteTempController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost]
+    [Route("check-logIds")]
+    public async Task<IActionResult> CheckLogIds(CheckLogIdsRequest request) => Ok(await logStatusService.CheckLogIdsInCentral(request));
+
     [HttpPost("get-info-service")]
     public async Task<IActionResult> GetInfo() => Ok(await controlSyncServices.GetInfoService());
 
@@ -146,7 +149,6 @@ public class DeleteTempController : ControllerBase
 
     [HttpPost("get-settlement-error-logs")]
     public async Task<IActionResult> GetSettlementErrorLogs(SettlementErrorLogRequest request) => Ok(await settlementErrorLogService.GetLogs(request));
-
 
     [HttpPost("get-details-settlement-error-log")]
     public async Task<IActionResult> GetDetailsSettlementErrorLog() => Ok(await settlementErrorLogService.GetLogDetails());

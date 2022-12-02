@@ -5,14 +5,12 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class UpdateLogStatusCriteria : NonQueryCommand
 {
-    public int LogId { get; set; }
-
-    public string Action { get; set; }
+    public string LogIds { get; set; }
 
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
 
-    public override string GetSettingKey() => $"NAP_Set_SiteDBServiceLog_Del_{DbServer}";
+    public override string GetSettingKey() => $"NAP_Set_SiteDBServiceLastLog_Udp_{DbServer}";
 
-    public override bool IsValid() => LogId > 0 && !string.IsNullOrWhiteSpace(Action);
+    public override bool IsValid() => true;
 }

@@ -20,5 +20,6 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.CreatedTime));
 
         CreateMap<UpdateLogStatusRequest, UpdateLogStatusCriteria>();
+        CreateMap<CheckLogIdsRequest, CheckLogIdsCriteria>();
     }
 }

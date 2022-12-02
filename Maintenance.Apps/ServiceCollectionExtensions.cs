@@ -25,6 +25,7 @@ using App_Start;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;
+using Fanex.Settlement.ScaleOut.Services;
 using SharpRaven;
 
 public static class ServiceCollectionExtensions
@@ -137,6 +138,9 @@ public static class ServiceCollectionExtensions
         services.AddTransient<TempVariableService, TempVariableServiceImp>();
         services.AddTransient<LogStatusService, LogStatusServiceImp>();
         services.AddTransient<ControlSyncService, ControlSyncServicesImp>();
+        services.AddTransient<SettlementErrorLogService, SettlementErrorLogServiceImp>();
+        services.AddTransient<GeneralService, GeneralServiceImp>();
+        services.AddTransient<ScaleOutSettleService, ScaleOutSettleServiceImp>();
 
         return services;
     }

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ConfirmDialogService } from "../shared/components/confirm-dialog/confirm-dialog.service";
+import { ConfirmDialogService } from "../shared/components/dialog/dialog.service";
 import { HttpService } from "../shared/services/http.service";
 import { SettlementErrorLog } from "./sync-settlement-log.model";
 

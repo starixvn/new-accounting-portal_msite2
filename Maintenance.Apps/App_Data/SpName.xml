@@ -7,13 +7,17 @@
     </Function>
 
     <Function Name="NAP_Set_SiteDBServiceLog_Sel">
-      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID01.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID02.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
-    <Function Name="NAP_Set_SiteDBServiceLog_Del">
-      <Setting Key="NAP_Set_SiteDBServiceLog_Del_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Del" DbName="DBSID01.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_SiteDBServiceLog_Del_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Del" DbName="DBSID02.bodb02.bodbAdminNet" />
+	  <Function Name="NAP_Set_SiteDBServiceLog_Checking">
+		  <Setting Key="NAP_Set_SiteDBServiceLog_Checking_DBTXN" SpName="NAP_Set_SiteDBServiceLog_Checking_xpre" DbName="DBTXN.bodb02.bodbAdminNet" TimeOut="40" />
+	  </Function>
+
+    <Function Name="NAP_Set_SiteDBServiceLastLog_Udp">
+      <Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID01" SpName="NAP_Set_SiteDBServiceLastLog_Udp_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID02" SpName="NAP_Set_SiteDBServiceLastLog_Udp_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_MatchLockingDel">
@@ -102,5 +106,9 @@
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB06" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DB061" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_SSBSettlementLogUpd_DBTP" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
+  </Function>
+	
+  <Function Name="Get_SiteDBGroupID">
+	  <Setting Key="Get_SiteDBGroupID_DBTXN" SpName="Get_SiteDBGroupID" DbName="DBSID01.bodb02.bodbAdminNet" />
   </Function>
 </Functions>

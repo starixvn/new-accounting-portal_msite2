@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
 import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
-import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 import { DeleteTempVariableNumberDetailComponent } from './delete-temp-variable-number/delete-temp-number-detail.component';
 import { DeleteTempVariableNumberService } from './delete-temp-variable-number/delete-temp-variable-number.service';
 import { HttpService } from './shared/services/http.service';
@@ -23,7 +22,7 @@ import { BlockUIService } from './shared/services/block-ui.service';
 import { ReplaceLineBreaks } from './shared/pipes/replace-line-breaks';
 import { MatchSettlementLockService } from './delete-settlement-lock/match-settlement-lock.service';
 import { MatchParlayLockingService } from './delete-parlay-locking/delete-parlay-locking.service';
-import { ConfirmDialogService } from './shared/components/confirm-dialog/confirm-dialog.service';
+import { ConfirmDialogService } from './shared/components/dialog/dialog.service';
 import { NavMenuService } from './nav-menu/nav-menu.service';
 import { UpdateLogStatusService } from './update-log-status/update-log-status.service';
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
@@ -34,6 +33,8 @@ import { ControlSyncService } from './control-sync-service/control-sync-service.
 import { SyncSettlementLogComponent } from './sync-settlement-log/sync-settlement-log.component';
 import { SettlementErrorLogService } from './sync-settlement-log/sync-settlement-log.service';
 import { DetailsSettlementLogComponent } from './sync-settlement-log/details-settlement-log.component';
+import { ConfirmDialogComponent } from './shared/components/dialog/confirm/confirm-dialog.component';
+import { WarningDialogComponent } from './shared/components/dialog/warning/warning-dialog.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { DetailsSettlementLogComponent } from './sync-settlement-log/details-set
         DeleteParlayLockingComponent,
         DeleteSettlementLockComponent,
         ConfirmDialogComponent,
+        WarningDialogComponent,
         DeleteTempVariableNumberDetailComponent,
         UpdateSystemSettingsComponent,
         UpdateLogStatusDetailComponent,
