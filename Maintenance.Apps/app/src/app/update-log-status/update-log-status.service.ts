@@ -53,9 +53,8 @@ export class UpdateLogStatusService {
         const dialogRef = this.dialogService.openConfirm({ message, confirmStyle });
 
         dialogRef.afterClosed().subscribe((res) => {
-            //  res && this.updateItem(log);
+            res && this.updateItem(logs);
         });
-        // this.dialogService.openWarning({ message: 'ABC' })
     }
 
     openWarningDialog() {

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ConfirmDialogService } from "../shared/components/dialog/dialog.service";
 import { HttpService } from "../shared/services/http.service";
-import { SettlementErrorLog } from "./sync-settlement-log.model";
+import { DetailSettlementErrorLog, SettlementErrorLog } from "./sync-settlement-log.model";
 
 @Injectable()
 export class SettlementErrorLogService {
@@ -14,7 +14,6 @@ export class SettlementErrorLogService {
 
 
     public getAll(matchId: number) {
-
         const url = `${this.baseUrl}/get-settlement-error-logs`;
         const body = {
             matchId,
@@ -22,19 +21,37 @@ export class SettlementErrorLogService {
         return this.httpService.post<SettlementErrorLog[]>(url, body);
     }
 
-    public getDetails(sessionId: string) {
-        const url = `${this.baseUrl}/get-details-settlement-error-log`;
+    public getDetails(item: SettlementErrorLog) {
+        const url = `${this.baseUrl}/get-settlement-error-log-detail`;
         const body = {
-            sessionId,
+            sessionId: item.sessionId,
+            siteDBGroupId: item.siteDBGroupId,
+            dbServer: item.dbServer
         };
-        return this.httpService.post<SettlementErrorLog>(url, body);
+        return this.httpService.post<DetailSettlementErrorLog[]>(url, body);
     }
 
-    public deleteInLogSettlementLock() { }
+    public deleteInLogSettlementLock(item: SettlementErrorLog) {
+        const url = `${this.baseUrl}delete-settlement-lock-error-log`;
+        const body = {
+            sessionId: item.sessionId,
+            siteDBGroupId: item.siteDBGroupId,
+            dbServer: item.dbServer
 
-    public deleteInSettlementProcessing() { }
+        };
+        return this.httpService.post<number>(url, body);
+    }
 
-    public updateInSettlementProcessing() { }
+    public deleteInSettlementProcessing(item: SettlementErrorLog, action: string) {
+        const url = `${this.baseUrl}delete-settlement-processing-error-log`;
+        const body = {
+            sessionId: item.sessionId,
+            siteDBGroupId: item.siteDBGroupId,
+            action: action,
+            dbServer: item.dbServer
+        };
+        return this.httpService.post<number>(url, body);
+    }
 
     public deleteInSSBSettlementLogs() { }
 }

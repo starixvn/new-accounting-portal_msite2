@@ -20,6 +20,10 @@
     div {
       padding-bottom: 7px;
     }
+    .export-file {
+      display: flex;
+      justify-content: end;
+    }
   }
   .mat-dialog-actions {
     justify-content: flex-end;

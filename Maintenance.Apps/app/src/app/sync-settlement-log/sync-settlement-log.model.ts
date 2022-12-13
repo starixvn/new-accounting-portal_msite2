@@ -1,6 +1,7 @@
 export interface SettlementErrorLog {
     serverName: string;
     dbServer: string;
+    siteDBGroupId: number;
     logId: number;
     matchId: number;
     transInfo: string;
@@ -8,5 +9,17 @@ export interface SettlementErrorLog {
     sessionId: string;
     messageId: string;
     errorMessage: string;
+    createdTime: Date;
     tableName: string;
+    tableNames: string[];
+}
+
+export interface DetailSettlementErrorLog {
+    id: number;
+    ticketCount: number;
+    ticketType: string;
+    settlementAction: string;
+    statusId: number;
+    transIds: string;
+    ticketTypeExplicit: string
 }

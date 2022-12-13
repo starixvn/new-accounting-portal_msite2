@@ -49,14 +49,12 @@ export class UpdateLogStatusComponent implements OnInit {
     }
 
     handleUpdateLogStatus(logs: LogStatus[]) {
-        // this.updateLogStatusService.openUpdateConfirmDialog(logs);
         this.updateLogStatusService.checkLogIds(logs).subscribe((res) => {
             if (!res) {
                 this.updateLogStatusService.openWarningDialog();
                 return;
             }
-
             this.updateLogStatusService.openUpdateConfirmDialog(logs);
-        });;
+        });
     }
 }

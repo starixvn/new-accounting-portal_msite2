@@ -1,4 +1,5 @@
 ﻿using Maintenance.DeleteTempVariable.Requests;
+using Maintenance.DeleteTempVariable.Requests.SyncErrorLog;
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -148,8 +149,18 @@ public class DeleteTempController : ControllerBase
     public IActionResult UpdateStatus(UpdateStatusRequest request) => Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
 
     [HttpPost("get-settlement-error-logs")]
-    public async Task<IActionResult> GetSettlementErrorLogs(SettlementErrorLogRequest request) => Ok(await settlementErrorLogService.GetLogs(request));
+    public async Task<IActionResult> GetSettlementErrorLogs(SettlementErrorLogRequest request)
+        => Ok(await settlementErrorLogService.GetSettlementErrorsLogs(request));
 
-    [HttpPost("get-details-settlement-error-log")]
-    public async Task<IActionResult> GetDetailsSettlementErrorLog() => Ok(await settlementErrorLogService.GetLogDetails());
+    [HttpPost("get-settlement-error-log-detail")]
+    public async Task<IActionResult> GetDetailsSettlementErrorLog(SettlementErrorLogDetailRequest request)
+        => Ok(await settlementErrorLogService.GetSettlementErrorsLogDetails(request));
+
+    [HttpPost("delete-settlement-processing-error-log")]
+    public async Task<IActionResult> DeleteSettlementProcessingErrorLog(DeleteSettlementProcessingErrorLogRequest request)
+        => Ok(await settlementErrorLogService.DeleteSettlementProcessingErrorsLog(request));
+
+    [HttpPost("delete-settlement-lock-error-log")]
+    public async Task<IActionResult> DeleteSettlementLockErrorLog(DeleteSettlementProcessingErrorLogRequest request)
+    => Ok(await settlementErrorLogService.DeleteSettlementProcessingErrorsLog(request));
 }
