@@ -53,10 +53,14 @@
           <td>{{ item.sessionId }}</td>
           <td>{{ item.messageId }}</td>
           <td>
-            {{ item.createdTime | date: "mediumDate" }}
-            {{ item.createdTime | date: "hh:mm:ss a" }}
+            {{ item.createdTime | date : "mediumDate" }}
+            {{ item.createdTime | date : "hh:mm:ss a" }}
           </td>
-          <td>{{ item.homeTeam + " -vs- " + item.awayTeam }}</td>
+          <td>
+            <span *ngIf="item.homeTeam && item.awayTeam">{{
+              item.homeTeam + " -vs- " + item.awayTeam
+            }}</span>
+          </td>
           <td>
             <span [outerHTML]="item.errorMessage | replaceLineBreaks"></span>
           </td>

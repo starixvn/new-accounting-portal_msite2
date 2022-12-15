@@ -12,33 +12,32 @@
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let item of logsProcessed">
-      <!-- <ng-container *ngIf="logs && logs.length; else noData"> -->
-      <tr *ngFor="let log of item; first as isFirst">
-        <td>{{ log.serverName }}</td>
-        <td>
-          <span (click)="openDetailLogStatusDialog(log)" class="btn-detail">{{
-            log.logId
-          }}</span>
-        </td>
-        <td>
-          {{ log.startTime | date: "mediumDate" }}
-          {{ log.startTime | date: "hh:mm:ss a" }}
-        </td>
-        <td *ngIf="isFirst" [attr.rowspan]="item.length">
-          <div class="action-button">
-            <button class="btn-submit" (click)="handleUpdateLogStatus(item)">
-              Update
-            </button>
-            <!-- <button class="btn-delete" (click)="openDeleteConfirmDialog(log)">
+    <ng-container *ngIf="logsProcessed && logsProcessed.length; else noData">
+      <ng-container *ngFor="let item of logsProcessed">
+        <tr *ngFor="let log of item; first as isFirst">
+          <td>{{ log.serverName }}</td>
+          <td>
+            <span (click)="openDetailLogStatusDialog(log)" class="btn-detail">{{
+              log.logId
+            }}</span>
+          </td>
+          <td>
+            {{ log.startTime | date : "mediumDate" }}
+            {{ log.startTime | date : "hh:mm:ss a" }}
+          </td>
+          <td *ngIf="isFirst" [attr.rowspan]="item.length">
+            <div class="action-button">
+              <button class="btn-submit" (click)="handleUpdateLogStatus(item)">
+                Update
+              </button>
+              <!-- <button class="btn-delete" (click)="openDeleteConfirmDialog(log)">
                     Delete
                   </button> -->
-          </div>
-        </td>
-      </tr>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </ng-container>
-    <!-- </ng-container> -->
-
     <ng-template #noData>
       <tr>
         <td colspan="8" class="no-data">No Information Available</td>

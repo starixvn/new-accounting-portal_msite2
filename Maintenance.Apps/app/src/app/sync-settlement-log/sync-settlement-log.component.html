@@ -1,7 +1,7 @@
 <div class="filter">
   <form class="form">
     <label for="match-id">MatchId</label>
-    <input type="text" id="match-id" [(ngModel)]="matchId" />
+    <!-- <input type="text" id="match-id" [(ngModel)]="matchId" /> -->
     <button class="btn-submit" (click)="submit()">Submit</button>
   </form>
   <div class="guideline">
@@ -45,8 +45,8 @@
     </thead>
 
     <tbody>
-      <ng-container *ngIf="!!logs.length; else noData">
-        <tr *ngFor="let item of logs">
+      <ng-container *ngIf="!!processedLogs.length; else noData">
+        <tr *ngFor="let item of processedLogs">
           <td>{{ item.serverName }}</td>
           <td>{{ item.siteDBGroupId }}</td>
           <td>
@@ -66,7 +66,10 @@
           </td>
           <td>{{ item.messageId }}</td>
           <td>{{ item.eventName }}</td>
-          <td>{{ item.createdTime | date : "mediumDate" }}</td>
+          <td>
+            {{ item.createdTime | date : "mediumDate" }}
+            {{ item.createdTime | date : "hh:mm:ss a" }}
+          </td>
           <td>{{ item.errorMessage }}</td>
           <td>
             <div class="action">
@@ -114,10 +117,10 @@
                 class="btn-submit"
                 [ngClass]="
                   item.tableNames.includes('Settlement_SiteDB_SSBErr')
-                    ? 'btn-delete'
+                    ? 'btn-submit'
                     : 'btn-disable'
                 "
-                (click)="openConfirmUpdateSettlementLogsDialog(item)"
+                (click)="openConfirmUpdateSSBDialog(item)"
               >
                 UPDATE
               </button>

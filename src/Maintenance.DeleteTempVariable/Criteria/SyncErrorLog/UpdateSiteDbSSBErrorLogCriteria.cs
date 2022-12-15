@@ -1,8 +1,16 @@
-﻿namespace Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
-public class UpdateSiteDbSSBErrorLogCriteria
+namespace Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
+
+public class UpdateSiteDbSSBErrorLogCriteria : INonQueryCommand
 {
     public string SessionId { get; set; }
     public string SiteDBGroupId { get; set; }
-    public char Action { get; set; } = 'D';
+    [SpParam(Ignored = true)]
+    public string DbServer { get; set; }
+    public string StartTime { get; set; }
+    public string GetSettingKey() => $"NAP_Set_SSBSettlementLogUpdx_{DbServer}";
+
+    public bool IsValid() => true;
 }

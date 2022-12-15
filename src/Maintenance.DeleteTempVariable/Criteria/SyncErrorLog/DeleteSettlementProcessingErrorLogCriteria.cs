@@ -9,7 +9,7 @@ namespace Maintenance.DeleteTempVariable.Criteria.SyncErrorLog
         public string DbServer { get; set; }
         public string SessionId { get; set; }
         public string SiteDBGroupId { get; set; }
-        public char Action { get; set; } = 'D';
+        public char Action { get; set; }
         public override string GetSettingKey() => $"NAP_Set_SiteDB_SettlementProcessingDel_{DbServer}";
         public override bool IsValid() => true;
     }

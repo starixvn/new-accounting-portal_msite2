@@ -161,6 +161,10 @@ public class DeleteTempController : ControllerBase
         => Ok(await settlementErrorLogService.DeleteSettlementProcessingErrorsLog(request));
 
     [HttpPost("delete-settlement-lock-error-log")]
-    public async Task<IActionResult> DeleteSettlementLockErrorLog(DeleteSettlementProcessingErrorLogRequest request)
-    => Ok(await settlementErrorLogService.DeleteSettlementProcessingErrorsLog(request));
+    public async Task<IActionResult> DeleteSettlementLockErrorLog(DeleteSettlementLockErrorLogRequest request)
+        => Ok(await settlementErrorLogService.DeleteSettlementLockErrorsLog(request));
+
+    [HttpPost("update-ssb-settlement-error-log")]
+    public async Task<IActionResult> UpdateSSBSettlementErrorLog(UpdateSiteDbSSBErrorLogRequest request)
+        => Ok(await settlementErrorLogService.UpdateSSBSettlementErrorLog(request));
 }

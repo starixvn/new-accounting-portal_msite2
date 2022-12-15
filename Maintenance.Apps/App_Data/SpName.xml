@@ -114,25 +114,89 @@
 
 	<Function Name="Error Log">
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBTXN" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBSID01" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBSID02" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB052" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB053" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB054" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB055" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB06" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBTP" SpName="NAP_Set_SiteDB_SettlementProcessingSel_xpre" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
 		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBTXN" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSID01" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSID02" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB061" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB052" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB053" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB054" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB055" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB06" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBTP" SpName="NAP_Set_SiteDB_SettlementLockSel_xpre" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
 		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBTXN" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB061" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSID01" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSID02" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB061" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB052" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB053" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB054" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB055" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB06" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBTP" SpName="NAP_Set_SiteDB_SSBErrSel_xpre" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
 
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBTXN" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSID01" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSID02" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB052" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB053" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB054" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB055" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB06" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBTP" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel_xpre" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
 
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBTXN" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSID01" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSID02" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB052" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB053" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB054" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB055" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB06" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBTP" SpName="NAP_Set_SiteDB_SettlementProcessingDel_xpre" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
 
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBTXN" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB061" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSID01" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSID02" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB061" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB052" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB053" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB054" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB055" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB06" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBTP" SpName="NAP_Set_SiteDB_SettlementLockDel_xpre" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBTXN" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB061" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSID01" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSID02" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB061" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB052" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB053" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB054" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB055" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB06" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DB06.bodb02.bodbAdminNet" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBTP" SpName="NAP_Set_SSBSettlementLogUpd_xpre" DbName="SBSETTLE.DBTP.bodb02.bodbAdminNet" />
 
 	</Function>
 </Functions>

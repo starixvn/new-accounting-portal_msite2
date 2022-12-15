@@ -26,5 +26,7 @@ public class AutoMapperProfile : Profile
 
         CreateMap<SettlementErrorLogDetailRequest, GetSettlementErrorLogDetailsCriteria>();
         CreateMap<DeleteSettlementProcessingErrorLogRequest, DeleteSettlementProcessingErrorLogCriteria>();
+        CreateMap<UpdateSiteDbSSBErrorLogRequest, UpdateSiteDbSSBErrorLogCriteria>();
+        CreateMap<DeleteSettlementLockErrorLogRequest, DeleteSettlementLockErrorLogCriteria>();
     }
 }

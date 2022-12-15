@@ -26,15 +26,20 @@ export class SyncSettlementLogComponent implements OnInit {
         this.loadData();
     }
 
+    public get processedLogs() {
+        const data = groupBy(this.logs, (item: SettlementErrorLog) => `${item.dbServer}+${item.siteDBGroupId}+${item.sessionId || item.messageId}`)
+        const result = Object.values(data).map((v) => {
+            const first = (v as any[])[0];
+            first.tableNames = (v as any[]).map(v => v.tableName);
+            return first;
+        })
+
+        return result as SettlementErrorLog[];
+    }
+
     loadData() {
         this.settlementErrorLogService.getAll(this.matchId ?? 0).subscribe(res => {
-            const data = groupBy(res, (item: SettlementErrorLog) => `${item.dbServer}+${item.siteDBGroupId}+${item.sessionId ?? item.messageId}`)
-            const result = Object.values(data).map((v) => {
-                const first = (v as any[])[0];
-                first.tableNames = (v as any[]).map(v => v.tableName);
-                return first;
-            })
-            this.logs = result as SettlementErrorLog[];
+            this.logs = res;
         })
     }
 
@@ -44,11 +49,11 @@ export class SyncSettlementLogComponent implements OnInit {
 
     openConfirmDeleteSettlementLockDialog(item: SettlementErrorLog) {
         const message = `Session info
-        DB Server: ${item.dbServer}
-        Session: ${item.sessionId}
-        Action: Delete SiteDB_SettlementLock
+        <div>DB Server: ${item.dbServer}    </div>
+        <div>Session: ${item.sessionId}    </div>
+        <div>Action: Delete SiteDB_SettlementLock    </div>
 
-        Are you sure you want to <span class="red">DELETE</span> this session?
+        <div>Are you sure you want to <span class="red bold">DELETE</span> this session?    </div>
         `;
         const dialogRef = this.dialogService.openConfirm({ message });
 
@@ -62,14 +67,15 @@ export class SyncSettlementLogComponent implements OnInit {
         })
     }
 
+
     openConfirmDeleteSettlementProcessingDialog(item: SettlementErrorLog, action: string) {
         const message = `Session info
-        DB Server: ${item.dbServer}
-        Session: ${item.sessionId}
-        Action: Delete SiteDB_SettlementProcessing
+        <div>DB Server: ${item.dbServer}    </div>
+        <div>Session: ${item.sessionId}    </div>
+        <div>Action: ${action === 'D' ? 'Delete' : 'Update'} SiteDB_SettlementProcessing    </div>
 
-        <i>Please ensure you check and delete data in SiteDB_SettlementProcessing</i>
-        Are you sure you want to <span class="red">DELETE</span> logID belong to <>? 
+       ${action === 'D' ? '<div><i>Please ensure you check and delete data in SiteDB_SettlementProcessing</i></div>' : ''}
+        <div>Are you sure you want to ${action === 'D' ? '<span class="red bold">DELETE</span>' : '<span class="blue bold">UPDATE</span>'} ${item.sessionId} logID belong to ${item.sessionId}?</div>
         `;
         const dialogRef = this.dialogService.openConfirm({ message });
 
@@ -83,22 +89,26 @@ export class SyncSettlementLogComponent implements OnInit {
         })
     }
 
-    openConfirmUpdateSettlementLogsDialog(item: SettlementErrorLog) {
+    openConfirmUpdateSSBDialog(item: SettlementErrorLog) {
         const message = `Session info
-        DB Server:  ${item.dbServer}
-        Session: ${item.sessionId}
-        MessageId: ${item.messageId}
-        Action: Update SSB_SettlementLogs
+        <div>DB Server:  ${item.dbServer}    </div>
+        <div>Session: ${item.sessionId}    </div>
+        <div>MessageId: ${item.messageId}    </div>
+        <div>Action: Update SSB_SettlementLogs    </div>
 
-        Are you sure you want to <span class="blue">UPDATE</span> Resolve=1?
+        <div>Are you sure you want to <span class="blue bold">UPDATE</span> Resolve=1?    </div>
         `;
         const dialogRef = this.dialogService.openConfirm({ message });
 
         dialogRef.afterClosed().subscribe((res) => {
-            res && this.confirmUpdateSettlementLogs();
+            res && this.confirmUpdateSettlementLogs(item);
         });
     }
-    confirmUpdateSettlementLogs() { }
+    confirmUpdateSettlementLogs(item: SettlementErrorLog) {
+        this.settlementErrorLogService.updateInSSBSettlementLogs(item).subscribe(res => {
+            this.loadData()
+        })
+    }
 
     openDetailsDialog(item: SettlementErrorLog) {
         if (!item.tableNames.includes('SiteDB_SettlementProcessing')) return;

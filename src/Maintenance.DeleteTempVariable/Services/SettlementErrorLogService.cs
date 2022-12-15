@@ -14,6 +14,7 @@ public interface SettlementErrorLogService
     Task<int> DeleteSettlementProcessingErrorsLog(DeleteSettlementProcessingErrorLogRequest request);
     Task<List<DetailSettlementErrorLog>> GetSettlementErrorsLogDetails(SettlementErrorLogDetailRequest request);
     Task<List<SettlementErrorLog>> GetSettlementErrorsLogs(SettlementErrorLogRequest request);
+    Task<int> UpdateSSBSettlementErrorLog(UpdateSiteDbSSBErrorLogRequest request);
 }
 
 public class SettlementErrorLogServiceImp : SettlementErrorLogService
@@ -177,6 +178,13 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     public async Task<int> DeleteSettlementLockErrorsLog(DeleteSettlementLockErrorLogRequest request)
     {
         var criteria = mapper.Map<DeleteSettlementLockErrorLogCriteria>(request);
+
+        return await repository.ExecuteAsync(criteria);
+    }
+
+    public async Task<int> UpdateSSBSettlementErrorLog(UpdateSiteDbSSBErrorLogRequest request)
+    {
+        var criteria = mapper.Map<UpdateSiteDbSSBErrorLogCriteria>(request);
 
         return await repository.ExecuteAsync(criteria);
     }
