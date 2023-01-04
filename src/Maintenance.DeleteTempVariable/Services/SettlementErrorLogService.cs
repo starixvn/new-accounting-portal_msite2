@@ -46,19 +46,16 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     {
         // central db
         var list = new List<SettlementErrorLog>();
-        foreach (var server in appSettingsKey.SiteDbServer)
+
+        var processingCriteria = new GetSettlementProcessingErrorLogCriteria
         {
-            var processingCriteria = new GetSettlementProcessingErrorLogCriteria
-            {
-                MatchId = request.MatchId,
-                DbServer = server,
-            };
-            var result = await repository.FetchAsync<SettlementErrorLog>(processingCriteria) as List<SettlementErrorLog>;
+            MatchId = request.MatchId,
+        };
+        var result = await repository.FetchAsync<SettlementErrorLog>(processingCriteria) as List<SettlementErrorLog>;
 
-            list.AddRange(result);
+        list.AddRange(result);
 
-            list.ForEach(data => { data.DbServer = server; });
-        }
+        list.ForEach(data => { data.DbServer = processingCriteria.DbServer; });
 
         // sub db
         var subData = new List<SettlementErrorLog>();
@@ -85,19 +82,15 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     {
         // central db
         var list = new List<SettlementErrorLog>();
-        foreach (var server in appSettingsKey.SiteDbServer)
+        var criteria = new GetSettlementLockErrorLogCriteria
         {
-            var criteria = new GetSettlementLockErrorLogCriteria
-            {
-                MatchId = request.MatchId,
-                DbServer = server,
-            };
-            var result = (await repository.FetchAsync<SettlementErrorLog>(criteria)).ToList();
+            MatchId = request.MatchId,
+        };
+        var result = (await repository.FetchAsync<SettlementErrorLog>(criteria)).ToList();
 
-            list.AddRange(result);
+        list.AddRange(result);
 
-            list.ForEach(data => { data.DbServer = server; });
-        }
+        list.ForEach(data => { data.DbServer = criteria.DbServer; });
 
         // sub db
         var subData = new List<SettlementErrorLog>();
@@ -124,19 +117,14 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs()
     {
         var list = new List<SettlementErrorLog>();
-        foreach (var server in appSettingsKey.SiteDbServer)
-        {
-            var criteria = new GetSiteDbSSBErrorLogCriteria
-            {
-                DbServer = server,
-            };
-            var result = (await repository.FetchAsync<SettlementErrorLog>(criteria)).ToList();
 
-            list.AddRange(result);
+        var criteria = new GetSiteDbSSBErrorLogCriteria();
 
-            list.ForEach(data => { data.DbServer = server; });
-        }
+        var result = (await repository.FetchAsync<SettlementErrorLog>(criteria)).ToList();
 
+        list.AddRange(result);
+
+        list.ForEach(data => { data.DbServer = criteria.DbServer; });
 
         var subData = new List<SettlementErrorLog>();
 
