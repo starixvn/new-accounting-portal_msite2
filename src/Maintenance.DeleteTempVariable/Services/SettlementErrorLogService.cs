@@ -61,12 +61,12 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
         var subData = new List<SettlementErrorLog>();
         foreach (var server in appSettingsKey.SubDbServer)
         {
-            var c = new GetSettlementProcessingErrorLogCriteria
+            var subCriteria = new GetSettlementProcessingErrorLogCriteria
             {
                 DbServer = server,
                 MatchId = request.MatchId,
             };
-            var data = await repository.FetchAsync<SettlementErrorLog>(c) as List<SettlementErrorLog>;
+            var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
             data.ForEach(data => { data.DbServer = server; });
 
             subData.AddRange(data);
@@ -97,12 +97,12 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
 
         foreach (var server in appSettingsKey.SubDbServer)
         {
-            var c = new GetSettlementLockErrorLogCriteria
+            var subCriteria = new GetSettlementLockErrorLogCriteria
             {
                 MatchId = request.MatchId,
                 DbServer = server,
             };
-            var data = await repository.FetchAsync<SettlementErrorLog>(c) as List<SettlementErrorLog>;
+            var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
             data.ForEach(data => { data.DbServer = server; });
 
             subData.AddRange(data);
@@ -130,11 +130,11 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
 
         foreach (var server in appSettingsKey.SubDbServer)
         {
-            var c = new GetSiteDbSSBErrorLogCriteria
+            var subCriteria = new GetSiteDbSSBErrorLogCriteria
             {
                 DbServer = server,
             };
-            var data = await repository.FetchAsync<SettlementErrorLog>(c) as List<SettlementErrorLog>;
+            var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
 
             data.ForEach(data => { data.DbServer = server; });
 
