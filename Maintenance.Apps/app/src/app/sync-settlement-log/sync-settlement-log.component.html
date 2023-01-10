@@ -59,7 +59,10 @@
                   ? 'session'
                   : ''
               "
-              (click)="openDetailsDialog(item)"
+              (click)="
+                item.tableNames.includes('SiteDB_SettlementProcessing') &&
+                  openDetailsDialog(item)
+              "
             >
               {{ item.sessionId }}
             </div>
@@ -70,16 +73,23 @@
             {{ item.createdTime | date : "mediumDate" }}
             {{ item.createdTime | date : "hh:mm:ss a" }}
           </td>
-          <td>{{ item.errorMessage }}</td>
+          <td class="text-error">
+            <p *ngFor="let message of item.errorMessages">{{ message }}</p>
+          </td>
+
           <td>
             <div class="action">
               <button
+                class="btn-submit"
                 [ngClass]="
                   item.tableNames.includes('SiteDB_SettlementProcessing')
                     ? 'btn-submit'
                     : 'btn-disable'
                 "
-                (click)="openConfirmDeleteSettlementProcessingDialog(item, 'U')"
+                (click)="
+                  item.tableNames.includes('SiteDB_SettlementProcessing') &&
+                    openConfirmDeleteSettlementProcessingDialog(item, 'U')
+                "
               >
                 UPDATE
               </button>
@@ -90,7 +100,10 @@
                     ? 'btn-delete'
                     : 'btn-disable'
                 "
-                (click)="openConfirmDeleteSettlementProcessingDialog(item, 'D')"
+                (click)="
+                  item.tableNames.includes('SiteDB_SettlementProcessing') &&
+                    openConfirmDeleteSettlementProcessingDialog(item, 'D')
+                "
               >
                 DELETE
               </button>
@@ -105,7 +118,10 @@
                     ? 'btn-delete'
                     : 'btn-disable'
                 "
-                (click)="openConfirmDeleteSettlementLockDialog(item)"
+                (click)="
+                  item.tableNames.includes('SiteDB_SettlementLock') &&
+                    openConfirmDeleteSettlementLockDialog(item)
+                "
               >
                 DELETE
               </button>
@@ -120,7 +136,10 @@
                     ? 'btn-submit'
                     : 'btn-disable'
                 "
-                (click)="openConfirmUpdateSSBDialog(item)"
+                (click)="
+                  item.tableNames.includes('Settlement_SiteDB_SSBErr') &&
+                    openConfirmUpdateSSBDialog(item)
+                "
               >
                 UPDATE
               </button>
@@ -128,34 +147,6 @@
           </td>
         </tr>
       </ng-container>
-      <!-- <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <div class="session" (click)="openDetailsDialog()">session</div>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <div class="action">
-            <button class="btn-submit">UPDATE</button>
-            <button class="btn-delete">DELETE</button>
-          </div>
-        </td>
-        <td>
-          <div class="action">
-            <button class="btn-delete">DELETE</button>
-          </div>
-        </td>
-        <td>
-          <div class="action">
-            <button class="btn-submit">UPDATE</button>
-          </div>
-        </td>
-      </tr> -->
 
       <ng-template #noData>
         <tr>

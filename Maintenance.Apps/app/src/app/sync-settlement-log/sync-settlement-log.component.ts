@@ -28,8 +28,6 @@ export class SyncSettlementLogComponent implements OnInit {
 
     private processLogs(logs: SettlementErrorLog[]) {
         const data = groupBy(logs, (item: SettlementErrorLog) => `${item.dbServer ?? ''}+${item.siteDBGroupId}+${item.sessionId || item.messageId}`)
-
-        console.log('data', data);
         const result = Object.values(data).map((v) => {
             const first = (v as any[])[0];
             first.tableNames = (v as any[]).map(v => v.tableName);
@@ -42,7 +40,6 @@ export class SyncSettlementLogComponent implements OnInit {
     loadData() {
         this.settlementErrorLogService.getAll(this.matchId ?? 0).subscribe(res => {
             this.logs = this.processLogs(res);
-            console.log('res', res)
         })
     }
 
@@ -55,7 +52,7 @@ export class SyncSettlementLogComponent implements OnInit {
         <div>DB Server: ${item.dbServer}    </div>
         <div>Session: ${item.sessionId}    </div>
         <div>Action: Delete SiteDB_SettlementLock    </div>
-
+        <div><i>Please ensure you check and delete data in SiteDB_SettlementProcessing</i></div>
         <div>Are you sure you want to <span class="red bold">DELETE</span> this session?    </div>
         `;
         const dialogRef = this.dialogService.openConfirm({ message });
@@ -76,9 +73,7 @@ export class SyncSettlementLogComponent implements OnInit {
         <div>DB Server: ${item.dbServer}    </div>
         <div>Session: ${item.sessionId}    </div>
         <div>Action: ${action === 'D' ? 'Delete' : 'Update'} SiteDB_SettlementProcessing    </div>
-
-       ${action === 'D' ? '<div><i>Please ensure you check and delete data in SiteDB_SettlementProcessing</i></div>' : ''}
-        <div>Are you sure you want to ${action === 'D' ? '<span class="red bold">DELETE</span>' : '<span class="blue bold">UPDATE</span>'} ${item.sessionId} logID belong to ${item.sessionId}?</div>
+        <div>Are you sure to ${action === 'D' ? '<span class="red bold">DELETE</span>' : '<span class="blue bold">UPDATE</span>'} Failed/In-progress logIDs belong to ${item.sessionId}?</div>
         `;
         const dialogRef = this.dialogService.openConfirm({ message });
 
@@ -117,7 +112,7 @@ export class SyncSettlementLogComponent implements OnInit {
         if (!item.tableNames.includes('SiteDB_SettlementProcessing')) return;
 
         this.settlementErrorLogService.getDetails(item).subscribe(res => {
-            console.log(res)
+
             const config = {
                 data: { sessionId: item.sessionId, logs: res },
                 width: '600px',

@@ -40,7 +40,9 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
         var list1 = await GetSettlementLockLogs(request);
         var list2 = await GetSettlementSSBLogs();
 
-        return list.Concat(list1).Concat(list2).ToList();
+        var result = list.Concat(list1).Concat(list2).ToList();
+
+        return result;
     }
 
     private async Task<List<SettlementErrorLog>> GetSettlementProcessingLogs(SettlementErrorLogRequest request)

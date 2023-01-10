@@ -14,6 +14,7 @@ public class SettlementErrorLog
     public string AwayTeam { get; set; }
     public DateTime? CreatedTime { get; set; }
     public string EventName => !string.IsNullOrEmpty(HomeTeam) && !string.IsNullOrEmpty(AwayTeam) ? HomeTeam + " - " + AwayTeam : string.Empty;
+    public string[] ErrorMessages => !string.IsNullOrEmpty(ErrorMessage) ? ErrorMessage.Split("\\n") : default;
 }
 
 public class DetailSettlementErrorLog

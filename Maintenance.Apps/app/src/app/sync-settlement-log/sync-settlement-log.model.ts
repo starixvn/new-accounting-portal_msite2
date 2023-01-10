@@ -12,6 +12,7 @@ export interface SettlementErrorLog {
     createdTime: Date;
     tableName: string;
     tableNames: string[];
+    errorMessages?: string[]
 }
 
 export interface DetailSettlementErrorLog {
