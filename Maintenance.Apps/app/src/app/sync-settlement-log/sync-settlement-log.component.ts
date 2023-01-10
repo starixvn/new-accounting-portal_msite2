@@ -73,7 +73,7 @@ export class SyncSettlementLogComponent implements OnInit {
         <div>DB Server: ${item.dbServer}    </div>
         <div>Session: ${item.sessionId}    </div>
         <div>Action: ${action === 'D' ? 'Delete' : 'Update'} SiteDB_SettlementProcessing    </div>
-        <div>Are you sure to ${action === 'D' ? '<span class="red bold">DELETE</span>' : '<span class="blue bold">UPDATE</span>'} Failed/In-progress logIDs belong to ${item.sessionId}?</div>
+        <div>Are you sure to ${action === 'D' ? '<span class="red bold">DELETE</span>' : '<span class="blue bold">UPDATE</span>'} Failed/In-progress logIDs belong to ${item.sessionId} ${action === 'U' ? 'to Waiting' : ''}?</div>
         `;
         const dialogRef = this.dialogService.openConfirm({ message });
 

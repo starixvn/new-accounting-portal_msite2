@@ -1,7 +1,7 @@
 <div class="filter">
   <form class="form">
     <label for="match-id">MatchId</label>
-    <!-- <input type="text" id="match-id" [(ngModel)]="matchId" /> -->
+    <input type="text" id="match-id" [(ngModel)]="matchId" />
     <button class="btn-submit" (click)="submit()">Submit</button>
   </form>
   <div class="guideline">
@@ -35,9 +35,9 @@
         <th>MatchId</th>
         <th>SessionId</th>
         <th>MessageId</th>
-        <th>EventName</th>
-        <th>CreatedTime</th>
-        <th>Error Message</th>
+        <th class="col-event">EventName</th>
+        <th class="col-time">CreatedTime</th>
+        <th class="col-message">Error Message</th>
         <th>SiteDB_SettlementProcessing</th>
         <th>SiteDB_SettlementLock</th>
         <th>SSB_SettlementLogs</th>
@@ -68,12 +68,12 @@
             </div>
           </td>
           <td>{{ item.messageId }}</td>
-          <td>{{ item.eventName }}</td>
-          <td>
+          <td class="col-event">{{ item.eventName }}</td>
+          <td class="col-time">
             {{ item.createdTime | date : "mediumDate" }}
             {{ item.createdTime | date : "hh:mm:ss a" }}
           </td>
-          <td class="text-error">
+          <td class="col-message">
             <p *ngFor="let message of item.errorMessages">{{ message }}</p>
           </td>
 
