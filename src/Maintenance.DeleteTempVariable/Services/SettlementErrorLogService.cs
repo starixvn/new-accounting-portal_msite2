@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
+using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
@@ -44,21 +45,11 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
 
     private async Task<List<SettlementErrorLog>> GetSettlementProcessingLogs(SettlementErrorLogRequest request)
     {
-        // central db
-        var list = new List<SettlementErrorLog>();
+        // add central db
+        appSettingsKey.SubDbServer.Insert(0, DataBaseServers.DBCentral);
 
-        var processingCriteria = new GetSettlementProcessingErrorLogCriteria
-        {
-            MatchId = request.MatchId,
-        };
-        var result = await repository.FetchAsync<SettlementErrorLog>(processingCriteria) as List<SettlementErrorLog>;
+        var result = new List<SettlementErrorLog>();
 
-        list.AddRange(result);
-
-        list.ForEach(data => { data.DbServer = processingCriteria.DbServer; });
-
-        // sub db
-        var subData = new List<SettlementErrorLog>();
         foreach (var server in appSettingsKey.SubDbServer)
         {
             var subCriteria = new GetSettlementProcessingErrorLogCriteria
@@ -67,33 +58,22 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
                 MatchId = request.MatchId,
             };
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
+
             data.ForEach(data => { data.DbServer = server; });
 
-            subData.AddRange(data);
+            result.AddRange(data);
         }
 
-        list.AddRange(subData);
-
-        return list.Select(v => { v.TableName = "SiteDB_SettlementProcessing"; return v; }).ToList();
+        return result.Select(v => { v.TableName = "SiteDB_SettlementProcessing"; return v; }).ToList();
     }
 
 
     private async Task<List<SettlementErrorLog>> GetSettlementLockLogs(SettlementErrorLogRequest request)
     {
-        // central db
-        var list = new List<SettlementErrorLog>();
-        var criteria = new GetSettlementLockErrorLogCriteria
-        {
-            MatchId = request.MatchId,
-        };
-        var result = (await repository.FetchAsync<SettlementErrorLog>(criteria)).ToList();
+        // add central db
+        appSettingsKey.SubDbServer.Insert(0, DataBaseServers.DBCentral);
 
-        list.AddRange(result);
-
-        list.ForEach(data => { data.DbServer = criteria.DbServer; });
-
-        // sub db
-        var subData = new List<SettlementErrorLog>();
+        var result = new List<SettlementErrorLog>();
 
         foreach (var server in appSettingsKey.SubDbServer)
         {
@@ -105,28 +85,19 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
             data.ForEach(data => { data.DbServer = server; });
 
-            subData.AddRange(data);
+            result.AddRange(data);
         }
 
-        list.AddRange(subData);
-
-        return list.Select(v => { v.TableName = "SiteDB_SettlementLock"; return v; }).ToList();
+        return result.Select(v => { v.TableName = "SiteDB_SettlementLock"; return v; }).ToList();
     }
 
 
     private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs()
     {
-        var list = new List<SettlementErrorLog>();
+        // add central db
+        appSettingsKey.SubDbServer.Insert(0, DataBaseServers.DBCentral);
 
-        var criteria = new GetSiteDbSSBErrorLogCriteria();
-
-        var result = (await repository.FetchAsync<SettlementErrorLog>(criteria)).ToList();
-
-        list.AddRange(result);
-
-        list.ForEach(data => { data.DbServer = criteria.DbServer; });
-
-        var subData = new List<SettlementErrorLog>();
+        var result = new List<SettlementErrorLog>();
 
         foreach (var server in appSettingsKey.SubDbServer)
         {
@@ -138,12 +109,10 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
 
             data.ForEach(data => { data.DbServer = server; });
 
-            subData.AddRange(data);
+            result.AddRange(data);
         }
 
-        list.AddRange(subData);
-
-        return list.Select(v => { v.TableName = "Settlement_SiteDB_SSBErr"; return v; }).ToList();
+        return result.Select(v => { v.TableName = "Settlement_SiteDB_SSBErr"; return v; }).ToList();
     }
 
 

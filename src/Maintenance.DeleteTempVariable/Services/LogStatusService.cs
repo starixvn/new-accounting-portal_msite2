@@ -49,7 +49,7 @@ public class LogStatusServiceImp : LogStatusService
     public async Task<List<LogStatus>> GetLogStatus()
     {
         var logStatusList = new List<LogStatus>();
-        var siteDbServer = appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBTrans);
+        var siteDbServer = appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBCentral);
         foreach (var server in siteDbServer)
         {
             var criteria = new GetLogStatusCriteria

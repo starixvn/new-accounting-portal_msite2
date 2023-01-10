@@ -26,8 +26,10 @@ export class SyncSettlementLogComponent implements OnInit {
         this.loadData();
     }
 
-    public get processedLogs() {
-        const data = groupBy(this.logs, (item: SettlementErrorLog) => `${item.dbServer}+${item.siteDBGroupId}+${item.sessionId || item.messageId}`)
+    private processLogs(logs: SettlementErrorLog[]) {
+        const data = groupBy(logs, (item: SettlementErrorLog) => `${item.dbServer ?? ''}+${item.siteDBGroupId}+${item.sessionId || item.messageId}`)
+
+        console.log('data', data);
         const result = Object.values(data).map((v) => {
             const first = (v as any[])[0];
             first.tableNames = (v as any[]).map(v => v.tableName);
@@ -39,7 +41,8 @@ export class SyncSettlementLogComponent implements OnInit {
 
     loadData() {
         this.settlementErrorLogService.getAll(this.matchId ?? 0).subscribe(res => {
-            this.logs = res;
+            this.logs = this.processLogs(res);
+            console.log('res', res)
         })
     }
 

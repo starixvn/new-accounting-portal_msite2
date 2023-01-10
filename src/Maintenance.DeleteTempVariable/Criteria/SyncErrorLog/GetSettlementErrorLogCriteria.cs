@@ -7,7 +7,7 @@ namespace Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
 public class GetSettlementProcessingErrorLogCriteria : CriteriaBase
 {
     [SpParam(Ignored = true)]
-    public string DbServer { get; set; } = DataBaseServers.DBTrans;
+    public string DbServer { get; set; } = DataBaseServers.DBCentral;
 
     public string MatchId { get; set; }
 
@@ -20,7 +20,7 @@ public class GetSettlementProcessingErrorLogCriteria : CriteriaBase
 public class GetSettlementLockErrorLogCriteria : CriteriaBase
 {
     [SpParam(Ignored = true)]
-    public string DbServer { get; set; } = DataBaseServers.DBTrans;
+    public string DbServer { get; set; } = DataBaseServers.DBCentral;
 
     public string MatchId { get; set; }
 
@@ -33,7 +33,7 @@ public class GetSettlementLockErrorLogCriteria : CriteriaBase
 public class GetSiteDbSSBErrorLogCriteria : CriteriaBase
 {
     [SpParam(Ignored = true)]
-    public string DbServer { get; set; } = DataBaseServers.DBTrans;
+    public string DbServer { get; set; } = DataBaseServers.DBCentral;
 
     public override string GetSettingKey() => $"NAP_Set_SiteDB_SSBErrSel_{DbServer}";
 

@@ -7,17 +7,17 @@
     </Function>
 
     <Function Name="NAP_Set_SiteDBServiceLog_Sel">
-      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
 	  <Function Name="NAP_Set_SiteDBServiceLog_Checking">
-		  <Setting Key="NAP_Set_SiteDBServiceLog_Checking_DBTXN" SpName="NAP_Set_SiteDBServiceLog_Checking_xpre" DbName="DBTXN.bodb02.bodbAdminNet" TimeOut="40" />
+		  <Setting Key="NAP_Set_SiteDBServiceLog_Checking_DBTXN" SpName="NAP_Set_SiteDBServiceLog_Checking" DbName="DBTXN.bodb02.bodbAdminNet" TimeOut="40" />
 	  </Function>
 
     <Function Name="NAP_Set_SiteDBServiceLastLog_Udp">
-      <Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID01" SpName="NAP_Set_SiteDBServiceLastLog_Udp_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID02" SpName="NAP_Set_SiteDBServiceLastLog_Udp_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID01" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID02" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
     <Function Name="NAP_Set_MatchLockingDel">
@@ -114,8 +114,6 @@
 
 	<Function Name="Error Log">
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBTXN" SpName="NAP_Set_SiteDB_SettlementProcessingSel" DbName="DBTXN.bodb02.bodbAdminNet" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBSID01" SpName="NAP_Set_SiteDB_SettlementProcessingSel" DbName="DBSID01.bodb02.bodbAdminNet" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBSID02" SpName="NAP_Set_SiteDB_SettlementProcessingSel" DbName="DBSID02.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingSel" DbName="SBSETTLE.DB061.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB052" SpName="NAP_Set_SiteDB_SettlementProcessingSel" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DB053" SpName="NAP_Set_SiteDB_SettlementProcessingSel" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />

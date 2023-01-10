@@ -46,7 +46,7 @@ public class ControlSyncServicesImp : ControlSyncService
     public async Task<List<LastLog>> GetInfoService()
     {
         var latestLog = new List<LastLog>();
-        foreach (var server in appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBTrans))
+        foreach (var server in appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBCentral))
         {
             var criteria = new GetServiceLastLogCriteria()
             {
