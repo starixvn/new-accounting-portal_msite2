@@ -4,7 +4,7 @@ import { ConfirmDialogService } from '../shared/components/dialog/dialog.service
 import { DetailsSettlementLogComponent } from './details-settlement-log.component';
 import { SettlementErrorLog } from './sync-settlement-log.model';
 import { SettlementErrorLogService } from './sync-settlement-log.service';
-import { groupBy } from "lodash";
+import { groupBy, isNumber } from "lodash";
 
 @Component({
     selector: 'app-sync-settlement-log',
@@ -13,8 +13,8 @@ import { groupBy } from "lodash";
 })
 export class SyncSettlementLogComponent implements OnInit {
 
-    public logs!: SettlementErrorLog[];
-    public matchId?: number;
+    public logs: SettlementErrorLog[] = [];
+    public matchId = '';
 
     constructor(
         public dialogService: ConfirmDialogService,
@@ -38,7 +38,8 @@ export class SyncSettlementLogComponent implements OnInit {
     }
 
     loadData() {
-        this.settlementErrorLogService.getAll(this.matchId ?? 0).subscribe(res => {
+        console.log(+this.matchId)
+        this.settlementErrorLogService.getAll(+this.matchId).subscribe(res => {
             this.logs = this.processLogs(res);
         })
     }
@@ -120,10 +121,6 @@ export class SyncSettlementLogComponent implements OnInit {
             };
             this.dialog.open(DetailsSettlementLogComponent, config);
         })
-
-
-
-
     }
 
 }

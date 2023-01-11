@@ -14,22 +14,20 @@
     label {
       margin-right: 10px;
     }
-    .match {
-      input {
-        border: 1px solid #92cddc;
-        outline: none;
-        height: 22px;
-      }
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
-        appearance: none;
-        -webkit-appearance: none;
-      }
+    input {
+      border: 1px solid #92cddc;
+      outline: none;
+      height: 22px;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      appearance: none;
+      -webkit-appearance: none;
+    }
 
-      input[type="number"] {
-        appearance: none;
-        -moz-appearance: textfield;
-      }
+    input[type="number"] {
+      appearance: none;
+      -moz-appearance: textfield;
     }
   }
 
