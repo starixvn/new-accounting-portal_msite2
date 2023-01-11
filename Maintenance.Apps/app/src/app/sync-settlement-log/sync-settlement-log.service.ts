@@ -60,9 +60,10 @@ export class SettlementErrorLogService {
             sessionId: item.sessionId,
             siteDBGroupId: item.siteDBGroupId,
             dbServer: item.dbServer,
-            startTime: item.createdTime
+            startTime: item.createdTime,
+            messageId: item.messageId
         };
-        console.log(item)
+        console.log(body)
         return this.httpService.post<number>(url, body);
     }
 }

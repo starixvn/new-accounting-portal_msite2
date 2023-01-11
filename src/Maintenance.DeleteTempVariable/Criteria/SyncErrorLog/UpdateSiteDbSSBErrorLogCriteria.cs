@@ -10,6 +10,7 @@ public class UpdateSiteDbSSBErrorLogCriteria : INonQueryCommand
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
     public string StartTime { get; set; }
+    public string MessageId { get; set; }
     public string GetSettingKey() => $"NAP_Set_SSBSettlementLogUpdx_{DbServer}";
 
     public bool IsValid() => true;
