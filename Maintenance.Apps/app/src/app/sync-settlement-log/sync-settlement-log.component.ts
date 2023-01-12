@@ -4,7 +4,7 @@ import { ConfirmDialogService } from '../shared/components/dialog/dialog.service
 import { DetailsSettlementLogComponent } from './details-settlement-log.component';
 import { SettlementErrorLog } from './sync-settlement-log.model';
 import { SettlementErrorLogService } from './sync-settlement-log.service';
-import { groupBy, isNumber } from "lodash";
+import { groupBy, orderBy, compact } from "lodash";
 
 @Component({
     selector: 'app-sync-settlement-log',
@@ -29,12 +29,17 @@ export class SyncSettlementLogComponent implements OnInit {
     private processLogs(logs: SettlementErrorLog[]) {
         const data = groupBy(logs, (item: SettlementErrorLog) => `${item.dbServer ?? ''}+${item.siteDBGroupId}+${item.sessionId || item.messageId}`)
         const result = Object.values(data).map((v) => {
-            const first = (v as any[])[0];
-            first.tableNames = (v as any[]).map(v => v.tableName);
+            const first = v.find(e => !!e);
+            first!.createdTime = compact(v.map(v => v.createdTime))[0];
+            first!.eventName = compact(v.map(v => v.eventName))[0];
+            first!.errorMessages = compact(v.map(v => v.errorMessages))[0];
+            first!.messageId = compact(v.map(v => v.messageId))[0];
+
+            first!.tableNames = (v as any[]).map(v => v.tableName);
             return first;
         })
 
-        return result as SettlementErrorLog[];
+        return orderBy(result, ['matchId', 'sessionId', 'createdTime'], ['desc']) as SettlementErrorLog[];
     }
 
     loadData() {
