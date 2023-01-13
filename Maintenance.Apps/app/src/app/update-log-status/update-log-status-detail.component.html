@@ -14,13 +14,15 @@
     <div><span class="label">Table Name: </span>{{ data.tableName }}</div>
     <div>
       <span class="label">TransInfo: </span>
-      <button
-        mat-icon-button
-        [cdkCopyToClipboard]="transformTransInfo(data.transInfo)"
-        class="btn-copy"
-      >
-        <paster-icon></paster-icon>
-      </button>
+      <ng-container *ngIf="data.transInfoJson || data.transInfo">
+        <button
+          mat-icon-button
+          [cdkCopyToClipboard]="data.transInfoJson || data.transInfo"
+          class="btn-copy"
+        >
+          <paster-icon></paster-icon>
+        </button>
+      </ng-container>
     </div>
     <div>
       <span class="label">Settlement Action: </span>{{ data.settlementAction }}
@@ -29,18 +31,18 @@
     <div><span class="label">Log Status: </span>{{ data.statusName }}</div>
     <div>
       <span class="label">Start Time: </span>
-      {{ data.startTime | date: "mediumDate" }}
-      {{ data.startTime | date: "hh:mm:ss a" }}
+      {{ data.startTime | date : "mediumDate" }}
+      {{ data.startTime | date : "hh:mm:ss a" }}
     </div>
     <div>
       <span class="label">End Time: </span>
-      {{ data.endTime | date: "mediumDate" }}
-      {{ data.endTime | date: "hh:mm:ss a" }}
+      {{ data.endTime | date : "mediumDate" }}
+      {{ data.endTime | date : "hh:mm:ss a" }}
     </div>
     <div>
       <span class="label">Start Time Validation: </span>
-      {{ data.startTimeValidation | date: "mediumDate" }}
-      {{ data.startTimeValidation | date: "hh:mm:ss a" }}
+      {{ data.startTimeValidation | date : "mediumDate" }}
+      {{ data.startTimeValidation | date : "hh:mm:ss a" }}
     </div>
   </div>
 

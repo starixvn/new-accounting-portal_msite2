@@ -26,12 +26,4 @@ export class UpdateLogStatusDetailComponent implements OnInit {
         // this.updateLogStatusService.openDeleteConfirmDialog(this.data);
     }
 
-    transformTransInfo(transInfo: string) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(transInfo, 'application/xml');
-        const rTag = doc.getElementsByTagName('r');
-        return Array.from(rTag)
-            .map((e) => e.getAttribute('t'))
-            .join(',');
-    }
 }
