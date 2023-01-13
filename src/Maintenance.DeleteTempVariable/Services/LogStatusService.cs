@@ -37,10 +37,13 @@ public class LogStatusServiceImp : LogStatusService
 
     public async Task<bool> CheckLogIdsInCentral(CheckLogIdsRequest request)
     {
-        var criteria = mapper.Map<CheckLogIdsCriteria>(request);
-        var siteGroupId = await scaleOutSettleService.GetSiteGroupId(criteria.DbServer);
+        var siteGroupId = await scaleOutSettleService.GetSiteGroupId(request.DbServer);
 
-        criteria.SiteDBGroupId = siteGroupId;
+        var criteria = new CheckLogIdsCriteria
+        {
+            LogIds = request.LogIds,
+            SiteDBGroupId = siteGroupId
+        };
 
         await repository.ExecuteAsync(criteria);
         return criteria.IsPass;

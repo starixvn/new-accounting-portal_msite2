@@ -26,16 +26,17 @@ export class UpdateLogStatusService {
 
         const url = `${this.baseUrl}/check-logIds`;
         const body = {
-            logIds: logs.map(x => x.logId).join(",")
+            logIds: logs.map(x => x.logId).join(","),
+            dbServer: logs[0].dbServer
         };
-        console.log(body)
         return this.httpService.post(url, body)
     }
 
     updateItem(logs: LogStatus[]) {
         const url = `${this.baseUrl}/update-log-status`;
         const body = {
-            logIds: logs.map(v => v.logId).join(',')
+            logIds: logs.map(v => v.logId).join(','),
+            dbServer: logs[0].dbServer
         };
 
         this.httpService.post(url, body).subscribe((res) => {
