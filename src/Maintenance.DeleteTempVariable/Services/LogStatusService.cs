@@ -42,7 +42,8 @@ public class LogStatusServiceImp : LogStatusService
         var criteria = new CheckLogIdsCriteria
         {
             LogIds = request.LogIds,
-            SiteDBGroupId = siteGroupId
+            SiteDBGroupId = siteGroupId,
+            IsPass = true
         };
 
         await repository.ExecuteAsync(criteria);
