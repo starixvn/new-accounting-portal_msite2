@@ -30,12 +30,13 @@ export class SyncSettlementLogComponent implements OnInit {
         const data = groupBy(logs, (item: SettlementErrorLog) => `${item.dbServer ?? ''}+${item.siteDBGroupId}+${item.sessionId || item.messageId}`)
         const result = Object.values(data).map((v) => {
             const first = v.find(e => !!e);
+
             first!.createdTime = compact(v.map(v => v.createdTime))[0];
             first!.eventName = compact(v.map(v => v.eventName))[0];
             first!.errorMessages = compact(v.map(v => v.errorMessages))[0];
             first!.messageId = compact(v.map(v => v.messageId))[0];
-
             first!.tableNames = (v as any[]).map(v => v.tableName);
+
             return first;
         })
 
