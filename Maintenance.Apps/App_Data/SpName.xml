@@ -70,7 +70,9 @@
   </Function>
 
   <Function Name="TempVariableNumber Sub DB">
-    <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DB052" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
+	  <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DBTXN" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="DBTXN.bodb02.bodbAdminNet" />
+
+	  <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DB052" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DB052.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DB053" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DB053.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DB054" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DB054.bodb02.bodbAdminNet" />
     <Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DB055" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DB055.bodb02.bodbAdminNet" />
