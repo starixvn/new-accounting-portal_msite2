@@ -12,9 +12,13 @@ namespace Maintenance.DeleteTempVariable.Services;
 public interface SettlementErrorLogService
 {
     Task<int> DeleteSettlementLockErrorsLog(DeleteSettlementLockErrorLogRequest request);
+
     Task<int> DeleteSettlementProcessingErrorsLog(DeleteSettlementProcessingErrorLogRequest request);
+
     Task<List<DetailSettlementErrorLog>> GetSettlementErrorsLogDetails(SettlementErrorLogDetailRequest request);
+
     Task<List<SettlementErrorLog>> GetSettlementErrorsLogs(SettlementErrorLogRequest request);
+
     Task<int> UpdateSSBSettlementErrorLog(UpdateSiteDbSSBErrorLogRequest request);
 }
 
@@ -47,7 +51,6 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
 
     private async Task<List<SettlementErrorLog>> GetSettlementProcessingLogs(SettlementErrorLogRequest request)
     {
-        // add central db
         var dbServers = new List<string> { DataBaseServers.DBCentral };
         dbServers.AddRange(appSettingsKey.SubDbServer);
 
@@ -70,11 +73,8 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
         return result.Select(v => { v.TableName = "SiteDB_SettlementProcessing"; return v; }).ToList();
     }
 
-
     private async Task<List<SettlementErrorLog>> GetSettlementLockLogs(SettlementErrorLogRequest request)
     {
-        // add central db
-        // add central db
         var dbServers = new List<string> { DataBaseServers.DBCentral };
         dbServers.AddRange(appSettingsKey.SubDbServer);
 
@@ -96,11 +96,8 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
         return result.Select(v => { v.TableName = "SiteDB_SettlementLock"; return v; }).ToList();
     }
 
-
     private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs()
     {
-        // add central db
-        // add central db
         var dbServers = new List<string> { DataBaseServers.DBCentral };
         dbServers.AddRange(appSettingsKey.SubDbServer);
 
@@ -121,7 +118,6 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
 
         return result.Select(v => { v.TableName = "Settlement_SiteDB_SSBErr"; return v; }).ToList();
     }
-
 
     public async Task<List<DetailSettlementErrorLog>> GetSettlementErrorsLogDetails(SettlementErrorLogDetailRequest request)
     {

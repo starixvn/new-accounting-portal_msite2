@@ -74,6 +74,7 @@ public class SettlementLockServiceImp : SettlementLockService
             };
 
             var data = (await repository.FetchAsync<MatchSettlementLock>(replicatedServerCriteria)).ToList();
+
             data.ForEach(m => m.DbServer = server);
 
             replicatedData.AddRange(data);
