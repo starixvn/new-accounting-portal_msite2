@@ -48,11 +48,12 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     private async Task<List<SettlementErrorLog>> GetSettlementProcessingLogs(SettlementErrorLogRequest request)
     {
         // add central db
-        appSettingsKey.SubDbServer.Insert(0, DataBaseServers.DBCentral);
+        var dbServers = new List<string> { DataBaseServers.DBCentral };
+        dbServers.AddRange(appSettingsKey.SubDbServer);
 
         var result = new List<SettlementErrorLog>();
 
-        foreach (var server in appSettingsKey.SubDbServer)
+        foreach (var server in dbServers)
         {
             var subCriteria = new GetSettlementProcessingErrorLogCriteria
             {
@@ -73,11 +74,13 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     private async Task<List<SettlementErrorLog>> GetSettlementLockLogs(SettlementErrorLogRequest request)
     {
         // add central db
-        appSettingsKey.SubDbServer.Insert(0, DataBaseServers.DBCentral);
+        // add central db
+        var dbServers = new List<string> { DataBaseServers.DBCentral };
+        dbServers.AddRange(appSettingsKey.SubDbServer);
 
         var result = new List<SettlementErrorLog>();
 
-        foreach (var server in appSettingsKey.SubDbServer)
+        foreach (var server in dbServers)
         {
             var subCriteria = new GetSettlementLockErrorLogCriteria
             {
@@ -97,11 +100,13 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs()
     {
         // add central db
-        appSettingsKey.SubDbServer.Insert(0, DataBaseServers.DBCentral);
+        // add central db
+        var dbServers = new List<string> { DataBaseServers.DBCentral };
+        dbServers.AddRange(appSettingsKey.SubDbServer);
 
         var result = new List<SettlementErrorLog>();
 
-        foreach (var server in appSettingsKey.SubDbServer)
+        foreach (var server in dbServers)
         {
             var subCriteria = new GetSiteDbSSBErrorLogCriteria
             {
