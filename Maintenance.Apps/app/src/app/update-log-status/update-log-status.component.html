@@ -7,50 +7,37 @@
     <tr>
       <th>DB Server</th>
       <th>LogID</th>
-      <th>Log Status</th>
-      <th>Real Data</th>
       <th>StartTime</th>
-      <th>EndTime</th>
-      <th>StartTimeValidation</th>
       <th class="action">Action</th>
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngIf="logs && logs.length; else noData">
-      <tr *ngFor="let log of logs">
-        <td>{{ log.serverName }}</td>
-        <td>
-          <span (click)="openDetailLogStatusDialog(log)" class="btn-detail">{{
-            log.logId
-          }}</span>
-        </td>
-        <td class="orange">{{ log.statusName }}</td>
-        <td><input type="checkbox" [value]="!!log.transInfo" disabled /></td>
-        <td>
-          {{ log.startTime | date: "mediumDate" }}
-          {{ log.startTime | date: "hh:mm:ss a" }}
-        </td>
-        <td>
-          {{ log.endTime | date: "mediumDate" }}
-          {{ log.endTime | date: "hh:mm:ss a" }}
-        </td>
-        <td>
-          {{ log.startTimeValidation | date: "mediumDate" }}
-          {{ log.startTimeValidation | date: "hh:mm:ss a" }}
-        </td>
-        <td>
-          <div class="action-button">
-            <button class="btn-submit" (click)="openUpdateConfirmDialog(log)">
-              Update
-            </button>
-            <button class="btn-delete" (click)="openDeleteConfirmDialog(log)">
-              Delete
-            </button>
-          </div>
-        </td>
-      </tr>
+    <ng-container *ngIf="logsProcessed && logsProcessed.length; else noData">
+      <ng-container *ngFor="let item of logsProcessed">
+        <tr *ngFor="let log of item; first as isFirst">
+          <td>{{ log.serverName }}</td>
+          <td>
+            <span (click)="openDetailLogStatusDialog(log)" class="btn-detail">{{
+              log.logId
+            }}</span>
+          </td>
+          <td>
+            {{ log.startTime | date : "mediumDate" }}
+            {{ log.startTime | date : "hh:mm:ss a" }}
+          </td>
+          <td *ngIf="isFirst" [attr.rowspan]="item.length">
+            <div class="action-button">
+              <button class="btn-submit" (click)="handleUpdateLogStatus(item)">
+                Update
+              </button>
+              <!-- <button class="btn-delete" (click)="openDeleteConfirmDialog(log)">
+                    Delete
+                  </button> -->
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </ng-container>
-
     <ng-template #noData>
       <tr>
         <td colspan="8" class="no-data">No Information Available</td>

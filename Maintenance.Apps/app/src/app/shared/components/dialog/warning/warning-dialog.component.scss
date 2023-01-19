@@ -1,0 +1,38 @@
+.warning-dialog {
+  .mat-dialog-container {
+    padding: 0;
+    overflow: unset;
+  }
+  .dialog-header {
+    background-color: #c50000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .mat-dialog-title {
+      padding: 0 15px;
+      margin: 0px;
+    }
+    .mat-icon-button {
+      &:focus {
+        // background-color: no;
+      }
+    }
+  }
+
+  .mat-dialog-content {
+    padding: 15px 15px;
+    margin: 0;
+  }
+
+  .mat-dialog-actions {
+    min-height: auto;
+    margin-bottom: 0;
+    padding: 15px;
+    justify-content: center;
+    column-gap: 10px;
+    button {
+      padding: 5px 20px;
+    }
+  }
+}

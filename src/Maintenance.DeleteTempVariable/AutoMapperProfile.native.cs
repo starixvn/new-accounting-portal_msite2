@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Maintenance.DeleteTempVariable.Criteria;
+using Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
 using Maintenance.DeleteTempVariable.Requests;
+using Maintenance.DeleteTempVariable.Requests.SyncErrorLog;
 
 namespace Maintenance.DeleteTempVariable;
 
@@ -20,5 +22,11 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.CreatedTime));
 
         CreateMap<UpdateLogStatusRequest, UpdateLogStatusCriteria>();
+        CreateMap<CheckLogIdsRequest, CheckLogIdsCriteria>();
+
+        CreateMap<SettlementErrorLogDetailRequest, GetSettlementErrorLogDetailsCriteria>();
+        CreateMap<DeleteSettlementProcessingErrorLogRequest, DeleteSettlementProcessingErrorLogCriteria>();
+        CreateMap<UpdateSiteDbSSBErrorLogRequest, UpdateSiteDbSSBErrorLogCriteria>();
+        CreateMap<DeleteSettlementLockErrorLogRequest, DeleteSettlementLockErrorLogCriteria>();
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Maintenance.DeleteTempVariable.Requests;
+using Maintenance.DeleteTempVariable.Requests.SyncErrorLog;
 using Maintenance.DeleteTempVariable.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Maintenance.DeleteTempVariable;
 
 [Route("api/delete-temp-variable")]
-[Authorize]
+//[Authorize]
 [ApiController]
 public class DeleteTempController : ControllerBase
 {
@@ -15,7 +15,8 @@ public class DeleteTempController : ControllerBase
     private readonly TempVariableService tempVariableService;
     private readonly SystemSettingService systemSettingService;
     private readonly LogStatusService logStatusService;
-    private readonly ControlSyncServices controlSyncServices;
+    private readonly ControlSyncService controlSyncServices;
+    private readonly SettlementErrorLogService settlementErrorLogService;
 
 
     public DeleteTempController(
@@ -24,7 +25,8 @@ public class DeleteTempController : ControllerBase
         TempVariableService tempVariableService,
         SystemSettingService systemSettingService,
         LogStatusService logStatusService,
-        ControlSyncServices controlSyncServices)
+        ControlSyncService controlSyncServices,
+        SettlementErrorLogService settlementErrorLogService)
     {
         this.parlayLockingService = parlayLockingService;
         this.settlementLockService = settlementLockService;
@@ -32,6 +34,7 @@ public class DeleteTempController : ControllerBase
         this.systemSettingService = systemSettingService;
         this.logStatusService = logStatusService;
         this.controlSyncServices = controlSyncServices;
+        this.settlementErrorLogService = settlementErrorLogService;
     }
 
     [HttpPost]
@@ -134,10 +137,34 @@ public class DeleteTempController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost]
+    [Route("check-logIds")]
+    public async Task<IActionResult> CheckLogIds(CheckLogIdsRequest request) => Ok(await logStatusService.CheckLogIdsInCentral(request));
+
     [HttpPost("get-info-service")]
     public async Task<IActionResult> GetInfo() => Ok(await controlSyncServices.GetInfoService());
 
 
     [HttpPost("update-status")]
     public IActionResult UpdateStatus(UpdateStatusRequest request) => Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
+
+    [HttpPost("get-settlement-error-logs")]
+    public async Task<IActionResult> GetSettlementErrorLogs(SettlementErrorLogRequest request)
+        => Ok(await settlementErrorLogService.GetSettlementErrorsLogs(request));
+
+    [HttpPost("get-settlement-error-log-detail")]
+    public async Task<IActionResult> GetDetailsSettlementErrorLog(SettlementErrorLogDetailRequest request)
+        => Ok(await settlementErrorLogService.GetSettlementErrorsLogDetails(request));
+
+    [HttpPost("delete-settlement-processing-error-log")]
+    public async Task<IActionResult> DeleteSettlementProcessingErrorLog(DeleteSettlementProcessingErrorLogRequest request)
+        => Ok(await settlementErrorLogService.DeleteSettlementProcessingErrorsLog(request));
+
+    [HttpPost("delete-settlement-lock-error-log")]
+    public async Task<IActionResult> DeleteSettlementLockErrorLog(DeleteSettlementLockErrorLogRequest request)
+        => Ok(await settlementErrorLogService.DeleteSettlementLockErrorsLog(request));
+
+    [HttpPost("update-ssb-settlement-error-log")]
+    public async Task<IActionResult> UpdateSSBSettlementErrorLog(UpdateSiteDbSSBErrorLogRequest request)
+        => Ok(await settlementErrorLogService.UpdateSSBSettlementErrorLog(request));
 }

@@ -1,0 +1,162 @@
+<div class="head-page">
+  <h1 class="title-page">Sync Settlement Log</h1>
+</div>
+
+<div class="filter">
+  <div class="form">
+    <label for="match-id">MatchId</label>
+    <input type="text" id="match-id" [(ngModel)]="matchId" type="number" />
+    <button class="btn-submit" (click)="submit()">Submit</button>
+  </div>
+  <div class="guideline">
+    <div>
+      <div class="bold">Guideline: You need to do step by step</div>
+      <div>
+        <span class="bold">Step 1:</span> Check SessionId detail and copy
+        TransId <span class="red">(backup)</span>
+      </div>
+      <div>
+        <span class="bold">Step 2:</span>Update/Delete
+        SiteDB_SettlementProcessing
+      </div>
+    </div>
+    <div>
+      <div>
+        <span class="bold">Step 3:</span> Delete SiteDB_SettlementLock (if
+        exceed 5min)
+      </div>
+      <div><span class="bold"> Step 4:</span> Update SSB_SettlementLogs</div>
+    </div>
+  </div>
+</div>
+
+<div class="data-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>DB Server</th>
+        <th>SiteDBGroupId</th>
+        <th>MatchId</th>
+        <th>SessionId</th>
+        <th>MessageId</th>
+        <th class="col-event">EventName</th>
+        <th class="col-time">CreatedTime</th>
+        <th class="col-message">Error Message</th>
+        <th>SiteDB_SettlementProcessing</th>
+        <th>SiteDB_SettlementLock</th>
+        <th>SSB_SettlementLogs</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngIf="!!logs.length; else noData">
+        <tr *ngFor="let item of logs">
+          <td>{{ item.serverName }}</td>
+          <td>{{ item.siteDBGroupId }}</td>
+          <td>
+            <span *ngIf="!!item.matchId">{{ item.matchId }}</span>
+          </td>
+          <td>
+            <div
+              [ngClass]="
+                item.tableNames.includes('SiteDB_SettlementProcessing')
+                  ? 'session'
+                  : ''
+              "
+              (click)="
+                item.tableNames.includes('SiteDB_SettlementProcessing') &&
+                  openDetailsDialog(item)
+              "
+            >
+              {{ item.sessionId }}
+            </div>
+          </td>
+          <td>{{ item.messageId }}</td>
+          <td class="col-event">{{ item.eventName }}</td>
+          <td class="col-time">
+            {{ item.createdTime | date : "mediumDate" }}
+            {{ item.createdTime | date : "hh:mm:ss a" }}
+          </td>
+          <td class="col-message">
+            <p *ngFor="let message of item.errorMessages">{{ message }}</p>
+          </td>
+
+          <td>
+            <div class="action">
+              <button
+                class="btn-submit"
+                [ngClass]="
+                  item.tableNames.includes('SiteDB_SettlementProcessing')
+                    ? 'btn-submit'
+                    : 'btn-disable'
+                "
+                (click)="
+                  item.tableNames.includes('SiteDB_SettlementProcessing') &&
+                    openConfirmDeleteSettlementProcessingDialog(item, 'U')
+                "
+              >
+                UPDATE
+              </button>
+              <button
+                class="btn-delete"
+                [ngClass]="
+                  item.tableNames.includes('SiteDB_SettlementProcessing')
+                    ? 'btn-delete'
+                    : 'btn-disable'
+                "
+                (click)="
+                  item.tableNames.includes('SiteDB_SettlementProcessing') &&
+                    openConfirmDeleteSettlementProcessingDialog(item, 'D')
+                "
+              >
+                DELETE
+              </button>
+            </div>
+          </td>
+          <td>
+            <div class="action">
+              <button
+                class="btn-delete"
+                [ngClass]="
+                  item.tableNames.includes('SiteDB_SettlementLock')
+                    ? 'btn-delete'
+                    : 'btn-disable'
+                "
+                (click)="
+                  item.tableNames.includes('SiteDB_SettlementLock') &&
+                    openConfirmDeleteSettlementLockDialog(item)
+                "
+              >
+                DELETE
+              </button>
+            </div>
+          </td>
+          <td>
+            <div class="action">
+              <button
+                class="btn-submit"
+                [ngClass]="
+                  item.tableNames.includes('Settlement_SiteDB_SSBErr')
+                    ? 'btn-submit'
+                    : 'btn-disable'
+                "
+                (click)="
+                  item.tableNames.includes('Settlement_SiteDB_SSBErr') &&
+                    openConfirmUpdateSSBDialog(item)
+                "
+              >
+                UPDATE
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+
+      <ng-template #noData>
+        <tr>
+          <td colspan="11" class="no-data">No Information Available</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

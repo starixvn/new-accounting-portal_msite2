@@ -10,14 +10,14 @@ using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
 
-public interface ControlSyncServices
+public interface ControlSyncService
 {
     bool UpdateStatusServiceInRedis(UpdateStatusRequest request);
 
     Task<List<LastLog>> GetInfoService();
 }
 
-public class ControlSyncServicesImp : ControlSyncServices
+public class ControlSyncServicesImp : ControlSyncService
 {
     private const string CacheKey = "Settlement-Auto-Sync-Sportsbook";
     private const int CacheExpiredInDays = 3650;
@@ -46,7 +46,7 @@ public class ControlSyncServicesImp : ControlSyncServices
     public async Task<List<LastLog>> GetInfoService()
     {
         var latestLog = new List<LastLog>();
-        foreach (var server in appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBTrans))
+        foreach (var server in appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBCentral))
         {
             var criteria = new GetServiceLastLogCriteria()
             {

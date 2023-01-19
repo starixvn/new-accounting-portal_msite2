@@ -52,7 +52,7 @@ public class SettlementLockServiceImp : SettlementLockService
 
             listSettlementLock.AddRange(list);
 
-            if (server.Equals(DataBaseServers.DBTrans))
+            if (server.Equals(DataBaseServers.DBCentral))
             {
                 var replicatedData = await GetDataReplicatedServer(request.MatchId);
                 listSettlementLock.AddRange(replicatedData);
@@ -74,6 +74,7 @@ public class SettlementLockServiceImp : SettlementLockService
             };
 
             var data = (await repository.FetchAsync<MatchSettlementLock>(replicatedServerCriteria)).ToList();
+
             data.ForEach(m => m.DbServer = server);
 
             replicatedData.AddRange(data);

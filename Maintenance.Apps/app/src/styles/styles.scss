@@ -115,6 +115,7 @@ header {
   color: white;
   background-color: #5073bc;
   border: 1px solid #5073bc;
+  font-weight: bold;
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 2px;
@@ -195,4 +196,20 @@ header {
 
 .seconds {
   background: url("refresh.png") no-repeat;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.text-blue {
+  color: rgb(95, 187, 223);
+}
+
+.text-orange {
+  color: orangered;
 }

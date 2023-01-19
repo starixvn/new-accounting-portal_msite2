@@ -9,18 +9,30 @@
   <div mat-dialog-content>
     <div><span class="label">Server: </span> {{ data.serverName }}</div>
     <div><span class="label">LogId: </span>{{ data.logId }}</div>
+    <div><span class="label">MatchId: </span>{{ data.matchId }}</div>
     <div><span class="label">System Name: </span>{{ data.systemName }}</div>
     <div><span class="label">Function Name: </span>{{ data.functionName }}</div>
     <div><span class="label">Table Name: </span>{{ data.tableName }}</div>
+    <div><span class="label">Action: </span>{{ data.action }}</div>
+
     <div>
       <span class="label">TransInfo: </span>
-      <button
-        mat-icon-button
-        [cdkCopyToClipboard]="transformTransInfo(data.transInfo)"
-        class="btn-copy"
-      >
-        <paster-icon></paster-icon>
-      </button>
+      <ng-container *ngIf="data.transInfoJson || data.transInfo">
+        <button
+          mat-icon-button
+          [cdkCopyToClipboard]="data.transInfoJson || data.transInfo"
+          class="btn-copy"
+        >
+          <paster-icon></paster-icon>
+        </button>
+      </ng-container>
+    </div>
+    <div>
+      <span class="label">LogDate: </span>
+      <span>
+        {{ data.logDate | date : "mediumDate" }}
+        {{ data.logDate | date : "hh:mm:ss a" }}
+      </span>
     </div>
     <div>
       <span class="label">Settlement Action: </span>{{ data.settlementAction }}
@@ -29,27 +41,8 @@
     <div><span class="label">Log Status: </span>{{ data.statusName }}</div>
     <div>
       <span class="label">Start Time: </span>
-      {{ data.startTime | date: "mediumDate" }}
-      {{ data.startTime | date: "hh:mm:ss a" }}
+      {{ data.startTime | date : "mediumDate" }}
+      {{ data.startTime | date : "hh:mm:ss a" }}
     </div>
-    <div>
-      <span class="label">End Time: </span>
-      {{ data.endTime | date: "mediumDate" }}
-      {{ data.endTime | date: "hh:mm:ss a" }}
-    </div>
-    <div>
-      <span class="label">Start Time Validation: </span>
-      {{ data.startTimeValidation | date: "mediumDate" }}
-      {{ data.startTimeValidation | date: "hh:mm:ss a" }}
-    </div>
-  </div>
-
-  <div mat-dialog-actions>
-    <button class="btn-submit" (click)="openUpdateConfirmDialog()">
-      Update
-    </button>
-    <button class="btn-delete" (click)="openDeleteConfirmDialog()">
-      Delete
-    </button>
   </div>
 </div>
