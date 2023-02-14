@@ -12,22 +12,21 @@ namespace Maintenance.DeleteTempVariable.Services;
 
 public interface ControlSyncService
 {
-    bool UpdateStatusServiceInRedis(UpdateStatusRequest request);
-
+    bool UpdateStatusService(UpdateStatusRequest request);
     Task<List<LastLog>> GetInfoService();
 }
 
 public class ControlSyncServicesImp : ControlSyncService
 {
-    private const string CacheKey = "Settlement-Auto-Sync-Sportsbook";
-    private const int CacheExpiredInDays = 3650;
-    private readonly CacheItemOptions cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheExpiredInDays));
-
-    private readonly ICache cache;
     private readonly ILogger logger;
     private readonly INapSession session;
     private readonly IDynamicRepository repository;
     private readonly AppSettingsKey appSettingsKey;
+
+    private const int CacheExpiredInDays = 3650;
+    private readonly CacheItemOptions cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheExpiredInDays));
+
+    private readonly ICache cache;
 
     public ControlSyncServicesImp(
         ICache cache,
@@ -48,7 +47,7 @@ public class ControlSyncServicesImp : ControlSyncService
         var latestLog = new List<LastLog>();
         foreach (var server in appSettingsKey.SiteDbServer.Where(n => n != DataBaseServers.DBCentral))
         {
-            var criteria = new GetServiceLastLogCriteria()
+            var criteria = new GetServiceLastLogCriteria
             {
                 DbServer = server,
             };
@@ -59,15 +58,31 @@ public class ControlSyncServicesImp : ControlSyncService
             latestLog.AddRange(list);
         }
 
-        var isStartService = GetStatusFromCache();
-        latestLog.ForEach(x => x.CurrentStatus = isStartService);
+        GetCurrentStatusService(latestLog);
 
         return latestLog;
     }
 
-    public bool UpdateStatusServiceInRedis(UpdateStatusRequest request)
+    private void GetCurrentStatusService(List<LastLog> lastLogs)
     {
-        cache.Set(CacheKey, request.Status, cachePolicy);
+        foreach (var log in lastLogs)
+        {
+            if (log.QueueType == QueueType.SportBook)
+            {
+                var isStart = GetStatusFromCache(CacheKey.SportsCacheKey);
+                log.CurrentStatus = isStart;
+            }
+            else
+            {
+                var isStart = GetStatusFromCache(CacheKey.NonSportsCacheKey);
+                log.CurrentStatus = isStart;
+            }
+        }
+    }
+
+    public bool UpdateStatusService(UpdateStatusRequest request)
+    {
+        cache.Set(request.CacheKey, request.Status, cachePolicy);
         WriteLogChangeStatus(request.Status);
         return request.Status;
     }
@@ -78,16 +93,16 @@ public class ControlSyncServicesImp : ControlSyncService
         logger.Info(message);
     }
 
-    private bool GetStatusFromCache()
+    private bool GetStatusFromCache(string key)
     {
-        var isExistsKey = cache.Contain(CacheKey);
+        var isExistsKey = cache.Contain(key);
 
         if (!isExistsKey)
         {
-            cache.Set(CacheKey, true, cachePolicy);
+            cache.Set(key, true, cachePolicy);
         }
 
-        cache.TryGet(CacheKey, out bool status);
+        cache.TryGet(key, out bool status);
 
         return status;
     }
