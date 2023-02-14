@@ -95,10 +95,10 @@ export class ControlSyncServiceComponent implements OnInit {
     }
 
     handleConfirm(cacheKey: string, status: boolean) {
-        // this.controlSyncService
-        //     .updateStatus(status, cacheKey)
-        //     .subscribe((res) => {
-        //         this.loadInfoService();
-        //     });
+        this.controlSyncService
+            .updateStatus(status, cacheKey)
+            .subscribe((res) => {
+                this.loadInfoService();
+            });
     }
 }

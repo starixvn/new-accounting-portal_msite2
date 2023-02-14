@@ -2,6 +2,6 @@
 
 public static class CacheKey
 {
-    public const string SportsCacheKey = "";
-    public const string NonSportsCacheKey = "";
+    public const string SportsCacheKey = "Settlement-Auto-Sync-Sportsbook";
+    public const string NonSportsCacheKey = "Settlement-Auto-Sync-NonSports";
 }

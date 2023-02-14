@@ -4,18 +4,18 @@ import { LastLog } from './control-sync-service.model';
 
 @Injectable()
 export class ControlSyncService {
-  private baseUrl = 'api/delete-temp-variable';
+    private baseUrl = 'api/delete-temp-variable';
 
-  constructor(private httpService: HttpService) {}
+    constructor(private httpService: HttpService) { }
 
-  public updateStatus(status: Boolean) {
-    const url = `${this.baseUrl}/update-status`;
-    return this.httpService.post(url, { status });
-  }
+    public updateStatus(status: Boolean, cacheKey: string) {
+        const url = `${this.baseUrl}/update-status`;
+        return this.httpService.post(url, { status, cacheKey });
+    }
 
-  public getInfoService() {
-    const url = `${this.baseUrl}/get-info-service`;
+    public getInfoService() {
+        const url = `${this.baseUrl}/get-info-service`;
 
-    return this.httpService.post<LastLog[]>(url);
-  }
+        return this.httpService.post<LastLog[]>(url);
+    }
 }

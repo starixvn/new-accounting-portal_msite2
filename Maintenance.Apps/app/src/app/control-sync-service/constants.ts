@@ -1,4 +1,4 @@
 export const CacheKey = {
-    SportsCacheKey: "",
-    NonSportsCacheKey: ""
+    SportsCacheKey: "Settlement-Auto-Sync-Sportsbook",
+    NonSportsCacheKey: "Settlement-Auto-Sync-NonSports"
 }
