@@ -5,6 +5,7 @@ import { UpdateLogStatusService } from './update-log-status.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateLogStatusDetailComponent } from './update-log-status-detail.component';
 import { groupBy } from 'lodash';
+import { FileService } from '../shared/services/file.service';
 
 @Component({
     selector: 'app-update-log-status',
@@ -13,16 +14,19 @@ import { groupBy } from 'lodash';
 })
 export class UpdateLogStatusComponent implements OnInit {
     public logs!: LogStatus[];
+    public nonSportLogs!: LogStatus[];
+    public collapseSport: boolean = false;
+    public collapseNonSport: boolean = false;
 
     constructor(
         private updateLogStatusService: UpdateLogStatusService,
         public dialogService: ConfirmDialogService,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private fileService: FileService
     ) { }
 
     ngOnInit(): void {
         this.loadData();
-
         this.updateLogStatusService.dataUpdate$.subscribe((res) => {
             this.loadData();
             this.dialog.closeAll();
@@ -33,10 +37,22 @@ export class UpdateLogStatusComponent implements OnInit {
         return Object.values(groupBy(this.logs || [], 'dbServer'));
     }
 
+    public get nonSportLogsProcessed() {
+        return Object.values(groupBy(this.nonSportLogs || [], 'dbServer'));
+    }
+
     loadData() {
         this.updateLogStatusService.getAll().subscribe((res) => {
-            this.logs = res;
+            this.logs = res.filter(r => r.queueType === 1);
+            this.nonSportLogs = res.filter(r => r.queueType === 3)
         });
+    }
+
+    toggleSportBook() {
+        this.collapseSport = !this.collapseSport;
+    }
+    toggleNonSport() {
+        this.collapseNonSport = !this.collapseNonSport;
     }
 
     openDetailLogStatusDialog(log: LogStatus) {
@@ -48,13 +64,21 @@ export class UpdateLogStatusComponent implements OnInit {
         this.dialog.open(UpdateLogStatusDetailComponent, config);
     }
 
-    handleUpdateLogStatus(logs: LogStatus[]) {
-        this.updateLogStatusService.checkLogIds(logs).subscribe((res) => {
-            if (!res) {
-                this.updateLogStatusService.openWarningDialog();
-                return;
-            }
-            this.updateLogStatusService.openUpdateConfirmDialog(logs);
-        });
+    openUpdateConfirmDialog(log: LogStatus) {
+        // this.updateLogStatusService.openUpdateConfirmDialog(log);
     }
+
+    handleUpdateLogStatus(logs: LogStatus[]) { }
+
+    exportFile(logs: LogStatus[]) {
+
+        let data = '';
+
+        logs.forEach(log => {
+            data += `${log.logId}`;
+            data += `\n${log.transInfoJson ?? ''}\n`;
+        })
+        this.fileService.saveTextAsFile(data, `transIds_of_${logs.map(v => v.logId).join('_')}`)
+    }
+
 }

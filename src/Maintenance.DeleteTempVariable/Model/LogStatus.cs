@@ -44,4 +44,5 @@ public class LogStatus
     public string SettlementAction { get; set; }
 
     public string TicketType { get; set; }
+    public QueueType QueueType { get; set; }
 }

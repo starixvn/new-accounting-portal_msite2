@@ -7,8 +7,8 @@
     </Function>
 
     <Function Name="NAP_Set_SiteDBServiceLog_Sel">
-      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID01.bodb02.bodbAdminNet" />
-      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID02.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+      <Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
 
 	  <Function Name="NAP_Set_SiteDBServiceLog_Checking">

@@ -12,18 +12,9 @@ import { UpdateLogStatusService } from './update-log-status.service';
 })
 export class UpdateLogStatusDetailComponent implements OnInit {
     constructor(
-        private updateLogStatusService: UpdateLogStatusService,
         @Inject(MAT_DIALOG_DATA) public data: LogStatus
     ) { }
 
     ngOnInit(): void { }
-
-    openUpdateConfirmDialog() {
-        // this.updateLogStatusService.openUpdateConfirmDialog(this.data);
-    }
-
-    openDeleteConfirmDialog() {
-        // this.updateLogStatusService.openDeleteConfirmDialog(this.data);
-    }
 
 }
