@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ConfirmDialogService } from '../shared/components/dialog/dialog.service';
 import { HttpService } from '../shared/services/http.service';
 import { LogStatus, UpdateLogStatusRequest } from './update-log-status.model';
@@ -22,7 +22,7 @@ export class UpdateLogStatusService {
         return this.httpService.post<LogStatus[]>(url);
     }
 
-    checkLogIds(logs: LogStatus[]) {
+    checkLogIds(logs: LogStatus[]): Observable<boolean> {
 
         const url = `${this.baseUrl}/check-logIds`;
         const body = {

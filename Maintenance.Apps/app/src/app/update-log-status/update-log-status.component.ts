@@ -64,16 +64,18 @@ export class UpdateLogStatusComponent implements OnInit {
         this.dialog.open(UpdateLogStatusDetailComponent, config);
     }
 
-    openUpdateConfirmDialog(log: LogStatus) {
-        // this.updateLogStatusService.openUpdateConfirmDialog(log);
+    handleUpdateLogStatus(logs: LogStatus[]) {
+        this.updateLogStatusService.checkLogIds(logs).subscribe((res) => {
+            if (!res) {
+                this.updateLogStatusService.openWarningDialog();
+                return;
+            }
+            this.updateLogStatusService.openUpdateConfirmDialog(logs);
+        });
     }
 
-    handleUpdateLogStatus(logs: LogStatus[]) { }
-
     exportFile(logs: LogStatus[]) {
-
         let data = '';
-
         logs.forEach(log => {
             data += `${log.logId}`;
             data += `\n${log.transInfoJson ?? ''}\n`;
