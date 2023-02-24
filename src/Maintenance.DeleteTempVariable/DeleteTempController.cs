@@ -17,6 +17,7 @@ public class DeleteTempController : ControllerBase
     private readonly LogStatusService logStatusService;
     private readonly ControlSyncService controlSyncServices;
     private readonly SettlementErrorLogService settlementErrorLogService;
+    private readonly SyncTransIdDirectlyService syncTransIdDirectlyService;
 
 
     public DeleteTempController(
@@ -26,7 +27,8 @@ public class DeleteTempController : ControllerBase
         SystemSettingService systemSettingService,
         LogStatusService logStatusService,
         ControlSyncService controlSyncServices,
-        SettlementErrorLogService settlementErrorLogService)
+        SettlementErrorLogService settlementErrorLogService,
+        SyncTransIdDirectlyService syncTransIdDirectlyService)
     {
         this.parlayLockingService = parlayLockingService;
         this.settlementLockService = settlementLockService;
@@ -35,6 +37,7 @@ public class DeleteTempController : ControllerBase
         this.logStatusService = logStatusService;
         this.controlSyncServices = controlSyncServices;
         this.settlementErrorLogService = settlementErrorLogService;
+        this.syncTransIdDirectlyService = syncTransIdDirectlyService;
     }
 
     [HttpPost]
@@ -167,4 +170,12 @@ public class DeleteTempController : ControllerBase
     [HttpPost("update-ssb-settlement-error-log")]
     public async Task<IActionResult> UpdateSSBSettlementErrorLog(UpdateSiteDbSSBErrorLogRequest request)
         => Ok(await settlementErrorLogService.UpdateSSBSettlementErrorLog(request));
+
+    [HttpGet("sync-transid-get-dbinfo")]
+    public IActionResult GetDbInfo()
+        => Ok(syncTransIdDirectlyService.GetDbInfo());
+
+    [HttpPost("sync-transid-update")]
+    public async Task<IActionResult> UpdateTransId(UpdateTransIdsRequest request)
+        => Ok(await syncTransIdDirectlyService.UpdateTransId(request));
 }

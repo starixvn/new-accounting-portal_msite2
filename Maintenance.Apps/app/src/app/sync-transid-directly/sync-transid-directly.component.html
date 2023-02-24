@@ -1,0 +1,40 @@
+<div class="head-page">
+  <h1 class="title-page">Sync TransIds Directly</h1>
+</div>
+
+<div class="transid-page">
+  <div class="row">
+    <div class="field">
+      <label for="">SiteDB</label>
+      <select [(ngModel)]="siteDBSelected">
+        <option value="">Please Select</option>
+        <option *ngFor="let item of siteDBOptions" [value]="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="">Table Update</label>
+      <select [(ngModel)]="tableSelected">
+        <option value="">Please Select</option>
+        <option *ngFor="let item of tableOptions" [value]="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field" style="align-items: start">
+      <label for="">List TransId</label>
+      <textarea
+        cols="100"
+        rows="10"
+        [(ngModel)]="transIds"
+        placeholder="List TrandId separed by comma','"
+      ></textarea>
+    </div>
+  </div>
+  <p>Ex: 12345,433434,464646</p>
+  <button class="btn-submit" (click)="openConfirmDialog()">UPDATE</button>
+</div>

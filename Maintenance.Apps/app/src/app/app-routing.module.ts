@@ -6,6 +6,7 @@ import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-s
 import { DeleteTempVariableNumberComponent } from './delete-temp-variable-number/delete-temp-variable-number.component';
 import { HomeComponent } from './home/home.component';
 import { SyncSettlementLogComponent } from './sync-settlement-log/sync-settlement-log.component';
+import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-transid-directly.component';
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { UpdateLogStatusComponent } from './update-log-status/update-log-status.component';
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
@@ -46,6 +47,10 @@ const routes: Routes = [
     {
         path: 'sync-settlement-log',
         component: SyncSettlementLogComponent
+    },
+    {
+        path: 'sync-transids-directly',
+        component: SyncTransidDirectlyComponent
     }
 ];
 
