@@ -24,4 +24,5 @@ public class LastLog
     public bool CurrentStatus { get; set; }
 
     public int WaitingCount { get; set; }
+    public QueueType QueueType { get; set; }
 }

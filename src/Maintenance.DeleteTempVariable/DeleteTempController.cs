@@ -146,7 +146,7 @@ public class DeleteTempController : ControllerBase
 
 
     [HttpPost("update-status")]
-    public IActionResult UpdateStatus(UpdateStatusRequest request) => Ok(controlSyncServices.UpdateStatusServiceInRedis(request));
+    public IActionResult UpdateStatus(UpdateStatusRequest request) => Ok(controlSyncServices.UpdateStatusService(request));
 
     [HttpPost("get-settlement-error-logs")]
     public async Task<IActionResult> GetSettlementErrorLogs(SettlementErrorLogRequest request)

@@ -1,9 +1,73 @@
 <div class="head-page">
   <h1 class="title-page">On/Off Sync Service</h1>
-  <div class="refresh" alt="refresh" (click)="loadData()"></div>
+  <div class="refresh" alt="refresh" (click)="loadInfoService()"></div>
 </div>
 
-<table class="table">
+<div class="sportbook">
+  <div class="title-table">
+    <div>
+      <span role="button" class="sp-btn" (click)="toggleSportBook()"
+        >[ - ]</span
+      >
+      Sportsbook
+    </div>
+  </div>
+  <table class="table" *ngIf="!collapseSportBook">
+    <ng-template *ngTemplateOutlet="header"></ng-template>
+
+    <tbody>
+      <ng-container *ngIf="sportBookLogs.length; else noData">
+        <tr *ngFor="let log of sportBookLogs; first as isFirst">
+          <td>{{ log.serverName }}</td>
+          <td>{{ log.lastLogId }}</td>
+          <td>{{ log.statusName }}</td>
+          <td>{{ log.waitingCount }}</td>
+          <td *ngIf="isFirst" [attr.rowspan]="sportBookLogs.length">
+            <mat-slide-toggle
+              color="primary"
+              [checked]="log.currentStatus"
+              (change)="openConfirmDialog($event)"
+            >
+            </mat-slide-toggle>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<div class="non-sport">
+  <div class="title-table">
+    <div>
+      <span role="button" class="sp-btn" (click)="toggleNonSport()">[ - ]</span>
+      Non-sport
+    </div>
+  </div>
+  <table class="table" *ngIf="!collapseNonSport">
+    <ng-template *ngTemplateOutlet="header"></ng-template>
+
+    <tbody>
+      <ng-container *ngIf="nonSportLogs.length; else noData">
+        <tr *ngFor="let log of nonSportLogs; first as isFirst">
+          <td>{{ log.serverName }}</td>
+          <td>{{ log.lastLogId }}</td>
+          <td>{{ log.statusName }}</td>
+          <td>{{ log.waitingCount }}</td>
+          <td *ngIf="isFirst" [attr.rowspan]="nonSportLogs.length">
+            <mat-slide-toggle
+              color="primary"
+              [checked]="log.currentStatus"
+              (change)="openConfirmNonSportDialog($event)"
+            >
+            </mat-slide-toggle>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #header>
   <thead>
     <tr>
       <th>DB Server</th>
@@ -13,28 +77,10 @@
       <th>Action</th>
     </tr>
   </thead>
+</ng-template>
 
-  <tbody>
-    <ng-container *ngIf="lastLogs.length; else noData">
-      <tr *ngFor="let log of lastLogs; first as isFirst">
-        <td>{{ log.serverName }}</td>
-        <td>{{ log.lastLogId }}</td>
-        <td>{{ log.statusName }}</td>
-        <td>{{ log.waitingCount }}</td>
-        <td *ngIf="isFirst" [attr.rowspan]="lastLogs.length">
-          <mat-slide-toggle
-            color="primary"
-            [checked]="log.currentStatus"
-            (change)="openConfirmDialog($event)"
-          >
-          </mat-slide-toggle>
-        </td>
-      </tr>
-    </ng-container>
-    <ng-template #noData>
-      <tr>
-        <td colspan="7" class="no-data">No Information Available</td>
-      </tr>
-    </ng-template>
-  </tbody>
-</table>
+<ng-template #noData>
+  <tr>
+    <td colspan="7" class="no-data">No Information Available</td>
+  </tr>
+</ng-template>

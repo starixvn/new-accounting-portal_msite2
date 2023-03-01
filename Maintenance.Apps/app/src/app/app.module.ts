@@ -35,6 +35,7 @@ import { SettlementErrorLogService } from './sync-settlement-log/sync-settlement
 import { DetailsSettlementLogComponent } from './sync-settlement-log/details-settlement-log.component';
 import { ConfirmDialogComponent } from './shared/components/dialog/confirm/confirm-dialog.component';
 import { WarningDialogComponent } from './shared/components/dialog/warning/warning-dialog.component';
+import { FileService } from './shared/services/file.service';
 
 @NgModule({
     declarations: [
@@ -77,7 +78,8 @@ import { WarningDialogComponent } from './shared/components/dialog/warning/warni
         ConfirmDialogService,
         NavMenuService,
         ControlSyncService,
-        SettlementErrorLogService
+        SettlementErrorLogService,
+        FileService
     ],
     bootstrap: [AppComponent],
 })

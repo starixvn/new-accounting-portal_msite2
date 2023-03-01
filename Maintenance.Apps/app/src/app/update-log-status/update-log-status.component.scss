@@ -30,3 +30,27 @@
   align-items: center;
   column-gap: 20px;
 }
+.non-sportbook {
+  margin-top: 20px;
+}
+
+.title-table {
+  font-weight: bold;
+  font-size: 14px;
+  background-color: #ffc90e;
+  padding: 10px 5px;
+}
+
+.sp-btn {
+  cursor: pointer;
+}
+
+.btn-export {
+  background: green;
+  border: green;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 2px;
+  color: white;
+}

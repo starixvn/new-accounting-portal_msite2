@@ -2,46 +2,112 @@
   <h1 class="title-page">Update Log Status</h1>
   <div class="refresh" alt="refresh" (click)="loadData()"></div>
 </div>
-<table class="table">
+
+<div class="sportbook">
+  <div class="title-table">
+    <span role="button" class="sp-btn" (click)="toggleSportBook()">[ - ]</span>
+    Sportsbook
+  </div>
+  <table class="table" *ngIf="!collapseSport">
+    <ng-template *ngTemplateOutlet="header"></ng-template>
+    <tbody>
+      <ng-container *ngIf="logsProcessed && logsProcessed.length; else noData">
+        <ng-container *ngFor="let item of logsProcessed">
+          <tr *ngFor="let log of item; first as isFirst">
+            <td>{{ log.serverName }}</td>
+            <td>
+              <span
+                (click)="openDetailLogStatusDialog(log)"
+                class="btn-detail"
+                >{{ log.logId }}</span
+              >
+            </td>
+            <td>
+              {{ log.startTime | date : "mediumDate" }}
+              {{ log.startTime | date : "hh:mm:ss a" }}
+            </td>
+            <td *ngIf="isFirst" [attr.rowspan]="item.length">
+              <div class="action-button">
+                <button
+                  class="btn-submit"
+                  (click)="handleUpdateLogStatus(item)"
+                >
+                  Update
+                </button>
+                <button class="btn-export" (click)="exportFile(item)">
+                  Export
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<div class="non-sportbook">
+  <div class="title-table">
+    <span role="button" class="sp-btn" (click)="toggleNonSport()">[ - ]</span>
+    Non-sport
+  </div>
+  <table class="table" *ngIf="!collapseNonSport">
+    <thead class="table-head"></thead>
+    <ng-template *ngTemplateOutlet="header"></ng-template>
+    <tbody>
+      <ng-container
+        *ngIf="
+          nonSportLogsProcessed && nonSportLogsProcessed.length;
+          else noData
+        "
+      >
+        <ng-container *ngFor="let item of nonSportLogsProcessed">
+          <tr *ngFor="let log of item; first as isFirst">
+            <td>{{ log.serverName }}</td>
+            <td>
+              <span
+                (click)="openDetailLogStatusDialog(log)"
+                class="btn-detail"
+                >{{ log.logId }}</span
+              >
+            </td>
+            <td>
+              {{ log.startTime | date : "mediumDate" }}
+              {{ log.startTime | date : "hh:mm:ss a" }}
+            </td>
+            <td *ngIf="isFirst" [attr.rowspan]="item.length">
+              <div class="action-button">
+                <button
+                  class="btn-submit"
+                  (click)="handleUpdateLogStatus(item)"
+                >
+                  Update
+                </button>
+                <button class="btn-export" (click)="exportFile(item)">
+                  Export
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #header>
   <thead class="table-head">
     <tr>
-      <th>DB Server</th>
+      <th style="width: 20%">DB Server</th>
       <th>LogID</th>
       <th>StartTime</th>
-      <th class="action">Action</th>
+      <th style="width: 15%">Action</th>
     </tr>
   </thead>
-  <tbody>
-    <ng-container *ngIf="logsProcessed && logsProcessed.length; else noData">
-      <ng-container *ngFor="let item of logsProcessed">
-        <tr *ngFor="let log of item; first as isFirst">
-          <td>{{ log.serverName }}</td>
-          <td>
-            <span (click)="openDetailLogStatusDialog(log)" class="btn-detail">{{
-              log.logId
-            }}</span>
-          </td>
-          <td>
-            {{ log.startTime | date : "mediumDate" }}
-            {{ log.startTime | date : "hh:mm:ss a" }}
-          </td>
-          <td *ngIf="isFirst" [attr.rowspan]="item.length">
-            <div class="action-button">
-              <button class="btn-submit" (click)="handleUpdateLogStatus(item)">
-                Update
-              </button>
-              <!-- <button class="btn-delete" (click)="openDeleteConfirmDialog(log)">
-                    Delete
-                  </button> -->
-            </div>
-          </td>
-        </tr>
-      </ng-container>
-    </ng-container>
-    <ng-template #noData>
-      <tr>
-        <td colspan="8" class="no-data">No Information Available</td>
-      </tr>
-    </ng-template>
-  </tbody>
-</table>
+</ng-template>
+
+<ng-template #noData>
+  <tr>
+    <td colspan="8" class="no-data">No Information Available</td>
+  </tr>
+</ng-template>

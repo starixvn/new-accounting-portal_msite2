@@ -17,6 +17,8 @@ export interface LogStatus {
     logDate: string;
     settlementAction: string;
     ticketType: string;
+
+    queueType: number;
 }
 
 export interface UpdateLogStatusRequest {
