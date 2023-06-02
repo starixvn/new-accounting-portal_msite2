@@ -12,10 +12,10 @@ import { UpdateLogStatusComponent } from './update-log-status/update-log-status.
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
 
 const routes: Routes = [
-    {
-        path: 'update-log-status',
-        component: UpdateLogStatusComponent,
-    },
+    // {
+    //     path: 'update-log-status',
+    //     component: UpdateLogStatusComponent,
+    // },
     {
         path: 'update-log/:id',
         component: UpdateLogStatusDetailComponent,
@@ -41,16 +41,22 @@ const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: 'control-sync-service',
-        component: ControlSyncServiceComponent,
-    },
-    {
-        path: 'sync-settlement-log',
-        component: SyncSettlementLogComponent
-    },
-    {
-        path: 'sync-transids-directly',
-        component: SyncTransidDirectlyComponent
+        path: 'sync-service',
+        children: [
+            {
+                path: 'on-off-service',
+                component: ControlSyncServiceComponent,
+
+            },
+            {
+                path: 'sync-settlement-log',
+                component: SyncSettlementLogComponent
+            },
+            {
+                path: 'sync-transids',
+                component: SyncTransidDirectlyComponent
+            },
+        ]
     }
 ];
 

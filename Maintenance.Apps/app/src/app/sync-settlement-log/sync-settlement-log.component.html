@@ -11,13 +11,11 @@
   <div class="guideline">
     <div>
       <div class="bold">Guideline: You need to do step by step</div>
+
+      <span class="bold">Step 1:</span> Check SessionId Detail and backup list
+      TransId
       <div>
-        <span class="bold">Step 1:</span> Check SessionId detail and copy
-        TransId <span class="red">(backup)</span>
-      </div>
-      <div>
-        <span class="bold">Step 2:</span>Update/Delete
-        SiteDB_SettlementProcessing
+        <span class="bold">Step 2:</span>Delete SiteDB_SettlementProcessing
       </div>
     </div>
     <div>
@@ -26,6 +24,7 @@
         exceed 5min)
       </div>
       <div><span class="bold"> Step 4:</span> Update SSB_SettlementLogs</div>
+      <div><span class="bold"> Step 5:</span> Sync TransId Directly</div>
     </div>
   </div>
 </div>
@@ -83,7 +82,7 @@
 
           <td>
             <div class="action">
-              <button
+              <!-- <button
                 class="btn-submit"
                 [ngClass]="
                   item.tableNames.includes('SiteDB_SettlementProcessing')
@@ -96,7 +95,7 @@
                 "
               >
                 UPDATE
-              </button>
+              </button> -->
               <button
                 class="btn-delete"
                 [ngClass]="

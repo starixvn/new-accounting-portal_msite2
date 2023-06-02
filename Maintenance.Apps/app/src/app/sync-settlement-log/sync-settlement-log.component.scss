@@ -33,7 +33,9 @@
 
   .guideline {
     display: flex;
-    column-gap: 50px;
+    // column-gap: 50px;
+    justify-content: space-between;
+    width: 100%;
   }
   .bold {
     font-weight: bold;

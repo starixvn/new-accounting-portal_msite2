@@ -44,7 +44,6 @@ export class SyncSettlementLogComponent implements OnInit {
     }
 
     loadData() {
-        console.log(+this.matchId)
         this.settlementErrorLogService.getAll(+this.matchId).subscribe(res => {
             this.logs = this.processLogs(res);
         })
@@ -122,7 +121,7 @@ export class SyncSettlementLogComponent implements OnInit {
 
             const config = {
                 data: { sessionId: item.sessionId, logs: res },
-                width: '600px',
+                width: '700px',
                 panelClass: 'detail-log-dialog',
             };
             this.dialog.open(DetailsSettlementLogComponent, config);

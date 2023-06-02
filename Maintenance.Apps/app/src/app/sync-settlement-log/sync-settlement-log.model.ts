@@ -18,6 +18,8 @@ export interface SettlementErrorLog {
 export interface DetailSettlementErrorLog {
     id: number;
     ticketCount: number;
+    functionName: string;
+    tableName: string;
     ticketType: string;
     settlementAction: string;
     statusId: number;

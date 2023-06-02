@@ -2,10 +2,27 @@
   <h1 class="title-page">Sync TransIds Directly</h1>
 </div>
 
+<div class="filter">
+  <div class="guideline" style="display: flex; justify-content: space-between">
+    <div>
+      <div class="bold">Guideline: You need to do step by step</div>
+      <div><span class="bold">Step 1:</span> Select SiteDB</div>
+      <div><span class="bold">Step 2:</span>Select Table</div>
+    </div>
+    <div>
+      <div><span class="bold">Step 3:</span> Input list TransId</div>
+      <div>
+        <span class="bold red"> Note:</span> If Table Update is "bettransm",
+        please announce Keyscore for re-cal match
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="transid-page">
   <div class="row">
     <div class="field">
-      <label for="">SiteDB</label>
+      <label class="site-label">SiteDB</label>
       <select [(ngModel)]="siteDBSelected">
         <option value="">Please Select</option>
         <option *ngFor="let item of siteDBOptions" [value]="item">
@@ -14,7 +31,7 @@
       </select>
     </div>
     <div class="field">
-      <label for="">Table Update</label>
+      <label>Table Update</label>
       <select [(ngModel)]="tableSelected">
         <option value="">Please Select</option>
         <option *ngFor="let item of tableOptions" [value]="item">
@@ -25,16 +42,23 @@
   </div>
 
   <div class="row">
-    <div class="field" style="align-items: start">
-      <label for="">List TransId</label>
-      <textarea
-        cols="100"
-        rows="10"
-        [(ngModel)]="transIds"
-        placeholder="List TrandId separed by comma','"
-      ></textarea>
+    <div class="field" style="align-items: start; width: 100%">
+      <label class="site-label">List TransId</label>
+      <div style="width: 100%">
+        <textarea
+          cols="100"
+          rows="10"
+          style="width: 100%"
+          [(ngModel)]="transIds"
+          placeholder="List TrandId separed by comma','"
+        ></textarea>
+        <div class="transid-info">
+          <p>Ex: 12345,433434,464646</p>
+          <p class="error">Max: 2000 TrandsIds</p>
+        </div>
+      </div>
     </div>
   </div>
-  <p>Ex: 12345,433434,464646</p>
+  <div class="row"></div>
   <button class="btn-submit" (click)="openConfirmDialog()">UPDATE</button>
 </div>

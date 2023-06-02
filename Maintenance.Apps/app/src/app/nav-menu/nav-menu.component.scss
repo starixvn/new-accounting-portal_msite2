@@ -61,26 +61,10 @@ nav {
             min-width: 140px;
             font-size: 1.2em;
           }
-
-          &:hover a {
-            text-decoration: none;
-            background-color: #549cba;
-            color: #fff;
-            &.active-link {
-              background-color: #777;
-            }
-          }
         }
       }
 
       &:hover {
-        > a {
-          text-decoration: none;
-          background-color: #fff;
-          color: $brand-color;
-          text-shadow: 0 0 3px #fff;
-        }
-
         ul {
           top: 50px;
           visibility: visible;
@@ -99,6 +83,51 @@ nav {
 
     > li.has-kids:hover > a {
       cursor: default;
+    }
+
+    .parent-menu-item {
+      position: relative;
+      &:hover {
+        .item__link {
+          text-decoration: none;
+          background-color: #549cba;
+          color: #fff;
+          &.active-link {
+            background-color: #777;
+          }
+        }
+        .child-menu {
+          position: absolute;
+          top: 0 !important;
+          left: 100% !important;
+          width: 100%;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+      }
+    }
+
+    .child-menu {
+      margin: 0;
+      position: absolute;
+      top: 0 !important;
+      left: 100% !important;
+      width: 100%;
+      padding: 0 !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      .child-menu-item {
+        &:hover {
+          .child-item__link {
+            text-decoration: none;
+            background-color: #549cba;
+            color: #fff;
+            &.active-link {
+              background-color: #777;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -164,13 +193,13 @@ nav {
         text-decoration: none;
       }
 
-      ul {
-        top: 50px;
-        visibility: visible;
-        opacity: 1;
-        @extend .box-shadow;
-        border-bottom: 5px solid $brand-color;
-      }
+      //   ul {
+      //     top: 50px;
+      //     visibility: visible;
+      //     opacity: 1;
+      //     @extend .box-shadow;
+      //     border-bottom: 5px solid $brand-color;
+      //   }
     }
   }
 }

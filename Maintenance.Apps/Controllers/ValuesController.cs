@@ -28,6 +28,8 @@ public class ValuesController : ControllerBase
         var session = new NapSession(new HttpContextAccessor());
         var menuItemList = session.MenuItemList;
         var menus = menuItemList.OrderBy(m => m.DisplayOrder).ToList();
+        var groupMenus = menus.GroupBy(m => m.ParentId);
+
         var userName = session.UserName;
         return Ok(new
         {

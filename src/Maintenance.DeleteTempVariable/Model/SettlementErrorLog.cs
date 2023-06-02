@@ -25,6 +25,8 @@ public class DetailSettlementErrorLog
     public string SettlementAction { get; set; }
     public int StatusId { get; set; }
     public string TransIds { get; set; }
+    public string FunctionName { get; set; }
+    public string TableName { get; set; }
     public string TicketTypeExplicit =>
         TicketType switch
         {

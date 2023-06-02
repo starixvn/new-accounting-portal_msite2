@@ -17,14 +17,16 @@ export class NavMenuComponent implements OnInit {
     }
 
     getUrl(validUrl: string) {
-        return validUrl.split("/").pop()
+        var url = validUrl.split("/");
+        url.shift()
+        return url.slice(1).join("/");
     }
 
     loadMenu() {
         this.menuService.getMenu().subscribe((data) => {
 
             const listMenus = [...data.menus];
-            console.log(listMenus);
+
             const menuList = listMenus
                 .filter((m) => m.parentId == 0)
                 .sort((x) => x.displayOrder);
@@ -36,6 +38,16 @@ export class NavMenuComponent implements OnInit {
                 menu.subMenu = subMenus;
             });
 
+            menuList.forEach((menu) => {
+                menu.subMenu.forEach(m => {
+                    const subMenus = listMenus
+                        .filter((x) => x.parentId == m.id)
+                        .sort((x) => x.displayOrder);
+                    m.subMenu = subMenus;
+                });
+            })
+
+            console.log(menuList)
 
             this.menus = menuList;
             this.userName = data.userName;

@@ -17,6 +17,8 @@ export class SyncTransidDirectlyComponent implements OnInit {
 
     transIds: string = '';
 
+    maxTransId = 2000;
+
     constructor(
         private dialogService: ConfirmDialogService,
         private syncTransIdService: SyncTransIdService,
@@ -42,7 +44,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
         }
 
         if (!this.validTransIds()) {
-            this.dialogService.openWarning({ message: "Invalid input. Your input need to be number and separated by comma (',') " })
+            this.dialogService.openWarning({ message: "Invalid input. Your input need to be number and separated by comma (',') and max 2000" })
             return;
         }
 
@@ -62,7 +64,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
 
     validTransIds() {
         const ids = this.transIds.split(",");
-        return this.transIds && !ids.some(v => !parseInt(v))
+        return this.transIds && !ids.some(v => !parseInt(v)) && ids.length <= 2000;
     }
 
     handleConfirm() {
