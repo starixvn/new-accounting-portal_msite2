@@ -1,10 +1,13 @@
-﻿using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
 namespace Maintenance.DeleteTempVariable.Criteria;
 public class UpdateTransIdsCriteria : INonQueryCommand
 {
     public string TransIds { get; set; }
     public string TableName { get; set; }
+
+    [SpParam(Ignored = true)]
     public string ServerName { get; set; }
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }

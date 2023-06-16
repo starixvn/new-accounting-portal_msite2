@@ -50,7 +50,6 @@ export class SettlementErrorLogService {
             action: action,
             dbServer: item.dbServer
         };
-        console.log(body)
         return this.httpService.post<number>(url, body);
     }
 
@@ -63,7 +62,6 @@ export class SettlementErrorLogService {
             startTime: item.createdTime,
             messageId: item.messageId
         };
-        console.log(body)
         return this.httpService.post<number>(url, body);
     }
 }
