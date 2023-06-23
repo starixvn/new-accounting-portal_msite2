@@ -36,6 +36,9 @@ import { DetailsSettlementLogComponent } from './sync-settlement-log/details-set
 import { ConfirmDialogComponent } from './shared/components/dialog/confirm/confirm-dialog.component';
 import { WarningDialogComponent } from './shared/components/dialog/warning/warning-dialog.component';
 import { FileService } from './shared/services/file.service';
+import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-transid-directly.component';
+import { SyncTransIdService } from './sync-transid-directly/sync-transid-directly.service';
+
 
 @NgModule({
     declarations: [
@@ -54,7 +57,8 @@ import { FileService } from './shared/services/file.service';
         PasteIconComponent,
         ReplaceLineBreaks,
         SyncSettlementLogComponent,
-        DetailsSettlementLogComponent
+        DetailsSettlementLogComponent,
+        SyncTransidDirectlyComponent
     ],
     imports: [
         BrowserModule,
@@ -65,6 +69,7 @@ import { FileService } from './shared/services/file.service';
         AngularMaterialModule,
         BrowserAnimationsModule,
         ClipboardModule,
+
     ],
     providers: [
         SnackbarService,
@@ -79,7 +84,8 @@ import { FileService } from './shared/services/file.service';
         NavMenuService,
         ControlSyncService,
         SettlementErrorLogService,
-        FileService
+        FileService,
+        SyncTransIdService
     ],
     bootstrap: [AppComponent],
 })

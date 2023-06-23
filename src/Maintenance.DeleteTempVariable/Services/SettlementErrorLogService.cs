@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
 using Maintenance.DeleteTempVariable.Constants;
+using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
@@ -28,10 +29,17 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     private readonly IDynamicRepository repository;
     private readonly IMapper mapper;
 
+    private Dictionary<short, string> SiteDBs = new()
+    {
+        { 1, "DBSID01" },
+        { 3,"DBSID02" },
+    };
+
     public SettlementErrorLogServiceImp(
         IDynamicRepository repository,
            IOptions<AppSettingsKey> appSettingsKey,
-           IMapper mapper)
+           IMapper mapper
+)
     {
         this.repository = repository;
         this.appSettingsKey = appSettingsKey.Value;
@@ -123,10 +131,39 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
     {
         var criteria = mapper.Map<GetSettlementErrorLogDetailsCriteria>(request);
 
-        var result = await repository.FetchAsync<DetailSettlementErrorLog>(criteria);
+        var logs = await repository.FetchAsync<DetailSettlementErrorLog>(criteria);
 
-        return result.ToList();
+        var logInfo = await GetLogStatus(request.SessionId, request.SiteDBGroupId);
+
+        foreach (var log in logs)
+        {
+            AssignLogInfo(log, logInfo);
+        }
+
+        return logs.ToList();
     }
+
+    private void AssignLogInfo(DetailSettlementErrorLog log, LogStatus logInfo)
+    {
+        log.TableName = logInfo.TableName;
+        log.FunctionName = logInfo.FunctionName;
+        log.TicketType = logInfo.TicketType;
+        log.SettlementAction = logInfo.SettlementAction;
+    }
+
+    private async Task<LogStatus> GetLogStatus(long sessionId, short siteDBGroupId)
+    {
+        var server = SiteDBs.TryGetValue(siteDBGroupId, out var value) ? value : string.Empty;
+        var criteria = new GetLogStatusCriteria
+        {
+            DbServer = server,
+            SessionId = sessionId
+        };
+        var result = (await repository.GetAsync<LogStatus>(criteria));
+
+        return result;
+    }
+
 
     public async Task<int> DeleteSettlementProcessingErrorsLog(DeleteSettlementProcessingErrorLogRequest request)
     {

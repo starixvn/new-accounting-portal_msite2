@@ -1,0 +1,6 @@
+﻿namespace Maintenance.DeleteTempVariable.Model;
+public class DbInfo
+{
+    public List<string> Tables { get; set; }
+    public List<string> DbSites { get; set; }
+}

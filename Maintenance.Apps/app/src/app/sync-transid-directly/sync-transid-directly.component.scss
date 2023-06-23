@@ -1,0 +1,38 @@
+.filter {
+  //   display: flex;
+  //   align-items: center;
+  //   column-gap: 100px;
+  //   margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.transid-page {
+  .row {
+    display: flex;
+    column-gap: 100px;
+    margin-top: 20px;
+  }
+  .field {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    font-weight: bold;
+    .site-label {
+      width: 90px;
+    }
+    select {
+      min-width: 150px;
+      border-color: grey;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    .transid-info {
+      display: flex;
+      justify-content: space-between;
+      .error {
+        color: red;
+      }
+    }
+  }
+}

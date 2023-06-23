@@ -67,6 +67,12 @@
       <Setting Key="NAP_Set_SSBErrorMessageSel_DBSID01" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID01.bodb02.bodbAdminNet" />
       <Setting Key="NAP_Set_SSBErrorMessageSel_DBSID02" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID02.bodb02.bodbAdminNet" />
     </Function>
+
+	  <Function Name="NAP_Set_SiteDB_SyncTransIdToCentralDB">
+		  <Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBTXN" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB_xpre" DbName="DBTXN.bodb02.bodbAdminNet" />
+		  <Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSID01" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB_xpre" DbName="DBSID01.bodb02.bodbAdminNet" />
+		  <Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSID02" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB_xpre" DbName="DBSID02.bodb02.bodbAdminNet" />
+	  </Function>
   </Function>
 
   <Function Name="TempVariableNumber Sub DB">

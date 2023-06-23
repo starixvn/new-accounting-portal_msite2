@@ -141,6 +141,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<SettlementErrorLogService, SettlementErrorLogServiceImp>();
         services.AddTransient<GeneralService, GeneralServiceImp>();
         services.AddTransient<ScaleOutSettleService, ScaleOutSettleServiceImp>();
+        services.AddTransient<SyncTransIdDirectlyService, SyncTransIdDirectlyServiceImp>();
 
         return services;
     }

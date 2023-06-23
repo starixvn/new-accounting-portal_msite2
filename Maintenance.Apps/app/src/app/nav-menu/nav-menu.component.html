@@ -6,13 +6,27 @@
     <ul class="menu">
       <li class="has-kids" *ngFor="let menu of menus">
         <a href="javascript:;">{{ menu.name }}</a>
-        <ul>
-          <li *ngFor="let subMenu of menu.subMenu">
+        <ul class="parent-menu">
+          <li *ngFor="let subMenu of menu.subMenu" class="parent-menu-item">
             <a
-              [routerLink]="['', getUrl(subMenu.validUrl)]"
+              class="item__link"
+              [routerLink]="[getUrl(subMenu.validUrl)]"
               [routerLinkActive]="['active-link']"
               >{{ subMenu.name }}</a
             >
+            <ul
+              class="child-menu"
+              *ngIf="subMenu.subMenu && subMenu.subMenu.length"
+            >
+              <li *ngFor="let item of subMenu.subMenu" class="child-menu-item">
+                <a
+                  class="child-item__link"
+                  [routerLink]="[getUrl(item.validUrl)]"
+                  [routerLinkActive]="['active-link']"
+                  >{{ item.name }}</a
+                >
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
@@ -21,7 +35,7 @@
   <div class="user-info">
     <div class="greeting">
       <h2>Welcome, {{ userName }}</h2>
-      <ul>
+      <ul class="log-out">
         <li><a href="/Auth/LogOut" title="Sign Out">Sign Out</a></li>
       </ul>
     </div>
