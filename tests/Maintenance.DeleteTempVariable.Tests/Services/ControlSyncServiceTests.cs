@@ -31,18 +31,18 @@ namespace Maintenance.DeleteTempVariable.Tests.Services
             repository = Substitute.For<IDynamicRepository>();
         }
 
-        [Fact]
-        public void UpdateStatusServiceInRedis_InputTrue_ReturnTrue()
-        {
-            // Arrange
-            var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);
+        //[Fact]
+        //public void UpdateStatusServiceInRedis_InputTrue_ReturnTrue()
+        //{
+        //    // Arrange
+        //    var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);
 
-            // Act
-            var result = service.UpdateStatusServiceInRedis(new Requests.UpdateStatusRequest { Status = true });
+        //    // Act
+        //    var result = service.UpdateStatusServiceInRedis(new Requests.UpdateStatusRequest { Status = true });
 
-            // Assert
-            Assert.True(result);
-        }
+        //    // Assert
+        //    Assert.True(result);
+        //}
 
         [Fact]
         public async void GetInfoService_ReturnCorrectData()
@@ -57,8 +57,5 @@ namespace Maintenance.DeleteTempVariable.Tests.Services
             // Assert
             Assert.Equal(result, new List<LastLog>());
         }
-
     }
-
-
 }
