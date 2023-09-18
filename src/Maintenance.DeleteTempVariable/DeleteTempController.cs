@@ -19,6 +19,8 @@ public class DeleteTempController : ControllerBase
     private readonly SettlementErrorLogService settlementErrorLogService;
     private readonly SyncTransIdDirectlyService syncTransIdDirectlyService;
 
+    private readonly FlagBroadcastService flagBroadcastService;
+
 
     public DeleteTempController(
         ParlayLockingService parlayLockingService,
@@ -28,7 +30,8 @@ public class DeleteTempController : ControllerBase
         LogStatusService logStatusService,
         ControlSyncService controlSyncServices,
         SettlementErrorLogService settlementErrorLogService,
-        SyncTransIdDirectlyService syncTransIdDirectlyService)
+        SyncTransIdDirectlyService syncTransIdDirectlyService,
+        FlagBroadcastService flagBroadcastService)
     {
         this.parlayLockingService = parlayLockingService;
         this.settlementLockService = settlementLockService;
@@ -38,6 +41,7 @@ public class DeleteTempController : ControllerBase
         this.controlSyncServices = controlSyncServices;
         this.settlementErrorLogService = settlementErrorLogService;
         this.syncTransIdDirectlyService = syncTransIdDirectlyService;
+        this.flagBroadcastService = flagBroadcastService;
     }
 
     [HttpPost]
@@ -178,4 +182,10 @@ public class DeleteTempController : ControllerBase
     [HttpPost("sync-transid-update")]
     public async Task<IActionResult> UpdateTransId(UpdateTransIdsRequest request)
         => Ok(await syncTransIdDirectlyService.UpdateTransId(request));
+
+    [HttpPost("get-flag-broadcast-status")]
+    public async Task<IActionResult> GetBroadcastStatus() => Ok(await flagBroadcastService.GetFlagInfo());
+
+    [HttpPost("update-flag-broadcast-status")]
+    public async Task<IActionResult> UpdateBroadcastStatus(UpdateFlagBroadcastRequest request) => Ok(await flagBroadcastService.UpdateFlagInfo(request));
 }

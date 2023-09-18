@@ -1,0 +1,98 @@
+import { Component, OnInit } from '@angular/core';
+import { ConfirmDialogService } from '../shared/components/dialog/dialog.service';
+import { FlagBroadcast } from './update-flag-broadcast.model';
+import { UpdateFlagBroadcastService } from './update-flag-broadcast.service';
+import * as _ from 'lodash';
+
+@Component({
+  selector: 'app-control-sync-service',
+  templateUrl: './update-flag-broadcast.component.html',
+  styleUrls: ['./update-flag-broadcast.component.scss'],
+})
+export class UpdateFlagBroadcastComponent implements OnInit {
+  public flagBroadcast!: FlagBroadcast;
+  public flagStatus = false;
+  public products: any;
+  public selectedProduct: number[] = [];
+  constructor(
+    private dialogService: ConfirmDialogService,
+    private updateFlagBroadcastService: UpdateFlagBroadcastService
+  ) {}
+
+  ngOnInit(): void {
+    this.products = [
+      { id: 1, name: 'Bitcoin', isSelected: false },
+      { id: 2, name: 'Happy5', isSelected: false },
+      { id: 3, name: 'Number Game', isSelected: false },
+      { id: 4, name: 'Outright', isSelected: false },
+      { id: 5, name: 'Virtual Bet Rardar', isSelected: false },
+      { id: 6, name: 'Virtual sports', isSelected: false },
+      { id: 7, name: 'Bet Builder', isSelected: false },
+      { id: 8, name: 'PinGoal', isSelected: false },
+      { id: 9, name: 'Fast Market', isSelected: false },
+      { id: 10, name: 'Leap Gaming', isSelected: false },
+    ];
+    this.loadInfo();
+  }
+
+  loadInfo() {
+    this.updateFlagBroadcastService.getInfo().subscribe((res) => {
+      this.flagBroadcast = res;
+      this.flagStatus = this.flagBroadcast.currentStatus;
+      const productType = this.flagBroadcast.productType.split(',');
+
+      this.products.forEach((item: any) => {
+        item.isSelected = _.includes(productType, item.id.toString());
+      });
+    });
+  }
+
+  openConfirmDialog(e: any) {
+    const message = this.createDialogMessage(e.checked);
+    const confirmText = e.checked ? 'ON' : 'OFF';
+    const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
+
+    this.dialogService
+      .openConfirm({ message, confirmText, confirmStyle })
+      .afterClosed()
+      .subscribe((confirm: Boolean) => {
+        if (confirm) {
+          this.flagStatus = e.checked;
+          this.handleConfirm(this.flagStatus, this.selectedProduct, e);
+        } else {
+          e.source.checked = this.flagStatus;
+        }
+      });
+  }
+
+  createDialogMessage(status: boolean) {
+    const contentStatus = status ? 'ON' : 'OFF';
+    const className = status ? 'blue' : 'red';
+    const statusMessage = `<span class="${className}"><b>${contentStatus}</b></span>`;
+    const message = `Are you sure you want to ${statusMessage} flag for deploying on Broadcast API?`;
+    return message;
+  }
+
+  handleConfirm(status: boolean, productType: number[], e: any) {
+    if (this.flagStatus && this.selectedProduct.length == 0) {
+      alert('Please select product to ON.');
+      this.flagStatus = false;
+      e.source.checked = false;
+    } else {
+      this.updateFlagBroadcastService
+        .updateFlag(status, productType)
+        .subscribe((res) => {
+          this.loadInfo();
+        });
+    }
+  }
+
+  getCheckedItemList() {
+    this.selectedProduct = [];
+    for (var i = 0; i < this.products.length; i++) {
+      if (this.products[i].isSelected) {
+        this.selectedProduct.push(this.products[i].id);
+      }
+    }
+  }
+}
