@@ -30,7 +30,7 @@ using SharpRaven;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+    public static void AddAutoMapper(this IServiceCollection services)
     {
         var mapperConfig = new MapperConfiguration(mc =>
         {
@@ -41,11 +41,9 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(mapper);
 
         services.AddMvc();
-
-        return services;
     }
 
-    public static IServiceCollection AddControllerAuthorization(this IServiceCollection services)
+    public static void AddControllerAuthorization(this IServiceCollection services)
     {
         services.AddControllers(config =>
         {
@@ -60,11 +58,9 @@ public static class ServiceCollectionExtensions
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             }
         );
-
-        return services;
     }
 
-    public static IServiceCollection AddCookieAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static void AddCookieAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
@@ -83,14 +79,11 @@ public static class ServiceCollectionExtensions
                             return Task.CompletedTask;
                         };
                     });
-
-        return services;
     }
 
-    public static IServiceCollection AddCoreServices(this IServiceCollection services)
+    public static void AddCoreServices(this IServiceCollection services)
     {
         services.AddScoped<IDynamicRepository, DynamicRepository>();
-        return services;
     }
 
     public static IServiceCollection AddFanexServices(this IServiceCollection services, IConfiguration configuration)
@@ -130,7 +123,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddInternalServices(this IServiceCollection services)
+    public static void AddInternalServices(this IServiceCollection services)
     {
         services.AddTransient<ParlayLockingService, ParlayLockingServiceImp>();
         services.AddTransient<SettlementLockService, SettlementLockServiceImp>();
@@ -142,16 +135,12 @@ public static class ServiceCollectionExtensions
         services.AddTransient<GeneralService, GeneralServiceImp>();
         services.AddTransient<ScaleOutSettleService, ScaleOutSettleServiceImp>();
         services.AddTransient<SyncTransIdDirectlyService, SyncTransIdDirectlyServiceImp>();
-
-        return services;
+        services.AddTransient<FlagBroadcastService, FlagBroadcastServiceImp>();
     }
 
-    public static IServiceCollection AddMediator(this IServiceCollection services)
-    {
-        return services;
-    }
 
-    public static IServiceCollection AddNapServices(this IServiceCollection services, IConfiguration configuration)
+
+    public static void AddNapServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddTransient<Fanex.Logging.ILogger, Logger>();
         services.AddSingleton<INapSettings>(new NapSettings(configuration));
@@ -161,18 +150,14 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IUserService, UserService>();
         services.AddSingleton<ISecurityService, SecurityService>();
         services.AddSingleton<ISiteService, SiteService>();
-
-        return services;
     }
 
-    public static IServiceCollection AddOnebookUM(this IServiceCollection services, IConfiguration configuration)
+    public static void AddOnebookUM(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterServiceCollection(configuration);
-
-        return services;
     }
 
-    public static IServiceCollection AddRedisSession(this IServiceCollection services, IConfiguration configuration)
+    public static void AddRedisSession(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSession(options =>
         {
@@ -194,11 +179,9 @@ public static class ServiceCollectionExtensions
             options.Configuration = redisConfig;
             options.InstanceName = "Fanex.mSite2.Session-";
         });
-
-        return services;
     }
 
-    public static IServiceCollection AddConfigRedisCache(this IServiceCollection service, IConfiguration configuration)
+    public static void AddConfigRedisCache(this IServiceCollection service, IConfiguration configuration)
     {
         var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
         var applicationName = configuration.GetSection("AuthSettings:ChannelPrefix").Value;
@@ -208,7 +191,5 @@ public static class ServiceCollectionExtensions
             ApplicationName = applicationName,
         }));
         service.AddSingleton<ICacheService>(new CacheService());
-
-        return service;
     }
 }

@@ -38,55 +38,57 @@ import { WarningDialogComponent } from './shared/components/dialog/warning/warni
 import { FileService } from './shared/services/file.service';
 import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-transid-directly.component';
 import { SyncTransIdService } from './sync-transid-directly/sync-transid-directly.service';
-
+import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-flag-broadcast.component';
+import { UpdateFlagBroadcastService } from './update-flag-broadcast/update-flag-broadcast.service';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        UpdateLogStatusComponent,
-        DeleteTempVariableNumberComponent,
-        NavMenuComponent,
-        DeleteParlayLockingComponent,
-        DeleteSettlementLockComponent,
-        ConfirmDialogComponent,
-        WarningDialogComponent,
-        DeleteTempVariableNumberDetailComponent,
-        UpdateSystemSettingsComponent,
-        UpdateLogStatusDetailComponent,
-        ControlSyncServiceComponent,
-        PasteIconComponent,
-        ReplaceLineBreaks,
-        SyncSettlementLogComponent,
-        DetailsSettlementLogComponent,
-        SyncTransidDirectlyComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AngularMaterialModule,
-        BrowserAnimationsModule,
-        ClipboardModule,
-
-    ],
-    providers: [
-        SnackbarService,
-        HttpService,
-        DeleteTempVariableNumberService,
-        UpdateSystemSettingService,
-        MatchSettlementLockService,
-        MatchParlayLockingService,
-        UpdateLogStatusService,
-        BlockUIService,
-        ConfirmDialogService,
-        NavMenuService,
-        ControlSyncService,
-        SettlementErrorLogService,
-        FileService,
-        SyncTransIdService
-    ],
-    bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    UpdateLogStatusComponent,
+    DeleteTempVariableNumberComponent,
+    NavMenuComponent,
+    DeleteParlayLockingComponent,
+    DeleteSettlementLockComponent,
+    ConfirmDialogComponent,
+    WarningDialogComponent,
+    DeleteTempVariableNumberDetailComponent,
+    UpdateSystemSettingsComponent,
+    UpdateLogStatusDetailComponent,
+    ControlSyncServiceComponent,
+    PasteIconComponent,
+    ReplaceLineBreaks,
+    SyncSettlementLogComponent,
+    DetailsSettlementLogComponent,
+    SyncTransidDirectlyComponent,
+    UpdateFlagBroadcastComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularMaterialModule,
+    BrowserAnimationsModule,
+    ClipboardModule,
+  ],
+  providers: [
+    SnackbarService,
+    HttpService,
+    DeleteTempVariableNumberService,
+    UpdateSystemSettingService,
+    MatchSettlementLockService,
+    MatchParlayLockingService,
+    UpdateLogStatusService,
+    BlockUIService,
+    ConfirmDialogService,
+    NavMenuService,
+    ControlSyncService,
+    SettlementErrorLogService,
+    FileService,
+    SyncTransIdService,
+    UpdateFlagBroadcastService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

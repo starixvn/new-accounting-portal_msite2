@@ -35,7 +35,6 @@ builder.Services.AddNapServices(builder.Configuration);
 builder.Services.AddFanexServices(builder.Configuration);
 builder.Services.AddOnebookUM(builder.Configuration);
 builder.Services.AddCoreServices();
-builder.Services.AddMediator();
 builder.Services.AddAutoMapper();
 builder.Services.AddInternalServices();
 builder.Services.AddControllersWithViews(options =>

@@ -1,0 +1,50 @@
+.head-page {
+  flex: auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  column-gap: 20px;
+}
+.mat-slide-toggle {
+  &.mat-checked {
+    ::ng-deep.mat-slide-toggle-bar::after {
+      content: "ON";
+      font-size: 50%;
+      font-weight: 700;
+      position: absolute;
+      color: white;
+      left: 4px;
+      top: -5px;
+    }
+  }
+  &:not(.mat-checked) {
+    ::ng-deep.mat-slide-toggle-bar::after {
+      content: "OFF";
+      font-size: 50%;
+      font-weight: 700;
+      color: white;
+      position: absolute;
+      left: 21px;
+      top: -5px;
+    }
+  }
+}
+.table {
+  width: 500px;
+  text-align: center;
+  td:first-child {
+    text-align: left;
+  }
+  td {
+    text-align: center;
+  }
+  .title-table {
+    font-weight: bold;
+    padding: 5px;
+    background-color: #ffc90e;
+  }
+}
+
+.products-type {
+  text-align: left !important;
+}
