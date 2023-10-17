@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Services.Configure<AppSettingsKey>(builder.Configuration.GetSection(AppSettingsKey.MultiDbServer));
+builder.Services.Configure<AppSettingsKey>(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddSession();
@@ -68,7 +69,6 @@ app.UseEndpoints(endpoints =>
 NapClientManager
     .UseConfig(app.Services.GetService<INapSettings>())
     .UseSession(app.Services.GetService<INapSession>());
-
 
 #if DEBUG
 app.Run();

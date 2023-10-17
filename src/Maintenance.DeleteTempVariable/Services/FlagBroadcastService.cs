@@ -4,6 +4,8 @@ using Fanex.NAP.Client.Helpers.Web;
 using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
+using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
 
 namespace Maintenance.DeleteTempVariable.Services;
 
@@ -12,6 +14,8 @@ public interface FlagBroadcastService
     Task<FlagBroadcast> GetFlagInfo();
 
     Task<bool> UpdateFlagInfo(UpdateFlagBroadcastRequest request);
+
+    uint GetMessageWaitingCount(string queue);
 }
 
 public class FlagBroadcastServiceImp : FlagBroadcastService
@@ -26,27 +30,28 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
 
     private readonly ICache cache;
 
+    private readonly AppSettingsKey appSettingsKey;
+
     public FlagBroadcastServiceImp(
         ICache cache,
         ILogger logger,
-        INapSession session)
+        INapSession session,
+        IOptions<AppSettingsKey> appSettingsKey)
     {
         this.cache = cache;
         this.logger = logger;
         this.session = session;
+        this.appSettingsKey = appSettingsKey.Value;
     }
 
     public async Task<FlagBroadcast> GetFlagInfo()
     {
-
         return new FlagBroadcast
         {
             CurrentStatus = await GetStatusFromCache(CacheKey.BroadcastFlagCacheKey),
             ProductType = await GetProductTypeFromCache(CacheKey.BroadcastProductCacheKey)
         };
-
     }
-
 
     private async Task<bool> GetStatusFromCache(string key)
     {
@@ -76,7 +81,6 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
         return response;
     }
 
-
     public async Task<bool> UpdateFlagInfo(UpdateFlagBroadcastRequest request)
     {
         var productType = string.Empty;
@@ -97,4 +101,19 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
         await logger.InfoAsync(message);
     }
 
+    public uint GetMessageWaitingCount(string queue)
+    {
+        var rabbitMq = appSettingsKey.RabbitMq;
+        var connectionFactory = new ConnectionFactory
+        {
+            UserName = rabbitMq.Username,
+            Password = rabbitMq.Password,
+            HostName = rabbitMq.Hosting,
+            VirtualHost = rabbitMq.VirtualHost
+        };
+
+        using var connection = connectionFactory.CreateConnection();
+        using var channel = connection.CreateModel();
+        return channel.MessageCount(queue);
+    }
 }

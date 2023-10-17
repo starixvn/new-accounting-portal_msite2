@@ -53,6 +53,7 @@
     <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0" />
     <PackageReference Include="ONEbook.UM.AspNetCore.Filters" Version="3.1.0-beta12" />
     <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.6.0" />
     <PackageReference Include="Sentry" Version="3.15.0" />
   </ItemGroup>
 

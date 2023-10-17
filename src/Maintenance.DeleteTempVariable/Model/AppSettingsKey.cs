@@ -7,4 +7,6 @@ public class AppSettingsKey
     public List<string> SiteDbServer { get; set; }
 
     public List<string> SubDbServer { get; set; }
+
+    public RabbitMq RabbitMq { get; set; }
 }
