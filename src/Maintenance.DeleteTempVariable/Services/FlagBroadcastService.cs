@@ -46,10 +46,15 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
 
     public async Task<FlagBroadcast> GetFlagInfo()
     {
+        var processing = GetMessageWaitingCount("broadcast-api-processing-event");
+        var waiting = GetMessageWaitingCount("broadcast-api-waiting-event");
+        var queueNumber = $"Processing: {processing} - Waiting: {waiting}";
+
         return new FlagBroadcast
         {
             CurrentStatus = await GetStatusFromCache(CacheKey.BroadcastFlagCacheKey),
-            ProductType = await GetProductTypeFromCache(CacheKey.BroadcastProductCacheKey)
+            ProductType = await GetProductTypeFromCache(CacheKey.BroadcastProductCacheKey),
+            QueueNumber = queueNumber
         };
     }
 
