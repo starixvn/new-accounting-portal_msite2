@@ -138,8 +138,6 @@ public static class ServiceCollectionExtensions
         services.AddTransient<FlagBroadcastService, FlagBroadcastServiceImp>();
     }
 
-
-
     public static void AddNapServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddTransient<Fanex.Logging.ILogger, Logger>();
@@ -185,6 +183,7 @@ public static class ServiceCollectionExtensions
     {
         var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
         var applicationName = configuration.GetSection("AuthSettings:ChannelPrefix").Value;
+        service.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect($"{redisConfig},ChannelPrefix={applicationName}"));
         service.AddSingleton<ICache>(new RedisCache(new RedisCacheOptions
         {
             ConnectionString = redisConfig,

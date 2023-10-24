@@ -7,4 +7,6 @@ public class FlagBroadcast
     public string ProductType { get; set; }
 
     public string QueueNumber { get; set; }
+
+    public string QueueWaiting { get; set; }
 }

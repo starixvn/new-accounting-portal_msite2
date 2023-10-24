@@ -6,6 +6,9 @@ using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
+using StackExchange.Redis;
+using System.Text;
+using System.Web;
 
 namespace Maintenance.DeleteTempVariable.Services;
 
@@ -14,8 +17,6 @@ public interface FlagBroadcastService
     Task<FlagBroadcast> GetFlagInfo();
 
     Task<bool> UpdateFlagInfo(UpdateFlagBroadcastRequest request);
-
-    uint GetMessageWaitingCount(string queue);
 }
 
 public class FlagBroadcastServiceImp : FlagBroadcastService
@@ -23,6 +24,8 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
     private readonly ILogger logger;
 
     private readonly INapSession session;
+
+    private readonly IConnectionMultiplexer connectionMultiplexer;
 
     private const int CacheExpiredInDays = 3650;
 
@@ -33,28 +36,35 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
     private readonly AppSettingsKey appSettingsKey;
 
     public FlagBroadcastServiceImp(
+        IConnectionMultiplexer connectionMultiplexer,
         ICache cache,
         ILogger logger,
         INapSession session,
         IOptions<AppSettingsKey> appSettingsKey)
     {
+        this.connectionMultiplexer = connectionMultiplexer;
         this.cache = cache;
         this.logger = logger;
         this.session = session;
         this.appSettingsKey = appSettingsKey.Value;
     }
 
+    private IDatabase Database => connectionMultiplexer.GetDatabase();
+
     public async Task<FlagBroadcast> GetFlagInfo()
     {
-        var processing = GetMessageWaitingCount("broadcast-api-processing-event");
-        var waiting = GetMessageWaitingCount("broadcast-api-waiting-event");
+        var processing = GetNumberMessageProcessingQueue();
+        var waiting = GetNumberMessageWaitingQueue();
+        var queueWaitingOnService = GetListMessageWaiting(CacheKey.BroadcastServiceProductWaitingCacheKey);
+        var queueWaitingOnApi = GetListMessageWaiting(CacheKey.BroadcastApiProductWaitingCacheKey);
         var queueNumber = $"Processing: {processing} - Waiting: {waiting}";
 
         return new FlagBroadcast
         {
             CurrentStatus = await GetStatusFromCache(CacheKey.BroadcastFlagCacheKey),
             ProductType = await GetProductTypeFromCache(CacheKey.BroadcastProductCacheKey),
-            QueueNumber = queueNumber
+            QueueNumber = queueNumber,
+            QueueWaiting = $"{queueWaitingOnService} {queueWaitingOnApi}"
         };
     }
 
@@ -106,7 +116,7 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
         await logger.InfoAsync(message);
     }
 
-    public uint GetMessageWaitingCount(string queue)
+    public uint GetNumberMessageProcessingQueue()
     {
         var rabbitMq = appSettingsKey.RabbitMq;
         var connectionFactory = new ConnectionFactory
@@ -119,6 +129,31 @@ public class FlagBroadcastServiceImp : FlagBroadcastService
 
         using var connection = connectionFactory.CreateConnection();
         using var channel = connection.CreateModel();
-        return channel.MessageCount(queue);
+        return channel.MessageCount("broadcast-api-processing-event");
+    }
+
+    private long GetNumberMessageWaitingQueue()
+    {
+        return Database.ListLengthAsync(CacheKey.BroadcastServiceProductWaitingCacheKey).Result
+            + Database.ListLengthAsync(CacheKey.BroadcastApiProductWaitingCacheKey).Result;
+    }
+
+    private string GetListMessageWaiting(string key)
+    {
+        var index = 0;
+        var data = new StringBuilder();
+        const string specifiedWord = ":space:";
+        var list = connectionMultiplexer.GetDatabase().ListRange(key);
+        foreach (var item in list)
+        {
+            index++;
+            var value = ((string)item)?.Split(specifiedWord);
+            if (value is { Length: 2 })
+            {
+                data.Append($"<div>{index}. Product Type: {value[0]} -  {HttpUtility.HtmlEncode(value[1])}</div>");
+            }
+        }
+
+        return data.ToString();
     }
 }

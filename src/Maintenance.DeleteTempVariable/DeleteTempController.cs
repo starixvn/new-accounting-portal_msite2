@@ -184,14 +184,6 @@ public class DeleteTempController : ControllerBase
     [HttpPost("get-flag-broadcast-status")]
     public async Task<IActionResult> GetBroadcastStatus() => Ok(await flagBroadcastService.GetFlagInfo());
 
-    [HttpGet("get-queue-number")]
-    public async Task<IActionResult> GetQueueNumber()
-    {
-        var processing = flagBroadcastService.GetMessageWaitingCount("broadcast-api-processing-event");
-        var waiting = flagBroadcastService.GetMessageWaitingCount("broadcast-api-waiting-event");
-        return Ok($"Processing: {processing} - Waiting: {waiting}");
-    }
-
     [HttpPost("update-flag-broadcast-status")]
     public async Task<IActionResult> UpdateBroadcastStatus(UpdateFlagBroadcastRequest request) => Ok(await flagBroadcastService.UpdateFlagInfo(request));
 }
