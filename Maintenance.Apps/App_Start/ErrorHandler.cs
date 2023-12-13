@@ -1,5 +1,5 @@
 ﻿
-namespace Maintenance.Apps.App_Start;
+namespace Maintenance.Apps;
 
 using Fanex.Logging;
 using Fanex.Logging.Extensions;
@@ -7,18 +7,9 @@ using Fanex.Logging.Extensions.Database;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-public class ErrorHandler
+public class ErrorHandler(RequestDelegate next, ILogger logger, IConfiguration configuration)
 {
-    private readonly RequestDelegate next;
-    private readonly ILogger logger;
-    public IConfiguration Configuration { get; }
-
-    public ErrorHandler(RequestDelegate next, ILogger logger, IConfiguration configuration)
-    {
-        this.next = next;
-        this.logger = logger;
-        Configuration = configuration;
-    }
+    public IConfiguration Configuration { get; } = configuration;
 
     public async Task InvokeAsync(HttpContext context)
     {
@@ -50,7 +41,7 @@ public class ErrorHandler
         if (!env.Equals("LIVE", StringComparison.CurrentCultureIgnoreCase))
         {
             await context.Response.WriteAsync(Environment.NewLine);
-            await context.Response.WriteAsync(exception.StackTrace ?? String.Empty);
+            await context.Response.WriteAsync(exception.StackTrace ?? string.Empty);
         }
     }
 }

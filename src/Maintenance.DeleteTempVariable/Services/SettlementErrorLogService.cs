@@ -4,7 +4,6 @@ using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
 using Maintenance.DeleteTempVariable.Model;
-using Maintenance.DeleteTempVariable.Requests;
 using Maintenance.DeleteTempVariable.Requests.SyncErrorLog;
 using Microsoft.Extensions.Options;
 
@@ -23,28 +22,18 @@ public interface SettlementErrorLogService
     Task<int> UpdateSSBSettlementErrorLog(UpdateSiteDbSSBErrorLogRequest request);
 }
 
-public class SettlementErrorLogServiceImp : SettlementErrorLogService
+public class SettlementErrorLogServiceImp(IDynamicRepository repository,
+        IOptions<AppSettingsKey> appSettingsKey,
+        IMapper mapper)
+    : SettlementErrorLogService
 {
-    private readonly AppSettingsKey appSettingsKey;
-    private readonly IDynamicRepository repository;
-    private readonly IMapper mapper;
+    private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
 
-    private Dictionary<short, string> SiteDBs = new()
+    private readonly Dictionary<short, string> SiteDBs = new()
     {
         { 1, "DBSID01" },
-        { 3,"DBSID02" },
+        { 3,"DBSID02" }
     };
-
-    public SettlementErrorLogServiceImp(
-        IDynamicRepository repository,
-           IOptions<AppSettingsKey> appSettingsKey,
-           IMapper mapper
-)
-    {
-        this.repository = repository;
-        this.appSettingsKey = appSettingsKey.Value;
-        this.mapper = mapper;
-    }
 
     public async Task<List<SettlementErrorLog>> GetSettlementErrorsLogs(SettlementErrorLogRequest request)
     {
@@ -69,11 +58,11 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
             var subCriteria = new GetSettlementProcessingErrorLogCriteria
             {
                 DbServer = server,
-                MatchId = request.MatchId,
+                MatchId = request.MatchId
             };
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
 
-            data.ForEach(data => { data.DbServer = server; });
+            data.ForEach(d => { d.DbServer = server; });
 
             result.AddRange(data);
         }
@@ -93,10 +82,10 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
             var subCriteria = new GetSettlementLockErrorLogCriteria
             {
                 MatchId = request.MatchId,
-                DbServer = server,
+                DbServer = server
             };
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
-            data.ForEach(data => { data.DbServer = server; });
+            data.ForEach(d => { d.DbServer = server; });
 
             result.AddRange(data);
         }
@@ -115,11 +104,11 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
         {
             var subCriteria = new GetSiteDbSSBErrorLogCriteria
             {
-                DbServer = server,
+                DbServer = server
             };
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
 
-            data.ForEach(data => { data.DbServer = server; });
+            data.ForEach(d => { d.DbServer = server; });
 
             result.AddRange(data);
         }
@@ -143,7 +132,7 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
         return logs.ToList();
     }
 
-    private void AssignLogInfo(DetailSettlementErrorLog log, LogStatus logInfo)
+    private static void AssignLogInfo(DetailSettlementErrorLog log, LogStatus logInfo)
     {
         log.TableName = logInfo.TableName;
         log.FunctionName = logInfo.FunctionName;
@@ -159,7 +148,7 @@ public class SettlementErrorLogServiceImp : SettlementErrorLogService
             DbServer = server,
             SessionId = sessionId
         };
-        var result = (await repository.GetAsync<LogStatus>(criteria));
+        var result = await repository.GetAsync<LogStatus>(criteria);
 
         return result;
     }

@@ -1,11 +1,12 @@
-﻿using Fanex.NAP.Client.AspNetCore.Session;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Maintenance.Apps.Controllers;
 
+using Fanex.NAP.Client.Helpers.Web;
+
 [Route("api/[controller]")]
 [ApiController]
-public class ValuesController : ControllerBase
+public class ValuesController(INapSession napSession) : ControllerBase
 {
     public IActionResult Index()
     {
@@ -17,7 +18,7 @@ public class ValuesController : ControllerBase
                     statusID = "a",
                     startTime =  DateTime.Now,
                     endTime =  DateTime.Now,
-                    startTimeValidation =  DateTime.Now,
+                    startTimeValidation =  DateTime.Now
               }
             });
     }
@@ -25,12 +26,10 @@ public class ValuesController : ControllerBase
     [Route("get-menu")]
     public IActionResult Menu()
     {
-        var session = new NapSession(new HttpContextAccessor());
-        var menuItemList = session.MenuItemList;
+        var menuItemList = napSession.MenuItemList;
         var menus = menuItemList.OrderBy(m => m.DisplayOrder).ToList();
-        var groupMenus = menus.GroupBy(m => m.ParentId);
 
-        var userName = session.UserName;
+        var userName = napSession.UserName;
         return Ok(new
         {
             menus,

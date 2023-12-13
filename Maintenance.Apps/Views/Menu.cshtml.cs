@@ -1,12 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Maintenance.Apps.Views
+namespace Maintenance.Apps.Views;
+
+public class MenuModel : PageModel
 {
-    public class MenuModel : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }

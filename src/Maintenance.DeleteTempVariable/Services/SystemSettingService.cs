@@ -12,19 +12,11 @@ public interface SystemSettingService
     Task<int> UpdateSystemSetting(string dbServer);
 }
 
-public class SystemSettingServiceImp : SystemSettingService
-{
-    private readonly IDynamicRepository repository;
-
-    private readonly AppSettingsKey appSettingsKey;
-
-    public SystemSettingServiceImp(
-        IDynamicRepository repository,
+public class SystemSettingServiceImp(IDynamicRepository repository,
         IOptions<AppSettingsKey> appSettingsKey)
-    {
-        this.repository = repository;
-        this.appSettingsKey = appSettingsKey.Value;
-    }
+    : SystemSettingService
+{
+    private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
 
     public async Task<List<SystemSettings>> GetSystemSettings()
     {

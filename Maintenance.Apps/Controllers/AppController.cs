@@ -3,16 +3,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
-public class AppController : Controller
+public class AppController(IWebHostEnvironment env) : Controller
 {
-    private readonly IWebHostEnvironment env;
-
-    public AppController(IWebHostEnvironment env)
-    {
-        this.env = env;
-    }
-
-    [Route("delete-temp/{*path}")]
+    [Route("delete-temp")]
     public IActionResult Index()
     {
         var html = System.IO.File.ReadAllText($"{env.WebRootPath}/delete-temp/index.html");

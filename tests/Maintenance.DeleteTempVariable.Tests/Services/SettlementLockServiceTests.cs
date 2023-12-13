@@ -47,7 +47,7 @@ public class SettlementLockServiceTests
     }
 
     [Fact]
-    public async void UpdateSystemSetting_UpdateSucess()
+    public async void UpdateSystemSetting_UpdateSuccess()
     {
         // Arrange
         var service = new SettlementLockServiceImp(repository, appSettingsKey, mapper);
@@ -61,14 +61,14 @@ public class SettlementLockServiceTests
     }
 
     [Fact]
-    public async void Delete_DeleteSucess()
+    public async void Delete_DeleteSuccess()
     {
         // Arrange
         var service = new SettlementLockServiceImp(repository, appSettingsKey, mapper);
         repository.ExecuteAsync(Arg.Any<DeleteSettlementLockCriteria>()).Returns(1);
 
         // Act
-        var result = await service.Delete(new());
+        var result = await service.Delete(new DeleteSettlementProcessingRequest());
 
         // Assert
         Assert.Equal(1, result);

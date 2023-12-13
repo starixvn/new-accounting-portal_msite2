@@ -18,23 +18,12 @@ public interface TempVariableService
     Task<int> DeleteMatch(DeleteTempRequest request);
 }
 
-public class TempVariableServiceImp : TempVariableService
-{
-    private readonly IDynamicRepository repository;
-
-    private readonly AppSettingsKey appSettingsKey;
-
-    private readonly IMapper mapper;
-
-    public TempVariableServiceImp(
-        IDynamicRepository repository,
+public class TempVariableServiceImp(IDynamicRepository repository,
         IOptions<AppSettingsKey> appSettingsKey,
         IMapper mapper)
-    {
-        this.repository = repository;
-        this.appSettingsKey = appSettingsKey.Value;
-        this.mapper = mapper;
-    }
+    : TempVariableService
+{
+    private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
 
     public async Task<int> TicketCount(MatchTicketRequest request)
     {

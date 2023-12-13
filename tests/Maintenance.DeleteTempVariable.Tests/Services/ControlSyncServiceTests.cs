@@ -8,54 +8,53 @@ using Maintenance.DeleteTempVariable.Services;
 using Microsoft.Extensions.Options;
 using NSubstitute;
 
-namespace Maintenance.DeleteTempVariable.Tests.Services
+namespace Maintenance.DeleteTempVariable.Tests.Services;
+
+public class ControlSyncServiceTests
 {
-    public class ControlSyncServiceTests
+    private readonly ICache cache;
+    private readonly ILogger logger;
+    private readonly INapSession session;
+    private readonly IDynamicRepository repository;
+    private readonly IOptions<AppSettingsKey> appSettingsKey;
+
+    public ControlSyncServiceTests()
     {
-        private readonly ICache cache;
-        private readonly ILogger logger;
-        private readonly INapSession session;
-        private readonly IDynamicRepository repository;
-        private readonly IOptions<AppSettingsKey> appSettingsKey;
-
-        public ControlSyncServiceTests()
+        var settings = new AppSettingsKey
         {
-            var settings = new AppSettingsKey
-            {
-                SiteDbServer = new List<string> { "ABC" }
-            };
-            appSettingsKey = Options.Create(settings);
-            session = Substitute.For<INapSession>();
-            logger = Substitute.For<ILogger>();
-            cache = Substitute.For<ICache>();
-            repository = Substitute.For<IDynamicRepository>();
-        }
+            SiteDbServer = new List<string> { "ABC" }
+        };
+        appSettingsKey = Options.Create(settings);
+        session = Substitute.For<INapSession>();
+        logger = Substitute.For<ILogger>();
+        cache = Substitute.For<ICache>();
+        repository = Substitute.For<IDynamicRepository>();
+    }
 
-        //[Fact]
-        //public void UpdateStatusServiceInRedis_InputTrue_ReturnTrue()
-        //{
-        //    // Arrange
-        //    var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);
+    //[Fact]
+    //public void UpdateStatusServiceInRedis_InputTrue_ReturnTrue()
+    //{
+    //    // Arrange
+    //    var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);
 
-        //    // Act
-        //    var result = service.UpdateStatusServiceInRedis(new Requests.UpdateStatusRequest { Status = true });
+    //    // Act
+    //    var result = service.UpdateStatusServiceInRedis(new Requests.UpdateStatusRequest { Status = true });
 
-        //    // Assert
-        //    Assert.True(result);
-        //}
+    //    // Assert
+    //    Assert.True(result);
+    //}
 
-        [Fact]
-        public async void GetInfoService_ReturnCorrectData()
-        {
-            // Arrange
-            var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);
-            repository.FetchAsync<LastLog>(Arg.Any<GetServiceLastLogCriteria>()).Returns(new List<LastLog>());
+    [Fact]
+    public async void GetInfoService_ReturnCorrectData()
+    {
+        // Arrange
+        var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);
+        repository.FetchAsync<LastLog>(Arg.Any<GetServiceLastLogCriteria>()).Returns(new List<LastLog>());
 
-            // Act
-            var result = await service.GetInfoService();
+        // Act
+        var result = await service.GetInfoService();
 
-            // Assert
-            Assert.Equal(result, new List<LastLog>());
-        }
+        // Assert
+        Assert.Equal(result, new List<LastLog>());
     }
 }

@@ -1,19 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Maintenance.Apps.Pages
+namespace Maintenance.Apps.Pages;
+
+public class IndexModel(ILogger<IndexModel> logger) : PageModel
 {
-    public class IndexModel : PageModel
+    public void OnGet()
     {
-        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-
-        }
     }
 }

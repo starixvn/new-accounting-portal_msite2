@@ -28,7 +28,7 @@ public class LogStatusServiceTests
     }
 
     [Fact]
-    public async void GetLogStatus_ReturnConrrectData()
+    public async void GetLogStatus_ReturnCorrectData()
     {
         // Arrange
         var service = new LogStatusServiceImp(repository, appSettingsKey, mapper);

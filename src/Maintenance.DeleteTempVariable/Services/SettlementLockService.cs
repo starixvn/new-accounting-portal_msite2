@@ -17,23 +17,12 @@ public interface SettlementLockService
     Task<int> UpdateSettlementLogs(UpdateSettlementLogRequest request);
 }
 
-public class SettlementLockServiceImp : SettlementLockService
-{
-    private readonly IDynamicRepository repository;
-
-    private readonly AppSettingsKey appSettingsKey;
-
-    private readonly IMapper mapper;
-
-    public SettlementLockServiceImp(
-        IDynamicRepository repository,
+public class SettlementLockServiceImp(IDynamicRepository repository,
         IOptions<AppSettingsKey> appSettingsKey,
         IMapper mapper)
-    {
-        this.repository = repository;
-        this.appSettingsKey = appSettingsKey.Value;
-        this.mapper = mapper;
-    }
+    : SettlementLockService
+{
+    private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
 
     public async Task<List<MatchSettlementLock>> GetMatches(MatchRequest request)
     {

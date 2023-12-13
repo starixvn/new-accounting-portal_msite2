@@ -19,35 +19,18 @@ public interface FlagBroadcastService
     Task<bool> UpdateFlagInfo(UpdateFlagBroadcastRequest request);
 }
 
-public class FlagBroadcastServiceImp : FlagBroadcastService
-{
-    private readonly ILogger logger;
-
-    private readonly INapSession session;
-
-    private readonly IConnectionMultiplexer connectionMultiplexer;
-
-    private const int CacheExpiredInDays = 3650;
-
-    private readonly CacheItemOptions cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheExpiredInDays));
-
-    private readonly ICache cache;
-
-    private readonly AppSettingsKey appSettingsKey;
-
-    public FlagBroadcastServiceImp(
-        IConnectionMultiplexer connectionMultiplexer,
+public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexer,
         ICache cache,
         ILogger logger,
         INapSession session,
         IOptions<AppSettingsKey> appSettingsKey)
-    {
-        this.connectionMultiplexer = connectionMultiplexer;
-        this.cache = cache;
-        this.logger = logger;
-        this.session = session;
-        this.appSettingsKey = appSettingsKey.Value;
-    }
+    : FlagBroadcastService
+{
+    private const int CacheExpiredInDays = 3650;
+
+    private readonly CacheItemOptions cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheExpiredInDays));
+
+    private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
 
     private IDatabase Database => connectionMultiplexer.GetDatabase();
 

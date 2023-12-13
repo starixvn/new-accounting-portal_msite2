@@ -16,24 +16,13 @@ public interface LogStatusService
     Task<bool> CheckLogIdsInCentral(CheckLogIdsRequest request);
 }
 
-public class LogStatusServiceImp : LogStatusService
-{
-    private readonly IDynamicRepository repository;
-    private readonly AppSettingsKey appSettingsKey;
-    private readonly IMapper mapper;
-    private readonly ScaleOutSettleService scaleOutSettleService;
-
-    public LogStatusServiceImp(
-        IDynamicRepository repository,
+public class LogStatusServiceImp(IDynamicRepository repository,
         IOptions<AppSettingsKey> appSettingsKey,
         IMapper mapper,
         ScaleOutSettleService scaleOutSettleService = null)
-    {
-        this.repository = repository;
-        this.appSettingsKey = appSettingsKey.Value;
-        this.mapper = mapper;
-        this.scaleOutSettleService = scaleOutSettleService;
-    }
+    : LogStatusService
+{
+    private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
 
     public async Task<bool> CheckLogIdsInCentral(CheckLogIdsRequest request)
     {

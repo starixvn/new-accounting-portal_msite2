@@ -14,23 +14,12 @@ public interface ParlayLockingService
     Task<int> DeleteMatch(DeleteParlayLockingRequest request);
 }
 
-public class ParlayLockingServiceImp : ParlayLockingService
-{
-    private readonly IDynamicRepository repository;
-
-    private readonly AppSettingsKey appSettingsKey;
-
-    private readonly IMapper mapper;
-
-    public ParlayLockingServiceImp(
-        IDynamicRepository repository,
+public class ParlayLockingServiceImp(IDynamicRepository repository,
         IOptions<AppSettingsKey> appSettingsKey,
         IMapper mapper)
-    {
-        this.repository = repository;
-        this.appSettingsKey = appSettingsKey.Value;
-        this.mapper = mapper;
-    }
+    : ParlayLockingService
+{
+    private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
 
     public async Task<List<MatchParlayLocking>> GetMatches(ParlayLockingRequest request)
     {

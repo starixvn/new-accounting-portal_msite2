@@ -30,7 +30,7 @@ public class SystemSettingServiceTests
         repository.GetAsync<SystemSettings>(Arg.Any<GetSystemSettingCriteria>()).Returns(new SystemSettings());
         var expect = new List<SystemSettings>
         {
-            new SystemSettings
+            new()
             {
                 DbServer = "ABC"
             }

@@ -1,9 +1,9 @@
+using Fanex.Data.SqlServer;
 using Fanex.NAP.Client;
 using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
-using Fanex.NAP.Signin.AspNetCore.Attribute;
+using Fanex.NAP.SignIn.Attribute;
 using Maintenance.Apps;
-using Maintenance.Apps.App_Start;
 using Maintenance.DeleteTempVariable.Model;
 using Microsoft.AspNetCore.Mvc;
 using ONEbook.UM.AspNetCore.Filters;
@@ -14,31 +14,35 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     ContentRootPath = Directory.GetCurrentDirectory()
 });
 
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-builder.Services.Configure<AppSettingsKey>(builder.Configuration.GetSection(AppSettingsKey.MultiDbServer));
-builder.Services.Configure<AppSettingsKey>(builder.Configuration);
+var services = builder.Services;
+var configuration = builder.Configuration;
+
+configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+services.Configure<AppSettingsKey>(configuration.GetSection(AppSettingsKey.MultiDbServer));
+services.Configure<AppSettingsKey>(configuration);
 
 // Add services to the container.
-builder.Services.AddSession();
-builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews(options =>
+services.AddSession();
+services.AddRazorPages();
+services.AddControllersWithViews(options =>
 {
     options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
     options.Filters.Add(new SessionAuthorizeAttribute());
 }).AddNewtonsoftJson();
 
-builder.Services.AddControllerAuthorization();
-builder.Services.AddCookieAuthentication(builder.Configuration);
-builder.Services.AddRedisSession(builder.Configuration);
-builder.Services.AddConfigRedisCache(builder.Configuration);
+services.AddControllerAuthorization();
+services.AddCookieAuthentication(configuration);
+services.AddRedisSession(configuration);
+services.AddConfigRedisCache(configuration);
 
-builder.Services.AddNapServices(builder.Configuration);
-builder.Services.AddFanexServices(builder.Configuration);
-builder.Services.AddOnebookUM(builder.Configuration);
-builder.Services.AddCoreServices();
-builder.Services.AddAutoMapper();
-builder.Services.AddInternalServices();
-builder.Services.AddControllersWithViews(options =>
+services.AddNapServices(configuration);
+services.AddFanexServices(configuration);
+services.AddFanexSql(configuration);
+services.AddOnebookUM(configuration);
+services.AddCoreServices();
+services.AddAutoMapper();
+services.AddInternalServices();
+services.AddControllersWithViews(options =>
 {
     options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
     options.Filters.Add(new SessionAuthorizeAttribute());
@@ -59,12 +63,9 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+app.MapControllerRoute(
+    "default",
+    "{controller=Home}/{action=Index}/{id?}");
 
 NapClientManager
     .UseConfig(app.Services.GetService<INapSettings>())

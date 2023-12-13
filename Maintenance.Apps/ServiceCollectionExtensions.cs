@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using Fanex.Data;
 using Fanex.Data.Repository;
-using Fanex.Data.SqlServer;
 using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;
 using Fanex.Logging.Extensions.Database;
-using Fanex.NAP.Client.AspNetCore.Configuration;
-using Fanex.NAP.Client.AspNetCore.Session;
 using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
 using Fanex.NAP.Client.Services;
@@ -21,10 +18,10 @@ using StackExchange.Redis;
 
 namespace Maintenance.Apps;
 
-using App_Start;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;
+using Fanex.NAP.Client.Session;
 using Fanex.Settlement.ScaleOut.Services;
 using SharpRaven;
 
@@ -88,22 +85,6 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddFanexServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var connections = configuration.GetSection("ConnectionStrings")
-                               .GetChildren()
-                               .AsEnumerable()
-                               .ToDictionary(
-                                        x => x.GetValue<string>("Name"),
-                                        y => new ConnectionConfiguration(y.GetValue<string>("Name"), y.GetValue<string>("ConnectionString"), y.GetValue<string>("ProviderName"))
-                                );
-        var storedProcedurePath = configuration.GetValue<string>("StoredProcedurePath");
-
-        DbSettingProviderManager
-          .StartNewSession()
-          .Use(connections)
-          .WithSqlServer()
-              .UseDefaultDbSettingProvider(resourcePath: storedProcedurePath)
-          .Run();
-
         LogManager
         .SetDefaultLogCategory(configuration.GetSection("LogCategory").Value)
         .Use(new List<ILogEngine>
@@ -187,7 +168,7 @@ public static class ServiceCollectionExtensions
         service.AddSingleton<ICache>(new RedisCache(new RedisCacheOptions
         {
             ConnectionString = redisConfig,
-            ApplicationName = applicationName,
+            ApplicationName = applicationName
         }));
         service.AddSingleton<ICacheService>(new CacheService());
     }

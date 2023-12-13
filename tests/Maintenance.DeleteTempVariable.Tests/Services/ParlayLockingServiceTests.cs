@@ -34,7 +34,7 @@ public class ParlayLockingServiceTests
     }
 
     [Fact]
-    public async void GetMatches_ReturCorrectData()
+    public async void GetMatches_ReturnCorrectData()
     {
         // Arrange
         var service = new ParlayLockingServiceImp(repository, appSettingsKey, mapper);

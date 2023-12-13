@@ -8,21 +8,7 @@ namespace Maintenance.DeleteTempVariable;
 [Route("api/delete-temp-variable")]
 //[Authorize]
 [ApiController]
-public class DeleteTempController : ControllerBase
-{
-    private readonly ParlayLockingService parlayLockingService;
-    private readonly SettlementLockService settlementLockService;
-    private readonly TempVariableService tempVariableService;
-    private readonly SystemSettingService systemSettingService;
-    private readonly LogStatusService logStatusService;
-    private readonly ControlSyncService controlSyncServices;
-    private readonly SettlementErrorLogService settlementErrorLogService;
-    private readonly SyncTransIdDirectlyService syncTransIdDirectlyService;
-
-    private readonly FlagBroadcastService flagBroadcastService;
-
-    public DeleteTempController(
-        ParlayLockingService parlayLockingService,
+public class DeleteTempController(ParlayLockingService parlayLockingService,
         SettlementLockService settlementLockService,
         TempVariableService tempVariableService,
         SystemSettingService systemSettingService,
@@ -31,18 +17,8 @@ public class DeleteTempController : ControllerBase
         SettlementErrorLogService settlementErrorLogService,
         SyncTransIdDirectlyService syncTransIdDirectlyService,
         FlagBroadcastService flagBroadcastService)
-    {
-        this.parlayLockingService = parlayLockingService;
-        this.settlementLockService = settlementLockService;
-        this.tempVariableService = tempVariableService;
-        this.systemSettingService = systemSettingService;
-        this.logStatusService = logStatusService;
-        this.controlSyncServices = controlSyncServices;
-        this.settlementErrorLogService = settlementErrorLogService;
-        this.syncTransIdDirectlyService = syncTransIdDirectlyService;
-        this.flagBroadcastService = flagBroadcastService;
-    }
-
+    : ControllerBase
+{
     [HttpPost]
     [Route("get-parlay-locking")]
     public async Task<IActionResult> GetParlayLocking(ParlayLockingRequest request)

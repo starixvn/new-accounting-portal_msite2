@@ -14,25 +14,18 @@ public interface SyncTransIdDirectlyService
     Task<Result> UpdateTransId(UpdateTransIdsRequest request);
 }
 
-public class SyncTransIdDirectlyServiceImp : SyncTransIdDirectlyService
+public class SyncTransIdDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, IDynamicRepository repository,
+        IMapper mapper)
+    : SyncTransIdDirectlyService
 {
-    private readonly AppSettingsKey appSettings;
-    private readonly IDynamicRepository repository;
-    private readonly IMapper mapper;
-
-    public SyncTransIdDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, IDynamicRepository repository, IMapper mapper)
-    {
-        this.repository = repository;
-        this.mapper = mapper;
-        this.appSettings = appSettings.Value;
-    }
+    private readonly AppSettingsKey appSettings = appSettings.Value;
 
     public DbInfo GetDbInfo()
     {
         return new DbInfo
         {
             Tables = new List<string> { "bettrans ", "bettransm" },
-            DbSites = appSettings.SiteDbServer.Where(s => !s.Equals(DataBaseServers.DBCentral)).ToList(),
+            DbSites = appSettings.SiteDbServer.Where(s => !s.Equals(DataBaseServers.DBCentral)).ToList()
         };
     }
 
@@ -45,7 +38,7 @@ public class SyncTransIdDirectlyServiceImp : SyncTransIdDirectlyService
         return new Result
         {
             ErrCode = criteria.ErrCode,
-            ErrMsg = criteria.ErrMsg,
+            ErrMsg = criteria.ErrMsg
         };
     }
 }
