@@ -10,10 +10,12 @@ import * as _ from 'lodash';
   styleUrls: ['./update-flag-broadcast.component.scss'],
 })
 export class UpdateFlagBroadcastComponent implements OnInit {
+  private cockFighting = 11;
   public flagBroadcast!: FlagBroadcast;
   public flagStatus = false;
   public products: any;
   public selectedProduct: number[] = [];
+
   constructor(
     private dialogService: ConfirmDialogService,
     private updateFlagBroadcastService: UpdateFlagBroadcastService
@@ -30,7 +32,7 @@ export class UpdateFlagBroadcastComponent implements OnInit {
       { id: 7, name: 'Bet Builder', isSelected: false },
       { id: 8, name: 'PinGoal', isSelected: false },
       { id: 9, name: 'Fast Market', isSelected: false },
-      { id: 10, name: 'Leap Gaming', isSelected: false },
+      { id: 10, name: 'Leap Gaming - Cock-Fighting', isSelected: false },
     ];
     this.loadInfo();
   }
@@ -91,7 +93,12 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     this.selectedProduct = [];
     for (var i = 0; i < this.products.length; i++) {
       if (this.products[i].isSelected) {
-        this.selectedProduct.push(this.products[i].id);
+        if (this.products[i].id === 10) {
+          this.selectedProduct.push(this.products[i].id);
+          this.selectedProduct.push(this.cockFighting);
+        } else {
+          this.selectedProduct.push(this.products[i].id);
+        }
       }
     }
   }
