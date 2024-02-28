@@ -23,7 +23,7 @@
                 <td> {{item.dbServer}}</td>
                 <td>{{item.statusId}}</td>
                 <td>{{item.createdDate}}</td>
-                <td>
+                <td style="text-align: center;">
                     <input type="checkbox" [(ngModel)]="item.selected" />
                 </td>
             </tr>
@@ -31,7 +31,8 @@
     </tbody>
 </table>
 
-<button class="btn-submit" (click)="openConfirmDialog()">SUBMIT</button>
+<div *ngIf="results.length" style="display: flex; justify-content: end; margin-top: 10px;"><button class="btn-submit"
+        (click)="openConfirmDialog()">SUBMIT</button></div>
 
 <ng-template #noData>
     <tr>

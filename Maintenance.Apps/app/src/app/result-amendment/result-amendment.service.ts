@@ -16,6 +16,6 @@ export class ResultAmendmentService {
   public getAmenentResults() {
     const url = `${this.baseUrl}/get-amendment-results`;
 
-    return this.httpService.post<ResultAmendment[]>(url);
+    return this.httpService.getData<ResultAmendment[]>(url);
   }
 }
