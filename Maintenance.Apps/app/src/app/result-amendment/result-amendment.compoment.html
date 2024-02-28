@@ -1,0 +1,40 @@
+<div class="head-page">
+    <h1 class="title-page">Update Result Amendment Session Status</h1>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Match ID</th>
+            <th>Session ID</th>
+            <th>Server Name</th>
+            <th>Status ID</th>
+            <th>Create Date</th>
+            <th>Select to proceed</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <ng-container *ngIf="results.length; else noData">
+            <tr *ngFor="let item of results; first as isFirst">
+                <td> {{item.matchId}} </td>
+                <td> {{item.sessionId}} </td>
+                <td> {{item.dbServer}}</td>
+                <td>{{item.statusId}}</td>
+                <td>{{item.createdDate}}</td>
+                <td>
+                    <input type="checkbox" [(ngModel)]="item.selected" />
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<button class="btn-submit" (click)="openConfirmDialog()">SUBMIT</button>
+
+<ng-template #noData>
+    <tr>
+        <td colspan="7" class="no-data">No Information Available</td>
+    </tr>
+</ng-template>

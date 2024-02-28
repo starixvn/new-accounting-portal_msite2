@@ -117,6 +117,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ScaleOutSettleService, ScaleOutSettleServiceImp>();
         services.AddTransient<SyncTransIdDirectlyService, SyncTransIdDirectlyServiceImp>();
         services.AddTransient<FlagBroadcastService, FlagBroadcastServiceImp>();
+        services.AddTransient<AmendmentResultService, AmendmentResultServiceImp>();
     }
 
     public static void AddNapServices(this IServiceCollection services, IConfiguration configuration)

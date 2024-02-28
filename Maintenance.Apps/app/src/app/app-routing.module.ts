@@ -11,6 +11,7 @@ import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-fla
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { UpdateLogStatusComponent } from './update-log-status/update-log-status.component';
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
+import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
 
 const routes: Routes = [
   // {
@@ -64,6 +65,16 @@ const routes: Routes = [
       {
         path: 'update-flag-broadcast',
         component: UpdateFlagBroadcastComponent,
+      },
+    ],
+  },
+  {
+    path: 'result-amendment',
+
+    children: [
+      {
+        path: 'update-status',
+        component: ResultAmendmentCompoment,
       },
     ],
   },

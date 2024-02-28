@@ -16,7 +16,8 @@ public class DeleteTempController(ParlayLockingService parlayLockingService,
         ControlSyncService controlSyncServices,
         SettlementErrorLogService settlementErrorLogService,
         SyncTransIdDirectlyService syncTransIdDirectlyService,
-        FlagBroadcastService flagBroadcastService)
+        FlagBroadcastService flagBroadcastService,
+        AmendmentResultService amendmentResultService)
     : ControllerBase
 {
     [HttpPost]
@@ -162,4 +163,10 @@ public class DeleteTempController(ParlayLockingService parlayLockingService,
 
     [HttpPost("update-flag-broadcast-status")]
     public async Task<IActionResult> UpdateBroadcastStatus(UpdateFlagBroadcastRequest request) => Ok(await flagBroadcastService.UpdateFlagInfo(request));
+
+    [HttpGet("get-amendment-results")]
+    public async Task<IActionResult> GetAmendmentResults() => Ok(await amendmentResultService.GetResults());
+
+    [HttpPost("update-amendment-result")]
+    public async Task<IActionResult> UpdateAmendmentResultStatus(AmendmentResultUpdateRequest request) => Ok(await amendmentResultService.UpdateStatus(request));
 }

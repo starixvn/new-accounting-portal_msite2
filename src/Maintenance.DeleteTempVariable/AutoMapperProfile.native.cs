@@ -30,5 +30,8 @@ public class AutoMapperProfile : Profile
         CreateMap<DeleteSettlementLockErrorLogRequest, DeleteSettlementLockErrorLogCriteria>();
 
         CreateMap<UpdateTransIdsRequest, UpdateTransIdsCriteria>();
+
+        CreateMap<AmendmentResultItem, AmendmentResultUpdateCriteria>()
+           .ForMember(dest => dest.SessionIds, opt => opt.MapFrom(src => src.SessionId));
     }
 }
