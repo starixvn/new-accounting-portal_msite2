@@ -3,54 +3,74 @@ import { NavMenuService } from './nav-menu.service';
 import { Menu, Header } from './nav-menu.model';
 
 @Component({
-    selector: 'app-nav-menu',
-    templateUrl: './nav-menu.component.html',
-    styleUrls: ['./nav-menu.component.scss'],
+  selector: 'app-nav-menu',
+  templateUrl: './nav-menu.component.html',
+  styleUrls: ['./nav-menu.component.scss'],
 })
 export class NavMenuComponent implements OnInit {
-    public menus: Menu[] | null = null;
-    public userName!: string;
-    constructor(private menuService: NavMenuService) { }
+  public menus: Menu[] | null = null;
+  public userName!: string;
+  constructor(private menuService: NavMenuService) {}
 
-    ngOnInit(): void {
-        this.loadMenu();
-    }
+  ngOnInit(): void {
+    this.loadMenu();
+  }
 
-    getUrl(validUrl: string) {
-        var url = validUrl.split("/");
-        url.shift()
-        return url.slice(1).join("/");
-    }
+  getUrl(validUrl: string) {
+    var url = validUrl.split('/');
+    url.shift();
+    return url.slice(1).join('/');
+  }
 
-    loadMenu() {
-        this.menuService.getMenu().subscribe((data) => {
+  loadMenu() {
+    this.menuService.getMenu().subscribe((data) => {
+      const listMenus = [...data.menus];
 
-            const listMenus = [...data.menus];
+      const menuList = listMenus
+        .filter((m) => m.parentId == 0)
+        .sort((x) => x.displayOrder);
 
-            const menuList = listMenus
-                .filter((m) => m.parentId == 0)
-                .sort((x) => x.displayOrder);
+      menuList.forEach((menu) => {
+        const subMenus = listMenus
+          .filter((x) => x.parentId == menu.id)
+          .sort((x) => x.displayOrder);
+        menu.subMenu = subMenus;
+      });
 
-            menuList.forEach((menu) => {
-                const subMenus = listMenus
-                    .filter((x) => x.parentId == menu.id)
-                    .sort((x) => x.displayOrder);
-                menu.subMenu = subMenus;
-            });
-
-            menuList.forEach((menu) => {
-                menu.subMenu.forEach(m => {
-                    const subMenus = listMenus
-                        .filter((x) => x.parentId == m.id)
-                        .sort((x) => x.displayOrder);
-                    m.subMenu = subMenus;
-                });
-            })
-
-            console.log(menuList)
-
-            this.menus = menuList;
-            this.userName = data.userName;
+      menuList.forEach((menu) => {
+        menu.subMenu.forEach((m) => {
+          const subMenus = listMenus
+            .filter((x) => x.parentId == m.id)
+            .sort((x) => x.displayOrder);
+          m.subMenu = subMenus;
         });
-    }
+      });
+
+      console.log(menuList);
+
+      this.menus = [
+        ...menuList,
+        // {
+        //   id: 972,
+        //   name: 'Result Amendment',
+        //   displayOrder: 0,
+        //   url: 'result-amendment',
+        //   parentId: 0,
+        //   validUrl: 'result-amendment',
+        //   subMenu: [
+        //     {
+        //       id: 972,
+        //       name: 'Update Status',
+        //       displayOrder: 0,
+        //       url: '/delete-temp/result-amendment/update-status',
+        //       parentId: 972,
+        //       validUrl: '~/delete-temp/result-amendment/update-status',
+        //       subMenu: [],
+        //     },
+        //   ],
+        // },
+      ];
+      this.userName = data.userName;
+    });
+  }
 }

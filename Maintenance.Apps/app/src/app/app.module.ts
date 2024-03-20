@@ -40,6 +40,8 @@ import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-trans
 import { SyncTransIdService } from './sync-transid-directly/sync-transid-directly.service';
 import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-flag-broadcast.component';
 import { UpdateFlagBroadcastService } from './update-flag-broadcast/update-flag-broadcast.service';
+import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
+import { ResultAmendmentService } from './result-amendment/result-amendment.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { UpdateFlagBroadcastService } from './update-flag-broadcast/update-flag-
     DetailsSettlementLogComponent,
     SyncTransidDirectlyComponent,
     UpdateFlagBroadcastComponent,
+    ResultAmendmentCompoment,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +91,7 @@ import { UpdateFlagBroadcastService } from './update-flag-broadcast/update-flag-
     FileService,
     SyncTransIdService,
     UpdateFlagBroadcastService,
+    ResultAmendmentService,
   ],
   bootstrap: [AppComponent],
 })
