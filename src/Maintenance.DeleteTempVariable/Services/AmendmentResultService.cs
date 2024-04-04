@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Fanex.Data.Repository;
+using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
@@ -18,7 +19,7 @@ namespace Maintenance.DeleteTempVariable.Services
     {
         Task<bool> UpdateStatus(AmendmentResultUpdateRequest request);
 
-        Task<List<AmendmentResult>> GetResults();
+        Task<List<AmendmentResult>> GetResults(AmendmentResultRequest request);
     }
 
     public class AmendmentResultServiceImp : AmendmentResultService
@@ -34,7 +35,7 @@ namespace Maintenance.DeleteTempVariable.Services
             this.mapper = mapper;
         }
 
-        public async Task<List<AmendmentResult>> GetResults()
+        public async Task<List<AmendmentResult>> GetResults(AmendmentResultRequest request)
         {
             var results = new List<AmendmentResult>();
             foreach (var server in appSettingsKey.SiteDbServer.Where(s => s != "DBTXN"))
@@ -42,6 +43,8 @@ namespace Maintenance.DeleteTempVariable.Services
                 var criteria = new AmendmentResultSelCriteria
                 {
                     DbServer = server,
+                    StatusId = request.StatusId,
+                    MatchId = request.MatchId,
                 };
 
                 var list = (await repository.FetchAsync<AmendmentResult>(criteria)).ToList();
@@ -57,13 +60,28 @@ namespace Maintenance.DeleteTempVariable.Services
         {
             if (request.Results.Count == 0) return true;
 
-            foreach (var item in request.Results)
+            request.Results.ForEach(item =>
             {
-                var criteria = mapper.Map<AmendmentResultUpdateCriteria>(item);
+                var criteria = Create(item);
+
                 repository.Execute(criteria);
-            }
+            });
 
             return true;
+        }
+
+        private AmendmentResultUpdateCriteria Create(AmendmentResultItem item)
+        {
+            var criteria = mapper.Map<AmendmentResultUpdateCriteria>(item);
+
+            criteria.StatusId = item.StatusId switch
+            {
+                (short)AmendmentStatus.FailSettle => (short)AmendmentStatus.Complete,
+                (short)AmendmentStatus.TimeOut => (short)AmendmentStatus.Running,
+                _ => 0
+            };
+
+            return criteria;
         }
     }
 }

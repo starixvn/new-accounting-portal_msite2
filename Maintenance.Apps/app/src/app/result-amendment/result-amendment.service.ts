@@ -13,9 +13,12 @@ export class ResultAmendmentService {
     return this.httpService.post(url, request);
   }
 
-  public getAmenentResults() {
+  public getAmenentResults(request: {
+    matchId: number | null;
+    statusId: number;
+  }) {
     const url = `${this.baseUrl}/get-amendment-results`;
 
-    return this.httpService.getData<ResultAmendment[]>(url);
+    return this.httpService.post<ResultAmendment[]>(url, request);
   }
 }

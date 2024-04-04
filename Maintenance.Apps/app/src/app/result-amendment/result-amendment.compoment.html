@@ -2,6 +2,24 @@
     <h1 class="title-page">Update Result Amendment Session Status</h1>
 </div>
 
+<div class="filter">
+    <div class="match">
+        <label for="">MatchId</label>
+        <input type="number" name="matchId" [(ngModel)]="filter.matchId" />
+    </div>
+
+    <div class="time">
+        <label for="">Status</label>
+        <select [(ngModel)]="filter.statusId">
+            <option value="0">Select All</option>
+            <option value="99">[99] Action partially failed</option>
+            <option value="3">[3] Process timed out</option>
+        </select>
+    </div>
+
+    <button (click)="submit()" class="btn-submit">SUBMIT</button>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -21,7 +39,7 @@
                 <td> {{item.matchId}} </td>
                 <td> {{item.sessionId}} </td>
                 <td> {{item.dbServer}}</td>
-                <td>{{item.statusId}}</td>
+                <td class="text-left">{{item.statusId | nameStatus}}</td>
                 <td>{{item.createdDate}}</td>
                 <td style="text-align: center;">
                     <input type="checkbox" [(ngModel)]="item.selected" />
@@ -32,10 +50,27 @@
 </table>
 
 <div *ngIf="results.length" style="display: flex; justify-content: end; margin-top: 10px;"><button class="btn-submit"
-        (click)="openConfirmDialog()">SUBMIT</button></div>
+        (click)="openConfirmDialog()">Update Status ID</button></div>
 
 <ng-template #noData>
     <tr>
         <td colspan="7" class="no-data">No Information Available</td>
     </tr>
 </ng-template>
+
+<div>
+    <ul class="note" style="padding-inline-start: 0;">
+        <li> － Process time out: 5 mins.</li>
+        <li> － Press <span class="bold">Update Status ID</span> button on selected records shall update corresponding
+            Status IDs as follow:</li>
+        <li>
+            <ol type="1" style="list-style-type: decimal;">
+                <li> from <span class="bold">3 → 1</span>: reset the time out, system shal continue processing the
+                    current action.</li>
+                <li> from <span class="bold">99 → 2</span>: system shall generate message of tickets settled by
+                    corresponding action.</li>
+            </ol>
+        </li>
+        <li> KST should redo the Amendment action to resolve remaining tickets.</li>
+    </ul>
+</div>

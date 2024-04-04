@@ -46,30 +46,7 @@ export class NavMenuComponent implements OnInit {
         });
       });
 
-      console.log(menuList);
-
-      this.menus = [
-        ...menuList,
-        // {
-        //   id: 972,
-        //   name: 'Result Amendment',
-        //   displayOrder: 0,
-        //   url: 'result-amendment',
-        //   parentId: 0,
-        //   validUrl: 'result-amendment',
-        //   subMenu: [
-        //     {
-        //       id: 972,
-        //       name: 'Update Status',
-        //       displayOrder: 0,
-        //       url: '/delete-temp/result-amendment/update-status',
-        //       parentId: 972,
-        //       validUrl: '~/delete-temp/result-amendment/update-status',
-        //       subMenu: [],
-        //     },
-        //   ],
-        // },
-      ];
+      this.menus = [...menuList];
       this.userName = data.userName;
     });
   }

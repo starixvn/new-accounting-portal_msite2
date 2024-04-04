@@ -42,6 +42,7 @@ import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-fla
 import { UpdateFlagBroadcastService } from './update-flag-broadcast/update-flag-broadcast.service';
 import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
 import { ResultAmendmentService } from './result-amendment/result-amendment.service';
+import { NameStatus } from './shared/pipes/name-status';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ResultAmendmentService } from './result-amendment/result-amendment.serv
     SyncTransidDirectlyComponent,
     UpdateFlagBroadcastComponent,
     ResultAmendmentCompoment,
+    NameStatus,
   ],
   imports: [
     BrowserModule,
