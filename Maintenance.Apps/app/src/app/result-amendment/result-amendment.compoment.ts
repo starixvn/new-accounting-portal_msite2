@@ -13,6 +13,7 @@ export class ResultAmendmentCompoment implements OnInit {
   }
 
   public results: ResultAmendment[] = [];
+  public filter = { matchId: null, statusId: 0 };
 
   constructor(
     private dialogService: ConfirmDialogService,
@@ -20,27 +21,40 @@ export class ResultAmendmentCompoment implements OnInit {
   ) {}
 
   loadData() {
-    this.resultAmendmentService.getAmenentResults().subscribe((res) => {
-      this.results = res;
-    });
+    this.resultAmendmentService
+      .getAmenentResults({ ...this.filter })
+      .subscribe((res) => {
+        const filtered = res.filter(
+          (x) =>
+            +this.filter.statusId === 0 || x.statusId === +this.filter.statusId
+        );
+        this.results = res;
+      });
   }
 
   public openConfirmDialog() {
-    const message = `Are you sure you want to change selected sessions' statuses to '2':"Completed input Tickets data"?`;
+    const message = `Are you sure you want to update selected sessions' statuses?`;
     const title = 'Confirm Change Session Status';
+    const errorMessage =
+      'Some of selected session has StatusID updated already. Please check then try again.';
+    const selectedResults = this.results.filter((x) => x.selected);
+
+    if (!selectedResults.length) {
+      this.dialogService.openWarning({ message: errorMessage });
+      return;
+    }
 
     this.dialogService
       .openConfirm({ title, message })
       .afterClosed()
       .subscribe((confirm: Boolean) => {
         if (confirm) {
-          this.handleChangeStatus();
+          this.handleChangeStatus(selectedResults);
         }
       });
   }
 
-  private handleChangeStatus() {
-    const selectedResults = this.results.filter((x) => x.selected);
+  private handleChangeStatus(selectedResults: ResultAmendment[]) {
     this.resultAmendmentService
       .updateStatus({
         results: selectedResults,
@@ -48,5 +62,9 @@ export class ResultAmendmentCompoment implements OnInit {
       .subscribe(() => {
         this.loadData();
       });
+  }
+
+  submit() {
+    this.loadData();
   }
 }

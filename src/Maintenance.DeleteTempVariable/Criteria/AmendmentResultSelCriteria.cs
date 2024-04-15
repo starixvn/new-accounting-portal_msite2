@@ -10,7 +10,9 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class AmendmentResultSelCriteria : CriteriaBase
 {
-    public short StatusId { get; set; } = 99;
+    public short StatusId { get; set; } = 0;
+
+    public int? MatchId { get; set; }
 
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }

@@ -164,8 +164,8 @@ public class DeleteTempController(ParlayLockingService parlayLockingService,
     [HttpPost("update-flag-broadcast-status")]
     public async Task<IActionResult> UpdateBroadcastStatus(UpdateFlagBroadcastRequest request) => Ok(await flagBroadcastService.UpdateFlagInfo(request));
 
-    [HttpGet("get-amendment-results")]
-    public async Task<IActionResult> GetAmendmentResults() => Ok(await amendmentResultService.GetResults());
+    [HttpPost("get-amendment-results")]
+    public async Task<IActionResult> GetAmendmentResults(AmendmentResultRequest request) => Ok(await amendmentResultService.GetResults(request));
 
     [HttpPost("update-amendment-result")]
     public async Task<IActionResult> UpdateAmendmentResultStatus(AmendmentResultUpdateRequest request) => Ok(await amendmentResultService.UpdateStatus(request));

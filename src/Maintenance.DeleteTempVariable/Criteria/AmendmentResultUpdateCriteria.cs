@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fanex.Data;
+﻿using Fanex.Data;
 using Fanex.Data.Repository;
+using Maintenance.DeleteTempVariable.Constants;
 
 namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class AmendmentResultUpdateCriteria : NonQueryCommand
 {
     public int MatchId { get; set; }
-    public short StatusId { get; set; } = 2;
+
+    public short StatusId { get; set; }
+
     public string SessionIds { get; set; }
 
     [SpParam(Ignored = true)]
