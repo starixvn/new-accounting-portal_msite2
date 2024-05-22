@@ -39,7 +39,7 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
     {
         var list = await GetSettlementProcessingLogs(request);
         var list1 = await GetSettlementLockLogs(request);
-        var list2 = await GetSettlementSSBLogs();
+        var list2 = await GetSettlementSSBLogs(request);
 
         var result = list.Concat(list1).Concat(list2).ToList();
 
@@ -58,7 +58,8 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
             var subCriteria = new GetSettlementProcessingErrorLogCriteria
             {
                 DbServer = server,
-                MatchId = request.MatchId
+                MatchId = request.MatchId,
+                Mode = request.Mode
             };
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
 
@@ -82,7 +83,8 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
             var subCriteria = new GetSettlementLockErrorLogCriteria
             {
                 MatchId = request.MatchId,
-                DbServer = server
+                DbServer = server,
+                Mode = request.Mode
             };
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
             data.ForEach(d => { d.DbServer = server; });
@@ -93,7 +95,7 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
         return result.Select(v => { v.TableName = "SiteDB_SettlementLock"; return v; }).ToList();
     }
 
-    private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs()
+    private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs(SettlementErrorLogRequest request)
     {
         var dbServers = new List<string> { DataBaseServers.DBCentral };
         dbServers.AddRange(appSettingsKey.SubDbServer);
@@ -104,7 +106,8 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
         {
             var subCriteria = new GetSiteDbSSBErrorLogCriteria
             {
-                DbServer = server
+                DbServer = server,
+                Mode = request.Mode
             };
             var data = await repository.FetchAsync<SettlementErrorLog>(subCriteria) as List<SettlementErrorLog>;
 
@@ -134,6 +137,7 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
 
     private static void AssignLogInfo(DetailSettlementErrorLog log, LogStatus logInfo)
     {
+        if (logInfo == null) return;
         log.TableName = logInfo.TableName;
         log.FunctionName = logInfo.FunctionName;
         log.TicketType = logInfo.TicketType;
@@ -152,7 +156,6 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
 
         return result;
     }
-
 
     public async Task<int> DeleteSettlementProcessingErrorsLog(DeleteSettlementProcessingErrorLogRequest request)
     {

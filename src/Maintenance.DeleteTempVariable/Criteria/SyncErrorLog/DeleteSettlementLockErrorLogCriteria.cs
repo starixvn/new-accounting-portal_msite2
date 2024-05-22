@@ -7,8 +7,12 @@ public class DeleteSettlementLockErrorLogCriteria : NonQueryCommand
 {
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
+
     public string SessionId { get; set; }
     public string SiteDBGroupId { get; set; }
+    public string Mode { get; set; }
+
     public override string GetSettingKey() => $"NAP_Set_SiteDB_SettlementLockDel_{DbServer}";
+
     public override bool IsValid() => true;
 }

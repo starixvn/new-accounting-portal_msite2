@@ -13,6 +13,8 @@ public class DeleteSettlementLockCriteria : NonQueryCommand
     [SpParam(Ignored = true)]
     public bool IsSettleLock { get; set; }
 
+    public string Mode { get; set; }
+
     public override string GetSettingKey()
     {
         return IsSettleLock

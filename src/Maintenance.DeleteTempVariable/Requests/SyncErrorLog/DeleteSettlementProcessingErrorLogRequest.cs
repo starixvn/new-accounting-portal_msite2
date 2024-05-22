@@ -6,4 +6,5 @@ public class DeleteSettlementProcessingErrorLogRequest
     public string SessionId { get; set; }
     public string SiteDBGroupId { get; set; }
     public char Action { get; set; } = 'D';
+    public string Mode { get; set; }
 }

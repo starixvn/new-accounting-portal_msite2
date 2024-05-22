@@ -13,22 +13,23 @@ export class MatchSettlementLockService {
 
   constructor(private httpService: HttpService) {}
 
-  getAll(matchId?: number) {
+  getAll(matchId?: number, mode?: string) {
     matchId = _.isNumber(matchId) ? matchId : 0;
     const url = `${this.baseUrl}/get-settlement-lock`;
 
     return this.httpService.post<MatchSettlementLock[]>(url, {
       matchId,
+      mode,
     });
   }
 
-  deleteItem(data: DeleteSettlementLog) {
+  deleteItem(data: DeleteSettlementLog, mode: string) {
     const url = `${this.baseUrl}/delete-settlement-lock`;
 
-    return this.httpService.post(url, data);
+    return this.httpService.post(url, { ...data, mode });
   }
 
-  updateItem(item: MatchSettlementLock) {
+  updateItem(item: MatchSettlementLock, mode: string) {
     const params: UpdateSettlementLog = {
       sessionId: item.sessionId,
       createdTime: item.createdTime,
@@ -38,6 +39,6 @@ export class MatchSettlementLockService {
 
     const url = `${this.baseUrl}/update-settlement-lock`;
 
-    return this.httpService.post(url, params);
+    return this.httpService.post(url, { ...params, mode });
   }
 }
