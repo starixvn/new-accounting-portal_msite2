@@ -68,7 +68,12 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
             result.AddRange(data);
         }
 
-        return result.Select(v => { v.TableName = "SiteDB_SettlementProcessing"; return v; }).ToList();
+        result.ForEach(x =>
+        {
+            x.TempTableName = "SiteDB_SettlementProcessing";
+        });
+
+        return result;
     }
 
     private async Task<List<SettlementErrorLog>> GetSettlementLockLogs(SettlementErrorLogRequest request)
@@ -92,7 +97,7 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
             result.AddRange(data);
         }
 
-        return result.Select(v => { v.TableName = "SiteDB_SettlementLock"; return v; }).ToList();
+        return result.Select(v => { v.TempTableName = "SiteDB_SettlementLock"; return v; }).ToList();
     }
 
     private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs(SettlementErrorLogRequest request)
@@ -116,7 +121,7 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
             result.AddRange(data);
         }
 
-        return result.Select(v => { v.TableName = "Settlement_SiteDB_SSBErr"; return v; }).ToList();
+        return result.Select(v => { v.TempTableName = "Settlement_SiteDB_SSBErr"; return v; }).ToList();
     }
 
     public async Task<List<DetailSettlementErrorLog>> GetSettlementErrorsLogDetails(SettlementErrorLogDetailRequest request)
@@ -125,37 +130,30 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
 
         var logs = await repository.FetchAsync<DetailSettlementErrorLog>(criteria);
 
-        var logInfo = await GetLogStatus(request.SessionId, request.SiteDBGroupId);
-
-        foreach (var log in logs)
-        {
-            AssignLogInfo(log, logInfo);
-        }
-
         return logs.ToList();
     }
 
-    private static void AssignLogInfo(DetailSettlementErrorLog log, LogStatus logInfo)
-    {
-        if (logInfo == null) return;
-        log.TableName = logInfo.TableName;
-        log.FunctionName = logInfo.FunctionName;
-        log.TicketType = logInfo.TicketType;
-        log.SettlementAction = logInfo.SettlementAction;
-    }
+    //private static void AssignLogInfo(DetailSettlementErrorLog log, LogStatus logInfo)
+    //{
+    //    if (logInfo == null) return;
+    //    log.TableName = logInfo.TableName;
+    //    log.FunctionName = logInfo.FunctionName;
+    //    log.TicketType = logInfo.TicketType;
+    //    log.SettlementAction = logInfo.SettlementAction;
+    //}
 
-    private async Task<LogStatus> GetLogStatus(long sessionId, short siteDBGroupId)
-    {
-        var server = SiteDBs.TryGetValue(siteDBGroupId, out var value) ? value : string.Empty;
-        var criteria = new GetLogStatusCriteria
-        {
-            DbServer = server,
-            SessionId = sessionId
-        };
-        var result = await repository.GetAsync<LogStatus>(criteria);
+    //private async Task<LogStatus> GetLogStatus(long sessionId, short siteDBGroupId)
+    //{
+    //    var server = SiteDBs.TryGetValue(siteDBGroupId, out var value) ? value : string.Empty;
+    //    var criteria = new GetLogStatusCriteria
+    //    {
+    //        DbServer = server,
+    //        SessionId = sessionId
+    //    };
+    //    var result = await repository.GetAsync<LogStatus>(criteria);
 
-        return result;
-    }
+    //    return result;
+    //}
 
     public async Task<int> DeleteSettlementProcessingErrorsLog(DeleteSettlementProcessingErrorLogRequest request)
     {

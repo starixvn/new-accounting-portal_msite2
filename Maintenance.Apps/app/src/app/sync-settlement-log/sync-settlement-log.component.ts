@@ -43,7 +43,7 @@ export class SyncSettlementLogComponent implements OnInit {
       first!.eventName = compact(v.map((v) => v.eventName))[0];
       first!.errorMessages = compact(v.map((v) => v.errorMessages))[0];
       first!.messageId = compact(v.map((v) => v.messageId))[0];
-      first!.tableNames = (v as any[]).map((v) => v.tableName);
+      first!.tableNames = (v as any[]).map((v) => v.tempTableName);
 
       return first;
     });
@@ -73,14 +73,15 @@ export class SyncSettlementLogComponent implements OnInit {
 
   submit() {
     this.loadData();
+    console.log(this.logs);
   }
 
   openConfirmDeleteSettlementLockDialog(item: SettlementErrorLog) {
     const message = `Session info
         <div>DB Server: ${item.dbServer}    </div>
         <div>Session: ${item.sessionId}    </div>
-        <div>Action: Delete SiteDB_SettlementLock    </div>
-        <div><i>Please ensure you check and delete data in SiteDB_SettlementProcessing</i></div>
+        <div>Action: Delete ${this.settlementLockTitle}    </div>
+        <div><i>Please ensure you check and delete data in ${this.settlementProcessingTitle}</i></div>
         <div>Are you sure you want to <span class="red bold">DELETE</span> this session?    </div>
         `;
     const dialogRef = this.dialogService.openConfirm({ message });
@@ -97,6 +98,12 @@ export class SyncSettlementLogComponent implements OnInit {
       });
   }
 
+  existsSettlementProcessing(item: SettlementErrorLog): boolean {
+    return item.tableNames.some((x) =>
+      x.includes('SiteDB_SettlementProcessing')
+    );
+  }
+
   openConfirmDeleteSettlementProcessingDialog(
     item: SettlementErrorLog,
     action: string
@@ -104,9 +111,9 @@ export class SyncSettlementLogComponent implements OnInit {
     const message = `Session info
         <div>DB Server: ${item.dbServer}    </div>
         <div>Session: ${item.sessionId}    </div>
-        <div>Action: ${
-          action === 'D' ? 'Delete' : 'Update'
-        } SiteDB_SettlementProcessing    </div>
+        <div>Action: ${action === 'D' ? 'Delete' : 'Update'} ${
+      this.settlementProcessingTitle
+    }    </div>
         <div>Are you sure to ${
           action === 'D'
             ? '<span class="red bold">DELETE</span>'
@@ -153,13 +160,22 @@ export class SyncSettlementLogComponent implements OnInit {
   }
 
   openDetailsDialog(item: SettlementErrorLog) {
-    if (!item.tableNames.includes('SiteDB_SettlementProcessing')) return;
-    console.log(this.typeSettle);
+    if (!this.existsSettlementProcessing(item)) return;
+
     this.settlementErrorLogService
       .getDetails(item, this.typeSettle)
       .subscribe((res) => {
+        const newLogs = res.map((x) => ({
+          ...x,
+          tableName: item.tableName,
+          functionName: item.functionName,
+          settlementAction: item.settlementAction,
+          ticketType: item.ticketType,
+          ticketTypeExplicit: item.ticketTypeExplicit,
+        }));
+
         const config = {
-          data: { sessionId: item.sessionId, logs: res },
+          data: { sessionId: item.sessionId, logs: newLogs },
           width: '700px',
           panelClass: 'detail-log-dialog',
         };

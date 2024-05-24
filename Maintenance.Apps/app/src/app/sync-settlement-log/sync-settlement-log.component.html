@@ -67,13 +67,7 @@
             <span *ngIf="!!item.matchId">{{ item.matchId }}</span>
           </td>
           <td>
-            <div [ngClass]="
-                item.tableNames.includes('SiteDB_SettlementProcessing')
-                  ? 'session'
-                  : ''
-              " (click)="
-                item.tableNames.includes('SiteDB_SettlementProcessing') &&
-                  openDetailsDialog(item)
+            <div [ngClass]="{'session': existsSettlementProcessing(item)}" (click)="openDetailsDialog(item)
               ">
               {{ item.sessionId }}
             </div>
@@ -90,26 +84,12 @@
 
           <td>
             <div class="action">
-              <!-- <button
-                class="btn-submit"
-                [ngClass]="
-                  item.tableNames.includes('SiteDB_SettlementProcessing')
-                    ? 'btn-submit'
-                    : 'btn-disable'
-                "
-                (click)="
-                  item.tableNames.includes('SiteDB_SettlementProcessing') &&
-                    openConfirmDeleteSettlementProcessingDialog(item, 'U')
-                "
-              >
-                UPDATE
-              </button> -->
               <button class="btn-delete" [ngClass]="
-                  item.tableNames.includes('SiteDB_SettlementProcessing')
+                  existsSettlementProcessing(item)
                     ? 'btn-delete'
                     : 'btn-disable'
                 " (click)="
-                  item.tableNames.includes('SiteDB_SettlementProcessing') &&
+                existsSettlementProcessing(item) &&
                     openConfirmDeleteSettlementProcessingDialog(item, 'D')
                 ">
                 DELETE
