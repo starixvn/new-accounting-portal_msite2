@@ -140,7 +140,7 @@ export class SyncSettlementLogComponent implements OnInit {
     const message = `Session info
         <div>DB Server:  ${item.dbServer}    </div>
         <div>Session: ${item.sessionId}    </div>
-        <div>MessageId: ${item.messageId}    </div>
+        <div>MessageId: ${item.messageId ?? ''}    </div>
         <div>Action: Update SSB_SettlementLogs    </div>
 
         <div>Are you sure you want to <span class="blue bold">UPDATE</span> Resolve=1?    </div>

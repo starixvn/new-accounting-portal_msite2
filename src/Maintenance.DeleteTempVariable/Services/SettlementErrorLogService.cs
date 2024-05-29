@@ -133,28 +133,6 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
         return logs.ToList();
     }
 
-    //private static void AssignLogInfo(DetailSettlementErrorLog log, LogStatus logInfo)
-    //{
-    //    if (logInfo == null) return;
-    //    log.TableName = logInfo.TableName;
-    //    log.FunctionName = logInfo.FunctionName;
-    //    log.TicketType = logInfo.TicketType;
-    //    log.SettlementAction = logInfo.SettlementAction;
-    //}
-
-    //private async Task<LogStatus> GetLogStatus(long sessionId, short siteDBGroupId)
-    //{
-    //    var server = SiteDBs.TryGetValue(siteDBGroupId, out var value) ? value : string.Empty;
-    //    var criteria = new GetLogStatusCriteria
-    //    {
-    //        DbServer = server,
-    //        SessionId = sessionId
-    //    };
-    //    var result = await repository.GetAsync<LogStatus>(criteria);
-
-    //    return result;
-    //}
-
     public async Task<int> DeleteSettlementProcessingErrorsLog(DeleteSettlementProcessingErrorLogRequest request)
     {
         var criteria = mapper.Map<DeleteSettlementProcessingErrorLogCriteria>(request);
