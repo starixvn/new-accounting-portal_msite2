@@ -75,11 +75,10 @@
           </td>
           <td>
             <button *ngIf="item.dbServer !== 'DBTXN'" [ngClass]="
-                item.messageId == null || item.messageId == ''
+                item.isReplicated
                   ? 'btn-delete'
                   : 'btn-disable'
-              " [disabled]="item.messageId != null && item.messageId != ''"
-              (click)="openDeleteConfirmDialog(item, true)">
+              " [disabled]="!item.isReplicated" (click)="openDeleteConfirmDialog(item, true)">
               Delete
             </button>
           </td>

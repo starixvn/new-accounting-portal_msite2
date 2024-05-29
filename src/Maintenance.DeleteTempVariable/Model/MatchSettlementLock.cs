@@ -21,4 +21,5 @@ public class MatchSettlementLock
     public string ErrorMessage { get; set; }
 
     public string MessageId { get; set; }
+    public bool IsReplicated { get; set; }
 }

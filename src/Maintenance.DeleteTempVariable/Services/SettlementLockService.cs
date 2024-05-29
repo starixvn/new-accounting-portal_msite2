@@ -71,6 +71,8 @@ public class SettlementLockServiceImp(IDynamicRepository repository,
             replicatedData.AddRange(data);
         }
 
+        replicatedData.ForEach(m => m.IsReplicated = true);
+
         return replicatedData;
     }
 

@@ -95,7 +95,7 @@ export class DeleteSettlementLockComponent implements OnInit {
 
   openUpdateConfirmDialog(item: MatchSettlementLock) {
     const message = `
-    <div>Please ensure you check and delete data in table ${this.settlementProcessingTitle} before updating:</div>
+    <div>Please ensure you check and delete data in table SSB_SettlementLogs before updating:</div>
     <div><b>MatchId:</b> ${item.matchId}</div>
     <div><b>Session:</b> ${item.sessionId}</div>
     <div>Are you sure you want to UPDATE Resolved?</div>`;
