@@ -11,7 +11,7 @@ public class SyncTransIdInRangeUpdCriteria : INonQueryCommand
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 
-    public string GetSettingKey() => $"NAP_Set_SiteDB_SyncTransId_Upd_{ServerName}";
+    public string GetSettingKey() => $"NAP_Set_SiteDB_SyncTransIdInRange_Upd_{ServerName}";
 
     public bool IsValid() => !string.IsNullOrEmpty(TableName) && TransInfoJson is not null;
 }

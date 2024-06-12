@@ -91,7 +91,7 @@
     <button class="btn-submit" (click)="openConfirmDialog()">UPDATE</button>
   </div>
 
-  <div class="field" *ngIf="typeUpdate === 'matchId' && syncMatches.length" style="margin-top: 24px;">
+  <div class="field" *ngIf="typeUpdate === 'matchId' && syncMatches?.length" style="margin-top: 24px;">
     <mat-form-field>
       <mat-label>To SubDB</mat-label>
       <mat-select multiple [(ngModel)]="subSiteDBsSelected" (selectionChange)="onSelectionChange($event)">
@@ -101,7 +101,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <table class="table" *ngIf="typeUpdate === 'matchId' && syncMatches.length" style="width: 40%;">
+  <table class="table" *ngIf="typeUpdate === 'matchId' && syncMatches" style="width: 40%; margin-top: 20px;">
     <thead>
       <tr>
         <th>Row Number</th>
@@ -112,6 +112,7 @@
       </tr>
     </thead>
     <tbody>
+      <ng-container *ngIf="syncMatches.length; else noData"></ng-container>
       <tr *ngFor="let item of syncMatches">
         <td> {{item.rowNumber}} </td>
         <td> {{item.minTransId}}</td>
@@ -126,3 +127,9 @@
   </table>
 
 </div>
+
+<ng-template #noData>
+  <tr>
+    <td colspan="4" class="no-data">No Information Available</td>
+  </tr>
+</ng-template>

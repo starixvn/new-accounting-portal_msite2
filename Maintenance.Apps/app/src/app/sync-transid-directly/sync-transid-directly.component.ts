@@ -27,7 +27,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
 
   maxTransId = 2000;
 
-  syncMatches: SynMatch[] = [];
+  syncMatches: SynMatch[] | null = null;
 
   constructor(
     private dialogService: ConfirmDialogService,
@@ -55,7 +55,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
     this.matchId = '';
     this.subSiteDBsSelected = [];
     this.transIds = '';
-    this.syncMatches = [];
+    this.syncMatches = null;
   }
 
   openConfirmDialog() {
@@ -148,6 +148,17 @@ export class SyncTransidDirectlyComponent implements OnInit {
   }
 
   getSynTicketForMatch() {
+    if (!this.siteDBSelected) {
+      this.dialogService.openWarning({ message: 'Please select SiteDB field' });
+      return;
+    }
+
+    if (!this.tableSelected) {
+      this.dialogService.openWarning({
+        message: 'Please select Table Update field',
+      });
+      return;
+    }
     this.syncTransIdService
       .getSynTicketForMatch({
         matchId: +this.matchId,
