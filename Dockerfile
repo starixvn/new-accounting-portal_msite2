@@ -9,6 +9,8 @@ RUN dotnet nuget add source https://nuget.nexdev.net/api/v2
 RUN --mount=type=cache,target=/root/.nuget/packages \
     dotnet restore Maintenance.Apps/Maintenance.Apps.csproj
 
+COPY src/Core/. ./src/Core/
+COPY src/Maintenance.Sync/. ./src/Maintenance.Sync/
 COPY src/Maintenance.DeleteTempVariable/. ./src/Maintenance.DeleteTempVariable/
 COPY Maintenance.Apps/. ./Maintenance.Apps/
 
