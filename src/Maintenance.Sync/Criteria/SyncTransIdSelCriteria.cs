@@ -1,7 +1,4 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
-
-namespace Maintenance.DeleteTempVariable.Criteria;
+﻿namespace Maintenance.Sync.Criteria;
 
 public class SyncTransIdSelCriteria : NonQueryCommand
 {

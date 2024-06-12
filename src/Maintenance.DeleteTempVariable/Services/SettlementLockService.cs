@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
-using Maintenance.DeleteTempVariable.Constants;
+using Maintenance.Core.Constants;
+using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;

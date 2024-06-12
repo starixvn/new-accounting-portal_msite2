@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
 using Fanex.Settlement.ScaleOut.Services;
-using Maintenance.DeleteTempVariable.Constants;
+using Maintenance.Core.Constants;
+using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
@@ -12,7 +13,9 @@ namespace Maintenance.DeleteTempVariable.Services;
 public interface LogStatusService
 {
     Task<List<LogStatus>> GetLogStatus();
+
     Task<int> UpdateLogStatus(UpdateLogStatusRequest request);
+
     Task<bool> CheckLogIdsInCentral(CheckLogIdsRequest request);
 }
 

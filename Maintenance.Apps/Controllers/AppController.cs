@@ -1,7 +1,7 @@
 ﻿namespace Maintenance.Apps.Controllers;
 
-using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 
 public class AppController(IWebHostEnvironment env) : Controller
 {

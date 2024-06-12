@@ -1,4 +1,4 @@
-﻿namespace Maintenance.DeleteTempVariable.Model;
+﻿namespace Maintenance.Sync.Models;
 
 public class DbInfo
 {

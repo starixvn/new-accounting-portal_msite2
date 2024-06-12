@@ -6,6 +6,7 @@ import { SyncTransIdService } from './sync-transid-directly.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SynMatch } from './sync-transid-directly.model';
 
 @Component({
   selector: 'app-sync-transid-directly',
@@ -15,14 +16,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class SyncTransidDirectlyComponent implements OnInit {
   siteDBOptions: string[] = [];
   siteDBSelected = '';
+
   tableOptions: string[] = [];
   tableSelected = '';
+
   subSiteDBOptions: any[] = [];
   subSiteDBsSelected: string[] = [];
 
+  typeUpdate = 'transId';
+
   transIds: string = '';
 
+  matchId: string = '';
+
   maxTransId = 2000;
+
+  syncMatches: SynMatch[] = [];
 
   constructor(
     private dialogService: ConfirmDialogService,
@@ -76,7 +85,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
         confirmStyle: 'btn-confirm-ok',
       })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         confirm && this.handleConfirm();
       });
   }
@@ -91,13 +100,13 @@ export class SyncTransidDirectlyComponent implements OnInit {
   handleConfirm() {
     this.syncTransIdService
       .updateTransId({
-        ServerName: this.siteDBSelected,
-        TableName: this.tableSelected,
-        TransIds: this.transIds,
-        ToServerNames: this.subSiteDBsSelected,
+        serverName: this.siteDBSelected,
+        tableName: this.tableSelected,
+        transIds: this.transIds,
+        toServerNames: this.subSiteDBsSelected,
       })
       .subscribe((res) => {
-        if (!!res.errCode) {
+        if (res.errCode) {
           this.snackbarService.openErrorSnackBar(res.errMsg);
         } else {
           this.snackbarService.openSuccessSnackBar();
@@ -129,5 +138,31 @@ export class SyncTransidDirectlyComponent implements OnInit {
         disabled: false,
       }));
     }
+  }
+
+  getSynTicketForMatch() {
+    this.syncTransIdService
+      .getSynTicketForMatch({
+        matchId: +this.matchId,
+        tableName: this.tableSelected,
+        typeUpdate: this.typeUpdate,
+        serverName: this.siteDBSelected,
+      })
+      .subscribe((res) => {
+        this.syncMatches = res;
+      });
+  }
+
+  updateMatchBatchTransId(item: SynMatch) {
+    this.syncTransIdService
+      .updateBatchTransId({
+        ...item,
+        fromTransId: item.minTransId,
+        toTransId: item.maxTransId,
+        toServerNames: this.subSiteDBsSelected,
+      })
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

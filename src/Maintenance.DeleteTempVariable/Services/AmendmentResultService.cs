@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Fanex.Data.Repository;
+using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
 using Microsoft.Extensions.Options;
-using SharpRaven.Data;
-using static StackExchange.Redis.Role;
 
 namespace Maintenance.DeleteTempVariable.Services
 {

@@ -43,18 +43,26 @@
       </select>
     </div>
     <div class="field">
-      <mat-form-field>
-        <mat-label>To SubDB</mat-label>
-        <mat-select multiple [(ngModel)]="subSiteDBsSelected" (selectionChange)="onSelectionChange($event)">
-          <mat-option *ngFor="let s of subSiteDBOptions" [value]="s.value"
-            [disabled]="s.disabled">{{s.label}}</mat-option>
+      <label>Type Update</label>
+      <select [(ngModel)]="typeUpdate">
+        <option value="">Please Select</option>
+        <option value="transId">
+          TransId
+        </option>
+        <option value="matchId"> MatchId </option>
+      </select>
+    </div>
+    <div class="field match">
+      <label for="">MatchId</label>
+      <input type="number" [(ngModel)]="matchId" />
+    </div>
 
-        </mat-select>
-      </mat-form-field>
+    <div>
+      <button class="btn-submit" (click)="getSynTicketForMatch()">Submit</button>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="typeUpdate === 'transId'">
     <div class="field" style="align-items: start; width: 100%">
       <label class="site-label">List TransId</label>
       <div style="width: 100%">
@@ -67,6 +75,41 @@
       </div>
     </div>
   </div>
-  <div class="row"></div>
-  <button class="btn-submit" (click)="openConfirmDialog()">UPDATE</button>
+  <div class="row" *ngIf="typeUpdate === 'transId'">
+    <button class="btn-submit" (click)="openConfirmDialog()">UPDATE</button>
+  </div>
+
+  <div class="field">
+    <mat-form-field>
+      <mat-label>To SubDB</mat-label>
+      <mat-select multiple [(ngModel)]="subSiteDBsSelected" (selectionChange)="onSelectionChange($event)">
+        <mat-option *ngFor="let s of subSiteDBOptions" [value]="s.value"
+          [disabled]="s.disabled">{{s.label}}</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <table class="table" *ngIf="syncMatches.length">
+    <thead>
+      <tr>
+        <th>Row Number</th>
+        <th>Min TransId</th>
+        <th>Max TransId</th>
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of syncMatches">
+        <td> {{item.rowNumber}} </td>
+        <td> {{item.minTransId}}</td>
+        <td> {{item.maxTransId}} </td>
+
+        <td>
+          <button class="btn-update" (click)="updateMatchBatchTransId(item)">Update</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>

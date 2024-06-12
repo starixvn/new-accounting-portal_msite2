@@ -2,6 +2,8 @@
 using Fanex.Data.Repository;
 using Fanex.Logging;
 using Fanex.NAP.Client.Helpers.Web;
+using Maintenance.Core.Constants;
+using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
@@ -13,6 +15,7 @@ namespace Maintenance.DeleteTempVariable.Services;
 public interface ControlSyncService
 {
     bool UpdateStatusService(UpdateStatusRequest request);
+
     Task<List<LastLog>> GetInfoService();
 }
 

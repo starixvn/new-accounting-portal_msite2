@@ -1,5 +1,6 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
+using Maintenance.Core.Constants;
 using Maintenance.DeleteTempVariable.Constants;
 
 namespace Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;

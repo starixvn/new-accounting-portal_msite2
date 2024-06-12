@@ -26,7 +26,6 @@ public class TempVariableServiceTests
 
         repository = Substitute.For<IDynamicRepository>();
 
-
         var mapperConfig = new MapperConfigurationExpression();
         mapperConfig.AddProfile<AutoMapperProfile>();
         var config = new MapperConfiguration(mapperConfig);
@@ -36,7 +35,7 @@ public class TempVariableServiceTests
     [Fact]
     public async void TicketCount_ReturnCount()
     {
-        // Arrange 
+        // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);
         repository.GetAsync<MatchTicket>(Arg.Any<GetTicketCriteria>()).Returns(new MatchTicket { TicketCount = 1 });
 
@@ -45,13 +44,12 @@ public class TempVariableServiceTests
 
         // Assert
         Assert.Equal(1, result);
-
     }
 
     [Fact]
     public async void GetMatches_ReturnCorrectData()
     {
-        // Arrange 
+        // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);
         repository.FetchAsync<Match>(Arg.Any<GetTicketCriteria>()).Returns(new List<Match>());
 
@@ -60,13 +58,12 @@ public class TempVariableServiceTests
 
         // Assert
         Assert.Equal(new List<Match>(), result);
-
     }
 
     [Fact]
     public async void GetMatchDetail_ReturnCorrectData()
     {
-        // Arrange 
+        // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);
         repository.GetAsync<Match>(Arg.Any<GetMatchesCriteria>()).Returns(new Match());
 
@@ -75,13 +72,12 @@ public class TempVariableServiceTests
 
         // Assert
         result.Should().BeEquivalentTo(new Match());
-
     }
 
     [Fact]
     public async void DeleteMatch_ReturnCorrectData()
     {
-        // Arrange 
+        // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);
         repository.ExecuteAsync(Arg.Any<DeleteMatchCriteria>()).Returns(1);
 
@@ -90,6 +86,5 @@ public class TempVariableServiceTests
 
         // Assert
         Assert.Equal(1, result);
-
     }
 }

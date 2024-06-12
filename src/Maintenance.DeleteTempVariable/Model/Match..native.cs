@@ -38,6 +38,7 @@ public class Match
             ProductNameKey.FastMarketSABA => $"{KeyId}-Fast Market SABA Time Machine",
             _ => string.Empty
         };
+
     public int Value { get; set; }
 
     public int TicketCount { get; set; }

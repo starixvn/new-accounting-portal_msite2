@@ -23,6 +23,7 @@ using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.NAP.Client.Session;
 using Fanex.Settlement.ScaleOut.Services;
+using Maintenance.Sync;
 using SharpRaven;
 
 public static class ServiceCollectionExtensions
@@ -115,9 +116,10 @@ public static class ServiceCollectionExtensions
         services.AddTransient<SettlementErrorLogService, SettlementErrorLogServiceImp>();
         services.AddTransient<GeneralService, GeneralServiceImp>();
         services.AddTransient<ScaleOutSettleService, ScaleOutSettleServiceImp>();
-        services.AddTransient<SyncTransIdDirectlyService, SyncTransIdDirectlyServiceImp>();
         services.AddTransient<FlagBroadcastService, FlagBroadcastServiceImp>();
         services.AddTransient<AmendmentResultService, AmendmentResultServiceImp>();
+
+        services.AddSyncServices();
     }
 
     public static void AddNapServices(this IServiceCollection services, IConfiguration configuration)

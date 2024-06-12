@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Maintenance.DeleteTempVariable.Model;
+﻿namespace Maintenance.DeleteTempVariable.Model;
 
 public class AmendmentResult
 {

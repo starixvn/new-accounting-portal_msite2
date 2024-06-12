@@ -15,7 +15,6 @@ public class ParlayLockingServiceTests
     private readonly IOptions<AppSettingsKey> appSettingsKey;
     private readonly IMapper mapper;
 
-
     public ParlayLockingServiceTests()
     {
         var settings = new AppSettingsKey
@@ -25,7 +24,6 @@ public class ParlayLockingServiceTests
         appSettingsKey = Options.Create(settings);
 
         repository = Substitute.For<IDynamicRepository>();
-
 
         var mapperConfig = new MapperConfigurationExpression();
         mapperConfig.AddProfile<AutoMapperProfile>();

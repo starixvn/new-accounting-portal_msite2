@@ -14,7 +14,6 @@ public class LastLog
 
     public string StatusName => LastStatusId switch
     {
-
         StatusKey.Running => "Running",
         StatusKey.Completed => "Completed",
         StatusKey.Failed => "Failed",
