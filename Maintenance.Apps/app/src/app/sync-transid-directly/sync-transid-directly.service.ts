@@ -21,7 +21,7 @@ export class SyncTransIdService {
   ) {}
 
   public getDbInfo(): Observable<DbInfo> {
-    return this.httpService.getData(`${this.baseUrl}/sync-transid-get-dbinfo`);
+    return this.httpService.getData(`${this.baseUrl}/get-dbinfo`);
   }
 
   public updateTransId(request: UpdateTransIdsRequest): Observable<Result> {

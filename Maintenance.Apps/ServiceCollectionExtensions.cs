@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.Logging;
 using Fanex.Logging.Extensions;

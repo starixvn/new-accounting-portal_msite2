@@ -67,6 +67,17 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
         var tasks = request.ToServerNames.Select(s => UpdSyncTransIdOnSite(s, criteria));
         var results = await Task.WhenAll(tasks);
 
+        var errorResults = results.Where(x => !x.IsSuccess);
+
+        if (errorResults.Any())
+        {
+            return new Result
+            {
+                ErrCode = errorResults.First().ErrCode,
+                ErrMsg = string.Join('|', errorResults.Select(x => x.ErrMsg)),
+            };
+        }
+
         return new Result();
     }
 

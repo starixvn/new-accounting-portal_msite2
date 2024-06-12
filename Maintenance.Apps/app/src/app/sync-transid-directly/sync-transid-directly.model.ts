@@ -14,6 +14,7 @@ export interface UpdateTransIdsRequest {
 export interface Result {
   errCode: number;
   errMsg: string;
+  isSuccess: boolean;
 }
 
 export type SynMatch = {
@@ -23,6 +24,7 @@ export type SynMatch = {
   matchId: number;
   tableName: string;
   serverName: string;
+  isUpdated: boolean;
 };
 
 export type GetBatchTransIdRequest = {

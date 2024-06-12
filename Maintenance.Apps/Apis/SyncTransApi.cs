@@ -11,7 +11,6 @@ public static class SyncTransApi
     public static IEndpointRouteBuilder MapSyncTransApi(this IEndpointRouteBuilder app)
     {
         var api = app.MapGroup("api/delete-temp-variable");
-        api.MapGet("/ok", () => "OK");
 
         api.MapGet("/get-dbinfo", GetDbInfo);
         api.MapPost("/sync-transid-update", UpdateTransId);

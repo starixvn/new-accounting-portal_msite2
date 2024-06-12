@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmDialogService } from '../shared/components/dialog/dialog.service';
-import { isNumeric } from '../shared/helper';
 import { SnackbarService } from '../shared/services/snackbar.service';
 import { SyncTransIdService } from './sync-transid-directly.service';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { SynMatch } from './sync-transid-directly.model';
 
 @Component({
@@ -49,6 +45,17 @@ export class SyncTransidDirectlyComponent implements OnInit {
         disabled: false,
       }));
     });
+  }
+
+  onSelectionChangeTypeUpdate() {
+    this.resetState();
+  }
+
+  resetState() {
+    this.matchId = '';
+    this.subSiteDBsSelected = [];
+    this.transIds = '';
+    this.syncMatches = [];
   }
 
   openConfirmDialog() {
@@ -154,6 +161,12 @@ export class SyncTransidDirectlyComponent implements OnInit {
   }
 
   updateMatchBatchTransId(item: SynMatch) {
+    if (!this.subSiteDBsSelected.length) {
+      this.dialogService.openWarning({
+        message: 'Please select SubDB, you want to sync!',
+      });
+      return;
+    }
     this.syncTransIdService
       .updateBatchTransId({
         ...item,
@@ -162,7 +175,12 @@ export class SyncTransidDirectlyComponent implements OnInit {
         toServerNames: this.subSiteDBsSelected,
       })
       .subscribe((res) => {
-        console.log(res);
+        if (res.isSuccess) {
+          item.isUpdated = res.isSuccess;
+          this.snackbarService.openSuccessSnackBar();
+        } else {
+          this.snackbarService.openErrorSnackBar(res.errMsg);
+        }
       });
   }
 }

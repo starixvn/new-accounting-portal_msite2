@@ -46,11 +46,22 @@ public class SyncMatchTransServiceImp : SyncMatchTransService
     {
         var transInfo = await GetTransInfo(request);
 
-        if (transInfo == null || !transInfo.Any()) return new Result();
+        if (transInfo == null || !transInfo.Any()) return Result.Notfound;
 
-        var result = await UpdateTransInfoAllSite(request, transInfo);
+        var results = await UpdateTransInfoAllSite(request, transInfo);
 
-        return result;
+        var errorResults = results.Where(x => !x.IsSuccess);
+
+        if (errorResults.Any())
+        {
+            return new Result
+            {
+                ErrCode = errorResults.First().ErrCode,
+                ErrMsg = string.Join('|', errorResults.Select(x => x.ErrMsg)),
+            };
+        }
+
+        return new Result();
     }
 
     private async Task<byte[]> GetTransInfo(UpdateBatchTransIdRequest request)
@@ -69,7 +80,7 @@ public class SyncMatchTransServiceImp : SyncMatchTransService
         return selCriteria.TransInfoJson;
     }
 
-    private async Task<Result> UpdateTransInfoAllSite(UpdateBatchTransIdRequest request, byte[] transInfo)
+    private async Task<List<Result>> UpdateTransInfoAllSite(UpdateBatchTransIdRequest request, byte[] transInfo)
     {
         var updCriteria = new SyncTransIdInRangeUpdCriteria
         {
@@ -80,7 +91,7 @@ public class SyncMatchTransServiceImp : SyncMatchTransService
 
         var results = await Task.WhenAll(tasks);
 
-        return new Result();
+        return results.ToList();
     }
 
     private async Task<Result> UpdateBatchTransIdOneSite(string s, SyncTransIdInRangeUpdCriteria criteria)
