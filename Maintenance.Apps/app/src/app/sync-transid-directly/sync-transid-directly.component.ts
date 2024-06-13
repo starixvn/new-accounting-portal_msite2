@@ -56,6 +56,10 @@ export class SyncTransidDirectlyComponent implements OnInit {
     this.subSiteDBsSelected = [];
     this.transIds = '';
     this.syncMatches = null;
+    this.subSiteDBOptions = this.subSiteDBOptions.map((x) => ({
+      ...x,
+      disabled: false,
+    }));
   }
 
   openConfirmDialog() {
@@ -79,11 +83,24 @@ export class SyncTransidDirectlyComponent implements OnInit {
       return;
     }
 
-    const message = `
+    const messageSyncTransIdCentralDb = `
             <div>DB Server: ${this.siteDBSelected}</div>
             <div>Action: Update RepUpdateTime</div>
             <div>Are you sure you want to <span class="blue">UPDATE</span> RepUpdateTime ?</div>
         `;
+
+    const messageSyncBatch = `
+        <div>DB Server: ${this.siteDBSelected}</div>
+        <div>Action: Usync data from ${
+          this.siteDBSelected
+        } to ${this.subSiteDBsSelected.join(', ')}</div>
+        <div>Are you sure you want to sync data?</div>
+    `;
+
+    const message =
+      this.typeUpdate === 'transId' && !this.subSiteDBsSelected.length
+        ? messageSyncTransIdCentralDb
+        : messageSyncBatch;
 
     this.dialogService
       .openConfirm({

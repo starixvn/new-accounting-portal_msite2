@@ -3,6 +3,7 @@ using Maintenance.Core.Models;
 using Maintenance.Sync.Criteria;
 using Maintenance.Sync.Models;
 using Maintenance.Sync.Requests;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace Maintenance.Sync.Services;
 
@@ -27,6 +28,11 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
 
     public async Task<Result> UpdateTransId(UpdateTransIdsRequest request)
     {
+        if (!request.ToServerNames.Any())
+        {
+            return await UpdateTransIdCentralDb(request);
+        }
+
         var (selResult, transInfo) = await GetTransIds(request);
 
         if (!selResult.IsSuccess) return selResult;
@@ -34,6 +40,24 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
         var result = await UpdSyncTransIdAllSite(request, transInfo);
 
         return result;
+    }
+
+    private async Task<Result> UpdateTransIdCentralDb(UpdateTransIdsRequest request)
+    {
+        var criteria = new SyncTransIdToCentralDbUpdCriteria
+        {
+            TableName = request.TableName,
+            TransIds = request.TransIds,
+            ServerName = request.ServerName,
+        };
+
+        await repository.ExecuteAsync(criteria);
+
+        return new Result
+        {
+            ErrCode = criteria.ErrCode,
+            ErrMsg = criteria.ErrMsg
+        };
     }
 
     private async Task<(Result, byte[])> GetTransIds(UpdateTransIdsRequest request)
