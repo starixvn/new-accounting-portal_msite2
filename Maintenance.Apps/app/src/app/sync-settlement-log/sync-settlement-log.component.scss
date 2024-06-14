@@ -84,5 +84,7 @@
 }
 
 .col-message {
-  width: 100%;
+  max-width: 400px;
+  overflow-wrap: break-word;
+  text-align: left;
 }
