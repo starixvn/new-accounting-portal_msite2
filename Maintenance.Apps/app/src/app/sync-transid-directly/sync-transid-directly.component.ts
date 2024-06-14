@@ -126,7 +126,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
       .updateTransId({
         serverName: this.siteDBSelected,
         tableName: this.tableSelected,
-        transIds: this.transIds,
+        transIds: this.transIds.replace(/\s/g, ''),
         toServerNames: this.subSiteDBsSelected,
       })
       .subscribe((res) => {
