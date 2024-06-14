@@ -46,7 +46,11 @@ public class SyncMatchTransServiceImp : SyncMatchTransService
     {
         var transInfo = await GetTransInfo(request);
 
-        if (transInfo == null || !transInfo.Any()) return Result.Notfound;
+        if (transInfo == null || !transInfo.Any()) return new Result
+        {
+            ErrCode = 101,
+            ErrMsg = "TransInfoJson get from NAP_Set_SiteDB_SyncTransIdInRange_Sel is Empty"
+        };
 
         var results = await UpdateTransInfoAllSite(request, transInfo);
 

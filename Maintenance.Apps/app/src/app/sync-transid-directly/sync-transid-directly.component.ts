@@ -134,9 +134,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
           this.snackbarService.openErrorSnackBar(res.errMsg);
         } else {
           this.snackbarService.openSuccessSnackBar();
-          this.transIds = '';
-          this.tableSelected = '';
-          this.siteDBSelected = '';
+          this.resetState();
         }
       });
   }
@@ -195,6 +193,26 @@ export class SyncTransidDirectlyComponent implements OnInit {
       });
       return;
     }
+
+    //     const messageSyncBatch = `
+    //     <div>DB Server: ${this.siteDBSelected}</div>
+    //     <div>Action: Usync data from ${
+    //       this.siteDBSelected
+    //     } to ${this.subSiteDBsSelected.join(', ')}</div>
+    //     <div>Are you sure you want to sync data?</div>
+    // `;
+
+    //     this.dialogService
+    //       .openConfirm({
+    //         messageSyncBatch,
+    //         confirmText: 'Update',
+    //         confirmStyle: 'btn-confirm-ok',
+    //       })
+    //       .afterClosed()
+    //       .subscribe((confirm: boolean) => {
+    //         confirm && this.handleConfirm();
+    //       });
+
     this.syncTransIdService
       .updateBatchTransId({
         ...item,
