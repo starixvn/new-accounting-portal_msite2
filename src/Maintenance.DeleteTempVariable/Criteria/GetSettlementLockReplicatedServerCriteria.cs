@@ -6,6 +6,7 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 public class GetSettlementLockReplicatedServerCriteria : CriteriaBase
 {
     public int MatchId { get; set; }
+    public string Mode { get; set; }
 
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }

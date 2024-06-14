@@ -7,4 +7,5 @@ public class DeleteSettlementProcessingRequest
     public string DbServer { get; set; }
 
     public bool IsSettleLock { get; set; }
+    public string Mode { get; set; }
 }

@@ -6,6 +6,15 @@
         <label for="">MatchId</label>
         <input type="number" name="matchId" [(ngModel)]="matchId" />
       </div>
+
+      <div class="field">
+        <label class="site-label">SiteDB</label>
+        <select [(ngModel)]="typeSettle">
+          <option value="single">Single</option>
+          <option value="parlay">Parlay</option>
+
+        </select>
+      </div>
       <button (click)="submit()" class="btn-submit">SUBMIT</button>
     </div>
 
@@ -13,13 +22,13 @@
       <div>
         <div class="bold">Guideline: You need to do step by step</div>
         <div>
-          <span class="bold">Step 1:</span> Delete Settlement Processing
+          <span class="bold">Step 1:</span> Delete SettlementProcessing / ParlaySettlementProcessing
         </div>
         <div><span class="bold">Step 2:</span> Update SSB_SettlementLogs</div>
       </div>
       <div>
         <div>
-          <span class="bold">Step 3:</span> Delete SettlementLock (If having)
+          <span class="bold">Step 3:</span> Delete SettlementLock / ParlaySettlementLock (if having)
         </div>
         <div>
           <span class="bold"> Step 4:</span> Please check and delete locked
@@ -40,8 +49,8 @@
         <th>Created Time</th>
         <th>Event Name</th>
         <th>Error message</th>
-        <th>SettlementLock</th>
-        <th>SettlementProcessing</th>
+        <th style="width: 180px;">{{settlementLockTitle}}</th>
+        <th style="width: 180px;">{{settlementProcessingTitle}}</th>
         <th>SSB_SettlementLogs</th>
       </tr>
     </thead>
@@ -56,49 +65,35 @@
             {{ item.createdTime | date : "mediumDate" }}
             {{ item.createdTime | date : "hh:mm:ss a" }}
           </td>
-          <td>
+          <td class="text-left">
             <span *ngIf="item.homeTeam && item.awayTeam">{{
               item.homeTeam + " -vs- " + item.awayTeam
-            }}</span>
+              }}</span>
           </td>
-          <td>
+          <td class="col-message">
             <span [outerHTML]="item.errorMessage | replaceLineBreaks"></span>
           </td>
           <td>
-            <button
-              *ngIf="item.dbServer !== 'DBTXN'"
-              [ngClass]="
-                item.messageId == null || item.messageId == ''
+            <button *ngIf="item.dbServer !== 'DBTXN'" [ngClass]="
+                item.isReplicated
                   ? 'btn-delete'
                   : 'btn-disable'
-              "
-              [disabled]="item.messageId != null && item.messageId != ''"
-              (click)="openDeleteConfirmDialog(item, true)"
-            >
+              " [disabled]="!item.isReplicated" (click)="openDeleteConfirmDialog(item, true)">
               Delete
             </button>
           </td>
           <td class="action">
-            <button
-              class="btn"
-              [ngClass]="
+            <button class="btn" [ngClass]="
                 item.totalSettlementProcessing > 0
                   ? 'btn-delete'
                   : 'btn-disable'
-              "
-              [disabled]="item.totalSettlementProcessing <= 0"
-              (click)="openDeleteConfirmDialog(item, false)"
-            >
+              " [disabled]="item.totalSettlementProcessing <= 0" (click)="openDeleteConfirmDialog(item, false)">
               Delete
             </button>
           </td>
           <td class="action">
-            <button
-              class="btn"
-              [ngClass]="!!item.errorMessage ? 'btn-submit' : 'btn-disable'"
-              (click)="openUpdateConfirmDialog(item)"
-              [disabled]="!item.errorMessage"
-            >
+            <button class="btn" [ngClass]="!!item.errorMessage ? 'btn-submit' : 'btn-disable'"
+              (click)="openUpdateConfirmDialog(item)" [disabled]="!item.errorMessage">
               Update
             </button>
           </td>

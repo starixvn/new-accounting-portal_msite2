@@ -10,6 +10,8 @@ public class GetSettlementLockCriteria : CriteriaBase
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
 
+    public string Mode { get; set; }
+
     public override string GetSettingKey() => $"NAP_Set_SSBErrorMessageSel_{DbServer}";
 
     public override bool IsValid() => !string.IsNullOrWhiteSpace(DbServer);

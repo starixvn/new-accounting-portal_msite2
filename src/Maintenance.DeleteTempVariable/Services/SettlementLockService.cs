@@ -33,7 +33,8 @@ public class SettlementLockServiceImp(IDynamicRepository repository,
             var criteria = new GetSettlementLockCriteria
             {
                 MatchId = request.MatchId,
-                DbServer = server
+                DbServer = server,
+                Mode = request.Mode,
             };
 
             var list = (await repository.FetchAsync<MatchSettlementLock>(criteria)).ToList();
@@ -43,7 +44,7 @@ public class SettlementLockServiceImp(IDynamicRepository repository,
 
             if (server.Equals(DataBaseServers.DBCentral))
             {
-                var replicatedData = await GetDataReplicatedServer(request.MatchId);
+                var replicatedData = await GetDataReplicatedServer(request.MatchId, request.Mode);
                 listSettlementLock.AddRange(replicatedData);
             }
         }
@@ -51,7 +52,7 @@ public class SettlementLockServiceImp(IDynamicRepository repository,
         return listSettlementLock;
     }
 
-    private async Task<List<MatchSettlementLock>> GetDataReplicatedServer(int matchId)
+    private async Task<List<MatchSettlementLock>> GetDataReplicatedServer(int matchId, string mode)
     {
         var replicatedData = new List<MatchSettlementLock>();
         foreach (var server in appSettingsKey.SubDbServer)
@@ -59,7 +60,8 @@ public class SettlementLockServiceImp(IDynamicRepository repository,
             var replicatedServerCriteria = new GetSettlementLockReplicatedServerCriteria
             {
                 MatchId = matchId,
-                DbServer = server
+                DbServer = server,
+                Mode = mode
             };
 
             var data = (await repository.FetchAsync<MatchSettlementLock>(replicatedServerCriteria)).ToList();
@@ -68,6 +70,8 @@ public class SettlementLockServiceImp(IDynamicRepository repository,
 
             replicatedData.AddRange(data);
         }
+
+        replicatedData.ForEach(m => m.IsReplicated = true);
 
         return replicatedData;
     }

@@ -9,6 +9,7 @@ export interface MatchSettlementLock {
   serverName: string;
   errorMessage: string;
   messageId: string;
+  isReplicated: boolean;
 }
 
 export interface DeleteSettlementLog {

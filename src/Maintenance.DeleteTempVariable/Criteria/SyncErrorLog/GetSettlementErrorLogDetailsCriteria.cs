@@ -11,6 +11,7 @@ public class GetSettlementErrorLogDetailsCriteria : CriteriaBase
     public long SessionId { get; set; }
 
     public short SiteDBGroupId { get; set; }
+    public string Mode { get; set; }
 
     public override string GetSettingKey() => $"NAP_Set_SiteDB_SettlementProcessingDetailSel_{DbServer}";
 
