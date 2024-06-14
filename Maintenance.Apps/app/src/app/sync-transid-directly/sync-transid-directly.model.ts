@@ -19,8 +19,8 @@ export interface Result {
 
 export type SynMatch = {
   rowNumber: number;
-  minTransId: number;
-  maxTransId: number;
+  minTransId: string;
+  maxTransId: string;
   matchId: number;
   tableName: string;
   serverName: string;
@@ -38,7 +38,7 @@ export type UpdateBatchTransIdRequest = {
   tableName: string;
   serverName: string;
   matchId: number;
-  fromTransId: number;
-  toTransId: number;
+  fromTransId: string;
+  toTransId: string;
   toServerNames: string[];
 };

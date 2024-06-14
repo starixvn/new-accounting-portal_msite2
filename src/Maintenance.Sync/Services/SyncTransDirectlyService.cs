@@ -21,14 +21,14 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
 
     public DbInfo GetDbInfo() => new()
     {
-        Tables = new List<string> { "bettrans ", "bettransm" },
+        Tables = new List<string> { "bettrans", "bettransm" },
         DbSites = appSettings.SiteDbServer.Where(s => !s.Equals(DataBaseServers.DBCentral)).ToList(),
         SubDbSites = [DataBaseServers.DBCentral, .. appSettings.SubDbServer],
     };
 
     public async Task<Result> UpdateTransId(UpdateTransIdsRequest request)
     {
-        if (!request.ToServerNames.Any())
+        if (!request.ToServerNames.Any() || request.ToServerNames.Count(x => x.Equals(DataBaseServers.DBCentral)) == 1)
         {
             return await UpdateTransIdCentralDb(request);
         }

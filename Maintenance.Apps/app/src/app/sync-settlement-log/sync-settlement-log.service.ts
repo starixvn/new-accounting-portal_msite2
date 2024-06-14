@@ -32,7 +32,6 @@ export class SettlementErrorLogService {
       dbServer: item.dbServer,
       mode,
     };
-    console.log(body);
     return this.httpService.post<DetailSettlementErrorLog[]>(url, body);
   }
 

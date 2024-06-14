@@ -28,9 +28,7 @@ export class ConfirmDialogComponent implements OnInit {
     this.cancelStyle = data.cancelStyle ?? 'btn-confirm-cancel';
   }
 
-  ngOnInit(): void {
-    console.log('confirmStyle', this.confirmStyle);
-  }
+  ngOnInit(): void {}
 
   onOk() {
     this.dialogRef.close(true);

@@ -98,7 +98,9 @@ export class SyncTransidDirectlyComponent implements OnInit {
     `;
 
     const message =
-      this.typeUpdate === 'transId' && !this.subSiteDBsSelected.length
+      this.typeUpdate === 'transId' &&
+      (!this.subSiteDBsSelected.length ||
+        this.subSiteDBsSelected.filter((x) => x === 'DBTXN').length === 1)
         ? messageSyncTransIdCentralDb
         : messageSyncBatch;
 
@@ -116,9 +118,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
 
   validTransIds() {
     const ids = this.transIds.split(',');
-    return (
-      this.transIds && !ids.some((v) => !parseInt(v)) && ids.length <= 2000
-    );
+    return this.transIds && !ids.some((v) => !BigInt(v)) && ids.length <= 2000;
   }
 
   handleConfirm() {

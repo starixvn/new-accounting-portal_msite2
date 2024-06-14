@@ -73,7 +73,6 @@ export class SyncSettlementLogComponent implements OnInit {
 
   submit() {
     this.loadData();
-    console.log(this.logs);
   }
 
   openConfirmDeleteSettlementLockDialog(item: SettlementErrorLog) {
