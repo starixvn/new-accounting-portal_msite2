@@ -1,5 +1,4 @@
-﻿
-namespace Maintenance.Apps;
+﻿namespace Maintenance.Apps;
 
 using Fanex.Logging;
 using Fanex.Logging.Extensions;

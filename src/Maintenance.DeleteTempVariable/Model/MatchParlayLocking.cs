@@ -4,7 +4,7 @@ public class MatchParlayLocking
 {
     public string ServerName { get; set; } // map DB Server ui
 
-    public string DbServer { get; set; } // 
+    public string DbServer { get; set; } //
 
     public int MatchId { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace Maintenance.DeleteTempVariable.Constants;
+﻿namespace Maintenance.Core.Constants;
 
 public static class DataBaseServers
 {

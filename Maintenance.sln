@@ -11,7 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2C6DC532
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintenance.DeleteTempVariable", "src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj", "{2DC83242-165E-4637-ABD1-5C171C5EB27D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance.DeleteTempVariable.Tests", "tests\Maintenance.DeleteTempVariable.Tests\Maintenance.DeleteTempVariable.Tests.csproj", "{65D3326B-4288-4ADF-90C4-A2807E51763A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintenance.DeleteTempVariable.Tests", "tests\Maintenance.DeleteTempVariable.Tests\Maintenance.DeleteTempVariable.Tests.csproj", "{65D3326B-4288-4ADF-90C4-A2807E51763A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance.Sync", "src\Maintenance.Sync\Maintenance.Sync.csproj", "{DE5F97E5-30E3-46DC-A7DB-1851E97C659A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,14 @@ Global
 		{65D3326B-4288-4ADF-90C4-A2807E51763A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65D3326B-4288-4ADF-90C4-A2807E51763A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65D3326B-4288-4ADF-90C4-A2807E51763A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE5F97E5-30E3-46DC-A7DB-1851E97C659A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5F97E5-30E3-46DC-A7DB-1851E97C659A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5F97E5-30E3-46DC-A7DB-1851E97C659A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5F97E5-30E3-46DC-A7DB-1851E97C659A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +50,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2DC83242-165E-4637-ABD1-5C171C5EB27D} = {FA55D8E6-7E79-45DE-8E76-D45F7D208B9A}
 		{65D3326B-4288-4ADF-90C4-A2807E51763A} = {2C6DC532-851D-478D-8942-ED2EF0437188}
+		{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD} = {FA55D8E6-7E79-45DE-8E76-D45F7D208B9A}
+		{DE5F97E5-30E3-46DC-A7DB-1851E97C659A} = {FA55D8E6-7E79-45DE-8E76-D45F7D208B9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B307E835-7AA1-4D9B-8A64-AC1455A4457C}

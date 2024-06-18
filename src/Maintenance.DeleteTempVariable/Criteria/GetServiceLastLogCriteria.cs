@@ -5,7 +5,6 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class GetServiceLastLogCriteria : CriteriaBase
 {
-
     [SpParam(Ignored = true)]
     public string DbServer { get; set; }
 

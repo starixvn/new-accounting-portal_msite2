@@ -1,4 +1,4 @@
-﻿namespace Maintenance.DeleteTempVariable.Model;
+﻿namespace Maintenance.Core.Models;
 
 public class RabbitMq
 {

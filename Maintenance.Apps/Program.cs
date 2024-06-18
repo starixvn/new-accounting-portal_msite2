@@ -4,7 +4,8 @@ using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
 using Fanex.NAP.SignIn.Attribute;
 using Maintenance.Apps;
-using Maintenance.DeleteTempVariable.Model;
+using Maintenance.Apps.Apis;
+using Maintenance.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using ONEbook.UM.AspNetCore.Filters;
 
@@ -62,6 +63,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapSyncTransApi(); //
 
 app.MapControllerRoute(
     "default",

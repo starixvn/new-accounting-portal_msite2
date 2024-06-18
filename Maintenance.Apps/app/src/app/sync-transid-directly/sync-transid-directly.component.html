@@ -2,28 +2,32 @@
   <h1 class="title-page">Sync TransIds Directly</h1>
 </div>
 
-<div class="filter">
-  <div class="guideline" style="display: flex; justify-content: space-between">
-    <div>
-      <div class="bold">Guideline: You need to do step by step</div>
-      <div><span class="bold">Step 1:</span> Select SiteDB</div>
-      <div><span class="bold">Step 2:</span>Select Table</div>
-    </div>
-    <div>
-      <div><span class="bold">Step 3:</span> Input list TransId</div>
+<div class="noted-sync-transid">
+  <div class="guideline">
+    <div class="bold">Guideline: You need to do step by step</div>
+    <div style="display: flex; justify-content: start; column-gap: 50px;">
       <div>
-        <span class="bold red"> Note:</span> If Table Update is "bettransm",
-        please announce Keyscore for re-cal match
+        <div><span class="bold">Step 1:</span> Select SiteDB</div>
+        <div><span class="bold">Step 2:</span>Select Table</div>
+      </div>
+      <div>
+
+        <div><span class="bold">Step 3:</span> Input list TransId</div>
+        <div>
+          <span class="bold red"> Note:</span> If Table Update is "bettransm",
+          please announce Keyscore for re-cal match
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="transid-page">
+
+<div [className]="typeUpdate ==='matchId' ? 'filter': ''">
   <div class="row">
     <div class="field">
-      <label class="site-label">SiteDB</label>
-      <select [(ngModel)]="siteDBSelected">
+      <label class="site-label" for="siteDBSelected">SiteDB</label>
+      <select [(ngModel)]="siteDBSelected" id="siteDBSelected">
         <option value="">Please Select</option>
         <option *ngFor="let item of siteDBOptions" [value]="item">
           {{ item }}
@@ -31,34 +35,106 @@
       </select>
     </div>
     <div class="field">
-      <label>Table Update</label>
-      <select [(ngModel)]="tableSelected">
+      <label for="tableSelected">Table Update</label>
+      <select [(ngModel)]="tableSelected" id="tableSelected">
         <option value="">Please Select</option>
         <option *ngFor="let item of tableOptions" [value]="item">
           {{ item }}
         </option>
       </select>
     </div>
+
+    <div class="field">
+      <label for="typeUpdate">Type Update</label>
+      <select [(ngModel)]="typeUpdate" id="typeUpdate" (ngModelChange)="onSelectionChangeTypeUpdate()">
+        <option value="transId">
+          TransId
+        </option>
+        <option value="matchId"> MatchId </option>
+      </select>
+    </div>
+
+    <div class="field" *ngIf="typeUpdate === 'transId'">
+      <mat-form-field>
+        <mat-label>To SubDB</mat-label>
+        <mat-select multiple [(ngModel)]="subSiteDBsSelected" (selectionChange)="onSelectionChange($event)">
+          <mat-option *ngFor="let s of subSiteDBOptions" [value]="s.value"
+            [disabled]="s.disabled">{{s.label}}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="field match" *ngIf="typeUpdate === 'matchId'">
+      <label for="">MatchId</label>
+      <input type="number" [(ngModel)]="matchId" />
+    </div>
+
+    <div *ngIf="typeUpdate === 'matchId'">
+      <button class="btn-submit" (click)="getSynTicketForMatch()">Submit</button>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="field" style="align-items: start; width: 100%">
-      <label class="site-label">List TransId</label>
-      <div style="width: 100%">
-        <textarea
-          cols="100"
-          rows="10"
-          style="width: 100%"
-          [(ngModel)]="transIds"
-          placeholder="List TrandId separed by comma','"
-        ></textarea>
-        <div class="transid-info">
-          <p>Ex: 12345,433434,464646</p>
-          <p class="error">Max: 2000 TrandsIds</p>
-        </div>
+</div>
+
+
+<div class="row" *ngIf="typeUpdate === 'transId'">
+  <div class="field" style="align-items: start; width: 100%">
+    <label class="site-label" for="transIds">List TransId</label>
+    <div style="width: 100%">
+      <textarea cols="100" rows="10" style="width: 100%" [(ngModel)]="transIds" id="transIds"
+        placeholder="List TrandId separed by comma','"></textarea>
+      <div class="transid-info">
+        <p>Ex: 12345,433434,464646</p>
+        <p class="error">Max: 2000 TrandsIds</p>
       </div>
     </div>
   </div>
-  <div class="row"></div>
+</div>
+
+<div class="row" *ngIf="typeUpdate === 'transId'">
   <button class="btn-submit" (click)="openConfirmDialog()">UPDATE</button>
 </div>
+
+
+<div class="row" *ngIf="typeUpdate === 'matchId' && syncMatches?.length" style="margin-top: 24px;">
+  <mat-form-field>
+    <mat-label>To SubDB</mat-label>
+    <mat-select multiple [(ngModel)]="subSiteDBsSelected" (selectionChange)="onSelectionChange($event)">
+      <mat-option *ngFor="let s of subSiteDBOptions" [value]="s.value" [disabled]="s.disabled">{{s.label}}</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+</div>
+<table class="table" *ngIf="typeUpdate === 'matchId' && syncMatches" style="width: 40%; margin-top: 20px;">
+  <thead>
+    <tr>
+      <th>Row Number</th>
+      <th>Min TransId</th>
+      <th>Max TransId</th>
+
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="syncMatches.length; else noData"></ng-container>
+    <tr *ngFor="let item of syncMatches">
+      <td> {{item.rowNumber}} </td>
+      <td> {{item.minTransId}}</td>
+      <td> {{item.maxTransId}} </td>
+
+      <td>
+        <button [ngClass]="item.isUpdated ? 'btn-disable' : 'btn-submit'" [disabled]="item.isUpdated"
+          (click)="updateMatchBatchTransId(item)">Update</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<ng-template #noData>
+  <tr>
+    <td colspan="4" class="no-data">No Information Available</td>
+  </tr>
+</ng-template>

@@ -43,6 +43,9 @@ import { UpdateFlagBroadcastService } from './update-flag-broadcast/update-flag-
 import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
 import { ResultAmendmentService } from './result-amendment/result-amendment.service';
 import { NameStatus } from './shared/pipes/name-status';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,9 @@ import { NameStatus } from './shared/pipes/name-status';
     AngularMaterialModule,
     BrowserAnimationsModule,
     ClipboardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   providers: [
     SnackbarService,
