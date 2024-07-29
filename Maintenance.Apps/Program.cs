@@ -64,7 +64,7 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.MapSyncTransApi(); //
+app.MapSyncTransApi();
 
 app.MapControllerRoute(
     "default",
