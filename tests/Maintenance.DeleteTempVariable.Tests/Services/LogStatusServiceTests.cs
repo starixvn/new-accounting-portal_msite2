@@ -9,6 +9,8 @@ using NSubstitute;
 
 namespace Maintenance.DeleteTempVariable.Tests.Services;
 
+using Core.Models;
+
 public class LogStatusServiceTests
 {
     private readonly IDynamicRepository repository;

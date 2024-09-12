@@ -9,6 +9,8 @@ using NSubstitute;
 
 namespace Maintenance.DeleteTempVariable.Tests.Services;
 
+using Core.Models;
+
 public class ParlayLockingServiceTests
 {
     private readonly IDynamicRepository repository;

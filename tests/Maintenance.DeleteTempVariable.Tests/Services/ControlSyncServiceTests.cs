@@ -10,6 +10,8 @@ using NSubstitute;
 
 namespace Maintenance.DeleteTempVariable.Tests.Services;
 
+using Core.Models;
+
 public class ControlSyncServiceTests
 {
     private readonly ICache cache;
