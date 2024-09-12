@@ -13,9 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintenance.DeleteTempVaria
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintenance.DeleteTempVariable.Tests", "tests\Maintenance.DeleteTempVariable.Tests\Maintenance.DeleteTempVariable.Tests.csproj", "{65D3326B-4288-4ADF-90C4-A2807E51763A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "src\Core\Core.csproj", "{BB0D03C0-A0E4-46AF-96D4-6713BA699DFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance.Sync", "src\Maintenance.Sync\Maintenance.Sync.csproj", "{DE5F97E5-30E3-46DC-A7DB-1851E97C659A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintenance.Sync", "src\Maintenance.Sync\Maintenance.Sync.csproj", "{DE5F97E5-30E3-46DC-A7DB-1851E97C659A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F99BFB25-CA45-4D45-BBA6-3FF2900AE272}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		.gitlab-ci.yml = .gitlab-ci.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
