@@ -19,7 +19,7 @@ export class UpdateFlagBroadcastComponent implements OnInit {
   constructor(
     private dialogService: ConfirmDialogService,
     private updateFlagBroadcastService: UpdateFlagBroadcastService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.products = [
@@ -34,8 +34,8 @@ export class UpdateFlagBroadcastComponent implements OnInit {
       { id: 9, name: 'Fast Market', isSelected: false },
       { id: 10, name: 'Leap Gaming - Cock-Fighting', isSelected: false },
       { id: 12, name: 'Virtual Sport Five', isSelected: false },
+      { id: 13, name: 'Virtual Sport Six', isSelected: false },
       { id: 14, name: 'Virtual Racing', isSelected: false },
-
     ];
     this.loadInfo();
   }
