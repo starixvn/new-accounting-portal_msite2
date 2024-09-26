@@ -12,24 +12,17 @@
         <tr>
           <td class="products-type">
             <ul class="list-group">
-              <li class="list-group-item" *ngFor="let item of products">
-                <input
-                  id="{{ item.name }}"
-                  type="checkbox"
-                  [(ngModel)]="item.isSelected"
-                  value="{{ item.id }}"
-                  (change)="getCheckedItemList()"
-                />
-                <label for="{{ item.name }}">{{ item.name }}</label>
+              <li *ngFor="let item of products">
+                <div class="list-group-item"> <input id="{{ item.name }}" type="checkbox" [(ngModel)]="item.isSelected"
+                    value="{{ item.id }}" (change)="getCheckedItemList()" />
+                  <label for="{{ item.name }}">{{ item.name }}</label>
+                </div>
               </li>
             </ul>
           </td>
           <td>
-            <mat-slide-toggle
-              color="primary"
-              [checked]="flagBroadcast.currentStatus"
-              (change)="openConfirmDialog($event)"
-            >
+            <mat-slide-toggle color="primary" [checked]="flagBroadcast.currentStatus"
+              (change)="openConfirmDialog($event)">
             </mat-slide-toggle>
           </td>
         </tr>

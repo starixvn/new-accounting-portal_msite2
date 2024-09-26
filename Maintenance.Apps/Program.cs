@@ -74,8 +74,4 @@ NapClientManager
     .UseConfig(app.Services.GetService<INapSettings>())
     .UseSession(app.Services.GetService<INapSession>());
 
-#if DEBUG
 app.Run();
-#endif
-
-await app.RunAsync("http://0.0.0.0:5000");
