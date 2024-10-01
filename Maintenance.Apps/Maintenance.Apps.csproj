@@ -56,6 +56,7 @@
 
  
   <ItemGroup>
+    <ProjectReference Include="..\Maintenance.SpecialLeagueSetting\Maintenance.SpecialLeagueSetting.csproj" />
     <ProjectReference Include="..\src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj" />
     <ProjectReference Include="..\src\Maintenance.Sync\Maintenance.Sync.csproj" />
   </ItemGroup>

@@ -9,15 +9,11 @@ import { SyncSettlementLogComponent } from './sync-settlement-log/sync-settlemen
 import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-transid-directly.component';
 import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-flag-broadcast.component';
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
-import { UpdateLogStatusComponent } from './update-log-status/update-log-status.component';
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
 import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
+import { LeagueSettingComponent } from './special-league-setting/league-setting.component';
 
 const routes: Routes = [
-  // {
-  //     path: 'update-log-status',
-  //     component: UpdateLogStatusComponent,
-  // },
   {
     path: 'update-log/:id',
     component: UpdateLogStatusDetailComponent,
@@ -78,10 +74,14 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'league-setting',
+    component: LeagueSettingComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

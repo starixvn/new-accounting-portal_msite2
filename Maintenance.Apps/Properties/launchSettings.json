@@ -8,6 +8,16 @@
         }
     },
     "profiles": {
+        "https": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "delete-temp",
+            "applicationUrl": "https://localhost:7167",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
         "Maintenance.Apps": {
             "commandName": "Project",
             "dotnetRunMessages": true,

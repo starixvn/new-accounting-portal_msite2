@@ -10,7 +10,7 @@ import { Menu, Header } from './nav-menu.model';
 export class NavMenuComponent implements OnInit {
   public menus: Menu[] | null = null;
   public userName!: string;
-  constructor(private menuService: NavMenuService) {}
+  constructor(private menuService: NavMenuService) { }
 
   ngOnInit(): void {
     this.loadMenu();
@@ -45,6 +45,8 @@ export class NavMenuComponent implements OnInit {
           m.subMenu = subMenus;
         });
       });
+
+      console.log(menuList);
 
       this.menus = [...menuList];
       this.userName = data.userName;

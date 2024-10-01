@@ -1,8 +1,10 @@
+using System.Reflection;
 using Fanex.Data.SqlServer;
 using Fanex.NAP.Client;
 using Fanex.NAP.Client.Configuration;
 using Fanex.NAP.Client.Helpers.Web;
 using Fanex.NAP.SignIn.Attribute;
+using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;
 using Maintenance.Core.Models;
@@ -11,8 +13,8 @@ using ONEbook.UM.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
-    ApplicationName = typeof(Program).Assembly.FullName,
-    ContentRootPath = Directory.GetCurrentDirectory()
+	ApplicationName = typeof(Program).Assembly.FullName,
+	ContentRootPath = Directory.GetCurrentDirectory()
 });
 
 var services = builder.Services;
@@ -27,8 +29,8 @@ services.AddSession();
 services.AddRazorPages();
 services.AddControllersWithViews(options =>
 {
-    options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
-    options.Filters.Add(new SessionAuthorizeAttribute());
+	options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
+	options.Filters.Add(new SessionAuthorizeAttribute());
 }).AddNewtonsoftJson();
 
 services.AddControllerAuthorization();
@@ -45,9 +47,10 @@ services.AddAutoMapper();
 services.AddInternalServices();
 services.AddControllersWithViews(options =>
 {
-    options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
-    options.Filters.Add(new SessionAuthorizeAttribute());
+	options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
+	options.Filters.Add(new SessionAuthorizeAttribute());
 }).AddNewtonsoftJson();
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 // Configure app
 var app = builder.Build();
@@ -65,13 +68,14 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.MapSyncTransApi();
+app.MapSpecialLeagueSettingApi();
 
 app.MapControllerRoute(
-    "default",
-    "{controller=Home}/{action=Index}/{id?}");
+	"default",
+	"{controller=Home}/{action=Index}/{id?}");
 
 NapClientManager
-    .UseConfig(app.Services.GetService<INapSettings>())
-    .UseSession(app.Services.GetService<INapSession>());
+	.UseConfig(app.Services.GetService<INapSettings>())
+	.UseSession(app.Services.GetService<INapSession>());
 
 app.Run();

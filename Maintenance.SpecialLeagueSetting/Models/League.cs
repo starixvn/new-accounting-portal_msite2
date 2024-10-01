@@ -1,0 +1,12 @@
+﻿namespace Maintenance.SpecialLeagueSetting.Models;
+
+public class League
+{
+	public int LeagueId { get; set; }
+	public string LeagueName { get; set; }
+	public int SportId { get; set; }
+	public string SportName { get; set; }
+	public short? AutoType { get; set; }
+
+	public short? OriginalAutoType => AutoType;
+}

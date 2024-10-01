@@ -299,4 +299,9 @@
 		<Setting Key="NAP_SettlementResultHistory_Sel_DBSID02" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSID02.bodb02.wsv_nap" />
 		<Setting Key="NAP_SettlementResultHistory_Sel_DBSID03" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSID03.bodb02.wsv_nap" />
 	</Function>
+
+
+	<Function Name="LeagueSetting">
+		<Setting Key="NAP_Set_AutoPayout_LeagueSetting_Update" SpName="NAP_Set_AutoPayout_LeagueSetting_Update" DbName="DBPRO.bodb02.wsv_nap" />
+	</Function>
 </Functions>

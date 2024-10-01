@@ -137,6 +137,8 @@ header {
   border: 1px solid;
   padding: 5px 10px;
   border-radius: 2px;
+  cursor: not-allowed;
+  font-weight: bold;
 }
 
 .snackbar-success {
@@ -239,6 +241,14 @@ header {
       width: 130px;
     }
   }
+
+  .select {
+    border: 1px solid #92cddc;
+    outline: none;
+    height: 27px;
+    line-height: 27px;
+    width: 130px;
+  }
 }
 .table {
   td:first-child {
@@ -269,4 +279,12 @@ input[type="number"] {
   display: flex;
   align-items: center;
   column-gap: 5px;
+}
+
+.select {
+  border: 1px solid #92cddc;
+  outline: none;
+  height: 27px;
+  line-height: 27px;
+  width: 130px;
 }

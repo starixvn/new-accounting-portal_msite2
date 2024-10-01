@@ -46,6 +46,10 @@ import { NameStatus } from './shared/pipes/name-status';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LeagueFilterComponent } from './special-league-setting/league-filter.component';
+import { LeagueSettingComponent } from './special-league-setting/league-setting.component';
+import { LeagueDataComponent } from './special-league-setting/league-data.component';
+import { LeagueSettingService } from './special-league-setting/league-setting.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SyncTransidDirectlyComponent,
     UpdateFlagBroadcastComponent,
     ResultAmendmentCompoment,
+    LeagueFilterComponent,
+    LeagueSettingComponent,
+    LeagueDataComponent,
     NameStatus,
+
   ],
   imports: [
     BrowserModule,
@@ -100,7 +108,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SyncTransIdService,
     UpdateFlagBroadcastService,
     ResultAmendmentService,
+    LeagueSettingService,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
