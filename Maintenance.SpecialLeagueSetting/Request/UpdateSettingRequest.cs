@@ -6,7 +6,10 @@ namespace Maintenance.SpecialLeagueSetting.Request;
 public class UpdateSettingRequest
 {
 	public int LeagueId { get; set; }
-	public byte? AutoType { get; set; }
+	public byte AutoType { get; set; }
+
+	public byte SportType { get; set; }
+	public string Action { get; set; } = "Update";
 }
 
 
@@ -14,15 +17,9 @@ public class UpdateSettingRequestValidator : AbstractValidator<UpdateSettingRequ
 {
 	public UpdateSettingRequestValidator()
 	{
-		RuleFor(x => x.LeagueId)
-			.GreaterThan(0)
-			.WithMessage("LeagueId must be greater than 0");
-
-		byte[] supportedAutoTypes = [AutoTypeSetting.DirectSabaSoccer, AutoTypeSetting.FantasySoccer, AutoTypeSetting.FantasyBasketball];
-
-		RuleFor(x => x.AutoType)
-			.Must(x => supportedAutoTypes.Contains(x.Value))
-			.When(x => x.AutoType.HasValue)
-			 .WithMessage("Please only use: " + string.Join(", ", supportedAutoTypes));
+		RuleFor(x => x.LeagueId).NotEmpty().WithMessage("LeagueId is required");
+		RuleFor(x => x.AutoType).IsInEnum().WithMessage("AutoType is required");
+		RuleFor(x => x.SportType).IsInEnum().WithMessage("SportType is required");
+		RuleFor(x => x.Action).IsInEnum().WithMessage("Action is required");
 	}
 }

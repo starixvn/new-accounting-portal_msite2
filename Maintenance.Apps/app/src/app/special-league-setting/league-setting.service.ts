@@ -18,7 +18,7 @@ export class LeagueSettingService implements ILeagueSettingService {
     private readonly baseUrl = 'api/delete-temp-variable';
     private readonly httpService = inject(HttpService);
 
-    private leagues$ = new BehaviorSubject<League[] | null>(null);
+    private readonly leagues$ = new BehaviorSubject<League[] | null>(null);
     public leagues = this.leagues$.asObservable();
 
     setLeagues(leagues: League[] | null) {

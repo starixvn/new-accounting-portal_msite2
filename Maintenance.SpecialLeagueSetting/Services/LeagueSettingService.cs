@@ -32,30 +32,15 @@ public class LeagueSettingServiceImp : LeagueSettingService
 			LeagueId = request.LeagueId
 		};
 
-		var result = new List<League>
+		var result = await repository.FetchAsync<League>(criteria);
+
+		foreach (var item in result)
 		{
-			new League
-			{
-			 LeagueId = 1,
-			 LeagueName = "League 1",
-			 AutoType = 10
-			}
-		};
+			item.LeagueName = remotingRefService.GetLeagueName(item.LeagueId.ToString(), "en", string.Empty);
+			item.SportName = remotingRefService.GetSportName(item.SportType.ToString(), "en", string.Empty);
+		}
 
-		//foreach (var item in result)
-		//{
-		//	item.LeagueName = remotingRefService.GetLeagueName(item.LeagueId.ToString(), "en", string.Empty);
-		//	item.SportName = remotingRefService.GetSportName(item.SportId.ToString(), "en", string.Empty);
-		//}
-
-
-
-		return result;
-
-
-		//var result = await repository.FetchAsync<League>(criteria);
-
-		//return result.ToList();
+		return result.ToList();
 	}
 
 	public async Task<bool> UpdateLeagueSetting(UpdateSettingRequest request)
@@ -63,14 +48,14 @@ public class LeagueSettingServiceImp : LeagueSettingService
 		var criteria = new LeagueSettingUpdateCriteria
 		{
 			AutoType = request.AutoType,
-			LeagueId = request.LeagueId
+			LeagueId = request.LeagueId,
+			Action = request.Action
+
 		};
 
+		await repository.ExecuteAsync(criteria);
 
-
-		//var result = await repository.FetchAsync<League>(criteria);
-
-		return criteria.ErrorCode > 0;
+		return true;
 	}
 
 }

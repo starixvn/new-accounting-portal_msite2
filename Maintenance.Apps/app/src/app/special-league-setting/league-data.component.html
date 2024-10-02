@@ -1,4 +1,4 @@
-<table class="table" *ngIf="leagues">
+<table class="table w-60" *ngIf="leagues">
     <thead>
         <tr>
             <th style="width: 20px;">LeagueId</th>
@@ -13,17 +13,21 @@
             <tr *ngFor="let league of leagues">
                 <td>{{ league.leagueId }}</td>
                 <td>{{ league.leagueName }}</td>
-                <td>{{ league.sportType }}</td>
+                <td>{{ league.sportName }}</td>
                 <td>
                     <select class="select" style="width: 160px;" [(ngModel)]="league.autoType">
-                        <option value="null">None</option>
+                        <option [ngValue]="null">None</option>
                         <option *ngFor="let option of league.autoOptions" [ngValue]="option.value">{{ option.name }}
                         </option>
                     </select>
                 </td>
                 <td>
-                    <button [ngClass]="league.originalAutoType === league.autoType ? 'btn-disable' : 'btn-submit'"
-                        (click)="openUpdateConfirmDialog(league)">Update</button>
+                    <div style="display: flex; justify-content: center;column-gap: 10px;">
+                        <button [ngClass]="league.originalAutoType === league.autoType ? 'btn-disable' : 'btn-submit'"
+                            (click)="openUpdateConfirmDialog(league)">Update</button>
+                        <button [ngClass]="!league.originalAutoType ? 'btn-disable' : 'btn-submit'"
+                            (click)="openRemoveConfirmDialog(league)">Remove</button>
+                    </div>
                 </td>
             </tr>
         </ng-container>

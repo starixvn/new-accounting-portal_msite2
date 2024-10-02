@@ -6,47 +6,92 @@ import { ConfirmDialogService } from '../shared/components/dialog/dialog.service
 import { SnackbarService } from '../shared/services/snackbar.service';
 
 @Component({
-    selector: 'league-data',
-    templateUrl: './league-data.component.html',
+  selector: 'league-data',
+  templateUrl: './league-data.component.html',
 })
 export class LeagueDataComponent implements OnInit {
-    private readonly leagueSettingService = inject(LeagueSettingService);
-    private readonly dialogService = inject(ConfirmDialogService);
-    private readonly snackbarService = inject(SnackbarService);
+  private readonly leagueSettingService = inject(LeagueSettingService);
+  private readonly dialogService = inject(ConfirmDialogService);
+  private readonly snackbarService = inject(SnackbarService);
 
-    public autoOptions = AutoOptions;
-    public leagues: League[] | null = null;
+  public autoOptions = AutoOptions;
+  public leagues: League[] | null = null;
 
-    ngOnInit(): void {
-        this.leagueSettingService.leagues.subscribe((leagues) => {
-            this.leagues = leagues;
-        });
-    }
+  ngOnInit(): void {
+    this.leagueSettingService.leagues.subscribe((leagues) => {
+      this.leagues = leagues;
+    });
+  }
 
-    update(league: League) {
-        this.leagueSettingService
-            .updateSetting({ leagueId: league.leagueId, autoType: league.autoType })
-            .subscribe((res) => {
-                if (res) {
-                    this.snackbarService.openSuccessSnackBar();
-                    this.leagueSettingService.setLeagueById(
-                        league.leagueId,
-                        league.autoType
-                    );
-                }
-            });
-    }
+  update(league: League) {
+    this.leagueSettingService
+      .updateSetting({
+        leagueId: league.leagueId,
+        autoType: league.autoType!,
+        sportType: league.sportType,
+        action: 'Update',
+      })
+      .subscribe((res) => {
+        if (res) {
+          this.snackbarService.openSuccessSnackBar();
+          this.leagueSettingService.setLeagueById(
+            league.leagueId,
+            league.autoType
+          );
+        }
+      });
+  }
 
-    openUpdateConfirmDialog(league: League) {
-        this.dialogService
-            .openConfirm({
-                message: `
-                <div>[${league.leagueId}]${league.leagueName}</div>
-                <div>Are you sure you want to update Auto Type from ${league.originalAutoType} update to ${league.autoType} this row?</div>`,
-            })
-            .afterClosed()
-            .subscribe((res) => {
-                res && this.update(league);
-            });
-    }
+  openUpdateConfirmDialog(league: League) {
+    const autoTypeName = this.autoOptions.find(
+      (x) => x.value === league.autoType
+    );
+    const message = `
+      <div>[${league.leagueId}]${league.leagueName}</div>
+      <div>Are you sure you want to update to <b>${autoTypeName?.name}</b> this row?</div>`;
+
+    this.dialogService
+      .openConfirm({
+        message,
+      })
+      .afterClosed()
+      .subscribe((res) => {
+        res && this.update(league);
+      });
+  }
+
+  openRemoveConfirmDialog(league: League) {
+    const autoTypeName = this.autoOptions.find(
+      (x) => x.value === league.autoType
+    );
+    const message = `
+      <div>[${league.leagueId}]${league.leagueName}</div>
+      <div>Are you sure you want to remove auto type <b>${autoTypeName?.name}</b>?</div>`;
+
+      
+    this.dialogService
+    .openConfirm({
+      message,
+    })
+    .afterClosed()
+    .subscribe((res) => {
+      res && this.remove(league);
+    });
+  }
+
+  remove(league: League) {
+    this.leagueSettingService
+      .updateSetting({
+        leagueId: league.leagueId,
+        autoType: league.autoType!,
+        sportType: league.sportType,
+        action: 'Delete',
+      })
+      .subscribe((res) => {
+        if (res) {
+          this.snackbarService.openSuccessSnackBar();
+          this.leagueSettingService.setLeagueById(league.leagueId, null);
+        }
+      });
+  }
 }

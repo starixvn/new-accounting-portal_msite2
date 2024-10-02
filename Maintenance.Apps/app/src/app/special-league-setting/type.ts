@@ -7,6 +7,7 @@ export type League = {
     leagueId: number;
     leagueName: string;
     sportType: number;
+    sportName: string;
     autoType: number | null;
     originalAutoType: number | null;
     autoOptions: Option[];
@@ -21,5 +22,7 @@ export type GetLeagueSettingRequest = {
 
 export type UpdateLeagueSettingRequest = {
     leagueId: number;
-    autoType: number | null;
+    autoType: number;
+    sportType: number;
+    action: string;
 }

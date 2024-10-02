@@ -1,12 +1,12 @@
 <form class="filter" [formGroup]="searchForm" (submit)="onSubmit()">
     <div class="field">
         <label for="leagueId">LeagueId</label>
-        <input type="text" id="leagueId" formControlName="leagueId">
+        <input type="number" id="leagueId" formControlName="leagueId">
     </div>
     <div class="field">
         <label for="autoType">Auto Type</label>
         <select class="select" name="autoType" id="autoType" formControlName="autoType" style="width: 150px;">
-            <option value="null">Select auto type</option>
+            <option [ngValue]="null">Select auto type</option>
             <option *ngFor="let option of autoOptions" [ngValue]="option.value">{{ option.name }}</option>
         </select>
     </div>
