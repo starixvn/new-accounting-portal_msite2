@@ -3,6 +3,7 @@ WORKDIR /src
 
 COPY ./src/Core/*.csproj ./src/Core/
 COPY ./src/Maintenance.Sync/*.csproj ./src/Maintenance.Sync/
+COPY ./src/Maintenance.SpecialLeagueSetting/*.csproj ./src/Maintenance.SpecialLeagueSetting/
 COPY ./src/Maintenance.DeleteTempVariable/*.csproj ./src/Maintenance.DeleteTempVariable/
 COPY ./Maintenance.Apps/*.csproj ./Maintenance.Apps/
 
