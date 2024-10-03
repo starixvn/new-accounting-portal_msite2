@@ -24,5 +24,4 @@ export type UpdateLeagueSettingRequest = {
     leagueId: number;
     autoType: number;
     sportType: number;
-    action: string;
 }

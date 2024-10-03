@@ -10,8 +10,10 @@ public interface LeagueSettingService
 {
 	Task<List<League>> GetLeagueSetting(GetLeagueSetting request);
 	Task<bool> UpdateLeagueSetting(UpdateSettingRequest request);
-}
 
+	Task<bool> RemoveLeagueSetting(RemoveSettingRequest request);
+
+}
 
 public class LeagueSettingServiceImp : LeagueSettingService
 {
@@ -43,13 +45,28 @@ public class LeagueSettingServiceImp : LeagueSettingService
 		return result.ToList();
 	}
 
+	public async Task<bool> RemoveLeagueSetting(RemoveSettingRequest request)
+	{
+		var criteria = new LeagueSettingUpdateCriteria
+		{
+			AutoType = request.AutoType,
+			LeagueId = request.LeagueId,
+			Action = "Delete"
+
+		};
+
+		await repository.ExecuteAsync(criteria);
+
+		return true;
+	}
+
 	public async Task<bool> UpdateLeagueSetting(UpdateSettingRequest request)
 	{
 		var criteria = new LeagueSettingUpdateCriteria
 		{
 			AutoType = request.AutoType,
 			LeagueId = request.LeagueId,
-			Action = request.Action
+			Action = "Update"
 
 		};
 

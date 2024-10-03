@@ -53,4 +53,9 @@ export class LeagueSettingService implements ILeagueSettingService {
         const url = `${this.baseUrl}/update-league-setting`;
         return this.httpService.post(url, data);
     }
+
+    removeSetting(data: UpdateLeagueSettingRequest) {
+        const url = `${this.baseUrl}/remove-league-setting`;
+        return this.httpService.post(url, data);
+    }
 }

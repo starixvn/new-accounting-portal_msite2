@@ -29,7 +29,7 @@ export class LeagueDataComponent implements OnInit {
         leagueId: league.leagueId,
         autoType: league.autoType!,
         sportType: league.sportType,
-        action: 'Update',
+
       })
       .subscribe((res) => {
         if (res) {
@@ -43,6 +43,10 @@ export class LeagueDataComponent implements OnInit {
   }
 
   openUpdateConfirmDialog(league: League) {
+    if (!league.autoType || league.autoType === league.originalAutoType) {
+      return;
+    }
+
     const autoTypeName = this.autoOptions.find(
       (x) => x.value === league.autoType
     );
@@ -61,6 +65,9 @@ export class LeagueDataComponent implements OnInit {
   }
 
   openRemoveConfirmDialog(league: League) {
+    if (!league.originalAutoType) {
+      return;
+    }
     const autoTypeName = this.autoOptions.find(
       (x) => x.value === league.autoType
     );
@@ -68,24 +75,23 @@ export class LeagueDataComponent implements OnInit {
       <div>[${league.leagueId}]${league.leagueName}</div>
       <div>Are you sure you want to remove auto type <b>${autoTypeName?.name}</b>?</div>`;
 
-      
+
     this.dialogService
-    .openConfirm({
-      message,
-    })
-    .afterClosed()
-    .subscribe((res) => {
-      res && this.remove(league);
-    });
+      .openConfirm({
+        message,
+      })
+      .afterClosed()
+      .subscribe((res) => {
+        res && this.remove(league);
+      });
   }
 
   remove(league: League) {
     this.leagueSettingService
-      .updateSetting({
+      .removeSetting({
         leagueId: league.leagueId,
         autoType: league.autoType!,
         sportType: league.sportType,
-        action: 'Delete',
       })
       .subscribe((res) => {
         if (res) {

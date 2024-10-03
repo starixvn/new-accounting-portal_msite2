@@ -1,4 +1,3 @@
-using System.Reflection;
 using Fanex.Data.SqlServer;
 using Fanex.NAP.Client;
 using Fanex.NAP.Client.Configuration;
@@ -8,6 +7,7 @@ using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;
 using Maintenance.Core.Models;
+using Maintenance.SpecialLeagueSetting.Request;
 using Microsoft.AspNetCore.Mvc;
 using ONEbook.UM.AspNetCore.Filters;
 
@@ -50,7 +50,9 @@ services.AddControllersWithViews(options =>
 	options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
 	options.Filters.Add(new SessionAuthorizeAttribute());
 }).AddNewtonsoftJson();
-builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+services.AddValidatorsFromAssemblyContaining<UpdateSettingRequestValidator>();
+
 
 // Configure app
 var app = builder.Build();

@@ -115,6 +115,7 @@ public static class ServiceCollectionExtensions
 
 	public static void AddInternalServices(this IServiceCollection services)
 	{
+
 		services.AddTransient<ParlayLockingService, ParlayLockingServiceImp>();
 		services.AddTransient<SettlementLockService, SettlementLockServiceImp>();
 		services.AddTransient<SystemSettingService, SystemSettingServiceImp>();

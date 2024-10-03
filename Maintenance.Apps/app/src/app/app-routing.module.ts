@@ -75,7 +75,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'league-setting',
+    path: 'special-league-setting',
     component: LeagueSettingComponent,
   }
 ];
