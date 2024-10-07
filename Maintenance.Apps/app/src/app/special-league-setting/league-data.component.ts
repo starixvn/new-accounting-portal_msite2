@@ -65,7 +65,7 @@ export class LeagueDataComponent implements OnInit {
   }
 
   openRemoveConfirmDialog(league: League) {
-    if (!league.originalAutoType) {
+    if (!league.originalAutoType || !league.autoType || league.autoType !== league.originalAutoType) {
       return;
     }
     const autoTypeName = this.autoOptions.find(

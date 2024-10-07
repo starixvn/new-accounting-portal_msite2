@@ -2,15 +2,15 @@
 <Functions SiteId="73" SiteName="mSite2">
 	<Function Name="TempVariableNumber and Scale Out DB">
 		<Function Name="NAP_Set_SiteDBServiceLastLog_Sel">
-			<Setting Key="NAP_Set_SiteDBServiceLastLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLastLog_Sel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SiteDBServiceLastLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLastLog_Sel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SiteDBServiceLastLog_Sel_DBSID03" SpName="NAP_Set_SiteDBServiceLastLog_Sel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLastLog_Sel_DBSITE01" SpName="NAP_Set_SiteDBServiceLastLog_Sel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLastLog_Sel_DBSITE02" SpName="NAP_Set_SiteDBServiceLastLog_Sel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLastLog_Sel_DBSITE03" SpName="NAP_Set_SiteDBServiceLastLog_Sel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_SiteDBServiceLog_Sel">
-			<Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID01" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID02" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSID03" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSITE01" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSITE02" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLog_Sel_DBSITE03" SpName="NAP_Set_SiteDBServiceLog_Sel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_SiteDBServiceLog_Checking">
@@ -18,93 +18,93 @@
 		</Function>
 
 		<Function Name="NAP_Set_SiteDBServiceLastLog_Udp">
-			<Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID01" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID02" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSID03" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSITE01" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSITE02" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SiteDBServiceLastLog_Udp_DBSITE03" SpName="NAP_Set_SiteDBServiceLastLog_Udp" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_MatchLockingDel">
 			<Setting Key="NAP_Set_MatchLockingDel_DBTXN" SpName="NAP_Set_MatchLockingDel" DbName="DBTXN.bodb02.wsv_nap" TimeOut="40" />
-			<Setting Key="NAP_Set_MatchLockingDel_DBSID01" SpName="NAP_Set_MatchLockingDel" DbName="DBSID01.bodb02.wsv_nap" TimeOut="40" />
-			<Setting Key="NAP_Set_MatchLockingDel_DBSID02" SpName="NAP_Set_MatchLockingDel" DbName="DBSID02.bodb02.wsv_nap" TimeOut="40" />
-			<Setting Key="NAP_Set_MatchLockingDel_DBSID03" SpName="NAP_Set_MatchLockingDel" DbName="DBSID03.bodb02.wsv_nap" TimeOut="40" />
+			<Setting Key="NAP_Set_MatchLockingDel_DBSITE01" SpName="NAP_Set_MatchLockingDel" DbName="DBSITE01.bodb02.wsv_nap" TimeOut="40" />
+			<Setting Key="NAP_Set_MatchLockingDel_DBSITE02" SpName="NAP_Set_MatchLockingDel" DbName="DBSITE02.bodb02.wsv_nap" TimeOut="40" />
+			<Setting Key="NAP_Set_MatchLockingDel_DBSITE03" SpName="NAP_Set_MatchLockingDel" DbName="DBSITE03.bodb02.wsv_nap" TimeOut="40" />
 		</Function>
 
 		<Function Name="NAP_Set_MatchLockingSel">
 			<Setting Key="NAP_Set_MatchLockingSel_DBTXN" SpName="NAP_Set_MatchLockingSel" DbName="DBTXN.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_MatchLockingSel_DBSID01" SpName="NAP_Set_MatchLockingSel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_MatchLockingSel_DBSID02" SpName="NAP_Set_MatchLockingSel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_MatchLockingSel_DBSID03" SpName="NAP_Set_MatchLockingSel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_MatchLockingSel_DBSITE01" SpName="NAP_Set_MatchLockingSel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_MatchLockingSel_DBSITE02" SpName="NAP_Set_MatchLockingSel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_MatchLockingSel_DBSITE03" SpName="NAP_Set_MatchLockingSel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_MatchLockingTicketSel">
 			<Setting Key="NAP_Set_MatchLockingTicketSel_DBTXN" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBTXN.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_MatchLockingTicketSel_DBSID01" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_MatchLockingTicketSel_DBSID02" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_MatchLockingTicketSel_DBSID03" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_MatchLockingTicketSel_DBSITE01" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_MatchLockingTicketSel_DBSITE02" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_MatchLockingTicketSel_DBSITE03" SpName="NAP_Set_MatchLockingTicketSel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_ParlayLockingDel">
 			<Setting Key="NAP_Set_ParlayLockingDel_DBTXN" SpName="NAP_Set_ParlayLockingDel" DbName="DBTXN.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_ParlayLockingDel_DBSID01" SpName="NAP_Set_ParlayLockingDel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_ParlayLockingDel_DBSID02" SpName="NAP_Set_ParlayLockingDel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_ParlayLockingDel_DBSID03" SpName="NAP_Set_ParlayLockingDel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_ParlayLockingDel_DBSITE01" SpName="NAP_Set_ParlayLockingDel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_ParlayLockingDel_DBSITE02" SpName="NAP_Set_ParlayLockingDel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_ParlayLockingDel_DBSITE03" SpName="NAP_Set_ParlayLockingDel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_ParlayLockingSel">
 			<Setting Key="NAP_Set_ParlayLockingSel_DBTXN" SpName="NAP_Set_ParlayLockingSel" DbName="DBTXN.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_ParlayLockingSel_DBSID01" SpName="NAP_Set_ParlayLockingSel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_ParlayLockingSel_DBSID02" SpName="NAP_Set_ParlayLockingSel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_ParlayLockingSel_DBSID03" SpName="NAP_Set_ParlayLockingSel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_ParlayLockingSel_DBSITE01" SpName="NAP_Set_ParlayLockingSel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_ParlayLockingSel_DBSITE02" SpName="NAP_Set_ParlayLockingSel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_ParlayLockingSel_DBSITE03" SpName="NAP_Set_ParlayLockingSel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_SystemSettingsSel">
 			<Setting Key="NAP_Set_SystemSettingsSel_DBTXN" SpName="NAP_Set_SystemSettingsSel" DbName="DBTXN.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SystemSettingsSel_DBSID01" SpName="NAP_Set_SystemSettingsSel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SystemSettingsSel_DBSID02" SpName="NAP_Set_SystemSettingsSel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SystemSettingsSel_DBSID03" SpName="NAP_Set_SystemSettingsSel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SystemSettingsSel_DBSITE01" SpName="NAP_Set_SystemSettingsSel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SystemSettingsSel_DBSITE02" SpName="NAP_Set_SystemSettingsSel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SystemSettingsSel_DBSITE03" SpName="NAP_Set_SystemSettingsSel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_SystemSettingsUpd">
 			<Setting Key="NAP_Set_SystemSettingsUpd_DBTXN" SpName="NAP_Set_SystemSettingsUpd" DbName="DBTXN.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SystemSettingsUpd_DBSID01" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SystemSettingsUpd_DBSID02" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SystemSettingsUpd_DBSID03" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SystemSettingsUpd_DBSITE01" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SystemSettingsUpd_DBSITE02" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SystemSettingsUpd_DBSITE03" SpName="NAP_Set_SystemSettingsUpd" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_SSBErrorMessageSel">
 			<Setting Key="NAP_Set_SSBErrorMessageSel_DBTXN" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBTXN.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SSBErrorMessageSel_DBSID01" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID01.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SSBErrorMessageSel_DBSID02" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID02.bodb02.wsv_nap" />
-			<Setting Key="NAP_Set_SSBErrorMessageSel_DBSID03" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSID03.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SSBErrorMessageSel_DBSITE01" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SSBErrorMessageSel_DBSITE02" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Set_SSBErrorMessageSel_DBSITE03" SpName="NAP_Set_SSBErrorMessageSel" DbName="DBSITE03.bodb02.wsv_nap" />
 		</Function>
 
 		<Function Name="NAP_Set_SiteDB_SyncTransIdToCentralDB">
 			<Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBTXN" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB" DbName="DBTXN.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSID01" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB" DbName="DBSID01.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSID02" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB" DbName="DBSID02.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSID03" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB" DbName="DBSID03.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSITE01" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB" DbName="DBSITE01.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSITE02" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB" DbName="DBSITE02.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdToCentralDB_DBSITE03" SpName="NAP_Set_SiteDB_SyncTransIdToCentralDB" DbName="DBSITE03.bodb02.wsv_nap" TimeOut="200" />
 		</Function>
 
 		<Function Name="NAP_Set_SiteDB_SyncMatchId_Sel">
 			<Setting Key="NAP_Set_SiteDB_SyncMatchId_Sel_DBTXN" SpName="NAP_Set_SiteDB_SyncMatchId_Sel" DbName="DBTXN.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncMatchId_Sel_DBSID01" SpName="NAP_Set_SiteDB_SyncMatchId_Sel" DbName="DBSID01.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncMatchId_Sel_DBSID02" SpName="NAP_Set_SiteDB_SyncMatchId_Sel" DbName="DBSID02.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncMatchId_Sel_DBSID03" SpName="NAP_Set_SiteDB_SyncMatchId_Sel" DbName="DBSID03.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncMatchId_Sel_DBSITE01" SpName="NAP_Set_SiteDB_SyncMatchId_Sel" DbName="DBSITE01.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncMatchId_Sel_DBSITE02" SpName="NAP_Set_SiteDB_SyncMatchId_Sel" DbName="DBSITE02.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncMatchId_Sel_DBSITE03" SpName="NAP_Set_SiteDB_SyncMatchId_Sel" DbName="DBSITE03.bodb02.wsv_nap" TimeOut="200" />
 		</Function>
 
 		<Function Name="NAP_Set_SiteDB_SyncTransIdInRange_Sel">
 			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Sel_DBTXN" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Sel" DbName="DBTXN.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Sel_DBSID01" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Sel" DbName="DBSID01.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Sel_DBSID02" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Sel" DbName="DBSID02.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Sel_DBSID03" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Sel" DbName="DBSID03.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Sel_DBSITE01" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Sel" DbName="DBSITE01.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Sel_DBSITE02" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Sel" DbName="DBSITE02.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Sel_DBSITE03" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Sel" DbName="DBSITE03.bodb02.wsv_nap" TimeOut="200" />
 		</Function>
 
 		<Function Name="NAP_Set_SiteDB_SyncTransIdInRange_Upd">
 			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DBTXN" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="DBTXN.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DBSID01" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="DBSID01.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DBSID02" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="DBSID02.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DBSID03" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="DBSID03.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DBSITE01" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="DBSITE01.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DBSITE02" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="DBSITE02.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DBSITE03" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="DBSITE03.bodb02.wsv_nap" TimeOut="200" />
 
 			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DB052" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="SBSETTLE.DB052.bodb02.wsv_nap" TimeOut="200" />
 			<Setting Key="NAP_Set_SiteDB_SyncTransIdInRange_Upd_DB053" SpName="NAP_Set_SiteDB_SyncTransIdInRange_Upd" DbName="SBSETTLE.DB053.bodb02.wsv_nap" TimeOut="200" />
@@ -117,16 +117,16 @@
 
 		<Function Name="NAP_Set_SiteDB_SyncTransId_Sel">
 			<Setting Key="NAP_Set_SiteDB_SyncTransId_Sel_DBTXN" SpName="NAP_Set_SiteDB_SyncTransId_Sel" DbName="DBTXN.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransId_Sel_DBSID01" SpName="NAP_Set_SiteDB_SyncTransId_Sel" DbName="DBSID01.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransId_Sel_DBSID02" SpName="NAP_Set_SiteDB_SyncTransId_Sel" DbName="DBSID02.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransId_Sel_DBSID03" SpName="NAP_Set_SiteDB_SyncTransId_Sel" DbName="DBSID03.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransId_Sel_DBSITE01" SpName="NAP_Set_SiteDB_SyncTransId_Sel" DbName="DBSITE01.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransId_Sel_DBSITE02" SpName="NAP_Set_SiteDB_SyncTransId_Sel" DbName="DBSITE02.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransId_Sel_DBSITE03" SpName="NAP_Set_SiteDB_SyncTransId_Sel" DbName="DBSITE03.bodb02.wsv_nap" TimeOut="200" />
 		</Function>
 
 		<Function Name="NAP_Set_SiteDB_SyncTransId_Upd">
 			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DBTXN" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="DBTXN.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DBSID01" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="DBSID01.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DBSID02" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="DBSID02.bodb02.wsv_nap" TimeOut="200" />
-			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DBSID03" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="DBSID03.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DBSITE01" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="DBSITE01.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DBSITE02" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="DBSITE02.bodb02.wsv_nap" TimeOut="200" />
+			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DBSITE03" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="DBSITE03.bodb02.wsv_nap" TimeOut="200" />
 
 			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DB052" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="SBSETTLE.DB052.bodb02.wsv_nap" TimeOut="200" />
 			<Setting Key="NAP_Set_SiteDB_SyncTransId_Upd_DB053" SpName="NAP_Set_SiteDB_SyncTransId_Upd" DbName="SBSETTLE.DB053.bodb02.wsv_nap" TimeOut="200" />
@@ -150,9 +150,9 @@
 		<Setting Key="NAP_Set_MatchLockingReplicatedServerSel_DBTP" SpName="NAP_Set_MatchLockingReplicatedServerSel" DbName="SBSETTLE.DBTP.bodb02.wsv_nap" TimeOut="200" />
 
 		<Setting Key="NAP_Set_SettlementLockDel_DBTXN" SpName="NAP_Set_SettlementLockDel" DbName="DBTXN.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SettlementLockDel_DBSID01" SpName="NAP_Set_SettlementLockDel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SettlementLockDel_DBSID02" SpName="NAP_Set_SettlementLockDel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SettlementLockDel_DBSID03" SpName="NAP_Set_SettlementLockDel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SettlementLockDel_DBSITE01" SpName="NAP_Set_SettlementLockDel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SettlementLockDel_DBSITE02" SpName="NAP_Set_SettlementLockDel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SettlementLockDel_DBSITE03" SpName="NAP_Set_SettlementLockDel" DbName="DBSITE03.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SettlementLockDel_DB052" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DB052.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SettlementLockDel_DB053" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DB053.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SettlementLockDel_DB054" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DB054.bodb02.wsv_nap" />
@@ -162,9 +162,9 @@
 		<Setting Key="NAP_Set_SettlementLockDel_DBTP" SpName="NAP_Set_SettlementLockDel" DbName="SBSETTLE.DBTP.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SettlementProcessingDel_DBTXN" SpName="NAP_Set_SettlementProcessingDel" DbName="DBTXN.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SettlementProcessingDel_DBSID01" SpName="NAP_Set_SettlementProcessingDel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SettlementProcessingDel_DBSID02" SpName="NAP_Set_SettlementProcessingDel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SettlementProcessingDel_DBSID03" SpName="NAP_Set_SettlementProcessingDel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SettlementProcessingDel_DBSITE01" SpName="NAP_Set_SettlementProcessingDel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SettlementProcessingDel_DBSITE02" SpName="NAP_Set_SettlementProcessingDel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SettlementProcessingDel_DBSITE03" SpName="NAP_Set_SettlementProcessingDel" DbName="DBSITE03.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SettlementProcessingDel_DB052" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DB052.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SettlementProcessingDel_B053" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DB053.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SettlementProcessingDel_DB054" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DB054.bodb02.wsv_nap" />
@@ -175,9 +175,9 @@
 		<Setting Key="NAP_Set_SettlementProcessingDel_DBTP" SpName="NAP_Set_SettlementProcessingDel" DbName="SBSETTLE.DBTP.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SSBSettlementLogUpd_DBTXN" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBTXN.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SSBSettlementLogUpd_DBSID01" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SSBSettlementLogUpd_DBSID02" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SSBSettlementLogUpd_DBSID03" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpd_DBSITE01" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpd_DBSITE02" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpd_DBSITE03" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSITE03.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SSBSettlementLogUpd_DB052" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB052.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SSBSettlementLogUpd_DB053" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB053.bodb02.wsv_nap" />
@@ -190,9 +190,9 @@
 
 	<Function Name="Get_SiteDBGroupID">
 		<Setting Key="Get_SiteDBGroupID_DBTXN" SpName="Get_SiteDBGroupID" DbName="DBTXN.bodb02.wsv_nap" />
-		<Setting Key="Get_SiteDBGroupID_DBSID01" SpName="Get_SiteDBGroupID" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="Get_SiteDBGroupID_DBSID02" SpName="Get_SiteDBGroupID" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="Get_SiteDBGroupID_DBSID03" SpName="Get_SiteDBGroupID" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="Get_SiteDBGroupID_DBSITE01" SpName="Get_SiteDBGroupID" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="Get_SiteDBGroupID_DBSITE02" SpName="Get_SiteDBGroupID" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="Get_SiteDBGroupID_DBSITE03" SpName="Get_SiteDBGroupID" DbName="DBSITE03.bodb02.wsv_nap" />
 	</Function>
 
 	<Function Name="Error Log">
@@ -206,9 +206,9 @@
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingSel_DBTP" SpName="NAP_Set_SiteDB_SettlementProcessingSel" DbName="SBSETTLE.DBTP.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBTXN" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="DBTXN.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSID01" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSID02" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSID03" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSITE01" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSITE02" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DBSITE03" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="DBSITE03.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB061" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SettlementLockSel_DB062" SpName="NAP_Set_SiteDB_SettlementLockSel" DbName="SBSETTLE.DB062.bodb02.wsv_nap" />
@@ -220,9 +220,9 @@
 
 		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBTXN" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="DBTXN.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB061" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSID01" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSID02" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSID03" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSITE01" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSITE02" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DBSITE03" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="DBSITE03.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB061" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SSBErrSel_DB062" SpName="NAP_Set_SiteDB_SSBErrSel" DbName="SBSETTLE.DB062.bodb02.wsv_nap" />
@@ -234,9 +234,9 @@
 
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBTXN" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="DBTXN.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSID01" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSID02" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSID03" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSITE01" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSITE02" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DBSITE03" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="DBSITE03.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDetailSel_DB062" SpName="NAP_Set_SiteDB_SettlementProcessingDetailSel" DbName="SBSETTLE.DB062.bodb02.wsv_nap" />
@@ -248,9 +248,9 @@
 
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBTXN" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="DBTXN.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSID01" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSID02" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSID03" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSITE01" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSITE02" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBSITE03" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="DBSITE03.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB061" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DB062" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="SBSETTLE.DB062.bodb02.wsv_nap" />
@@ -261,9 +261,9 @@
 		<Setting Key="NAP_Set_SiteDB_SettlementProcessingDel_DBTP" SpName="NAP_Set_SiteDB_SettlementProcessingDel" DbName="SBSETTLE.DBTP.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBTXN" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="DBTXN.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSID01" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSID02" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSID03" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSITE01" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSITE02" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DBSITE03" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="DBSITE03.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB061" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SiteDB_SettlementLockDel_DB062" SpName="NAP_Set_SiteDB_SettlementLockDel" DbName="SBSETTLE.DB062.bodb02.wsv_nap" />
@@ -275,9 +275,9 @@
 
 		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBTXN" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBTXN.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB061" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSID01" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSID02" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSID03" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSITE01" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSITE02" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DBSITE03" SpName="NAP_Set_SSBSettlementLogUpd" DbName="DBSITE03.bodb02.wsv_nap" />
 
 		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB061" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB061.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_SSBSettlementLogUpdx_DB062" SpName="NAP_Set_SSBSettlementLogUpd" DbName="SBSETTLE.DB062.bodb02.wsv_nap" />
@@ -289,21 +289,19 @@
 	</Function>
 
 	<Function Name="NAP_SettlementResultHistory_Update">
-		<Setting Key="NAP_SettlementResultHistory_Update_DBSID01" SpName="NAP_SettlementResultHistory_Update" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_SettlementResultHistory_Update_DBSID02" SpName="NAP_SettlementResultHistory_Update" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_SettlementResultHistory_Update_DBSID03" SpName="NAP_SettlementResultHistory_Update" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_SettlementResultHistory_Update_DBSITE01" SpName="NAP_SettlementResultHistory_Update" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_SettlementResultHistory_Update_DBSITE02" SpName="NAP_SettlementResultHistory_Update" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_SettlementResultHistory_Update_DBSITE03" SpName="NAP_SettlementResultHistory_Update" DbName="DBSITE03.bodb02.wsv_nap" />
 	</Function>
 
 	<Function Name="NAP_SettlementResultHistory_Sel">
-		<Setting Key="NAP_SettlementResultHistory_Sel_DBSID01" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSID01.bodb02.wsv_nap" />
-		<Setting Key="NAP_SettlementResultHistory_Sel_DBSID02" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSID02.bodb02.wsv_nap" />
-		<Setting Key="NAP_SettlementResultHistory_Sel_DBSID03" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSID03.bodb02.wsv_nap" />
+		<Setting Key="NAP_SettlementResultHistory_Sel_DBSITE01" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSITE01.bodb02.wsv_nap" />
+		<Setting Key="NAP_SettlementResultHistory_Sel_DBSITE02" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSITE02.bodb02.wsv_nap" />
+		<Setting Key="NAP_SettlementResultHistory_Sel_DBSITE03" SpName="NAP_SettlementResultHistory_Sel" DbName="DBSITE03.bodb02.wsv_nap" />
 	</Function>
-
 
 	<Function Name="LeagueSetting">
 		<Setting Key="NAP_Set_AutoPayout_LeagueSetting_Update" SpName="NAP_Set_AutoPayout_LeagueSetting_Update_UAT2" DbName="DBPRO.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_AutoPayout_LeagueSetting_HardCode_Sel" SpName="NAP_Set_AutoPayout_LeagueSetting_HardCode_Sel_UAT2" DbName="DBPRO.bodb02.wsv_nap" />
-
 	</Function>
 </Functions>
