@@ -31,8 +31,8 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
 
     private readonly Dictionary<short, string> SiteDBs = new()
     {
-        { 1, "DBSID01" },
-        { 3,"DBSID02" }
+        { 1, "DBSITE01" },
+        { 3,"DBSITE02" }
     };
 
     public async Task<List<SettlementErrorLog>> GetSettlementErrorsLogs(SettlementErrorLogRequest request)

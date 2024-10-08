@@ -1,0 +1,42 @@
+<table class="table w-60" *ngIf="leagues">
+    <thead>
+        <tr>
+            <th style="width: 20px;">LeagueId</th>
+            <th>League Name</th>
+            <th>Sport Type</th>
+            <th>Auto Type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngIf="leagues.length; else noData">
+            <tr *ngFor="let league of leagues">
+                <td>{{ league.leagueId }}</td>
+                <td>{{ league.leagueName }}</td>
+                <td>{{ league.sportName }}</td>
+                <td>
+                    <select class="select" style="width: 160px;" [(ngModel)]="league.autoType">
+                        <option [ngValue]="null"></option>
+                        <option *ngFor="let option of league.autoOptions" [ngValue]="option.value">{{ option.name }}
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <div style="display: flex; justify-content: center;column-gap: 10px;">
+                        <button
+                            [ngClass]="!league.autoType || league.autoType === league.originalAutoType  ? 'btn-disable' : 'btn-submit'"
+                            (click)="openUpdateConfirmDialog(league)">Update</button>
+                        <button [ngClass]="!league.originalAutoType || !league.autoType || league.autoType !== league.originalAutoType ? 'btn-disable' : 'btn-submit'"
+                            (click)="openRemoveConfirmDialog(league)">Remove</button>
+                    </div>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<ng-template #noData>
+    <tr>
+        <td colspan="7" class="no-data">No Information Available</td>
+    </tr>
+</ng-template>

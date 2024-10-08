@@ -15,7 +15,7 @@ export class HttpService {
     private httpClient: HttpClient,
     private blockUIService: BlockUIService,
     private snackbarService: SnackbarService
-  ) {}
+  ) { }
 
   public getData<T>(url: string, params?: HttpParams): Observable<T> {
     this.blockUIService.startBlock();
@@ -44,7 +44,12 @@ export class HttpService {
 
   private handleError = (error: HttpErrorResponse) => {
     this.blockUIService.stopBlock();
-    this.snackbarService.openErrorSnackBar(error.message);
+
+    if (error.status === 400 && error.error.errors) {
+      this.snackbarService.openErrorSnackBar(JSON.stringify(error.error.errors));
+    } else {
+      this.snackbarService.openErrorSnackBar(error.statusText);
+    }
     return throwError(
       () => new Error('Something bad happened; please try again later.')
     );
