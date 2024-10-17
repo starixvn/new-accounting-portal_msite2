@@ -43,7 +43,7 @@ export class LeagueDataComponent implements OnInit {
   }
 
   openUpdateConfirmDialog(league: League) {
-    if (!league.autoType || league.autoType === league.originalAutoType) {
+    if (!!league.originalAutoType || !league.autoType) {
       return;
     }
 
@@ -65,11 +65,11 @@ export class LeagueDataComponent implements OnInit {
   }
 
   openRemoveConfirmDialog(league: League) {
-    if (!league.originalAutoType || !league.autoType || league.autoType !== league.originalAutoType) {
+    if (!league.originalAutoType) {
       return;
     }
     const autoTypeName = this.autoOptions.find(
-      (x) => x.value === league.autoType
+      (x) => x.value === league.originalAutoType
     );
     const message = `
       <div>[${league.leagueId}]${league.leagueName}</div>
@@ -90,7 +90,7 @@ export class LeagueDataComponent implements OnInit {
     this.leagueSettingService
       .removeSetting({
         leagueId: league.leagueId,
-        autoType: league.autoType!,
+        autoType: league.originalAutoType!,
         sportType: league.sportType,
       })
       .subscribe((res) => {
