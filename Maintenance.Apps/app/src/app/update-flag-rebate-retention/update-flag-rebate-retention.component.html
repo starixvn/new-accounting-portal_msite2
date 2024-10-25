@@ -1,0 +1,31 @@
+<div class="head-page">
+  <h1 class="title-page">Change Modes on Rebate Retention</h1>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Real</th>
+      <th>UUS</th>
+      <th>Action (ON/OFF UUS)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container>
+      <tr>
+        <td>ON</td>
+        <td>{{ mode == 1 ? "ON" : "OFF" }}</td>
+        <td>
+          <div class="action">
+            <mat-slide-toggle
+              color="primary"
+              [checked]="mode == 1"
+              (change)="openConfirmDialog($event)"
+            >
+            </mat-slide-toggle>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

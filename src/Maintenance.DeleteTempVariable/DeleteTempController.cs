@@ -16,7 +16,8 @@ public class DeleteTempController(ParlayLockingService parlayLockingService,
         ControlSyncService controlSyncServices,
         SettlementErrorLogService settlementErrorLogService,
         FlagBroadcastService flagBroadcastService,
-        AmendmentResultService amendmentResultService)
+        AmendmentResultService amendmentResultService,
+        FlagRebateRetentionService flagRebateRetentionService)
     : ControllerBase
 {
     [HttpPost]
@@ -74,7 +75,7 @@ public class DeleteTempController(ParlayLockingService parlayLockingService,
         var ticketCount = await tempVariableService.TicketCount(request);
         var detail = await tempVariableService.GetMatchDetail(request);
         detail.TicketCount = ticketCount;
-        detail.IsDelete = true; // Need get current permission for deleting
+        detail.IsDelete = true;
         detail.DbServer = request.DbServer;
         return Ok(detail);
     }
@@ -160,4 +161,10 @@ public class DeleteTempController(ParlayLockingService parlayLockingService,
 
     [HttpPost("update-amendment-result")]
     public async Task<IActionResult> UpdateAmendmentResultStatus(AmendmentResultUpdateRequest request) => Ok(await amendmentResultService.UpdateStatus(request));
+
+    [HttpPost("get-flag-rebate-retention")]
+    public async Task<IActionResult> GetFlagRebateRetention() => Ok(await flagRebateRetentionService.GetFlagInfo());
+
+    [HttpPost("update-flag-rebate-retention")]
+    public async Task<IActionResult> UpdateFlagRebateRetention(UpdateFlagRebateRetentionRequest request) => Ok(await flagRebateRetentionService.UpdateFlagInfo(request));
 }

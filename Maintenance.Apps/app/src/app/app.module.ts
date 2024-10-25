@@ -39,7 +39,9 @@ import { FileService } from './shared/services/file.service';
 import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-transid-directly.component';
 import { SyncTransIdService } from './sync-transid-directly/sync-transid-directly.service';
 import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-flag-broadcast.component';
+import { UpdateFlagRebateRetentionComponent } from './update-flag-rebate-retention/update-flag-rebate-retention.component';
 import { UpdateFlagBroadcastService } from './update-flag-broadcast/update-flag-broadcast.service';
+import { UpdateFlagRebateRetentionService } from './update-flag-rebate-retention/update-flag-rebate-retention.service';
 import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
 import { ResultAmendmentService } from './result-amendment/result-amendment.service';
 import { NameStatus } from './shared/pipes/name-status';
@@ -71,12 +73,12 @@ import { LeagueSettingService } from './special-league-setting/league-setting.se
     DetailsSettlementLogComponent,
     SyncTransidDirectlyComponent,
     UpdateFlagBroadcastComponent,
+    UpdateFlagRebateRetentionComponent,
     ResultAmendmentCompoment,
     LeagueFilterComponent,
     LeagueSettingComponent,
     LeagueDataComponent,
     NameStatus,
-
   ],
   imports: [
     BrowserModule,
@@ -107,9 +109,10 @@ import { LeagueSettingService } from './special-league-setting/league-setting.se
     FileService,
     SyncTransIdService,
     UpdateFlagBroadcastService,
+    UpdateFlagRebateRetentionService,
     ResultAmendmentService,
     LeagueSettingService,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
