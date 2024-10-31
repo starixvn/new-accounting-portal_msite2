@@ -1,6 +1,4 @@
-﻿using System.Text;
-using System.Web;
-using Fanex.Caching;
+﻿using Fanex.Caching;
 using Fanex.Logging;
 using Fanex.NAP.Client.Helpers.Web;
 using Maintenance.Core.Models;
@@ -10,6 +8,8 @@ using Maintenance.DeleteTempVariable.Requests;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using StackExchange.Redis;
+using System.Text;
+using System.Web;
 
 namespace Maintenance.DeleteTempVariable.Services;
 
@@ -100,7 +100,7 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
         await logger.InfoAsync(message);
     }
 
-    public uint GetNumberMessageProcessingQueue()
+    private uint GetNumberMessageProcessingQueue()
     {
         var rabbitMq = appSettingsKey.RabbitMq;
         var connectionFactory = new ConnectionFactory

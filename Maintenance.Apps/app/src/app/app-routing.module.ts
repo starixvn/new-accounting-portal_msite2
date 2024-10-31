@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { SyncSettlementLogComponent } from './sync-settlement-log/sync-settlement-log.component';
 import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-transid-directly.component';
 import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-flag-broadcast.component';
+import { UpdateFlagRebateRetentionComponent } from './update-flag-rebate-retention/update-flag-rebate-retention.component';
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
 import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
@@ -62,6 +63,10 @@ const routes: Routes = [
         path: 'update-flag-broadcast',
         component: UpdateFlagBroadcastComponent,
       },
+      {
+        path: 'update-flag-rebate-retention',
+        component: UpdateFlagRebateRetentionComponent,
+      },
     ],
   },
   {
@@ -77,11 +82,11 @@ const routes: Routes = [
   {
     path: 'special-league-setting',
     component: LeagueSettingComponent,
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

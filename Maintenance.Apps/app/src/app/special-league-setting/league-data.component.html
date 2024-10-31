@@ -24,9 +24,9 @@
                 <td>
                     <div style="display: flex; justify-content: center;column-gap: 10px;">
                         <button
-                            [ngClass]="!league.autoType || league.autoType === league.originalAutoType  ? 'btn-disable' : 'btn-submit'"
-                            (click)="openUpdateConfirmDialog(league)">Update</button>
-                        <button [ngClass]="!league.originalAutoType || !league.autoType || league.autoType !== league.originalAutoType ? 'btn-disable' : 'btn-submit'"
+                            [ngClass]="!!league.originalAutoType || !league.autoType ? 'btn-disable' : 'btn-submit'"
+                            (click)="openUpdateConfirmDialog(league)">Add</button>
+                        <button [ngClass]="!league.originalAutoType ? 'btn-disable' : 'btn-submit'"
                             (click)="openRemoveConfirmDialog(league)">Remove</button>
                     </div>
                 </td>

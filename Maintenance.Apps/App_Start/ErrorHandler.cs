@@ -33,7 +33,7 @@ public class ErrorHandler(RequestDelegate next, ILogger logger, IConfiguration c
 
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
-        await context.Response.WriteAsync(exception.Message);
+        await context.Response.WriteAsync("InternalServerError");
 
         var env = Configuration.GetSection("Fanex.NAP.Client:Environment").Value;
 
