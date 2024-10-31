@@ -1,10 +1,11 @@
-﻿using Maintenance.Core.Models;
-using Maintenance.Sync.Models;
+﻿using Maintenance.Sync.Models;
 using Maintenance.Sync.Requests;
 using Maintenance.Sync.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Maintenance.Apps.Apis;
+
+using Core.Models;
 
 public static class SyncTransApi
 {

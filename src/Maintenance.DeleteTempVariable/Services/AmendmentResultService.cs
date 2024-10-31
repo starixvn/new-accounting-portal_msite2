@@ -1,81 +1,74 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
-using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
 using Microsoft.Extensions.Options;
 
-namespace Maintenance.DeleteTempVariable.Services
+namespace Maintenance.DeleteTempVariable.Services;
+
+using Core.Models;
+
+public interface AmendmentResultService
 {
-    public interface AmendmentResultService
-    {
-        Task<bool> UpdateStatus(AmendmentResultUpdateRequest request);
+	Task<bool> UpdateStatus(AmendmentResultUpdateRequest request);
 
-        Task<List<AmendmentResult>> GetResults(AmendmentResultRequest request);
-    }
+	Task<List<AmendmentResult>> GetResults(AmendmentResultRequest request);
+}
 
-    public class AmendmentResultServiceImp : AmendmentResultService
-    {
-        private readonly IDynamicRepository repository;
-        private readonly AppSettingsKey appSettingsKey;
-        private readonly IMapper mapper;
+public class AmendmentResultServiceImp(
+	IDynamicRepository repository,
+	IOptions<AppSettingsKey> options,
+	IMapper mapper)
+	: AmendmentResultService
+{
+	private readonly AppSettingsKey appSettingsKey = options.Value;
 
-        public AmendmentResultServiceImp(IDynamicRepository repository, IOptions<AppSettingsKey> options, IMapper mapper)
-        {
-            this.repository = repository;
-            this.appSettingsKey = options.Value;
-            this.mapper = mapper;
-        }
+	public async Task<List<AmendmentResult>> GetResults(AmendmentResultRequest request)
+	{
+		var results = new List<AmendmentResult>();
+		foreach (var server in appSettingsKey.SiteDbServer.Where(s => s != "DBTXN"))
+		{
+			var criteria = new AmendmentResultSelCriteria
+			{
+				DbServer = server,
+				StatusId = request.StatusId,
+				MatchId = request.MatchId
+			};
 
-        public async Task<List<AmendmentResult>> GetResults(AmendmentResultRequest request)
-        {
-            var results = new List<AmendmentResult>();
-            foreach (var server in appSettingsKey.SiteDbServer.Where(s => s != "DBTXN"))
-            {
-                var criteria = new AmendmentResultSelCriteria
-                {
-                    DbServer = server,
-                    StatusId = request.StatusId,
-                    MatchId = request.MatchId,
-                };
+			var list = (await repository.FetchAsync<AmendmentResult>(criteria)).ToList();
+			list.ForEach(i => i.DbServer = server);
 
-                var list = (await repository.FetchAsync<AmendmentResult>(criteria)).ToList();
-                list.ForEach(i => i.DbServer = server);
+			results.AddRange(list);
+		}
 
-                results.AddRange(list);
-            }
+		return results;
+	}
 
-            return results;
-        }
+	public async Task<bool> UpdateStatus(AmendmentResultUpdateRequest request)
+	{
+		foreach (var item in request.Results)
+		{
+			var criteria = Create(item);
 
-        public async Task<bool> UpdateStatus(AmendmentResultUpdateRequest request)
-        {
-            if (request.Results.Count == 0) return true;
+			await repository.ExecuteAsync(criteria);
+		}
 
-            request.Results.ForEach(item =>
-            {
-                var criteria = Create(item);
+		return true;
+	}
 
-                repository.Execute(criteria);
-            });
+	private AmendmentResultUpdateCriteria Create(AmendmentResultItem item)
+	{
+		var criteria = mapper.Map<AmendmentResultUpdateCriteria>(item);
 
-            return true;
-        }
+		criteria.StatusId = item.StatusId switch
+		{
+			(short)AmendmentStatus.FailSettle => (short)AmendmentStatus.Complete,
+			(short)AmendmentStatus.TimeOut => (short)AmendmentStatus.Running,
+			_ => 0
+		};
 
-        private AmendmentResultUpdateCriteria Create(AmendmentResultItem item)
-        {
-            var criteria = mapper.Map<AmendmentResultUpdateCriteria>(item);
-
-            criteria.StatusId = item.StatusId switch
-            {
-                (short)AmendmentStatus.FailSettle => (short)AmendmentStatus.Complete,
-                (short)AmendmentStatus.TimeOut => (short)AmendmentStatus.Running,
-                _ => 0
-            };
-
-            return criteria;
-        }
-    }
+		return criteria;
+	}
 }

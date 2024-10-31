@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
-using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
 using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
+
+using Core.Models;
 
 public interface ParlayLockingService
 {

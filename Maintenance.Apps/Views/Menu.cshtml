@@ -1,7 +1,7 @@
-﻿@using Fanex.NAP.Client.Session
-@using Microsoft.AspNetCore.Http
+﻿
+@using Fanex.NAP.Client
+@inject INapSession session
 @{
-	var session = new NapSession(new HttpContextAccessor());
 	var menuItemList = session.MenuItemList;
 	var lvl0MenuItemList = menuItemList.Where(m => m.ParentId == 0).OrderBy(m => m.DisplayOrder).ToList();
 }

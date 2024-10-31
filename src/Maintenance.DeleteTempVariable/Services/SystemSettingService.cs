@@ -1,10 +1,11 @@
 ﻿using Fanex.Data.Repository;
-using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
+
+using Core.Models;
 
 public interface SystemSettingService
 {

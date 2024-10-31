@@ -21,7 +21,7 @@ public class SettlementLockServiceTests
     {
         var settings = new AppSettingsKey
         {
-            SiteDbServer = new List<string> { "ABC" }
+            SiteDbServer = ["ABC"]
         };
         appSettingsKey = Options.Create(settings);
 
@@ -44,7 +44,7 @@ public class SettlementLockServiceTests
         var result = await service.GetMatches(new MatchRequest());
 
         // Assert
-        Assert.Equal(new List<MatchSettlementLock>(), result);
+        Assert.Equal([], result);
     }
 
     [Fact]

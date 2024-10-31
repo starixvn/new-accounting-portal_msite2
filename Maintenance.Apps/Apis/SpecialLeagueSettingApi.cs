@@ -26,7 +26,7 @@ public static class SpecialLeagueSettingApi
 			[FromServices] LeagueSettingService service,
 			[FromServices] IValidator<RemoveSettingRequest> validator)
 	{
-		var validationResult = validator.Validate(request);
+		var validationResult = await validator.ValidateAsync(request);
 		if (!validationResult.IsValid)
 		{
 			return TypedResults.ValidationProblem(validationResult.ToDictionary());
@@ -39,7 +39,7 @@ public static class SpecialLeagueSettingApi
 			[FromServices] IValidator<UpdateSettingRequest> validator,
 			[FromServices] LeagueSettingService service)
 	{
-		var validationResult = validator.Validate(request);
+		var validationResult = await validator.ValidateAsync(request);
 		if (!validationResult.IsValid)
 		{
 			return TypedResults.ValidationProblem(validationResult.ToDictionary());

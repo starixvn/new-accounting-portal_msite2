@@ -1,7 +1,7 @@
 ﻿using Fanex.Caching;
 using Fanex.Data.Repository;
 using Fanex.Logging;
-using Fanex.NAP.Client.Helpers.Web;
+using Fanex.NAP.Client;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Services;
@@ -24,7 +24,7 @@ public class ControlSyncServiceTests
     {
         var settings = new AppSettingsKey
         {
-            SiteDbServer = new List<string> { "ABC" }
+            SiteDbServer = ["ABC"]
         };
         appSettingsKey = Options.Create(settings);
         session = Substitute.For<INapSession>();
@@ -57,6 +57,6 @@ public class ControlSyncServiceTests
         var result = await service.GetInfoService();
 
         // Assert
-        Assert.Equal(result, new List<LastLog>());
+        Assert.Equal(result, []);
     }
 }

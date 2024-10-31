@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
-using Maintenance.Core.Constants;
-using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Criteria.SyncErrorLog;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests.SyncErrorLog;
 using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
+
+using Core.Constants;
+using Core.Models;
 
 public interface SettlementErrorLogService
 {
@@ -28,12 +29,6 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
     : SettlementErrorLogService
 {
     private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;
-
-    private readonly Dictionary<short, string> SiteDBs = new()
-    {
-        { 1, "DBSITE01" },
-        { 3,"DBSITE02" }
-    };
 
     public async Task<List<SettlementErrorLog>> GetSettlementErrorsLogs(SettlementErrorLogRequest request)
     {

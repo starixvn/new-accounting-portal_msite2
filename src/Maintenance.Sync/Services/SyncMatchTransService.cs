@@ -1,9 +1,10 @@
-﻿using Maintenance.Core.Models;
-using Maintenance.Sync.Criteria;
+﻿using Maintenance.Sync.Criteria;
 using Maintenance.Sync.Models;
 using Maintenance.Sync.Requests;
 
 namespace Maintenance.Sync.Services;
+
+using Core.Models;
 
 public interface SyncMatchTransService
 {
@@ -12,22 +13,15 @@ public interface SyncMatchTransService
     Task<Result> UpdateBatchTransId(UpdateBatchTransIdRequest request);
 }
 
-public class SyncMatchTransServiceImp : SyncMatchTransService
+public class SyncMatchTransServiceImp(IDynamicRepository repository) : SyncMatchTransService
 {
-    private readonly IDynamicRepository repository;
-
-    public SyncMatchTransServiceImp(IDynamicRepository repository)
-    {
-        this.repository = repository;
-    }
-
-    public async Task<List<SynMatchIdInfo>> GetBatchTransId(GetBatchTransIdRequest request)
+	public async Task<List<SynMatchIdInfo>> GetBatchTransId(GetBatchTransIdRequest request)
     {
         var criteria = new SyncMatchIdSelCriteria
         {
             MatchId = request.MatchId,
             TableName = request.TableName,
-            DbServer = request.ServerName,
+            DbServer = request.ServerName
         };
 
         var results = (await repository.FetchAsync<SynMatchIdInfo>(criteria)).ToList();
@@ -61,7 +55,7 @@ public class SyncMatchTransServiceImp : SyncMatchTransService
             return new Result
             {
                 ErrCode = errorResults.First().ErrCode,
-                ErrMsg = string.Join('|', errorResults.Select(x => x.ErrMsg)),
+                ErrMsg = string.Join('|', errorResults.Select(x => x.ErrMsg))
             };
         }
 
@@ -76,7 +70,7 @@ public class SyncMatchTransServiceImp : SyncMatchTransService
             FromTransId = request.FromTransId,
             ToTransId = request.ToTransId,
             TableName = request.TableName,
-            ServerName = request.ServerName,
+            ServerName = request.ServerName
         };
 
         await repository.ExecuteAsync(selCriteria);
@@ -89,7 +83,7 @@ public class SyncMatchTransServiceImp : SyncMatchTransService
         var updCriteria = new SyncTransIdInRangeUpdCriteria
         {
             TableName = request.TableName,
-            TransInfoJson = transInfo,
+            TransInfoJson = transInfo
         };
         var tasks = request.ToServerNames.Select(s => UpdateBatchTransIdOneSite(s, updCriteria));
 

@@ -1,9 +1,6 @@
 ﻿using Fanex.Caching;
 using Fanex.Data.Repository;
 using Fanex.Logging;
-using Fanex.NAP.Client.Helpers.Web;
-using Maintenance.Core.Constants;
-using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
@@ -11,6 +8,10 @@ using Maintenance.DeleteTempVariable.Requests;
 using Microsoft.Extensions.Options;
 
 namespace Maintenance.DeleteTempVariable.Services;
+
+using Core.Constants;
+using Core.Models;
+using Fanex.NAP.Client;
 
 public interface ControlSyncService
 {

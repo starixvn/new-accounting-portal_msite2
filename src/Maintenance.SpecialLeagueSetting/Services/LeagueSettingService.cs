@@ -15,17 +15,9 @@ public interface LeagueSettingService
 
 }
 
-public class LeagueSettingServiceImp : LeagueSettingService
+public class LeagueSettingServiceImp(IDynamicRepository repository, IRemotingRefService remotingRefService)
+	: LeagueSettingService
 {
-	private readonly IDynamicRepository repository;
-	private readonly IRemotingRefService remotingRefService;
-
-	public LeagueSettingServiceImp(IDynamicRepository repository, IRemotingRefService remotingRefService)
-	{
-		this.repository = repository;
-		this.remotingRefService = remotingRefService;
-	}
-
 	public async Task<List<League>> GetLeagueSetting(GetLeagueSetting request)
 	{
 		var criteria = new LeagueSettingSelCriteria
