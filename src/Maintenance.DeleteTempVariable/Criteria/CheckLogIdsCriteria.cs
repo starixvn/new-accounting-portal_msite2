@@ -1,8 +1,9 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
-using Maintenance.Core.Constants;
 
 namespace Maintenance.DeleteTempVariable.Criteria;
+
+using Core.Constants;
 
 public class CheckLogIdsCriteria : INonQueryCommand
 {

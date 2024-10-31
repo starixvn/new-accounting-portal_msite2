@@ -1,12 +1,9 @@
+using Core.Models;
 using Fanex.Data.SqlServer;
-using Fanex.NAP.Client;
-using Fanex.NAP.Client.Configuration;
-using Fanex.NAP.Client.Helpers.Web;
-using Fanex.NAP.SignIn.Attribute;
+using Fanex.NAP.Client.Attributes;
 using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;
-using Maintenance.Core.Models;
 using Maintenance.SpecialLeagueSetting.Request;
 using Microsoft.AspNetCore.Mvc;
 using ONEbook.UM.AspNetCore.Filters;
@@ -38,18 +35,13 @@ services.AddCookieAuthentication(configuration);
 services.AddRedisSession(configuration);
 services.AddConfigRedisCache(configuration);
 
-services.AddNapServices(configuration);
 services.AddFanexServices(configuration);
 services.AddFanexSql(configuration);
-services.AddOnebookUM(configuration);
+services.AddNapClient(configuration);
+services.AddOneBookUm(configuration);
 services.AddCoreServices();
 services.AddAutoMapper();
 services.AddInternalServices();
-services.AddControllersWithViews(options =>
-{
-	options.Filters.Add(new ServiceFilterAttribute(typeof(CheckUMFilterAttribute)));
-	options.Filters.Add(new SessionAuthorizeAttribute());
-}).AddNewtonsoftJson();
 
 services.AddValidatorsFromAssemblyContaining<UpdateSettingRequestValidator>();
 
@@ -76,8 +68,4 @@ app.MapControllerRoute(
 	"default",
 	"{controller=Home}/{action=Index}/{id?}");
 
-NapClientManager
-	.UseConfig(app.Services.GetService<INapSettings>())
-	.UseSession(app.Services.GetService<INapSession>());
-
-app.Run();
+await app.RunAsync();

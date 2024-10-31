@@ -21,7 +21,7 @@ public class ParlayLockingServiceTests
     {
         var settings = new AppSettingsKey
         {
-            SiteDbServer = new List<string> { "ABC" }
+            SiteDbServer = ["ABC"]
         };
         appSettingsKey = Options.Create(settings);
 
@@ -44,7 +44,7 @@ public class ParlayLockingServiceTests
         var result = await service.GetMatches(new ParlayLockingRequest());
 
         // Assert
-        Assert.Equal(new List<MatchParlayLocking>(), result);
+        Assert.Equal([], result);
     }
 
     [Fact]

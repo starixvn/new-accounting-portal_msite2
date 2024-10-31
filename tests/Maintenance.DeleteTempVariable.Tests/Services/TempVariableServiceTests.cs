@@ -22,7 +22,7 @@ public class TempVariableServiceTests
     {
         var settings = new AppSettingsKey
         {
-            SiteDbServer = new List<string> { "ABC" }
+            SiteDbServer = ["ABC"]
         };
         appSettingsKey = Options.Create(settings);
 
@@ -59,7 +59,7 @@ public class TempVariableServiceTests
         var result = await service.GetMatches(1);
 
         // Assert
-        Assert.Equal(new List<Match>(), result);
+        Assert.Equal([], result);
     }
 
     [Fact]

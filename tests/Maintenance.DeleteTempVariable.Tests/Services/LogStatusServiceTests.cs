@@ -21,7 +21,7 @@ public class LogStatusServiceTests
     {
         var settings = new AppSettingsKey
         {
-            SiteDbServer = new List<string> { "ABC" }
+            SiteDbServer = ["ABC"]
         };
         appSettingsKey = Options.Create(settings);
 
@@ -40,7 +40,7 @@ public class LogStatusServiceTests
         var result = await service.GetLogStatus();
 
         // Assert
-        Assert.Equal(new List<LogStatus>(), result);
+        Assert.Equal([], result);
     }
 
     [Fact]

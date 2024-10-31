@@ -1,7 +1,5 @@
 ﻿using Fanex.Caching;
 using Fanex.Logging;
-using Fanex.NAP.Client.Helpers.Web;
-using Maintenance.Core.Models;
 using Maintenance.DeleteTempVariable.Constants;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
@@ -12,6 +10,9 @@ using System.Text;
 using System.Web;
 
 namespace Maintenance.DeleteTempVariable.Services;
+
+using Core.Models;
+using Fanex.NAP.Client;
 
 public interface FlagBroadcastService
 {

@@ -18,7 +18,7 @@ public class SystemSettingServiceTests
     {
         var settings = new AppSettingsKey
         {
-            SiteDbServer = new List<string> { "ABC" }
+            SiteDbServer = ["ABC"]
         };
         appSettingsKey = Options.Create(settings);
         repository = Substitute.For<IDynamicRepository>();

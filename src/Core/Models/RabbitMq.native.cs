@@ -1,4 +1,4 @@
-﻿namespace Maintenance.Core.Models;
+﻿namespace Core.Models;
 
 public class RabbitMq
 {

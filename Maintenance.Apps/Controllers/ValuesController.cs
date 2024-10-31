@@ -2,7 +2,7 @@
 
 namespace Maintenance.Apps.Controllers;
 
-using Fanex.NAP.Client.Helpers.Web;
+using Fanex.NAP.Client;
 
 [Route("api/[controller]")]
 [ApiController]

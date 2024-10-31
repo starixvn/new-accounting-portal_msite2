@@ -16,6 +16,6 @@ public class RemoveSettingRequestValidator : AbstractValidator<RemoveSettingRequ
 	{
 		RuleFor(x => x.LeagueId).NotEmpty().WithMessage("LeagueId is required");
 		RuleFor(x => x.AutoType)
-			.Must(x => x == AutoTypeSetting.DirectSabaSoccer || x == AutoTypeSetting.FantasySoccer || x == AutoTypeSetting.FantasyBasketball);
+			.Must(x => x is AutoTypeSetting.DirectSabaSoccer or AutoTypeSetting.FantasySoccer or AutoTypeSetting.FantasyBasketball);
 	}
 }

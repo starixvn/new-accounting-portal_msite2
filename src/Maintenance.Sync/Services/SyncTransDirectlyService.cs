@@ -1,11 +1,11 @@
-﻿using Maintenance.Core.Constants;
-using Maintenance.Core.Models;
-using Maintenance.Sync.Criteria;
+﻿using Maintenance.Sync.Criteria;
 using Maintenance.Sync.Models;
 using Maintenance.Sync.Requests;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace Maintenance.Sync.Services;
+
+using Core.Constants;
+using Core.Models;
 
 public interface SyncTransDirectlyService
 {
@@ -21,9 +21,9 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
 
     public DbInfo GetDbInfo() => new()
     {
-        Tables = new List<string> { "bettrans", "bettransm" },
+        Tables = ["bettrans", "bettransm"],
         DbSites = appSettings.SiteDbServer.Where(s => !s.Equals(DataBaseServers.DBCentral)).ToList(),
-        SubDbSites = [DataBaseServers.DBCentral, .. appSettings.SubDbServer],
+        SubDbSites = [DataBaseServers.DBCentral, .. appSettings.SubDbServer]
     };
 
     public async Task<Result> UpdateTransId(UpdateTransIdsRequest request)
@@ -48,7 +48,7 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
         {
             TableName = request.TableName,
             TransIds = request.TransIds,
-            ServerName = request.ServerName,
+            ServerName = request.ServerName
         };
 
         await repository.ExecuteAsync(criteria);
@@ -66,7 +66,7 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
         {
             TransIds = request.TransIds,
             TableName = request.TableName,
-            ServerName = request.ServerName,
+            ServerName = request.ServerName
         };
 
         await repository.ExecuteAsync(criteria);
@@ -85,7 +85,7 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
         var criteria = new SyncTransIdUpdCriteria
         {
             TableName = request.TableName,
-            TransInfoJson = transInfo,
+            TransInfoJson = transInfo
         };
 
         var tasks = request.ToServerNames.Select(s => UpdSyncTransIdOnSite(s, criteria));
@@ -98,7 +98,7 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
             return new Result
             {
                 ErrCode = errorResults.First().ErrCode,
-                ErrMsg = string.Join('|', errorResults.Select(x => x.ErrMsg)),
+                ErrMsg = string.Join('|', errorResults.Select(x => x.ErrMsg))
             };
         }
 

@@ -4,9 +4,6 @@ using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;
 using Fanex.Logging.Extensions.Database;
-using Fanex.NAP.Client.Configuration;
-using Fanex.NAP.Client.Helpers.Web;
-using Fanex.NAP.Client.Services;
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -20,11 +17,10 @@ namespace Maintenance.Apps;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;
-using Fanex.NAP.Client.Session;
 using Fanex.RemotingRef;
 using Fanex.Settlement.ScaleOut.Services;
-using Maintenance.SpecialLeagueSetting.Services;
-using Maintenance.Sync;
+using SpecialLeagueSetting.Services;
+using Sync;
 using SharpRaven;
 
 public static class ServiceCollectionExtensions
@@ -101,13 +97,13 @@ public static class ServiceCollectionExtensions
             .UseConfig(new LoggingConfiguration())
             .UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo);
 
-        services.AddSingleton(Logger.Log);
-
-        RefDataTypeContainer
+		RefDataTypeContainer
             .ConnectTo(new Uri(configuration.GetSection("Fanex.RemotingRef.Service.Url").Value))
             .FromApplication("Settlement");
 
-        services.AddSingleton<IRemotingRefService, RemotingRefService>();
+		services.AddSingleton(Logger.Log);
+		services.AddTransient<Fanex.Logging.ILogger, Logger>();
+		services.AddSingleton<IRemotingRefService, RemotingRefService>();
     }
 
     public static void AddInternalServices(this IServiceCollection services)
@@ -129,22 +125,6 @@ public static class ServiceCollectionExtensions
         services.AddSyncServices();
     }
 
-    public static void AddNapServices(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddTransient<Fanex.Logging.ILogger, Logger>();
-        services.AddSingleton<INapSettings>(new NapSettings(configuration));
-        services.AddSingleton<INapSession, NapSession>();
-
-        services.AddSingleton<IGroupService, GroupService>();
-        services.AddSingleton<IUserService, UserService>();
-        services.AddSingleton<ISecurityService, SecurityService>();
-        services.AddSingleton<ISiteService, SiteService>();
-    }
-
-    public static void AddOnebookUM(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.RegisterServiceCollection(configuration);
-    }
 
     public static void AddRedisSession(this IServiceCollection services, IConfiguration configuration)
     {
