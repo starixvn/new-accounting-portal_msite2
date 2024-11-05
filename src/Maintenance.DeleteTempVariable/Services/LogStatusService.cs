@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
-using Fanex.Settlement.ScaleOut.Services;
 using Maintenance.DeleteTempVariable.Criteria;
 using Maintenance.DeleteTempVariable.Model;
 using Maintenance.DeleteTempVariable.Requests;
@@ -23,7 +22,7 @@ public interface LogStatusService
 public class LogStatusServiceImp(IDynamicRepository repository,
         IOptions<AppSettingsKey> appSettingsKey,
         IMapper mapper,
-        ScaleOutSettleService scaleOutSettleService = null)
+        ScaleOutSettleService scaleOutSettleService)
     : LogStatusService
 {
     private readonly AppSettingsKey appSettingsKey = appSettingsKey.Value;

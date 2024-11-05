@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
 using Fanex.Logging;
-using Fanex.Logging.Extensions;
-using Fanex.Logging.Extensions.AspNetCore;
-using Fanex.Logging.Extensions.Database;
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +15,6 @@ using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
-using Fanex.Settlement.ScaleOut.Services;
 using SpecialLeagueSetting.Services;
 using Sync;
 using SharpRaven;
@@ -93,10 +89,7 @@ public static class ServiceCollectionExtensions
                 })
         });
 
-        ExceptionHandler
-            .UseConfig(new LoggingConfiguration())
-            .UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo);
-
+   
 		RefDataTypeContainer
             .ConnectTo(new Uri(configuration.GetSection("Fanex.RemotingRef.Service.Url").Value))
             .FromApplication("Settlement");
@@ -115,7 +108,6 @@ public static class ServiceCollectionExtensions
         services.AddTransient<LogStatusService, LogStatusServiceImp>();
         services.AddTransient<ControlSyncService, ControlSyncServicesImp>();
         services.AddTransient<SettlementErrorLogService, SettlementErrorLogServiceImp>();
-        services.AddTransient<GeneralService, GeneralServiceImp>();
         services.AddTransient<ScaleOutSettleService, ScaleOutSettleServiceImp>();
         services.AddTransient<FlagBroadcastService, FlagBroadcastServiceImp>();
         services.AddTransient<AmendmentResultService, AmendmentResultServiceImp>();

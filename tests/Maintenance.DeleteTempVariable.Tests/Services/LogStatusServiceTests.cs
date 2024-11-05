@@ -14,7 +14,8 @@ using Core.Models;
 public class LogStatusServiceTests
 {
     private readonly IDynamicRepository repository;
-    private readonly IOptions<AppSettingsKey> appSettingsKey;
+    private readonly ScaleOutSettleService scaleOutSettleService;
+	private readonly IOptions<AppSettingsKey> appSettingsKey;
     private readonly IMapper mapper;
 
     public LogStatusServiceTests()
@@ -26,14 +27,16 @@ public class LogStatusServiceTests
         appSettingsKey = Options.Create(settings);
 
         repository = Substitute.For<IDynamicRepository>();
-        mapper = Substitute.For<IMapper>();
+        scaleOutSettleService = Substitute.For<ScaleOutSettleService>();
+		mapper = Substitute.For<IMapper>();
+
     }
 
     [Fact]
     public async void GetLogStatus_ReturnCorrectData()
     {
         // Arrange
-        var service = new LogStatusServiceImp(repository, appSettingsKey, mapper);
+        var service = new LogStatusServiceImp(repository, appSettingsKey, mapper, scaleOutSettleService);
         repository.FetchAsync<LogStatus>(Arg.Any<GetLogStatusCriteria>()).Returns(new List<LogStatus>());
 
         // Act
@@ -47,7 +50,7 @@ public class LogStatusServiceTests
     public async void UpdateLogStatus_UpdateSuccess()
     {
         // Arrange
-        var service = new LogStatusServiceImp(repository, appSettingsKey, mapper);
+        var service = new LogStatusServiceImp(repository, appSettingsKey, mapper, scaleOutSettleService);
         repository.ExecuteAsync(Arg.Any<UpdateLogStatusCriteria>()).Returns(1);
 
         // Act
