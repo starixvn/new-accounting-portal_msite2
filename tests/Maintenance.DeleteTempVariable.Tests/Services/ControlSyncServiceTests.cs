@@ -33,21 +33,8 @@ public class ControlSyncServiceTests
         repository = Substitute.For<IDynamicRepository>();
     }
 
-    //[Fact]
-    //public void UpdateStatusServiceInRedis_InputTrue_ReturnTrue()
-    //{
-    //    // Arrange
-    //    var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);
-
-    //    // Act
-    //    var result = service.UpdateStatusServiceInRedis(new Requests.UpdateStatusRequest { Status = true });
-
-    //    // Assert
-    //    Assert.True(result);
-    //}
-
     [Fact]
-    public async void GetInfoService_ReturnCorrectData()
+    public async Task GetInfoService_ReturnCorrectData()
     {
         // Arrange
         var service = new ControlSyncServicesImp(cache, logger, session, appSettingsKey, repository);

@@ -35,7 +35,10 @@ public class SyncTransDirectlyServiceImp(IOptions<AppSettingsKey> appSettings, I
 
         var (selResult, transInfo) = await GetTransIds(request);
 
-        if (!selResult.IsSuccess) return selResult;
+        if (!selResult.IsSuccess)
+        {
+            return selResult;
+        }
 
         var result = await UpdSyncTransIdAllSite(request, transInfo);
 

@@ -1,5 +1,5 @@
 using Core.Models;
-using Fanex.Data.SqlServer;
+using Fanex.Data;
 using Fanex.NAP.Client.Attributes;
 using FluentValidation;
 using Maintenance.Apps;
@@ -36,7 +36,7 @@ services.AddRedisSession(configuration);
 services.AddConfigRedisCache(configuration);
 
 services.AddFanexServices(configuration);
-services.AddFanexSql(configuration);
+services.AddFanexData(configuration);
 services.AddNapClient(configuration);
 services.AddOneBookUm(configuration);
 services.AddCoreServices();
@@ -67,5 +67,14 @@ app.MapSpecialLeagueSettingApi();
 app.MapControllerRoute(
 	"default",
 	"{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+	name: "api",
+	pattern: "api/{controller}/{action=Index}/{id?}"
+);
 
+app.MapControllerRoute(
+	name: "catchAll",
+	pattern: "{*url}",
+	defaults: new { controller = "Home", action = "Index" }
+);
 await app.RunAsync();

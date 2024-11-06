@@ -15,7 +15,7 @@ public interface SyncMatchTransService
 
 public class SyncMatchTransServiceImp(IDynamicRepository repository) : SyncMatchTransService
 {
-	public async Task<List<SynMatchIdInfo>> GetBatchTransId(GetBatchTransIdRequest request)
+    public async Task<List<SynMatchIdInfo>> GetBatchTransId(GetBatchTransIdRequest request)
     {
         var criteria = new SyncMatchIdSelCriteria
         {
@@ -40,11 +40,14 @@ public class SyncMatchTransServiceImp(IDynamicRepository repository) : SyncMatch
     {
         var transInfo = await GetTransInfo(request);
 
-        if (transInfo == null || !transInfo.Any()) return new Result
+        if (transInfo == null || !transInfo.Any())
         {
-            ErrCode = 101,
-            ErrMsg = "TransInfoJson get from NAP_Set_SiteDB_SyncTransIdInRange_Sel is Empty"
-        };
+            return new Result
+            {
+                ErrCode = 101,
+                ErrMsg = "TransInfoJson get from NAP_Set_SiteDB_SyncTransIdInRange_Sel is Empty"
+            };
+        }
 
         var results = await UpdateTransInfoAllSite(request, transInfo);
 

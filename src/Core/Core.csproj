@@ -3,12 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Data" Version="4.3.0.2" />
-    <PackageReference Include="Fanex.Data.Repository" Version="4.3.0.2" />
+    <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.1" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />

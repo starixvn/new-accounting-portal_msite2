@@ -92,7 +92,11 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
             result.AddRange(data);
         }
 
-        return result.Select(v => { v.TempTableName = "SiteDB_SettlementLock"; return v; }).ToList();
+        return result.Select(v =>
+        {
+            v.TempTableName = "SiteDB_SettlementLock";
+            return v;
+        }).ToList();
     }
 
     private async Task<List<SettlementErrorLog>> GetSettlementSSBLogs(SettlementErrorLogRequest request)
@@ -116,7 +120,11 @@ public class SettlementErrorLogServiceImp(IDynamicRepository repository,
             result.AddRange(data);
         }
 
-        return result.Select(v => { v.TempTableName = "Settlement_SiteDB_SSBErr"; return v; }).ToList();
+        return result.Select(v =>
+        {
+            v.TempTableName = "Settlement_SiteDB_SSBErr";
+            return v;
+        }).ToList();
     }
 
     public async Task<List<DetailSettlementErrorLog>> GetSettlementErrorsLogDetails(SettlementErrorLogDetailRequest request)

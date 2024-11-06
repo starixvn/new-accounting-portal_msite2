@@ -2,6 +2,6 @@
 
 public class AmendmentResultRequest
 {
-	public int? MatchId { get; set; }
-	public short StatusId { get; set; }
+    public int? MatchId { get; set; }
+    public short StatusId { get; set; }
 }

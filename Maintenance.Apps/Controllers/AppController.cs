@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
+[Route("")]
 public class AppController(IWebHostEnvironment env) : Controller
 {
     [Route("delete-temp")]

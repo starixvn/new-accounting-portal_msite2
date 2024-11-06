@@ -79,7 +79,7 @@ public class ControlSyncServicesImp(ICache cache,
 
     private void WriteLogChangeStatus(bool status)
     {
-        var message = $"UpdateStatus: At {DateTime.Now} {session.UserName} has id {session.UserId} update status with value {status}";
+        var message = $"UpdateStatus: At {DateTimeOffset.Now} {session.UserName} has id {session.UserId} update status with value {status}";
         logger.Info(message);
     }
 

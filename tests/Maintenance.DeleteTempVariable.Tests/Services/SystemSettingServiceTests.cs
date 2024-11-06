@@ -25,7 +25,7 @@ public class SystemSettingServiceTests
     }
 
     [Fact]
-    public async void GetSystemSettings_ReturnCorrectData()
+    public async Task GetSystemSettings_ReturnCorrectData()
     {
         // Arrange
         var service = new SystemSettingServiceImp(repository, appSettingsKey);
@@ -45,7 +45,7 @@ public class SystemSettingServiceTests
     }
 
     [Fact]
-    public async void UpdateSystemSetting_UpdateSuccess()
+    public async Task UpdateSystemSetting_UpdateSuccess()
     {
         // Arrange
         var service = new SystemSettingServiceImp(repository, appSettingsKey);
