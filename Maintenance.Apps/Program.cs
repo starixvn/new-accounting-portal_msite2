@@ -67,5 +67,14 @@ app.MapSpecialLeagueSettingApi();
 app.MapControllerRoute(
 	"default",
 	"{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+	name: "api",
+	pattern: "api/{controller}/{action=Index}/{id?}"
+);
 
+app.MapControllerRoute(
+	name: "catchAll",
+	pattern: "{*url}",
+	defaults: new { controller = "Home", action = "Index" }
+);
 await app.RunAsync();
