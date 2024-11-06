@@ -1,4 +1,4 @@
-﻿namespace Fanex.Settlement.ScaleOut.Models;
+﻿namespace Maintenance.DeleteTempVariable.Model;
 
 public class SiteGroup
 {

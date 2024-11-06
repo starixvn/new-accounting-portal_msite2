@@ -34,7 +34,7 @@ public class SettlementLockServiceTests
     }
 
     [Fact]
-    public async void GetMatches_ReturnCorrectData()
+    public async Task GetMatches_ReturnCorrectData()
     {
         // Arrange
         var service = new SettlementLockServiceImp(repository, appSettingsKey, mapper);
@@ -48,7 +48,7 @@ public class SettlementLockServiceTests
     }
 
     [Fact]
-    public async void UpdateSystemSetting_UpdateSuccess()
+    public async Task UpdateSystemSetting_UpdateSuccess()
     {
         // Arrange
         var service = new SettlementLockServiceImp(repository, appSettingsKey, mapper);
@@ -62,7 +62,7 @@ public class SettlementLockServiceTests
     }
 
     [Fact]
-    public async void Delete_DeleteSuccess()
+    public async Task Delete_DeleteSuccess()
     {
         // Arrange
         var service = new SettlementLockServiceImp(repository, appSettingsKey, mapper);

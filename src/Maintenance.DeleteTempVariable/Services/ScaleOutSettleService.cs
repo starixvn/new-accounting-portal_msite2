@@ -2,7 +2,7 @@
 
 using Criteria;
 using Fanex.Data.Repository;
-using Fanex.Settlement.ScaleOut.Models;
+using Model;
 
 public interface ScaleOutSettleService
 {

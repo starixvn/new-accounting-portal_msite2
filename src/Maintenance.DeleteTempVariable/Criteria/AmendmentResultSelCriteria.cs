@@ -5,7 +5,7 @@ namespace Maintenance.DeleteTempVariable.Criteria;
 
 public class AmendmentResultSelCriteria : CriteriaBase
 {
-    public short StatusId { get; set; } = 0;
+    public short StatusId { get; set; }
 
     public int? MatchId { get; set; }
 

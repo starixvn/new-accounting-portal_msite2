@@ -38,8 +38,8 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
 
     public async Task<FlagBroadcast> GetFlagInfo()
     {
-        var processing = GetNumberMessageProcessingQueue();
-        var waiting = GetNumberMessageWaitingQueue();
+        var processing = await GetNumberMessageProcessingQueueAsync();
+        var waiting = GetNumberMessageWaitingQueueAsync();
         var queueWaitingOnService = GetListMessageWaiting(CacheKey.BroadcastServiceProductWaitingCacheKey);
         var queueWaitingOnApi = GetListMessageWaiting(CacheKey.BroadcastApiProductWaitingCacheKey);
         var queueNumber = $"Processing: {processing} - Waiting: {waiting}";
@@ -97,11 +97,11 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
 
     private async Task WriteLogChangeStatus(bool status)
     {
-        var message = $"Update flag deploy on Broadcast API: At {DateTime.Now} {session.UserName} has id {session.UserId} update flag with value {status}";
+        var message = $"Update flag deploy on Broadcast API: At {DateTimeOffset.Now} {session.UserName} has id {session.UserId} update flag with value {status}";
         await logger.InfoAsync(message);
     }
 
-    private uint GetNumberMessageProcessingQueue()
+    private async Task<uint> GetNumberMessageProcessingQueueAsync()
     {
         var rabbitMq = appSettingsKey.RabbitMq;
         var connectionFactory = new ConnectionFactory
@@ -112,15 +112,15 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
             VirtualHost = rabbitMq.VirtualHost
         };
 
-        using var connection = connectionFactory.CreateConnection();
-        using var channel = connection.CreateModel();
-        return channel.MessageCount("broadcast-api-processing-event");
+        await using var connection = await connectionFactory.CreateConnectionAsync();
+        await using var channel = await connection.CreateChannelAsync();
+        return await channel.MessageCountAsync("broadcast-api-processing-event");
     }
 
-    private long GetNumberMessageWaitingQueue()
+    private async Task<long> GetNumberMessageWaitingQueueAsync()
     {
-        return Database.ListLengthAsync(CacheKey.BroadcastServiceProductWaitingCacheKey).Result
-            + Database.ListLengthAsync(CacheKey.BroadcastApiProductWaitingCacheKey).Result;
+        return await Database.ListLengthAsync(CacheKey.BroadcastServiceProductWaitingCacheKey)
+            + await Database.ListLengthAsync(CacheKey.BroadcastApiProductWaitingCacheKey);
     }
 
     private string GetListMessageWaiting(string key)

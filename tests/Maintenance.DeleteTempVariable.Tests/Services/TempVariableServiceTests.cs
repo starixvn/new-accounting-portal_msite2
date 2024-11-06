@@ -35,7 +35,7 @@ public class TempVariableServiceTests
     }
 
     [Fact]
-    public async void TicketCount_ReturnCount()
+    public async Task TicketCount_ReturnCount()
     {
         // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);
@@ -49,7 +49,7 @@ public class TempVariableServiceTests
     }
 
     [Fact]
-    public async void GetMatches_ReturnCorrectData()
+    public async Task GetMatches_ReturnCorrectData()
     {
         // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);
@@ -63,7 +63,7 @@ public class TempVariableServiceTests
     }
 
     [Fact]
-    public async void GetMatchDetail_ReturnCorrectData()
+    public async Task GetMatchDetail_ReturnCorrectData()
     {
         // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);
@@ -77,7 +77,7 @@ public class TempVariableServiceTests
     }
 
     [Fact]
-    public async void DeleteMatch_ReturnCorrectData()
+    public async Task DeleteMatch_ReturnCorrectData()
     {
         // Arrange
         var service = new TempVariableServiceImp(repository, appSettingsKey, mapper);

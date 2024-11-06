@@ -33,7 +33,7 @@ public class LogStatusServiceTests
     }
 
     [Fact]
-    public async void GetLogStatus_ReturnCorrectData()
+    public async Task GetLogStatus_ReturnCorrectData()
     {
         // Arrange
         var service = new LogStatusServiceImp(repository, appSettingsKey, mapper, scaleOutSettleService);
@@ -47,7 +47,7 @@ public class LogStatusServiceTests
     }
 
     [Fact]
-    public async void UpdateLogStatus_UpdateSuccess()
+    public async Task UpdateLogStatus_UpdateSuccess()
     {
         // Arrange
         var service = new LogStatusServiceImp(repository, appSettingsKey, mapper, scaleOutSettleService);

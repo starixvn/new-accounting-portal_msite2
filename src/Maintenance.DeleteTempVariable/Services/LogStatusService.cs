@@ -53,8 +53,6 @@ public class LogStatusServiceImp(IDynamicRepository repository,
                 DbServer = server
             };
             var list = (await repository.FetchAsync<LogStatus>(criteria)).ToList();
-            //list.ForEach(i => i.DbServer = server);
-
             logStatusList.AddRange(list);
         }
 
