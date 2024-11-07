@@ -5,14 +5,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Fanex.Caching" Version="2.2.5" />
+    <PackageReference Include="Fanex.Caching" Version="2.2.6" />
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.1" />
-    <PackageReference Include="Fanex.Logging.Sentry.RavenClient" Version="1.0.1.2" />
+    <PackageReference Include="Fanex.Logging.Sentry.RavenClient" Version="1.1.0" />
     <PackageReference Include="Fanex.NAP.Client" Version="2.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="RabbitMQ.Client" Version="7.0.0" />
     <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
   </ItemGroup>

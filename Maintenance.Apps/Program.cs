@@ -1,5 +1,7 @@
 using Core.Models;
+using Fanex.Caching.Redis;
 using Fanex.Data;
+using Fanex.Logging.Sentry.RavenClient;
 using Fanex.NAP.Client.Attributes;
 using FluentValidation;
 using Maintenance.Apps;
@@ -33,11 +35,12 @@ services.AddControllersWithViews(options =>
 services.AddControllerAuthorization();
 services.AddCookieAuthentication(configuration);
 services.AddRedisSession(configuration);
+services.AddRedisCache(configuration.GetSection("Fanex.Caching.Redis"));
 services.AddConfigRedisCache(configuration);
-
 services.AddFanexServices(configuration);
 services.AddFanexData(configuration);
 services.AddNapClient(configuration);
+services.AddFanexLogSentry(configuration);
 services.AddOneBookUm(configuration);
 services.AddCoreServices();
 services.AddAutoMapper();

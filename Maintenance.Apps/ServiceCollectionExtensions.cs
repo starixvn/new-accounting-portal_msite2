@@ -79,23 +79,10 @@ public static class ServiceCollectionExtensions
 
     public static void AddFanexServices(this IServiceCollection services, IConfiguration configuration)
     {
-        LogManager
-        .SetDefaultLogCategory(configuration.GetSection("LogCategory").Value)
-        .Use(new List<ILogEngine>
-        {
-                new SentryLogging(new SentryEngineOptions
-                {
-                    Dsn = new Dsn(configuration.GetSection("SentryEngineOptions:Dsn").Value)
-                })
-        });
-
-   
 		RefDataTypeContainer
             .ConnectTo(new Uri(configuration.GetSection("Fanex.RemotingRef.Service.Url").Value))
             .FromApplication("Settlement");
 
-		services.AddSingleton(Logger.Log);
-		services.AddTransient<Fanex.Logging.ILogger, Logger>();
 		services.AddSingleton<IRemotingRefService, RemotingRefService>();
     }
 
@@ -147,11 +134,5 @@ public static class ServiceCollectionExtensions
         var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
         var applicationName = configuration.GetSection("AuthSettings:ChannelPrefix").Value;
         service.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect($"{redisConfig},ChannelPrefix={applicationName}"));
-        service.AddSingleton<ICache>(new RedisCache(new RedisCacheOptions
-        {
-            ConnectionString = redisConfig,
-            ApplicationName = applicationName
-        }));
-        service.AddSingleton<ICacheService>(new CacheService());
     }
 }
