@@ -3,6 +3,7 @@ using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.NAP.Client.Attributes;
+using Fanex.NAP.SignIn;
 using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;

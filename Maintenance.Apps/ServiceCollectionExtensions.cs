@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
-using Fanex.Logging;
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -11,13 +10,9 @@ using StackExchange.Redis;
 
 namespace Maintenance.Apps;
 
-using Fanex.Caching;
-using Fanex.Caching.Redis;
-using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
 using SpecialLeagueSetting.Services;
 using Sync;
-using SharpRaven;
 
 public static class ServiceCollectionExtensions
 {
