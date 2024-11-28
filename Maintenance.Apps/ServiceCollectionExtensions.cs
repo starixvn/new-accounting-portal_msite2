@@ -10,6 +10,8 @@ using StackExchange.Redis;
 
 namespace Maintenance.Apps;
 
+using Fanex.Caching;
+using Fanex.Caching.Redis;
 using Fanex.RemotingRef;
 using SpecialLeagueSetting.Services;
 using Sync;
@@ -74,11 +76,11 @@ public static class ServiceCollectionExtensions
 
     public static void AddFanexServices(this IServiceCollection services, IConfiguration configuration)
     {
-		RefDataTypeContainer
+        RefDataTypeContainer
             .ConnectTo(new Uri(configuration.GetSection("Fanex.RemotingRef.Service.Url").Value))
             .FromApplication("Settlement");
 
-		services.AddSingleton<IRemotingRefService, RemotingRefService>();
+        services.AddSingleton<IRemotingRefService, RemotingRefService>();
     }
 
     public static void AddInternalServices(this IServiceCollection services)
@@ -98,7 +100,6 @@ public static class ServiceCollectionExtensions
 
         services.AddSyncServices();
     }
-
 
     public static void AddRedisSession(this IServiceCollection services, IConfiguration configuration)
     {
@@ -129,5 +130,10 @@ public static class ServiceCollectionExtensions
         var redisConfig = configuration.GetSection("AuthSettings:RedisConfig").Value;
         var applicationName = configuration.GetSection("AuthSettings:ChannelPrefix").Value;
         service.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect($"{redisConfig},ChannelPrefix={applicationName}"));
+        service.AddSingleton<ICache>(new RedisCache(new RedisCacheOptions
+        {
+            ConnectionString = redisConfig,
+            ApplicationName = applicationName,
+        }));
     }
 }
