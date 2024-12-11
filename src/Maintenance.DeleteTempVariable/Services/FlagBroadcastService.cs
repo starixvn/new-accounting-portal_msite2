@@ -39,7 +39,7 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
     public async Task<FlagBroadcast> GetFlagInfo()
     {
         var processing = await GetNumberMessageProcessingQueueAsync();
-        var waiting = GetNumberMessageWaitingQueueAsync();
+        var waiting = await GetNumberMessageWaitingQueueAsync();
         var queueWaitingOnService = GetListMessageWaiting(CacheKey.BroadcastServiceProductWaitingCacheKey);
         var queueWaitingOnApi = GetListMessageWaiting(CacheKey.BroadcastApiProductWaitingCacheKey);
         var queueNumber = $"Processing: {processing} - Waiting: {waiting}";

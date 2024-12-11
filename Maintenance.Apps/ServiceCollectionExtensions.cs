@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Fanex.Data.Repository;
-using Fanex.Logging;
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -13,11 +12,9 @@ namespace Maintenance.Apps;
 
 using Fanex.Caching;
 using Fanex.Caching.Redis;
-using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
 using SpecialLeagueSetting.Services;
 using Sync;
-using SharpRaven;
 
 public static class ServiceCollectionExtensions
 {
@@ -79,24 +76,11 @@ public static class ServiceCollectionExtensions
 
     public static void AddFanexServices(this IServiceCollection services, IConfiguration configuration)
     {
-        LogManager
-        .SetDefaultLogCategory(configuration.GetSection("LogCategory").Value)
-        .Use(new List<ILogEngine>
-        {
-                new SentryLogging(new SentryEngineOptions
-                {
-                    Dsn = new Dsn(configuration.GetSection("SentryEngineOptions:Dsn").Value)
-                })
-        });
-
-   
-		RefDataTypeContainer
+        RefDataTypeContainer
             .ConnectTo(new Uri(configuration.GetSection("Fanex.RemotingRef.Service.Url").Value))
             .FromApplication("Settlement");
 
-		services.AddSingleton(Logger.Log);
-		services.AddTransient<Fanex.Logging.ILogger, Logger>();
-		services.AddSingleton<IRemotingRefService, RemotingRefService>();
+        services.AddSingleton<IRemotingRefService, RemotingRefService>();
     }
 
     public static void AddInternalServices(this IServiceCollection services)
@@ -116,7 +100,6 @@ public static class ServiceCollectionExtensions
 
         services.AddSyncServices();
     }
-
 
     public static void AddRedisSession(this IServiceCollection services, IConfiguration configuration)
     {
@@ -150,8 +133,7 @@ public static class ServiceCollectionExtensions
         service.AddSingleton<ICache>(new RedisCache(new RedisCacheOptions
         {
             ConnectionString = redisConfig,
-            ApplicationName = applicationName
+            ApplicationName = applicationName,
         }));
-        service.AddSingleton<ICacheService>(new CacheService());
     }
 }
