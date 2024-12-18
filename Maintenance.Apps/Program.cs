@@ -3,13 +3,13 @@ using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.NAP.Client.Attributes;
-using Fanex.NAP.SignIn;
 using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;
 using Maintenance.SpecialLeagueSetting.Request;
 using Microsoft.AspNetCore.Mvc;
 using ONEbook.UM.AspNetCore.Filters;
+using ONEbook.UM.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
