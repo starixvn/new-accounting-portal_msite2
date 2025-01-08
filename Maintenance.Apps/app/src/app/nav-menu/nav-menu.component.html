@@ -8,12 +8,26 @@
         <a href="javascript:;">{{ menu.name }}</a>
         <ul class="parent-menu">
           <li *ngFor="let subMenu of menu.subMenu" class="parent-menu-item">
-            <a
-              class="item__link"
-              [routerLink]="[getUrl(subMenu.validUrl)]"
-              [routerLinkActive]="['active-link']"
-              >{{ subMenu.name }}</a
-            >
+            <div
+              *ngIf="
+                subMenu.name !== 'Manage Void Services';
+                then thenBlock;
+                else elseBlock
+              "
+            ></div>
+            <ng-template #thenBlock>
+              <a
+                class="item__link"
+                [routerLink]="[getUrl(subMenu.validUrl)]"
+                [routerLinkActive]="['active-link']"
+                >{{ subMenu.name }}</a
+              >
+            </ng-template>
+            <ng-template #elseBlock>
+              <a href="{{ subMenu.validUrl }}" target="_blank">{{
+                subMenu.name
+              }}</a>
+            </ng-template>
             <ul
               class="child-menu"
               *ngIf="subMenu.subMenu && subMenu.subMenu.length"
