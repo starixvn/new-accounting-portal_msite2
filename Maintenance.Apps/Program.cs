@@ -3,6 +3,7 @@ using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.NAP.Client.Attributes;
+using Fanex.SimpleMailDelivery;
 using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;
@@ -46,7 +47,7 @@ services.AddOneBookUm(configuration);
 services.AddCoreServices();
 services.AddAutoMapper();
 services.AddInternalServices();
-
+services.AddMailDelivery(configuration);
 services.AddValidatorsFromAssemblyContaining<UpdateSettingRequestValidator>();
 
 // Configure app

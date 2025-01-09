@@ -2,11 +2,15 @@
 
 namespace Maintenance.Apps.Controllers;
 
+using Core.Models;
 using Fanex.NAP.Client;
+using Fanex.SimpleMailDelivery;
+using Fanex.SimpleMailDelivery.Models;
+using Microsoft.Extensions.Options;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ValuesController(INapSession napSession) : ControllerBase
+public class ValuesController(INapSession napSession, MailClient mailClient, IOptions<AppSettingsKey> appSettingsKey) : ControllerBase
 {
     public IActionResult Index()
     {
@@ -35,5 +39,21 @@ public class ValuesController(INapSession napSession) : ControllerBase
             menus,
             userName
         });
+    }
+
+    [Route("mail")]
+    [HttpGet]
+    public async Task<string> Mail()
+    {
+        var mail = new Mail
+        {
+            Subject = "Subject Test",
+            Title = "Test System",
+            Body = "MailBody(item)",
+            MailingListId = appSettingsKey.Value.MailFunctionId
+        };
+
+        await mailClient.SendFunctionMailAsync(mail);
+        return "OK test";
     }
 }

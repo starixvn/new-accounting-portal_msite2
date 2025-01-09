@@ -9,4 +9,6 @@ public class AppSettingsKey
     public List<string> SubDbServer { get; set; }
 
     public RabbitMq RabbitMq { get; set; }
+
+    public int MailFunctionId { get; set; }
 }
