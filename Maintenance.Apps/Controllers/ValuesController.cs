@@ -6,6 +6,7 @@ using Core.Models;
 using Fanex.NAP.Client;
 using Fanex.SimpleMailDelivery;
 using Fanex.SimpleMailDelivery.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
 [Route("api/[controller]")]
@@ -43,6 +44,7 @@ public class ValuesController(INapSession napSession, MailClient mailClient, IOp
 
     [Route("mail")]
     [HttpGet]
+    [AllowAnonymous]
     public async Task<string> Mail()
     {
         var mail = new Mail
