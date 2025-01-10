@@ -43,7 +43,7 @@ services.AddFanexServices(configuration);
 services.AddFanexData(configuration);
 services.AddNapClient(configuration);
 services.AddFanexLogSentry(configuration);
-services.AddOneBookUm(configuration);
+services.AddOneBookUmForWeb(configuration);
 services.AddCoreServices();
 services.AddAutoMapper();
 services.AddInternalServices();
