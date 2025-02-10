@@ -9,10 +9,10 @@ namespace Maintenance.SpecialLeagueSetting.Services;
 public interface LeagueSettingService
 {
     Task<List<League>> GetLeagueSetting(GetLeagueSetting request);
+
     Task<bool> UpdateLeagueSetting(UpdateSettingRequest request);
 
     Task<bool> RemoveLeagueSetting(RemoveSettingRequest request);
-
 }
 
 public class LeagueSettingServiceImp(IDynamicRepository repository, IRemotingRefService remotingRefService)
@@ -44,7 +44,6 @@ public class LeagueSettingServiceImp(IDynamicRepository repository, IRemotingRef
             AutoType = request.AutoType,
             LeagueId = request.LeagueId,
             Action = "Delete"
-
         };
 
         await repository.ExecuteAsync(criteria);
@@ -59,12 +58,10 @@ public class LeagueSettingServiceImp(IDynamicRepository repository, IRemotingRef
             AutoType = request.AutoType,
             LeagueId = request.LeagueId,
             Action = "Update"
-
         };
 
         await repository.ExecuteAsync(criteria);
 
         return true;
     }
-
 }

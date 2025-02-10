@@ -3,6 +3,7 @@ using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.NAP.Client.Attributes;
+using Fanex.SimpleMailDelivery;
 using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;
@@ -42,11 +43,11 @@ services.AddFanexServices(configuration);
 services.AddFanexData(configuration);
 services.AddNapClient(configuration);
 services.AddFanexLogSentry(configuration);
-services.AddOneBookUm(configuration);
+services.AddOneBookUmForWeb(configuration);
 services.AddCoreServices();
 services.AddAutoMapper();
 services.AddInternalServices();
-
+services.AddMailDelivery(configuration);
 services.AddValidatorsFromAssemblyContaining<UpdateSettingRequestValidator>();
 
 // Configure app
