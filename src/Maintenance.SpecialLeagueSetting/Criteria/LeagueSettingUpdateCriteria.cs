@@ -5,7 +5,10 @@ namespace Maintenance.SpecialLeagueSetting.Criteria;
 public class LeagueSettingUpdateCriteria : INonQueryCommand
 {
     public int LeagueId { get; set; }
+
     public byte AutoType { get; set; }
+
+    public int Main_WaitingTime { get; set; }
 
     public string Action { get; set; }
 
