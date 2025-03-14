@@ -16,38 +16,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="App_Data\SpName.xml">
+    <None Include="Views\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="App_Data\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Auth\AccessDenied.cshtml" />
-    <None Include="Views\Auth\ChangePassword.cshtml" />
-    <None Include="Views\Auth\Error.cshtml" />
-    <None Include="Views\Auth\Index.cshtml" />
-    <None Include="Views\Auth\NotFound.cshtml" />
-    <None Include="Views\Auth\Offline.cshtml" />
-    <None Include="Views\Auth\OtpLoginFlow.cshtml" />
-  </ItemGroup>
-
  
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Fanex.Caching.Redis" Version="2.2.8" />
-    <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.3.1" />
+    <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.3.5" />
     <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.1.0" />
     <PackageReference Include="Fanex.Logging.Sentry.RavenClient" Version="2.0.2" />
-    <PackageReference Include="Fanex.NAP.Client" Version="2.0.2" />
-    <PackageReference Include="Fanex.NAP.SignIn" Version="2.0.2.7" />
+    <PackageReference Include="Fanex.NAP.Client" Version="2.0.3" />
+    <PackageReference Include="Fanex.NAP.SignIn" Version="2.0.3" />
     <PackageReference Include="Fanex.SimpleMailDelivery" Version="1.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.4" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.7" />
     <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="9.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="9.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
     <PackageReference Include="ONEbook.UM" Version="3.2.4" />
   </ItemGroup>
 
@@ -58,6 +50,4 @@
     <ProjectReference Include="..\src\Maintenance.Sync\Maintenance.Sync.csproj" />
   </ItemGroup>
 
- 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1local_1json__JsonSchema="https://docs.strmprivacy.io/jsonschema/BatchJob.json" appsettings_1uat_1json__JsonSchema="https://appsemble.app/api.json" /></VisualStudio></ProjectExtensions>
 </Project>
