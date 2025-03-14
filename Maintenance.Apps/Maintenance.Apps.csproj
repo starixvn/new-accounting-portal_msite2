@@ -16,14 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\**" >
+    <None Include="Views\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="App_Data\**" >
+    <None Include="App_Data\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
  
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
