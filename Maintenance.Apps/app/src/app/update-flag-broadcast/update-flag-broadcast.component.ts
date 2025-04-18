@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 })
 export class UpdateFlagBroadcastComponent implements OnInit {
   private cockFighting = 11;
+  private virtualKiron = 15;
   public flagBroadcast!: FlagBroadcast;
   public flagStatus = false;
   public products: any;
@@ -33,9 +34,13 @@ export class UpdateFlagBroadcastComponent implements OnInit {
       { id: 8, name: 'PinGoal', isSelected: false },
       { id: 9, name: 'Fast Market', isSelected: false },
       { id: 10, name: 'Leap Gaming - Cock-Fighting', isSelected: false },
-      { id: 12, name: 'Virtual Sport Five', isSelected: false },
-      { id: 13, name: 'Virtual Sport Six', isSelected: false },
-      { id: 14, name: 'Virtual Racing', isSelected: false },
+      { id: 12, name: 'Virtual Sport 5', isSelected: false },
+      { id: 13, name: 'Virtual Sport 6', isSelected: false },
+      {
+        id: 14,
+        name: 'Virtual Racing 2 - Virtual Sports 7(Kiron)',
+        isSelected: false,
+      },
     ];
     this.loadInfo();
   }
@@ -96,9 +101,13 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     this.selectedProduct = [];
     for (var i = 0; i < this.products.length; i++) {
       if (this.products[i].isSelected) {
-        if (this.products[i].id === 10) {
-          this.selectedProduct.push(this.products[i].id);
+        const productsId = this.products[i].id;
+        if (productsId === 10) {
+          this.selectedProduct.push(productsId);
           this.selectedProduct.push(this.cockFighting);
+        } else if (productsId === 14) {
+          this.selectedProduct.push(productsId);
+          this.selectedProduct.push(this.virtualKiron);
         } else {
           this.selectedProduct.push(this.products[i].id);
         }
