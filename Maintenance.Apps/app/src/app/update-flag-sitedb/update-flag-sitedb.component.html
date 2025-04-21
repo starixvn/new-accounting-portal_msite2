@@ -1,0 +1,86 @@
+<div class="head-page">
+  <h1 class="title-page">SiteDB Settings (Redis)</h1>
+</div>
+<!-- Add New SiteDB Form -->
+<div class="add-sitedb-form">
+  <div class="form-header">
+    <h2>Add New SiteDB</h2>
+  </div>
+  <div class="form-content">
+    <form [formGroup]="siteDBForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>SiteDB GroupId</mat-label>
+          <input
+            matInput
+            formControlName="siteDbGroupId"
+            placeholder="Enter SiteDB GroupId"
+          />
+          <mat-error
+            *ngIf="siteDBForm.get('siteDbGroupId')?.hasError('required')"
+          >
+            SiteDB GroupId is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Site Name</mat-label>
+          <input
+            matInput
+            formControlName="siteName"
+            placeholder="Enter Site Name"
+          />
+          <mat-error *ngIf="siteDBForm.get('siteName')?.hasError('required')">
+            Site Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="status" color="primary">
+          Initial Status
+        </mat-slide-toggle>
+
+        <button
+          style="display: none"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!siteDBForm.valid"
+        >
+          Add SiteDB
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<table class="table">
+  <ng-template *ngTemplateOutlet="header"></ng-template>
+  <tbody>
+    <ng-container>
+      <tr *ngFor="let site of sites">
+        <td>{{ site.siteDbGroupId }}</td>
+        <td>{{ site.siteName }}</td>
+        <td>
+          <div class="action">
+            <mat-slide-toggle
+              color="primary"
+              [checked]="site.status"
+              (change)="openConfirmDialog($event, site)"
+            >
+            </mat-slide-toggle>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<ng-template #header>
+  <thead>
+    <tr>
+      <th>SiteDB GroupId</th>
+      <th>Site Name</th>
+      <th>Status (ON/OFF)</th>
+    </tr>
+  </thead>
+</ng-template>

@@ -13,6 +13,7 @@ import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-s
 import { UpdateSystemSettingsComponent } from './update-system-settings/update-system-settings.component';
 import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
 import { LeagueSettingComponent } from './special-league-setting/league-setting.component';
+import { UpdateFlagSitedbComponent } from './update-flag-sitedb/update-flag-sitedb.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
       {
         path: 'update-flag-rebate-retention',
         component: UpdateFlagRebateRetentionComponent,
+      },
+      {
+        path: 'update-flag-sitedb',
+        component: UpdateFlagSitedbComponent,
       },
     ],
   },

@@ -97,7 +97,6 @@ public static class ServiceCollectionExtensions
         services.AddTransient<AmendmentResultService, AmendmentResultServiceImp>();
         services.AddTransient<LeagueSettingService, LeagueSettingServiceImp>();
         services.AddTransient<FlagRebateRetentionService, FlagRebateRetentionServiceImp>();
-
         services.AddSyncServices();
     }
 

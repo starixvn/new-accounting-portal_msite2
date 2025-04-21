@@ -52,6 +52,8 @@ import { LeagueFilterComponent } from './special-league-setting/league-filter.co
 import { LeagueSettingComponent } from './special-league-setting/league-setting.component';
 import { LeagueDataComponent } from './special-league-setting/league-data.component';
 import { LeagueSettingService } from './special-league-setting/league-setting.service';
+import { UpdateFlagSitedbComponent } from './update-flag-sitedb/update-flag-sitedb.component';
+import { UpdateFlagSitedbService } from './update-flag-sitedb/update-flag-sitedb.service';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { LeagueSettingService } from './special-league-setting/league-setting.se
     LeagueSettingComponent,
     LeagueDataComponent,
     NameStatus,
+    UpdateFlagSitedbComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +115,7 @@ import { LeagueSettingService } from './special-league-setting/league-setting.se
     UpdateFlagRebateRetentionService,
     ResultAmendmentService,
     LeagueSettingService,
+    UpdateFlagSitedbService,
   ],
   bootstrap: [AppComponent],
 })
