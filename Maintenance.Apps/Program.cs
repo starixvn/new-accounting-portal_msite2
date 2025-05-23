@@ -5,6 +5,7 @@ using Fanex.Logging.Sentry.RavenClient;
 using Fanex.NAP.Client;
 using Fanex.NAP.Client.Attributes;
 using Fanex.SimpleMailDelivery;
+using Fanex.SiteDbConnectionManager.Client;
 using FluentValidation;
 using Maintenance.Apps;
 using Maintenance.Apps.Apis;
@@ -49,6 +50,7 @@ services.AddCoreServices();
 services.AddAutoMapper();
 services.AddInternalServices();
 services.AddMailDelivery(configuration);
+services.AddSiteDbConnectionManager();
 services.AddValidatorsFromAssemblyContaining<UpdateSettingRequestValidator>();
 
 // Configure app
