@@ -19,5 +19,9 @@ namespace Maintenance.Apps.Controllers
         [HttpPost("add-sitedb")]
         public async Task<IActionResult> AddSiteDB(UpdateSiteDbStatus request)
             => Ok(await siteDbService.AddSiteDbAsync(request));
+
+        [HttpPost("remove-sitedb")]
+        public async Task<IActionResult> RemoveSiteDb(UpdateSiteDbStatus request)
+            => Ok(await siteDbService.RemoveSiteDbAsync(request.SiteDbGroupId));
     }
 }

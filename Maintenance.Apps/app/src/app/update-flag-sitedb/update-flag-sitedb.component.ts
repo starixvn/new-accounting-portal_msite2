@@ -98,4 +98,35 @@ export class UpdateFlagSitedbComponent implements OnInit {
         }
       });
   }
+
+  removeSiteDB(site: SiteDB): void {
+    const message = `Are you sure you want to remove <b>${site.siteName}</b>?`;
+    this.dialogService
+      .openConfirm({
+        message,
+        confirmText: 'Remove',
+        confirmStyle: 'btn-confirm-delete',
+      })
+      .afterClosed()
+      .subscribe((confirm: boolean) => {
+        if (confirm) {
+          this.updateFlagSitedbService
+            .removeSiteDB(site)
+            .subscribe((result) => {
+              if (result) {
+                this.sites = this.sites.filter(
+                  (s) => s.siteDbGroupId !== site.siteDbGroupId
+                );
+                this.snackBar.open('SiteDB removed successfully', 'Close', {
+                  duration: 3000,
+                });
+              } else {
+                this.snackBar.open('Failed to remove SiteDB', 'Close', {
+                  duration: 3000,
+                });
+              }
+            });
+        }
+      });
+  }
 }

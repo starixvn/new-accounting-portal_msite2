@@ -23,4 +23,9 @@ export class UpdateFlagSitedbService {
     const url = `${this.baseUrl}/add-sitedb`;
     return this.httpService.post<SiteDB>(url, siteDB);
   }
+
+  public removeSiteDB(siteDB: SiteDB): Observable<boolean> {
+    const url = `${this.baseUrl}/remove-sitedb`;
+    return this.httpService.post<boolean>(url, siteDB);
+  }
 }
