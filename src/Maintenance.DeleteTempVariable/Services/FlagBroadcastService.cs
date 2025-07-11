@@ -13,19 +13,23 @@ namespace Maintenance.DeleteTempVariable.Services;
 
 using Core.Models;
 using Fanex.NAP.Client;
+using ONEbook.UM.Services;
 
 public interface FlagBroadcastService
 {
     Task<FlagBroadcast> GetFlagInfo();
 
     Task<bool> UpdateFlagInfo(UpdateFlagBroadcastRequest request);
+
+    Task<bool> UpdateFlagInfo(bool status);
 }
 
 public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexer,
         ICache cache,
         ILogger logger,
         INapSession session,
-        IOptions<AppSettingsKey> appSettingsKey)
+        IOptions<AppSettingsKey> appSettingsKey,
+        IMaintenanceService maintenanceService)
     : FlagBroadcastService
 {
     private const int CacheExpiredInDays = 3650;
@@ -49,7 +53,9 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
             CurrentStatus = await GetStatusFromCache(CacheKey.BroadcastFlagCacheKey),
             ProductType = await GetProductTypeFromCache(CacheKey.BroadcastProductCacheKey),
             QueueNumber = queueNumber,
-            QueueWaiting = $"{queueWaitingOnService} {queueWaitingOnApi}"
+            QueueWaiting = $"{queueWaitingOnService} {queueWaitingOnApi}",
+            IsUnderMaintenance = await maintenanceService.IsUnderMaintenanceAsync(),
+            SettleUnderMaintenanceStatus = await GetStatusFromCache(CacheKey.BroadcastSettleUnderMaintenanceCacheKey),
         };
     }
 
@@ -91,14 +97,20 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
 
         await cache.SetAsync(CacheKey.BroadcastProductCacheKey, productType, cachePolicy);
         await cache.SetAsync(CacheKey.BroadcastFlagCacheKey, request.Status, cachePolicy);
-        await WriteLogChangeStatus(request.Status);
+
+        var message = $"Update flag deploy on Broadcast API: At {DateTimeOffset.Now} {session.UserName} has id {session.UserId} update flag with value {request.Status}";
+        await logger.InfoAsync(message);
+
         return request.Status;
     }
 
-    private async Task WriteLogChangeStatus(bool status)
+    public async Task<bool> UpdateFlagInfo(bool status)
     {
-        var message = $"Update flag deploy on Broadcast API: At {DateTimeOffset.Now} {session.UserName} has id {session.UserId} update flag with value {status}";
+        await cache.SetAsync(CacheKey.BroadcastSettleUnderMaintenanceCacheKey, status, cachePolicy);
+
+        var message = $"Update flag settle on UM for Broadcast service: At {DateTimeOffset.Now} {session.UserName} has id {session.UserId} update flag with value {status}";
         await logger.InfoAsync(message);
+        return status;
     }
 
     private async Task<uint> GetNumberMessageProcessingQueueAsync()

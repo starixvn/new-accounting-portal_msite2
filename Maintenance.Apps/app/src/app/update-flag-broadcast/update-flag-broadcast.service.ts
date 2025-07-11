@@ -18,4 +18,9 @@ export class UpdateFlagBroadcastService {
 
     return this.httpService.post<FlagBroadcast>(url);
   }
+
+  public updateFlagUm(status: boolean) {
+    const url = `${this.baseUrl}/update-flag-broadcast-um-status`;
+    return this.httpService.post<boolean>(url, { status });
+  }
 }

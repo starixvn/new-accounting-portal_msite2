@@ -9,4 +9,8 @@ public class FlagBroadcast
     public string QueueNumber { get; set; }
 
     public string QueueWaiting { get; set; }
+
+    public bool IsUnderMaintenance { get; set; }
+
+    public bool SettleUnderMaintenanceStatus { get; set; }
 }
