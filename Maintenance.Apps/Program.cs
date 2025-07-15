@@ -52,6 +52,7 @@ services.AddInternalServices();
 services.AddMailDelivery(configuration);
 services.AddSiteDbConnectionManager();
 services.AddValidatorsFromAssemblyContaining<UpdateSettingRequestValidator>();
+services.AddHealthChecks();
 
 // Configure app
 var app = builder.Build();
@@ -84,4 +85,5 @@ app.MapControllerRoute(
     pattern: "{*url}",
     defaults: new { controller = "Home", action = "Index" }
 );
+app.MapHealthChecks("/healthz");
 await app.RunAsync();

@@ -27,10 +27,7 @@ public class ParlayLockingServiceTests
 
         repository = Substitute.For<IDynamicRepository>();
 
-        var mapperConfig = new MapperConfigurationExpression();
-        mapperConfig.AddProfile<AutoMapperProfile>();
-        var config = new MapperConfiguration(mapperConfig);
-        mapper = new Mapper(config);
+        mapper = Substitute.For<IMapper>();
     }
 
     [Fact]
@@ -39,6 +36,7 @@ public class ParlayLockingServiceTests
         // Arrange
         var service = new ParlayLockingServiceImp(repository, appSettingsKey, mapper);
         repository.FetchAsync<MatchParlayLocking>(Arg.Any<GetParlayLockingCriteria>()).Returns(new List<MatchParlayLocking>());
+        mapper.Map<GetParlayLockingCriteria>(Arg.Any<ParlayLockingRequest>()).Returns(new GetParlayLockingCriteria());
 
         // Act
         var result = await service.GetMatches(new ParlayLockingRequest());

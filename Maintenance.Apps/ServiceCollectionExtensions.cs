@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 using Maintenance.DeleteTempVariable.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -13,6 +12,7 @@ namespace Maintenance.Apps;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.RemotingRef;
+using Maintenance.DeleteTempVariable;
 using SpecialLeagueSetting.Services;
 using Sync;
 
@@ -20,13 +20,7 @@ public static class ServiceCollectionExtensions
 {
     public static void AddAutoMapper(this IServiceCollection services)
     {
-        var mapperConfig = new MapperConfiguration(mc =>
-        {
-            mc.AddProfile(new DeleteTempVariable.AutoMapperProfile());
-        });
-
-        var mapper = mapperConfig.CreateMapper();
-        services.AddSingleton(mapper);
+        services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
 
         services.AddMvc();
     }

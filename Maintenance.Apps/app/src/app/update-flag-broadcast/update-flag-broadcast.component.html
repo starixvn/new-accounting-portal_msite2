@@ -3,36 +3,72 @@
   <div class="refresh" alt="refresh" (click)="loadInfo()"></div>
 </div>
 
-<div class="sportbook">
-  <table class="table">
-    <ng-template *ngTemplateOutlet="header"></ng-template>
+<div class="sportbook" style="display: flex; gap: 30px">
+  <div>
+    <table class="table">
+      <ng-template *ngTemplateOutlet="header"></ng-template>
 
-    <tbody>
-      <ng-container *ngIf="flagBroadcast">
+      <tbody>
+        <ng-container *ngIf="flagBroadcast">
+          <tr>
+            <td class="products-type">
+              <ul class="list-group">
+                <li *ngFor="let item of products">
+                  <div class="list-group-item">
+                    <input
+                      id="{{ item.name }}"
+                      type="checkbox"
+                      [(ngModel)]="item.isSelected"
+                      value="{{ item.id }}"
+                      (change)="getCheckedItemList()"
+                    />
+                    <label for="{{ item.name }}">{{ item.name }}</label>
+                  </div>
+                </li>
+              </ul>
+            </td>
+            <td>
+              <mat-slide-toggle
+                color="primary"
+                [checked]="flagBroadcast.currentStatus"
+                (change)="openConfirmDialog($event)"
+              >
+              </mat-slide-toggle>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">{{ flagBroadcast.queueNumber }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <div [innerHTML]="flagBroadcast.queueWaiting"></div>
+  </div>
+
+  <div>
+    <table class="table">
+      <thead>
         <tr>
-          <td class="products-type">
-            <ul class="list-group">
-              <li *ngFor="let item of products">
-                <div class="list-group-item"> <input id="{{ item.name }}" type="checkbox" [(ngModel)]="item.isSelected"
-                    value="{{ item.id }}" (change)="getCheckedItemList()" />
-                  <label for="{{ item.name }}">{{ item.name }}</label>
-                </div>
-              </li>
-            </ul>
-          </td>
+          <th>UM Status</th>
+          <th>Database Account Status</th>
+          <th>ON/OFF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>IsUnderMaintenance: {{ flagBroadcast.isUnderMaintenance }}</td>
+          <td>Enabled</td>
           <td>
-            <mat-slide-toggle color="primary" [checked]="flagBroadcast.currentStatus"
-              (change)="openConfirmDialog($event)">
-            </mat-slide-toggle>
+            <mat-slide-toggle
+              color="primary"
+              [checked]="flagBroadcast.settleUnderMaintenanceStatus"
+              (change)="openConfirmDialogStatusUm($event)"
+            ></mat-slide-toggle>
           </td>
         </tr>
-        <tr>
-          <td colspan="2">{{ flagBroadcast.queueNumber }}</td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
-  <div [innerHTML]="flagBroadcast.queueWaiting"></div>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <ng-template #header>

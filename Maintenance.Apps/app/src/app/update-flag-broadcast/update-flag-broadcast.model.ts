@@ -3,4 +3,6 @@ export interface FlagBroadcast {
   productType: string;
   queueNumber: string;
   queueWaiting: string;
+  isUnderMaintenance: boolean;
+  settleUnderMaintenanceStatus: boolean;
 }

@@ -65,10 +65,6 @@ const routes: Routes = [
         component: UpdateFlagBroadcastComponent,
       },
       {
-        path: 'update-flag-rebate-retention',
-        component: UpdateFlagRebateRetentionComponent,
-      },
-      {
         path: 'update-flag-sitedb',
         component: UpdateFlagSitedbComponent,
       },

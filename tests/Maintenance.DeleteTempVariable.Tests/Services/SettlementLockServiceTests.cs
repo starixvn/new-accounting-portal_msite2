@@ -27,10 +27,7 @@ public class SettlementLockServiceTests
 
         repository = Substitute.For<IDynamicRepository>();
 
-        var mapperConfig = new MapperConfigurationExpression();
-        mapperConfig.AddProfile<AutoMapperProfile>();
-        var config = new MapperConfiguration(mapperConfig);
-        mapper = new Mapper(config);
+        mapper = Substitute.For<IMapper>();
     }
 
     [Fact]

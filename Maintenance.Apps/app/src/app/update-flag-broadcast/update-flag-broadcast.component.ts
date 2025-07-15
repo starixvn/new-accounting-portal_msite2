@@ -97,6 +97,37 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     }
   }
 
+  openConfirmDialogStatusUm(e: any) {
+    const message = this.createDialogMessageUm(e.checked);
+    const confirmText = e.checked ? 'ON' : 'OFF';
+    const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
+    this.dialogService
+      .openConfirm({ message, confirmText, confirmStyle })
+      .afterClosed()
+      .subscribe((confirm: Boolean) => {
+        if (confirm) {
+          const status = e.checked;
+          this.handleConfirmUm(status);
+        } else {
+          e.source.checked = this.flagBroadcast.settleUnderMaintenanceStatus;
+        }
+      });
+  }
+
+  handleConfirmUm(status: boolean) {
+    this.updateFlagBroadcastService.updateFlagUm(status).subscribe((res) => {
+      this.flagBroadcast.settleUnderMaintenanceStatus = res;
+    });
+  }
+
+  createDialogMessageUm(status: boolean) {
+    const contentStatus = status ? 'ON' : 'OFF';
+    const className = status ? 'blue' : 'red';
+    const statusMessage = `<span class="${className}"><b>${contentStatus}</b></span>`;
+    const message = `Are you sure you want to ${statusMessage} flag settle on UM for Broadcast service?`;
+    return message;
+  }
+
   getCheckedItemList() {
     this.selectedProduct = [];
     for (var i = 0; i < this.products.length; i++) {
