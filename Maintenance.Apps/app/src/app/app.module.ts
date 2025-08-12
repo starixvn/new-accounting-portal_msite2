@@ -119,4 +119,4 @@ import { UpdateFlagSitedbService } from './update-flag-sitedb/update-flag-sitedb
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

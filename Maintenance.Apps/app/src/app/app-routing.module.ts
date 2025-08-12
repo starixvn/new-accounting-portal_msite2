@@ -14,6 +14,7 @@ import { UpdateSystemSettingsComponent } from './update-system-settings/update-s
 import { ResultAmendmentCompoment } from './result-amendment/result-amendment.compoment';
 import { LeagueSettingComponent } from './special-league-setting/league-setting.component';
 import { UpdateFlagSitedbComponent } from './update-flag-sitedb/update-flag-sitedb.component';
+import { ProviderComponent } from './provider/provider.component';
 
 const routes: Routes = [
   {
@@ -84,10 +85,14 @@ const routes: Routes = [
     path: 'special-league-setting',
     component: LeagueSettingComponent,
   },
+  {
+    path: 'map-provider',
+    component: ProviderComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

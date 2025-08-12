@@ -1,0 +1,16 @@
+.btn-map-provider {
+    margin-left: 50px;
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    .select {
+        width: 200px;
+    }
+    .btn-submit {
+        margin-left: 10px;
+    }
+}

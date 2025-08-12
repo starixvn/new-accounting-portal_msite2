@@ -1,0 +1,38 @@
+.app-select {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+  
+  .app-select__label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .app-select__input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+    min-width: 200px;
+  
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  
+    &:disabled {
+      background-color: #f8f9fa;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  
+    &:hover:not(:disabled) {
+      border-color: #007bff;
+    }
+  }
