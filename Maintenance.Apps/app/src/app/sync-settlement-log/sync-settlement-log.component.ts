@@ -42,7 +42,7 @@ export class SyncSettlementLogComponent implements OnInit {
       first.eventName = compact(v.map((x) => x.eventName))[0];
       first.errorMessages = compact(v.map((x) => x.errorMessages))[0];
       first.messageId = compact(v.map((x) => x.messageId))[0];
-      first.tableNames = (v as any[]).map((x) => x.tempTableName);
+      first.tableNames = (v as SettlementErrorLog[]).map((x) => x.tempTableName);
 
       return first;
     });

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SnackbarService {
-  private config: MatSnackBarConfig = {
+  private readonly config: MatSnackBarConfig = {
     horizontalPosition: 'right',
     verticalPosition: 'top',
     duration: 2000,

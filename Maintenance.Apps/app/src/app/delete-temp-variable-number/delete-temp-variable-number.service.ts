@@ -36,7 +36,7 @@ export class DeleteTempVariableNumberService {
     const url = `${this.baseUrl}/delete-temp-variable`;
     const body = { ...data };
 
-    this.httpService.post(url, body).subscribe((res: any) => {
+    this.httpService.post(url, body).subscribe((res) => {
       this.dataUpdateSource.next(res);
     });
   }

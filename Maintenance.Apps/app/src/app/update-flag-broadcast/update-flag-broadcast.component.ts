@@ -10,17 +10,17 @@ import * as _ from 'lodash';
   styleUrls: ['./update-flag-broadcast.component.scss'],
 })
 export class UpdateFlagBroadcastComponent implements OnInit {
-  private cockFighting = 11;
-  private virtualKiron = 15;
+  private readonly cockFighting = 11;
+  private readonly virtualKiron = 15;
   public flagBroadcast!: FlagBroadcast;
   public flagStatus = false;
-  public products: any;
+  public products: { id: number, name: string, isSelected: boolean }[] = [];
   public selectedProduct: number[] = [];
 
   constructor(
-    private dialogService: ConfirmDialogService,
-    private updateFlagBroadcastService: UpdateFlagBroadcastService
-  ) {}
+    private readonly dialogService: ConfirmDialogService,
+    private readonly updateFlagBroadcastService: UpdateFlagBroadcastService
+  ) { }
 
   ngOnInit(): void {
     this.products = [
@@ -51,7 +51,7 @@ export class UpdateFlagBroadcastComponent implements OnInit {
       this.flagStatus = this.flagBroadcast.currentStatus;
       const productType = this.flagBroadcast.productType.split(',');
 
-      this.products.forEach((item: any) => {
+      this.products.forEach((item: { id: number, name: string, isSelected: boolean }) => {
         item.isSelected = _.includes(productType, item.id.toString());
       });
     });
@@ -84,7 +84,7 @@ export class UpdateFlagBroadcastComponent implements OnInit {
   }
 
   handleConfirm(status: boolean, productType: number[], e: any) {
-    if (this.flagStatus && this.selectedProduct.length == 0) {
+    if (this.flagStatus && this.selectedProduct.length === 0) {
       alert('Please select product to ON.');
       this.flagStatus = false;
       e.source.checked = false;

@@ -17,7 +17,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   getUrl(validUrl: string) {
-    var url = validUrl.split('/');
+    const url = validUrl.split('/');
     url.shift();
     return url.slice(1).join('/');
   }

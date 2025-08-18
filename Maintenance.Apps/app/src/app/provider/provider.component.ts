@@ -21,7 +21,7 @@ export class ProviderComponent implements OnInit {
     sportId: new FormControl<number | null>(null, [Validators.required]),
   });
 
-  sportOptions: any[] = [];
+  sportOptions: { id: number, name: string }[] = [];
   providers: ProviderInfo[] = [];
 
 
@@ -64,7 +64,7 @@ export class ProviderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      // console.log(result);
       if (result) {
         // this.providerService.mapProvider(result.).subscribe((res) => {
         //   console.log(res);

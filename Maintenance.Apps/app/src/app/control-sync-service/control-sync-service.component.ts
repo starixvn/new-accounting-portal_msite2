@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ConfirmDialogService } from '../shared/components/dialog/dialog.service';
 import { CacheKey } from './constants';
 import { LastLog } from './control-sync-service.model';
@@ -49,7 +50,7 @@ export class ControlSyncServiceComponent implements OnInit {
     });
   }
 
-  openConfirmDialog(e) {
+  openConfirmDialog(e: MatSlideToggleChange) {
     const message = this.createDialogMessage(
       e.checked,
       CacheKey.SportsCacheKey
@@ -70,7 +71,7 @@ export class ControlSyncServiceComponent implements OnInit {
       });
   }
 
-  openConfirmNonSportDialog(e) {
+  openConfirmNonSportDialog(e: MatSlideToggleChange) {
     const message = this.createDialogMessage(
       e.checked,
       CacheKey.NonSportsCacheKey

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ProviderInfo, Sport } from '../provider.model';
 
 @Component({
   selector: 'app-map-provider-dialog',
@@ -18,7 +19,7 @@ export class MapProviderDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<MapProviderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: { sport: Sport, providers: ProviderInfo[] }
   ) { }
 
   ngOnInit(): void {

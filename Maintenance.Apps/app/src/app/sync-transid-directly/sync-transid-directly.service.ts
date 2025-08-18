@@ -13,12 +13,12 @@ import {
 
 @Injectable()
 export class SyncTransIdService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
   constructor(
-    private httpService: HttpService,
-    public dialogService: ConfirmDialogService
-  ) {}
+    private readonly httpService: HttpService,
+    public readonly dialogService: ConfirmDialogService
+  ) { }
 
   public getDbInfo(): Observable<DbInfo> {
     return this.httpService.getData(`${this.baseUrl}/get-dbinfo`);

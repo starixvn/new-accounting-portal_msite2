@@ -16,24 +16,24 @@ export class SyncTransidDirectlyComponent implements OnInit {
   tableOptions: string[] = [];
   tableSelected = '';
 
-  subSiteDBOptions: any[] = [];
+  subSiteDBOptions: { value: string, label: string, disabled: boolean }[] = [];
   subSiteDBsSelected: string[] = [];
 
   typeUpdate = 'transId';
 
-  transIds: string = '';
+  transIds = '';
 
-  matchId: string = '';
+  matchId = '';
 
   maxTransId = 2000;
 
   syncMatches: SynMatch[] | null = null;
 
   constructor(
-    private dialogService: ConfirmDialogService,
-    private syncTransIdService: SyncTransIdService,
-    private snackbarService: SnackbarService
-  ) {}
+    private readonly dialogService: ConfirmDialogService,
+    private readonly syncTransIdService: SyncTransIdService,
+    private readonly snackbarService: SnackbarService
+  ) { }
 
   ngOnInit(): void {
     this.syncTransIdService.getDbInfo().subscribe((res) => {
@@ -91,16 +91,15 @@ export class SyncTransidDirectlyComponent implements OnInit {
 
     const messageSyncBatch = `
         <div>DB Server: ${this.siteDBSelected}</div>
-        <div>Action: Usync data from ${
-          this.siteDBSelected
-        } to ${this.subSiteDBsSelected.join(', ')}</div>
+        <div>Action: Usync data from ${this.siteDBSelected
+      } to ${this.subSiteDBsSelected.join(', ')}</div>
         <div>Are you sure you want to sync data?</div>
     `;
 
     const message =
       this.typeUpdate === 'transId' &&
-      (!this.subSiteDBsSelected.length ||
-        this.subSiteDBsSelected.filter((x) => x === 'DBTXN').length === 1)
+        (!this.subSiteDBsSelected.length ||
+          this.subSiteDBsSelected.filter((x) => x === 'DBTXN').length === 1)
         ? messageSyncTransIdCentralDb
         : messageSyncBatch;
 
@@ -118,7 +117,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
 
   validTransIds() {
     const ids = this.transIds.split(',');
-    return this.transIds && !ids.some((v) => !BigInt(v)) && ids.length <= 2000;
+    return this.transIds && !ids.some((v) => !BigInt(v)) && ids.length <= this.maxTransId;
   }
 
   handleConfirm() {
@@ -139,7 +138,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
       });
   }
 
-  onSelectionChange(event: any): void {
+  onSelectionChange(event: { value: string }): void {
     const value = event.value;
     if (value.includes('DBTXN')) {
       const dbTranOption = this.subSiteDBOptions.find(
@@ -147,7 +146,7 @@ export class SyncTransidDirectlyComponent implements OnInit {
       );
 
       this.subSiteDBOptions = [
-        dbTranOption,
+        dbTranOption as { value: string, label: string, disabled: boolean },
         ...this.subSiteDBOptions
           .filter((x) => x.value !== 'DBTXN')
           .map((x) => ({ ...x, disabled: true })),
@@ -194,24 +193,6 @@ export class SyncTransidDirectlyComponent implements OnInit {
       return;
     }
 
-    //     const messageSyncBatch = `
-    //     <div>DB Server: ${this.siteDBSelected}</div>
-    //     <div>Action: Usync data from ${
-    //       this.siteDBSelected
-    //     } to ${this.subSiteDBsSelected.join(', ')}</div>
-    //     <div>Are you sure you want to sync data?</div>
-    // `;
-
-    //     this.dialogService
-    //       .openConfirm({
-    //         messageSyncBatch,
-    //         confirmText: 'Update',
-    //         confirmStyle: 'btn-confirm-ok',
-    //       })
-    //       .afterClosed()
-    //       .subscribe((confirm: boolean) => {
-    //         confirm && this.handleConfirm();
-    //       });
 
     this.syncTransIdService
       .updateBatchTransId({

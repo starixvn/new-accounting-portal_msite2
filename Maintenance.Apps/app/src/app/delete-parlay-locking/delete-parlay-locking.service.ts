@@ -9,9 +9,9 @@ import {
 
 @Injectable()
 export class MatchParlayLockingService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
   getAll(data: ParlayLockingRequest) {
     const params: ParlayLockingRequest = {
