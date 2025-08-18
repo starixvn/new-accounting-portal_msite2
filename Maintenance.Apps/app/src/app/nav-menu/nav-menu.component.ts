@@ -27,12 +27,12 @@ export class NavMenuComponent implements OnInit {
       const listMenus = [...data.menus];
 
       const menuList = listMenus
-        .filter((m) => m.parentId == 0)
+        .filter((m) => m.parentId === 0)
         .sort((x) => x.displayOrder);
 
       menuList.forEach((menu) => {
         const subMenus = listMenus
-          .filter((x) => x.parentId == menu.id)
+          .filter((x) => x.parentId === menu.id)
           .sort((x) => x.displayOrder);
         menu.subMenu = subMenus;
       });
@@ -40,13 +40,11 @@ export class NavMenuComponent implements OnInit {
       menuList.forEach((menu) => {
         menu.subMenu.forEach((m) => {
           const subMenus = listMenus
-            .filter((x) => x.parentId == m.id)
+            .filter((x) => x.parentId === m.id)
             .sort((x) => x.displayOrder);
           m.subMenu = subMenus;
         });
       });
-
-      console.log(menuList);
 
       this.menus = [...menuList];
       this.userName = data.userName;

@@ -25,7 +25,7 @@ export class HttpService {
     );
   }
 
-  public post<T>(url: string, item?: any, params?: HttpParams): Observable<T> {
+  public post<T>(url: string, item?, params?: HttpParams): Observable<T> {
     this.blockUIService.startBlock();
     return this.httpClient.post<T>(this.getUrl(url), item, { params }).pipe(
       map((response) => this.parseResponse(response)),
@@ -37,7 +37,7 @@ export class HttpService {
     return environment.baseUrl + url;
   }
 
-  private parseResponse(response: any) {
+  private parseResponse(response) {
     this.blockUIService.stopBlock();
     return response;
   }

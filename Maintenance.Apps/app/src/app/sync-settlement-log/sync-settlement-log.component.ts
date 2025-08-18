@@ -159,7 +159,9 @@ export class SyncSettlementLogComponent implements OnInit {
   }
 
   openDetailsDialog(item: SettlementErrorLog) {
-    if (!this.existsSettlementProcessing(item)) return;
+    if (!this.existsSettlementProcessing(item)) {
+      return;
+    }
 
     this.settlementErrorLogService
       .getDetails(item, this.typeSettle)
