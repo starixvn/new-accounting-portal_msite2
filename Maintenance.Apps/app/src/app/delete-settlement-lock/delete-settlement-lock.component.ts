@@ -23,7 +23,7 @@ export class DeleteSettlementLockComponent implements OnInit {
     private readonly matchService: MatchSettlementLockService,
     private readonly dialogService: ConfirmDialogService,
     private readonly snackbarService: SnackbarService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadData();

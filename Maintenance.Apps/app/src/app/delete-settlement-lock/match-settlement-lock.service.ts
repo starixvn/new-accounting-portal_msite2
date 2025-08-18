@@ -11,7 +11,7 @@ import {
 export class MatchSettlementLockService {
   private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private readonly httpService: HttpService) { }
+  constructor(private readonly httpService: HttpService) {}
 
   getAll(matchId?: number, mode?: string) {
     matchId = _.isNumber(matchId) ? matchId : 0;

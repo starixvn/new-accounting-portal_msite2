@@ -6,7 +6,7 @@ import { AmendmentResultUpdateRequest, ResultAmendment } from './type';
 export class ResultAmendmentService {
   private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private readonly httpService: HttpService) { }
+  constructor(private readonly httpService: HttpService) {}
 
   public updateStatus(request: AmendmentResultUpdateRequest) {
     const url = `${this.baseUrl}/update-amendment-result`;

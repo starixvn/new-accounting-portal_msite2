@@ -23,7 +23,7 @@ import { ReplaceLineBreaks } from './shared/pipes/replace-line-breaks';
 import { MatchSettlementLockService } from './delete-settlement-lock/match-settlement-lock.service';
 import { MatchParlayLockingService } from './delete-parlay-locking/delete-parlay-locking.service';
 import { ConfirmDialogService } from './shared/components/dialog/dialog.service';
-import { NavMenuService } from './nav-menu/nav-menu.service';
+import { NavMenuService } from './nav-menu/nav-menu.service.native';
 import { UpdateLogStatusService } from './update-log-status/update-log-status.service';
 import { UpdateLogStatusDetailComponent } from './update-log-status/update-log-status-detail.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
@@ -119,4 +119,4 @@ import { UpdateFlagSitedbService } from './update-flag-sitedb/update-flag-sitedb
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
