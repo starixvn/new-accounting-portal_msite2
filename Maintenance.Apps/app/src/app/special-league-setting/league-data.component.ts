@@ -27,7 +27,7 @@ export class LeagueDataComponent implements OnInit {
     this.leagueSettingService
       .updateSetting({
         leagueId: league.leagueId,
-        autoType: league.autoType!,
+        autoType: league.autoType ?? 0,
         sportType: league.sportType,
 
       })
@@ -90,7 +90,7 @@ export class LeagueDataComponent implements OnInit {
     this.leagueSettingService
       .removeSetting({
         leagueId: league.leagueId,
-        autoType: league.originalAutoType!,
+        autoType: league.originalAutoType ?? 0,
         sportType: league.sportType,
       })
       .subscribe((res) => {

@@ -11,9 +11,9 @@ import { Match } from './match.model';
 })
 export class DeleteTempVariableNumberDetailComponent implements OnInit {
     constructor(
-        public dialogService: ConfirmDialogService,
+        public readonly dialogService: ConfirmDialogService,
         @Inject(MAT_DIALOG_DATA) public data: Match,
-        private service: DeleteTempVariableNumberService
+        private readonly service: DeleteTempVariableNumberService
     ) { }
 
     get dataEntries() {

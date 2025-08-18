@@ -1,7 +1,6 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, inject, OnInit, Provider } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AppSelectComponent } from '../shared/components/app-select/app-select.component';
 import { ProviderService } from './provider.service';
 import { ProviderInfo } from './provider.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -38,20 +37,27 @@ export class ProviderComponent implements OnInit {
   submit() {
     if (this.filterForm.valid) {
       const { sportId } = this.filterForm.value;
+      if (!sportId) {
+        return;
+      }
 
-      this.providerService.getProvidersBySport(+sportId!).subscribe((res) => {
+      this.providerService.getProvidersBySport(+sportId).subscribe((res) => {
         this.providers = res;
       });
     }
   }
 
   mapProvider() {
-    const sport = this.sportOptions.find((sport) => sport.id === +this.filterForm.value.sportId!);
-    console.log(sport);
+    const { sportId } = this.filterForm.value;
+    if (!sportId) {
+      return;
+    }
+
+    const sport = this.sportOptions.find((x) => x.id === +sportId);
 
     const dialogRef = this.dialog.open(MapProviderDialogComponent, {
       data: {
-        sport: sport!,
+        sport: sport,
         providers: this.providers,
       },
       disableClose: true,

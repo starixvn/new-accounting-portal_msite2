@@ -16,18 +16,14 @@ export class ResultAmendmentCompoment implements OnInit {
   public filter = { matchId: null, statusId: 0 };
 
   constructor(
-    private dialogService: ConfirmDialogService,
-    private resultAmendmentService: ResultAmendmentService
-  ) {}
+    private readonly dialogService: ConfirmDialogService,
+    private readonly resultAmendmentService: ResultAmendmentService
+  ) { }
 
   loadData() {
     this.resultAmendmentService
       .getAmenentResults({ ...this.filter })
       .subscribe((res) => {
-        const filtered = res.filter(
-          (x) =>
-            +this.filter.statusId === 0 || x.statusId === +this.filter.statusId
-        );
         this.results = res;
       });
   }
@@ -47,7 +43,7 @@ export class ResultAmendmentCompoment implements OnInit {
     this.dialogService
       .openConfirm({ title, message })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         if (confirm) {
           this.handleChangeStatus(selectedResults);
         }

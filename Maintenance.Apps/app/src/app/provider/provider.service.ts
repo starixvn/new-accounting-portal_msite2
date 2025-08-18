@@ -6,9 +6,8 @@ import { ProviderInfo, Sport } from './provider.model';
     providedIn: 'root'
 })
 export class ProviderService {
-    private baseUrl = 'api/delete-temp-variable';
+    private readonly baseUrl = 'api/delete-temp-variable';
     private readonly http = inject(HttpService);
-    constructor() { }
 
 
     getAllSport() {

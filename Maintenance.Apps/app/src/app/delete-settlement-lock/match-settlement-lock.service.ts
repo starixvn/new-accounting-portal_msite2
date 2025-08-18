@@ -9,9 +9,9 @@ import {
 
 @Injectable()
 export class MatchSettlementLockService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
   getAll(matchId?: number, mode?: string) {
     matchId = _.isNumber(matchId) ? matchId : 0;

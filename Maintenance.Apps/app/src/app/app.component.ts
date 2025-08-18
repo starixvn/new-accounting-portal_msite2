@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BlockUIService } from './shared/services/block-ui.service';
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { BlockUIService } from './shared/services/block-ui.service';
 export class AppComponent implements OnInit {
   title = 'app';
   public blockUI = true;
-  constructor(private blockUIService: BlockUIService) {}
+  private readonly blockUIService = inject(BlockUIService);
   public ngOnInit() {
     this.blockUIService.blockUIEvent.subscribe(
       (event: boolean) => (this.blockUI = event)

@@ -19,10 +19,10 @@ export class SyncSettlementLogComponent implements OnInit {
   public settlementProcessingTitle = 'SiteDB_SettlementProcessing';
 
   constructor(
-    public dialogService: ConfirmDialogService,
-    public settlementErrorLogService: SettlementErrorLogService,
-    private dialog: MatDialog
-  ) {}
+    public readonly dialogService: ConfirmDialogService,
+    public readonly settlementErrorLogService: SettlementErrorLogService,
+    private readonly dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -32,18 +32,17 @@ export class SyncSettlementLogComponent implements OnInit {
     const data = groupBy(
       logs,
       (item: SettlementErrorLog) =>
-        `${item.dbServer ?? ''}+${item.siteDBGroupId}+${
-          item.sessionId || item.messageId
+        `${item.dbServer ?? ''}+${item.siteDBGroupId}+${item.sessionId || item.messageId
         }`
     );
     const result = Object.values(data).map((v) => {
-      const first = v.find((e) => !!e);
+      const first = v.find((e) => !!e) as SettlementErrorLog;
 
-      first!.createdTime = compact(v.map((v) => v.createdTime))[0];
-      first!.eventName = compact(v.map((v) => v.eventName))[0];
-      first!.errorMessages = compact(v.map((v) => v.errorMessages))[0];
-      first!.messageId = compact(v.map((v) => v.messageId))[0];
-      first!.tableNames = (v as any[]).map((v) => v.tempTableName);
+      first.createdTime = compact(v.map((x) => x.createdTime))[0];
+      first.eventName = compact(v.map((x) => x.eventName))[0];
+      first.errorMessages = compact(v.map((x) => x.errorMessages))[0];
+      first.messageId = compact(v.map((x) => x.messageId))[0];
+      first.tableNames = (v as any[]).map((x) => x.tempTableName);
 
       return first;
     });
@@ -110,16 +109,13 @@ export class SyncSettlementLogComponent implements OnInit {
     const message = `Session info
         <div>DB Server: ${item.dbServer}    </div>
         <div>Session: ${item.sessionId}    </div>
-        <div>Action: ${action === 'D' ? 'Delete' : 'Update'} ${
-      this.settlementProcessingTitle
-    }    </div>
-        <div>Are you sure to ${
-          action === 'D'
-            ? '<span class="red bold">DELETE</span>'
-            : '<span class="blue bold">UPDATE</span>'
-        } Failed/In-progress logIDs belong to ${item.sessionId} ${
-      action === 'U' ? 'to Waiting' : ''
-    }?</div>
+        <div>Action: ${action === 'D' ? 'Delete' : 'Update'} ${this.settlementProcessingTitle
+      }    </div>
+        <div>Are you sure to ${action === 'D'
+        ? '<span class="red bold">DELETE</span>'
+        : '<span class="blue bold">UPDATE</span>'
+      } Failed/In-progress logIDs belong to ${item.sessionId} ${action === 'U' ? 'to Waiting' : ''
+      }?</div>
         `;
     const dialogRef = this.dialogService.openConfirm({ message });
 

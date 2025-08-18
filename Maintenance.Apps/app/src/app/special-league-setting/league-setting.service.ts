@@ -7,14 +7,10 @@ import {
 } from './type';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-interface ILeagueSettingService {
-    setLeagues(leagues: League[] | null): void;
-    getSetting(query: GetLeagueSettingRequest): Observable<League[]>;
-    updateSetting(data: any): any;
-}
+
 
 @Injectable()
-export class LeagueSettingService implements ILeagueSettingService {
+export class LeagueSettingService {
     private readonly baseUrl = 'api/delete-temp-variable';
     private readonly httpService = inject(HttpService);
 

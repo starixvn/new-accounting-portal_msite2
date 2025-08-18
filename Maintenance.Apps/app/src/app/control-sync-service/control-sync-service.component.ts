@@ -18,9 +18,9 @@ export class ControlSyncServiceComponent implements OnInit {
   public collapseNonSport = false;
 
   constructor(
-    private dialogService: ConfirmDialogService,
-    private controlSyncService: ControlSyncService
-  ) {}
+    private readonly dialogService: ConfirmDialogService,
+    private readonly controlSyncService: ControlSyncService
+  ) { }
 
   ngOnInit(): void {
     this.loadInfoService();
@@ -35,9 +35,11 @@ export class ControlSyncServiceComponent implements OnInit {
   }
 
   loadInfoService() {
+    const sportBookQueueType = 1;
+    const nonSportQueueType = 3;
     this.controlSyncService.getInfoService().subscribe((res) => {
-      const sportBookLogs = res.filter((v) => v.queueType === 1);
-      const nonSportLogs = res.filter((v) => v.queueType === 3);
+      const sportBookLogs = res.filter((v) => v.queueType === sportBookQueueType);
+      const nonSportLogs = res.filter((v) => v.queueType === nonSportQueueType);
 
       this.sportBookLogs = sportBookLogs;
       this.sportbookStatus = sportBookLogs[0].currentStatus;
@@ -58,7 +60,7 @@ export class ControlSyncServiceComponent implements OnInit {
     this.dialogService
       .openConfirm({ message, confirmText, confirmStyle })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         if (confirm) {
           this.sportbookStatus = e.checked;
           this.handleConfirm(CacheKey.SportsCacheKey, this.sportbookStatus);
@@ -79,7 +81,7 @@ export class ControlSyncServiceComponent implements OnInit {
     this.dialogService
       .openConfirm({ message, confirmText, confirmStyle })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         if (confirm) {
           this.nonSportStatus = e.checked;
           this.handleConfirm(CacheKey.NonSportsCacheKey, this.nonSportStatus);
