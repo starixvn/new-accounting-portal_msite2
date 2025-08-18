@@ -18,7 +18,6 @@ export class ProviderComponent implements OnInit {
   private readonly providerService = inject(ProviderService);
   private readonly dialog = inject(MatDialog);
 
-
   filterForm = new FormGroup({
     sportId: new FormControl<number | null>(null, [Validators.required]),
   });
@@ -26,7 +25,6 @@ export class ProviderComponent implements OnInit {
   sportOptions: any[] = [];
   providers: ProviderInfo[] = [];
 
-  constructor() { }
 
   ngOnInit(): void {
     this.providerService.getAllSport().subscribe((res) => {
@@ -48,15 +46,24 @@ export class ProviderComponent implements OnInit {
   }
 
   mapProvider() {
+    const sport = this.sportOptions.find((sport) => sport.id === +this.filterForm.value.sportId!);
+    console.log(sport);
+
     const dialogRef = this.dialog.open(MapProviderDialogComponent, {
       data: {
-        sport: this.sportOptions.find((sport) => sport.id === +this.filterForm.value.sportId!),
+        sport: sport!,
         providers: this.providers,
       },
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
+      if (result) {
+        // this.providerService.mapProvider(result.).subscribe((res) => {
+        //   console.log(res);
+        // });
+      }
     });
   }
 

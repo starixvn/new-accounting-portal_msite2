@@ -8,9 +8,9 @@ describe('MapProviderDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MapProviderDialogComponent ]
+      declarations: [MapProviderDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MapProviderDialogComponent);
     component = fixture.componentInstance;

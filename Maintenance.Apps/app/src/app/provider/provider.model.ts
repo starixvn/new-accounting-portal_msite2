@@ -11,13 +11,11 @@ export interface ProviderInfo {
 }
 
 export interface ProviderSport {
-    id: number;
+    sport: Sport;
+    providers: ProviderInfo[];
+}
+
+export interface MapProvider {
     sportId: number;
     providerId: number;
-    providerName: string;
-    sportName: string;
-    createdDate: string;
-    createdBy: string;
-    updatedDate: string;
-    updatedBy: string;
 }

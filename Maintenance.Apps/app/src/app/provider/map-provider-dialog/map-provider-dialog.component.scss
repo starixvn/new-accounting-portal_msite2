@@ -23,11 +23,13 @@
     gap: 10px;
     .form-group {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      input {
-        width: 100%;
+      flex-direction: column;
+      gap: 5px;
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
       }
+
       select {
         width: 100%;
       }
@@ -35,6 +37,7 @@
     .btn-group {
       display: flex;
       justify-content: flex-end;
+      margin-top: 10px;
       gap: 10px;
     }
   }

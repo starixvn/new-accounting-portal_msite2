@@ -15,6 +15,10 @@ export class ProviderService {
         return this.http.getData<Sport[]>(`${this.baseUrl}/sport`);
     }
 
+    getAllProvider() {
+        return this.http.getData<ProviderInfo[]>(`${this.baseUrl}/get-all-provider`);
+    }
+
     getProvidersBySport(sportId: number) {
         return this.http.getData<ProviderInfo[]>(`${this.baseUrl}/get-providers/${sportId}`);
     }
