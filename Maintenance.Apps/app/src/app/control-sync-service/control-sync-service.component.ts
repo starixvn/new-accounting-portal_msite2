@@ -47,7 +47,7 @@ export class ControlSyncServiceComponent implements OnInit {
     });
   }
 
-  openConfirmDialog(e: any) {
+  openConfirmDialog(e) {
     const message = this.createDialogMessage(
       e.checked,
       CacheKey.SportsCacheKey
@@ -68,7 +68,7 @@ export class ControlSyncServiceComponent implements OnInit {
       });
   }
 
-  openConfirmNonSportDialog(e: any) {
+  openConfirmNonSportDialog(e) {
     const message = this.createDialogMessage(
       e.checked,
       CacheKey.NonSportsCacheKey

@@ -4,9 +4,9 @@ import { Header } from './nav-menu.model';
 
 @Injectable()
 export class NavMenuService {
-  private baseUrl = 'api/values';
+  private readonly baseUrl = 'api/values';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) {}
 
   getMenu() {
     const url = `${this.baseUrl}/get-menu`;
