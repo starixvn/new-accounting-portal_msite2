@@ -25,6 +25,7 @@
                 <th>SourceName</th>
                 <th>Remark</th>
                 <th>IsActive</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -32,9 +33,12 @@
             <ng-container *ngIf="providers && providers.length > 0">
                 <tr *ngFor="let provider of providers">
                     <td>{{ provider.sourceId }}</td>
-                    <td>{{ provider.sourceName }}</td>
+                    <td class="text-left">{{ provider.sourceName }}</td>
                     <td>{{ provider.remark }}</td>
                     <td>{{ provider.isActive }}</td>
+                    <td>
+                        <button class="btn-submit" (click)="unmapProvider(provider)">UnMap</button>
+                    </td>
                 </tr>
             </ng-container>
 

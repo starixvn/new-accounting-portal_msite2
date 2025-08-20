@@ -305,8 +305,10 @@
 		<Setting Key="NAP_Set_AutoPayout_LeagueSetting_HardCode_Sel" SpName="NAP_Set_AutoPayout_LeagueSetting_HardCode_Sel" DbName="DBPRO.bodb02.wsv_nap" />
 	</Function>
 
-	<Function>
+	<Function Name="Mapping Provider">
 		<Setting Key="Nap_Set_Sporttype_Sel" SpName="Nap_Set_Sporttype_Sel" DbName="DBPRO.bodb02.wsv_nap" />
 		<Setting Key="NAP_Set_ProviderInfoSel" SpName="NAP_Set_ProviderInfoSel" DbName="DBPRO.bodb02.wsv_nap" />
+		<Setting Key="Nap_mSite2_ProviderInfoSel" SpName="Nap_mSite2_ProviderInfoSel" DbName="DBPRO.bodb02.wsv_nap" />
+		<Setting Key="NAP_mSite2_ProviderGameTypeMapping" SpName="NAP_mSite2_ProviderGameTypeMapping" DbName="DBPRO.bodb02.wsv_nap" />
 	</Function>
 </Functions>

@@ -1,15 +1,17 @@
-::ng-deep .mat-mdc-dialog-container {
-  .mat-mdc-dialog-surface {
-    border-radius: 12px !important;
-    padding: 0 !important;
-  }
-}
+// ::ng-deep .mat-mdc-dialog-container {
+//   .mat-mdc-dialog-surface {
+//     border-radius: 12px !important;
+//     padding: 0 !important;
+//   }
+// }
 
-::ng-deep .cdk-dialog-container {
-  padding: 10px !important;
-}
+// ::ng-deep .cdk-dialog-container {
+//   padding: 10px !important;
+// }
 
-.map-provider-dialog {
+
+
+.map-provider-dialog-content {
   min-width: 300px;
   max-width: 600px;
   .title-dialog {
@@ -26,8 +28,8 @@
       flex-direction: column;
       gap: 5px;
       label {
-        font-size: 1.2em;
-        font-weight: bold;
+        // font-size: 1.2em;
+        // font-weight: bold;
       }
 
       select {

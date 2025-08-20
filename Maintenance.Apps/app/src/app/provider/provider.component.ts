@@ -5,6 +5,8 @@ import { ProviderService } from './provider.service';
 import { ProviderInfo } from './provider.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MapProviderDialogComponent } from './map-provider-dialog/map-provider-dialog.component';
+import { SnackbarService } from '../shared/services/snackbar.service';
+import { ConfirmDialogService } from '../shared/components/dialog/dialog.service';
 
 @Component({
   selector: 'app-provider',
@@ -14,8 +16,11 @@ import { MapProviderDialogComponent } from './map-provider-dialog/map-provider-d
   imports: [CommonModule, ReactiveFormsModule, NgIf]
 })
 export class ProviderComponent implements OnInit {
+
   private readonly providerService = inject(ProviderService);
   private readonly dialog = inject(MatDialog);
+  private readonly snackbarService = inject(SnackbarService);
+  private readonly confirmDialogService = inject(ConfirmDialogService);
 
   filterForm = new FormGroup({
     sportId: new FormControl<number | null>(null, [Validators.required]),
@@ -23,6 +28,7 @@ export class ProviderComponent implements OnInit {
 
   sportOptions: { id: number, name: string }[] = [];
   providers: ProviderInfo[] = [];
+  allProviders: ProviderInfo[] = [];
 
 
   ngOnInit(): void {
@@ -31,6 +37,10 @@ export class ProviderComponent implements OnInit {
         id: sport.sportType,
         name: sport.sportName,
       }));
+    });
+
+    this.providerService.getAllProvider().subscribe((res) => {
+      this.allProviders = res;
     });
   }
 
@@ -54,21 +64,44 @@ export class ProviderComponent implements OnInit {
     }
 
     const sport = this.sportOptions.find((x) => x.id === +sportId);
+    const otherProviders = this.allProviders.filter((x) => !this.providers.some((y) => y.sourceId === x.sourceId));
 
     const dialogRef = this.dialog.open(MapProviderDialogComponent, {
       data: {
         sport: sport,
-        providers: this.providers,
+        providers: otherProviders,
       },
       disableClose: true,
+      panelClass: 'map-provider-dialog',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      // console.log(result);
       if (result) {
-        // this.providerService.mapProvider(result.).subscribe((res) => {
-        //   console.log(res);
-        // });
+        this.providerService.mapProviderToSport(+result.provider, sportId).subscribe((res) => {
+          if (res.isSuccess) {
+            this.snackbarService.openSuccessSnackBar('Provider mapped successfully');
+            this.submit();
+          } else {
+            this.snackbarService.openErrorSnackBar('Failed to map provider');
+          }
+        });
+      }
+    });
+  }
+
+  unmapProvider(provider: ProviderInfo) {
+    this.confirmDialogService.openConfirm({
+      message: `Are you sure you want to unmap this provider? <b>${provider.sourceName}</b>`,
+      title: 'UnMapping Provider',
+      confirmText: 'Ok',
+      cancelText: 'Cancel',
+      confirmStyle: 'btn-confirm-ok',
+    }).afterClosed().subscribe((result) => {
+      if (result) {
+        this.providerService.unmapProviderFromSport(provider.sourceId, provider.sportType).subscribe((res) => {
+          this.snackbarService.openSuccessSnackBar('Provider unmapped successfully');
+          this.submit();
+        });
       }
     });
   }

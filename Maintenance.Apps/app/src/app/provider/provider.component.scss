@@ -25,3 +25,10 @@
 .no-data-cell {
     text-align: center;
 }
+
+.map-provider-dialog {
+    .mat-dialog-container {
+      padding: 20px !important; // Change from 0 to your desired padding
+      overflow: unset;
+    }
+  }

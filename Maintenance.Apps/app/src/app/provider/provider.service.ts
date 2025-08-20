@@ -15,18 +15,18 @@ export class ProviderService {
     }
 
     getAllProvider() {
-        return this.http.getData<ProviderInfo[]>(`${this.baseUrl}/get-all-provider`);
+        return this.http.getData<ProviderInfo[]>(`${this.baseUrl}/get-all-providers`);
     }
 
     getProvidersBySport(sportId: number) {
         return this.http.getData<ProviderInfo[]>(`${this.baseUrl}/get-providers/${sportId}`);
     }
 
-    mapProviderToSport(providerId: number, sportId: number) {
-        return this.http.post('/api/provider/map-provider-to-sport', { providerId, sportId });
+    mapProviderToSport(sourceId: number, sportType: number) {
+        return this.http.post<{ isSuccess: boolean }>(`${this.baseUrl}/provider-mapping`, { sourceId, sportType, isActive: true });
     }
 
-    unmapProviderFromSport(providerId: number, sportId: number) {
-        return this.http.post('/api/provider/unmap-provider-from-sport', { providerId, sportId });
+    unmapProviderFromSport(sourceId: number, sportType: number) {
+        return this.http.post<{ isSuccess: boolean }>(`${this.baseUrl}/provider-mapping`, { sourceId, sportType, isActive: false });
     }
 }

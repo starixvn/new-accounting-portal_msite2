@@ -4,7 +4,6 @@ import { ControlSyncServiceComponent } from './control-sync-service/control-sync
 import { DeleteParlayLockingComponent } from './delete-parlay-locking/delete-parlay-locking.component';
 import { DeleteSettlementLockComponent } from './delete-settlement-lock/delete-settlement-lock.component';
 import { DeleteTempVariableNumberComponent } from './delete-temp-variable-number/delete-temp-variable-number.component';
-import { HomeComponent } from './home/home.component';
 import { SyncSettlementLogComponent } from './sync-settlement-log/sync-settlement-log.component';
 import { SyncTransidDirectlyComponent } from './sync-transid-directly/sync-transid-directly.component';
 import { UpdateFlagBroadcastComponent } from './update-flag-broadcast/update-flag-broadcast.component';
@@ -36,10 +35,6 @@ const routes: Routes = [
   {
     path: 'delete-settlement-lock',
     component: DeleteSettlementLockComponent,
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
   },
   {
     path: 'sync-service',

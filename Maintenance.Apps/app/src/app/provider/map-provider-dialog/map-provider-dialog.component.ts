@@ -19,7 +19,7 @@ export class MapProviderDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<MapProviderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { sport: Sport, providers: ProviderInfo[] }
+    @Inject(MAT_DIALOG_DATA) public data: { sport: { id: number, name: string }, providers: ProviderInfo[] }
   ) { }
 
   ngOnInit(): void {

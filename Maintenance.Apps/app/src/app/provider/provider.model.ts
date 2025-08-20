@@ -8,6 +8,7 @@ export interface ProviderInfo {
     sourceName: string;
     remark: string;
     isActive: boolean;
+    sportType: number;
 }
 
 export interface ProviderSport {

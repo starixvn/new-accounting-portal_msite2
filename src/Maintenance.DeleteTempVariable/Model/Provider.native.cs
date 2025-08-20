@@ -6,4 +6,5 @@ public class Provider
     public string Remark { get; set; }
     public string SourceName { get; set; }
     public int SourceId { get; set; }
+    public int SportType { get; set; }
 }
