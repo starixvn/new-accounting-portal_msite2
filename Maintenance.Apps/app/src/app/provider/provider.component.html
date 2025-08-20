@@ -14,7 +14,8 @@
         <button type="submit" class="btn-submit">Submit</button>
     </form>
 
-    <button type="submit" (click)="mapProvider()">Map Provider</button>
+    <button type="submit" class="btn" [ngClass]="filterForm.valid ? 'btn-submit' : 'btn-disable'"
+        [disabled]="!filterForm.valid" (click)="mapProvider()">Map Provider</button>
 </div>
 
 <div class="table-container" *ngIf="providers && providers.length > 0">

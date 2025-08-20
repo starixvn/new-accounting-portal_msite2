@@ -14,7 +14,8 @@
             </select>
         </div>
         <div class="btn-group">
-            <button type="submit" class="btn-submit">Submit</button>
+            <button type="submit" class="btn" [ngClass]="mapProviderForm.valid ? 'btn-submit' : 'btn-disable'"
+                [disabled]="!mapProviderForm.valid">Submit</button>
             <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
         </div>
     </form>

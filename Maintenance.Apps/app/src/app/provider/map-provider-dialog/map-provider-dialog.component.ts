@@ -14,7 +14,7 @@ import { ProviderInfo, Sport } from '../provider.model';
 export class MapProviderDialogComponent implements OnInit {
 
   mapProviderForm = new FormGroup({
-    provider: new FormControl<number | null>(null, [Validators.required]),
+    provider: new FormControl<number | null>(null, [Validators.required, Validators.min(1)]),
   });
 
   constructor(
@@ -30,7 +30,9 @@ export class MapProviderDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dialogRef.close(this.mapProviderForm.value);
+    if (this.mapProviderForm.valid) {
+      this.dialogRef.close(this.mapProviderForm.value);
+    }
   }
 
 }

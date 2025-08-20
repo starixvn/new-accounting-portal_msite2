@@ -26,6 +26,8 @@ export class NavMenuComponent implements OnInit {
     this.menuService.getMenu().subscribe((data) => {
       const listMenus = [...data.menus];
 
+      console.log(listMenus);
+
       const menuList = listMenus
         .filter((m) => m.parentId === 0)
         .sort((x) => x.displayOrder);

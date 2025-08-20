@@ -81,7 +81,7 @@ const routes: Routes = [
     component: LeagueSettingComponent,
   },
   {
-    path: 'map-provider',
+    path: 'provider',
     component: ProviderComponent,
   }
 ];
