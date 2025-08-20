@@ -57,7 +57,7 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     });
   }
 
-  openConfirmDialog(e: any) {
+  openConfirmDialog(e: { checked: boolean, source: { checked: boolean } }) {
     const message = this.createDialogMessage(e.checked);
     const confirmText = e.checked ? 'ON' : 'OFF';
     const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
@@ -83,7 +83,7 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     return message;
   }
 
-  handleConfirm(status: boolean, productType: number[], e: any) {
+  handleConfirm(status: boolean, productType: number[], e: { checked: boolean, source: { checked: boolean } }) {
     if (this.flagStatus && this.selectedProduct.length === 0) {
       alert('Please select product to ON.');
       this.flagStatus = false;
@@ -97,14 +97,14 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     }
   }
 
-  openConfirmDialogStatusUm(e: any) {
+  openConfirmDialogStatusUm(e: { checked: boolean, source: { checked: boolean } }) {
     const message = this.createDialogMessageUm(e.checked);
     const confirmText = e.checked ? 'ON' : 'OFF';
     const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
     this.dialogService
       .openConfirm({ message, confirmText, confirmStyle })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         if (confirm) {
           const status = e.checked;
           this.handleConfirmUm(status);
@@ -130,17 +130,19 @@ export class UpdateFlagBroadcastComponent implements OnInit {
 
   getCheckedItemList() {
     this.selectedProduct = [];
-    for (var i = 0; i < this.products.length; i++) {
-      if (this.products[i].isSelected) {
-        const productsId = this.products[i].id;
-        if (productsId === 10) {
+    const vsCockFighting = 10;
+    const vsKiron = 14;
+    for (const product of this.products) {
+      if (product.isSelected) {
+        const productsId = product.id;
+        if (productsId === vsCockFighting) {
           this.selectedProduct.push(productsId);
           this.selectedProduct.push(this.cockFighting);
-        } else if (productsId === 14) {
+        } else if (productsId === vsKiron) {
           this.selectedProduct.push(productsId);
           this.selectedProduct.push(this.virtualKiron);
         } else {
-          this.selectedProduct.push(this.products[i].id);
+          this.selectedProduct.push(product.id);
         }
       }
     }

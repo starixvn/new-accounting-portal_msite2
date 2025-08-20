@@ -10,7 +10,7 @@ import { NavMenuService } from './nav-menu.service.native';
 export class NavMenuComponent implements OnInit {
   public menus: Menu[] | null = null;
   public userName!: string;
-  constructor(private menuService: NavMenuService) { }
+  constructor(private readonly menuService: NavMenuService) { }
 
   ngOnInit(): void {
     this.loadMenu();

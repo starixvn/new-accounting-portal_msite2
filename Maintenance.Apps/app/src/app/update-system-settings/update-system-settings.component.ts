@@ -13,9 +13,9 @@ export class UpdateSystemSettingsComponent implements OnInit {
     public systemSettings: SystemSettings[] | null = null;
 
     constructor(
-        private service: UpdateSystemSettingService,
-        private dialogService: ConfirmDialogService,
-        private snackbarService: SnackbarService
+        private readonly service: UpdateSystemSettingService,
+        private readonly dialogService: ConfirmDialogService,
+        private readonly snackbarService: SnackbarService
     ) { }
 
     ngOnInit(): void {

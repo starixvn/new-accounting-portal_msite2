@@ -7,14 +7,14 @@ import { LogStatus, UpdateLogStatusRequest } from './update-log-status.model';
 
 @Injectable()
 export class UpdateLogStatusService {
-    private baseUrl = 'api/delete-temp-variable';
+    private readonly baseUrl = 'api/delete-temp-variable';
 
     private dataUpdateSource = new Subject();
     public dataUpdate$ = this.dataUpdateSource.asObservable();
 
     constructor(
-        private httpService: HttpService,
-        public dialogService: ConfirmDialogService
+        private readonly httpService: HttpService,
+        public readonly dialogService: ConfirmDialogService
     ) { }
 
     getAll() {
