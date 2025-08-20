@@ -34,6 +34,7 @@ public class ProviderService(IDynamicRepository repository)
         {
             SourceId = request.SourceId,
             SportType = request.SportType,
+            GameTypes = request.GameType,
             IsActive = request.IsActive
         };
 

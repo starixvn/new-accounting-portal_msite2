@@ -2,7 +2,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProviderService } from './provider.service';
-import { ProviderInfo } from './provider.model';
+import { DefaultGames, ProviderInfo } from './provider.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MapProviderDialogComponent } from './map-provider-dialog/map-provider-dialog.component';
 import { SnackbarService } from '../shared/services/snackbar.service';
@@ -16,7 +16,7 @@ import { ConfirmDialogService } from '../shared/components/dialog/dialog.service
   imports: [CommonModule, ReactiveFormsModule, NgIf]
 })
 export class ProviderComponent implements OnInit {
-
+  private readonly esport = 43;
   private readonly providerService = inject(ProviderService);
   private readonly dialog = inject(MatDialog);
   private readonly snackbarService = inject(SnackbarService);
@@ -52,7 +52,7 @@ export class ProviderComponent implements OnInit {
       }
 
       this.providerService.getProvidersBySport(+sportId).subscribe((res) => {
-        this.providers = res;
+        this.providers = res.map((x) => ({ ...x, gameName: DefaultGames.find((y) => y.gameType === x.gameType)?.name ?? 'Others' }));
       });
     }
   }
@@ -77,7 +77,7 @@ export class ProviderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.providerService.mapProviderToSport(+result.provider, sportId).subscribe((res) => {
+        this.providerService.mapProviderToSport(+result.provider, sportId, '0').subscribe((res) => {
           if (res.isSuccess) {
             this.snackbarService.openSuccessSnackBar('Provider mapped successfully');
             this.submit();
@@ -98,7 +98,7 @@ export class ProviderComponent implements OnInit {
       confirmStyle: 'btn-confirm-ok',
     }).afterClosed().subscribe((result) => {
       if (result) {
-        this.providerService.unmapProviderFromSport(provider.sourceId, provider.sportType).subscribe((res) => {
+        this.providerService.unmapProviderFromSport(provider.sourceId, provider.sportType, `${provider.gameType}`).subscribe((res) => {
           this.snackbarService.openSuccessSnackBar('Provider unmapped successfully');
           this.submit();
         });

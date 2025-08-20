@@ -22,11 +22,11 @@ export class ProviderService {
         return this.http.getData<ProviderInfo[]>(`${this.baseUrl}/get-providers/${sportId}`);
     }
 
-    mapProviderToSport(sourceId: number, sportType: number) {
-        return this.http.post<{ isSuccess: boolean }>(`${this.baseUrl}/provider-mapping`, { sourceId, sportType, isActive: true });
+    mapProviderToSport(sourceId: number, sportType: number, gameType: string) {
+        return this.http.post<{ isSuccess: boolean }>(`${this.baseUrl}/provider-mapping`, { sourceId, sportType, gameType, isActive: true });
     }
 
-    unmapProviderFromSport(sourceId: number, sportType: number) {
-        return this.http.post<{ isSuccess: boolean }>(`${this.baseUrl}/provider-mapping`, { sourceId, sportType, isActive: false });
+    unmapProviderFromSport(sourceId: number, sportType: number, gameType: string) {
+        return this.http.post<{ isSuccess: boolean }>(`${this.baseUrl}/provider-mapping`, { sourceId, sportType, gameType, isActive: false });
     }
 }

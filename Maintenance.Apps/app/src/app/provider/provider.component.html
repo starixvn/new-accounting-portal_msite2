@@ -24,6 +24,7 @@
             <tr>
                 <th>SourceId</th>
                 <th>SourceName</th>
+                <th>GameType</th>
                 <th>Remark</th>
                 <th>IsActive</th>
                 <th>Action</th>
@@ -35,6 +36,7 @@
                 <tr *ngFor="let provider of providers">
                     <td>{{ provider.sourceId }}</td>
                     <td class="text-left">{{ provider.sourceName }}</td>
+                    <td>{{ provider.gameName }}</td>
                     <td>{{ provider.remark }}</td>
                     <td>{{ provider.isActive }}</td>
                     <td>
