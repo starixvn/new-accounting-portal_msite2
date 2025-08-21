@@ -27,7 +27,7 @@ export class ProviderComponent implements OnInit {
   });
 
   sportOptions: { id: number, name: string }[] = [];
-  providers: ProviderInfo[] = [];
+  providers: ProviderInfo[] | null = null;
   allProviders: ProviderInfo[] = [];
 
 
@@ -64,7 +64,7 @@ export class ProviderComponent implements OnInit {
     }
 
     const sport = this.sportOptions.find((x) => x.id === +sportId);
-    const otherProviders = this.allProviders.filter((x) => !this.providers.some((y) => y.sourceId === x.sourceId));
+    const otherProviders = this.allProviders.filter((x) => !(this.providers ?? []).some((y) => y.sourceId === x.sourceId));
 
     const dialogRef = this.dialog.open(MapProviderDialogComponent, {
       data: {
