@@ -4,9 +4,9 @@ import { AmendmentResultUpdateRequest, ResultAmendment } from './type';
 
 @Injectable()
 export class ResultAmendmentService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) {}
 
   public updateStatus(request: AmendmentResultUpdateRequest) {
     const url = `${this.baseUrl}/update-amendment-result`;

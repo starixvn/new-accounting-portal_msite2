@@ -9,12 +9,15 @@ import { environment } from 'src/environments/environment';
 import { SnackbarService } from './snackbar.service';
 import { BlockUIService } from './block-ui.service';
 
+// HTTP status code constants
+const BAD_REQUEST_STATUS = 400;
+
 @Injectable()
 export class HttpService {
   constructor(
-    private httpClient: HttpClient,
-    private blockUIService: BlockUIService,
-    private snackbarService: SnackbarService
+    private readonly httpClient: HttpClient,
+    private readonly blockUIService: BlockUIService,
+    private readonly snackbarService: SnackbarService
   ) { }
 
   public getData<T>(url: string, params?: HttpParams): Observable<T> {
@@ -25,7 +28,7 @@ export class HttpService {
     );
   }
 
-  public post<T>(url: string, item?, params?: HttpParams): Observable<T> {
+  public post<T>(url: string, item?: unknown, params?: HttpParams): Observable<T> {
     this.blockUIService.startBlock();
     return this.httpClient.post<T>(this.getUrl(url), item, { params }).pipe(
       map((response) => this.parseResponse(response)),
@@ -37,15 +40,15 @@ export class HttpService {
     return environment.baseUrl + url;
   }
 
-  private parseResponse(response) {
+  private parseResponse<T>(response: T): T {
     this.blockUIService.stopBlock();
     return response;
   }
 
-  private handleError = (error: HttpErrorResponse) => {
+  private readonly handleError = (error: HttpErrorResponse) => {
     this.blockUIService.stopBlock();
 
-    if (error.status === 400 && error.error.errors) {
+    if (error.status === BAD_REQUEST_STATUS && error.error.errors) {
       this.snackbarService.openErrorSnackBar(JSON.stringify(error.error.errors));
     } else {
       this.snackbarService.openErrorSnackBar(error.statusText);

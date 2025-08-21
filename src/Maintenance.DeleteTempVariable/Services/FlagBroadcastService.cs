@@ -113,7 +113,7 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
         return status;
     }
 
-    private async Task<uint> GetNumberMessageProcessingQueueAsync()
+    public virtual async Task<uint> GetNumberMessageProcessingQueueAsync()
     {
         var rabbitMq = appSettingsKey.RabbitMq;
         var connectionFactory = new ConnectionFactory

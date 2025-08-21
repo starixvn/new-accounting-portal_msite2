@@ -6,12 +6,12 @@ import { Match } from './match.model';
 
 @Injectable()
 export class DeleteTempVariableNumberService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
-  private dataUpdateSource = new Subject();
+  private readonly dataUpdateSource = new Subject();
   dataUpdate$ = this.dataUpdateSource.asObservable();
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
   getAll(matchId?: number) {
     matchId = _.isNumber(matchId) ? matchId : 0;
@@ -22,7 +22,7 @@ export class DeleteTempVariableNumberService {
     return this.httpService.post<Match[]>(url, body);
   }
 
-  getDetail(data: any) {
+  getDetail(data: Match) {
     const url = `${this.baseUrl}/get-detail-temp-variable`;
     const item = {
       ...data,
@@ -32,11 +32,11 @@ export class DeleteTempVariableNumberService {
     return this.httpService.post<Match>(url, item);
   }
 
-  deleteItem(data: any) {
+  deleteItem(data: Match) {
     const url = `${this.baseUrl}/delete-temp-variable`;
     const body = { ...data };
 
-    this.httpService.post(url, body).subscribe((res: any) => {
+    this.httpService.post(url, body).subscribe((res) => {
       this.dataUpdateSource.next(res);
     });
   }

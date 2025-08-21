@@ -1,0 +1,57 @@
+<div class="head-page">
+    <h1 class="title-page">Mapping Provider to Sport</h1>
+</div>
+
+<div class="filter">
+    <form [formGroup]="filterForm" class="filter-form" (ngSubmit)="submit()">
+        <label for="provider">Sport</label>
+        <select formControlName="sportId" class="select" placeholder="Select an option">
+            <option *ngFor="let sport of sportOptions" [value]="sport.id">
+                {{ sport.name }}
+            </option>
+        </select>
+
+        <button type="submit" class="btn-submit">Submit</button>
+    </form>
+
+    <button type="submit" class="btn" [ngClass]="filterForm.valid && providers ? 'btn-submit' : 'btn-disable'"
+        [disabled]="!filterForm.valid" (click)="mapProvider()">Map Provider</button>
+</div>
+
+<div class="table-container" *ngIf="providers">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>SourceId</th>
+                <th>SourceName</th>
+                <th>GameType</th>
+                <th>Remark</th>
+                <th>IsActive</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows when not loading and providers exist -->
+            <ng-container *ngIf="providers && providers.length > 0">
+                <tr *ngFor="let provider of providers">
+                    <td>{{ provider.sourceId }}</td>
+                    <td class="text-left">{{ provider.sourceName }}</td>
+                    <td>{{ provider.gameName }}</td>
+                    <td>{{ provider.remark }}</td>
+                    <td>{{ provider.isActive }}</td>
+                    <td>
+                        <button class="btn-submit" (click)="unmapProvider(provider)">UnMap</button>
+                    </td>
+                </tr>
+            </ng-container>
+
+            <tr *ngIf="providers.length === 0">
+                <td colspan="6" class="no-data-cell">
+                    <div class="no-data-content">
+                        <p>No providers found for the selected sport.</p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

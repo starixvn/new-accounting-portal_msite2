@@ -1,0 +1,34 @@
+.btn-map-provider {
+    margin-left: 50px;
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    .select {
+        width: 200px;
+    }
+    .btn-submit {
+        margin-left: 10px;
+    }
+}
+
+.no-data-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.no-data-cell {
+    text-align: center;
+}
+
+.map-provider-dialog {
+    .mat-dialog-container {
+      padding: 20px !important; // Change from 0 to your desired padding
+      overflow: unset;
+    }
+  }

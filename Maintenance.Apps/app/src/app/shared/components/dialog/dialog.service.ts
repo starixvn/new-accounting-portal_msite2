@@ -7,7 +7,7 @@ import { WarningDialogComponent } from './warning/warning-dialog.component';
 
 @Injectable()
 export class ConfirmDialogService {
-    constructor(private dialog: MatDialog) { }
+    constructor(private readonly dialog: MatDialog) { }
 
     public openConfirm({
         message,
@@ -24,7 +24,7 @@ export class ConfirmDialogService {
         });
     }
 
-    public openWarning({ message }: any) {
+    public openWarning({ message }: { message: string }) {
         return this.dialog.open(WarningDialogComponent, {
             data: { message },
             width: '400px',

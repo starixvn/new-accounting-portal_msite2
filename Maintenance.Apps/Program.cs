@@ -28,6 +28,7 @@ services.Configure<AppSettingsKey>(configuration.GetSection(AppSettingsKey.Multi
 services.Configure<AppSettingsKey>(configuration);
 
 // Add services to the container.
+
 services.AddSession();
 services.AddRazorPages();
 services.AddControllersWithViews(options =>
@@ -52,6 +53,17 @@ services.AddInternalServices();
 services.AddMailDelivery(configuration);
 services.AddSiteDbConnectionManager();
 services.AddValidatorsFromAssemblyContaining<UpdateSettingRequestValidator>();
+services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 services.AddHealthChecks();
 
 // Configure app
@@ -63,7 +75,9 @@ app.UseCookiePolicy();
 app.UseSession();
 app.UseMiddleware<ErrorHandler>();
 app.UseRouting();
-app.UseCors("AllowOrigin");
+
+app.UseCors();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -71,6 +85,8 @@ app.MapRazorPages();
 
 app.MapSyncTransApi();
 app.MapSpecialLeagueSettingApi();
+app.MapSportApi();
+app.MapProviderApi();
 
 app.MapControllerRoute(
     "default",

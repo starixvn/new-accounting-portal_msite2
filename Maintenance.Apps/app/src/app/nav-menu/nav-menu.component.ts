@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavMenuService } from './nav-menu.service';
 import { Menu, Header } from './nav-menu.model';
+import { NavMenuService } from './nav-menu.service.native';
 
 @Component({
   selector: 'app-nav-menu',
@@ -10,14 +10,14 @@ import { Menu, Header } from './nav-menu.model';
 export class NavMenuComponent implements OnInit {
   public menus: Menu[] | null = null;
   public userName!: string;
-  constructor(private menuService: NavMenuService) { }
+  constructor(private readonly menuService: NavMenuService) { }
 
   ngOnInit(): void {
     this.loadMenu();
   }
 
   getUrl(validUrl: string) {
-    var url = validUrl.split('/');
+    const url = validUrl.split('/');
     url.shift();
     return url.slice(1).join('/');
   }

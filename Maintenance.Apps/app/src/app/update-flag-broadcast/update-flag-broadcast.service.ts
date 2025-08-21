@@ -4,11 +4,11 @@ import { FlagBroadcast } from './update-flag-broadcast.model';
 
 @Injectable()
 export class UpdateFlagBroadcastService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
-  public updateFlag(status: Boolean, productType: number[]) {
+  public updateFlag(status: boolean, productType: number[]) {
     const url = `${this.baseUrl}/update-flag-broadcast-status`;
     return this.httpService.post(url, { status, productType });
   }

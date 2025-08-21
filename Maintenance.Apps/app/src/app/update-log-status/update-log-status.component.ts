@@ -15,14 +15,14 @@ import { FileService } from '../shared/services/file.service';
 export class UpdateLogStatusComponent implements OnInit {
     public logs!: LogStatus[];
     public nonSportLogs!: LogStatus[];
-    public collapseSport: boolean = false;
-    public collapseNonSport: boolean = false;
+    public collapseSport = false;
+    public collapseNonSport = false;
 
     constructor(
-        private updateLogStatusService: UpdateLogStatusService,
-        public dialogService: ConfirmDialogService,
-        private dialog: MatDialog,
-        private fileService: FileService
+        private readonly updateLogStatusService: UpdateLogStatusService,
+        public readonly dialogService: ConfirmDialogService,
+        private readonly dialog: MatDialog,
+        private readonly fileService: FileService
     ) { }
 
     ngOnInit(): void {
@@ -42,9 +42,11 @@ export class UpdateLogStatusComponent implements OnInit {
     }
 
     loadData() {
+        const queueTypeSport = 1;
+        const queueTypeNonSport = 3;
         this.updateLogStatusService.getAll().subscribe((res) => {
-            this.logs = res.filter(r => r.queueType === 1);
-            this.nonSportLogs = res.filter(r => r.queueType === 3)
+            this.logs = res.filter(r => r.queueType === queueTypeSport);
+            this.nonSportLogs = res.filter(r => r.queueType === queueTypeNonSport)
         });
     }
 

@@ -14,10 +14,10 @@ export class UpdateFlagSitedbComponent implements OnInit {
   public siteDBForm!: FormGroup;
 
   constructor(
-    private dialogService: ConfirmDialogService,
-    private updateFlagSitedbService: UpdateFlagSitedbService,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private readonly dialogService: ConfirmDialogService,
+    private readonly updateFlagSitedbService: UpdateFlagSitedbService,
+    private readonly formBuilder: FormBuilder,
+    private readonly snackBar: MatSnackBar
   ) {
     this.initForm();
   }
@@ -60,7 +60,7 @@ export class UpdateFlagSitedbComponent implements OnInit {
     });
   }
 
-  openConfirmDialog(e: any, site: SiteDB): void {
+  openConfirmDialog(e: { checked: boolean, source: { checked: boolean } }, site: SiteDB): void {
     const message = this.createDialogMessage(e.checked, site.siteName);
     const confirmText = e.checked ? 'ON' : 'OFF';
     const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
@@ -68,7 +68,7 @@ export class UpdateFlagSitedbComponent implements OnInit {
     this.dialogService
       .openConfirm({ message, confirmText, confirmStyle })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         if (confirm) {
           site.status = e.checked;
           this.updateSiteDBStatus(site);
@@ -90,9 +90,7 @@ export class UpdateFlagSitedbComponent implements OnInit {
     this.updateFlagSitedbService
       .updateSiteDBStatus(site)
       .subscribe((updatedSite: SiteDB) => {
-        const index = this.sites.findIndex(
-          (site) => site.siteDbGroupId === updatedSite.siteDbGroupId
-        );
+        const index = this.sites.findIndex((s) => s.siteDbGroupId === updatedSite.siteDbGroupId);
         if (index !== -1) {
           this.sites[index] = updatedSite;
         }

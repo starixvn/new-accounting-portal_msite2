@@ -5,9 +5,9 @@ import { SiteDB } from './site-db.model';
 
 @Injectable()
 export class UpdateFlagSitedbService {
-  private baseUrl = 'api/sitedb';
+  private readonly baseUrl = 'api/sitedb';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
   public getSiteDBs(): Observable<SiteDB[]> {
     const url = `${this.baseUrl}/get-all-sitedb`;

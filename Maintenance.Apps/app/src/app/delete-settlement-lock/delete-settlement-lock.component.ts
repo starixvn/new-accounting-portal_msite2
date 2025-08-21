@@ -4,7 +4,6 @@ import { SnackbarService } from '../shared/services/snackbar.service';
 import {
   DeleteSettlementLog,
   MatchSettlementLock,
-  UpdateSettlementLog,
 } from './match-settlement-lock.model';
 import { MatchSettlementLockService } from './match-settlement-lock.service';
 
@@ -21,9 +20,9 @@ export class DeleteSettlementLockComponent implements OnInit {
   public settlementProcessingTitle = 'SettlementProcessing';
 
   constructor(
-    private matchService: MatchSettlementLockService,
-    private dialogService: ConfirmDialogService,
-    private snackbarService: SnackbarService
+    private readonly matchService: MatchSettlementLockService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly snackbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -40,11 +39,11 @@ export class DeleteSettlementLockComponent implements OnInit {
       .subscribe((data) => {
         this.matches = data;
         this.settlementLockTitle =
-          this.typeSettle == 'parlay'
+          this.typeSettle === 'parlay'
             ? 'ParlaySettlementLock'
             : 'SettlementLock';
         this.settlementProcessingTitle =
-          this.typeSettle == 'parlay'
+          this.typeSettle === 'parlay'
             ? 'ParlaySettlementProcessing'
             : 'SettlementProcessing';
       });

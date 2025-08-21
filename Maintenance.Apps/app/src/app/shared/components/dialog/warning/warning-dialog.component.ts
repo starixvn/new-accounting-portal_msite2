@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 @Component({
@@ -7,19 +7,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
     styleUrls: ['./warning-dialog.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class WarningDialogComponent implements OnInit {
+export class WarningDialogComponent {
     public message?: string;
 
     constructor(
         public dialogRef: MatDialogRef<WarningDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any
+        @Inject(MAT_DIALOG_DATA) public data: { message: string }
     ) {
         this.message = data.message;
     }
-
-    ngOnInit(): void {
-    }
-
     onOk() {
         this.dialogRef.close(true);
     }

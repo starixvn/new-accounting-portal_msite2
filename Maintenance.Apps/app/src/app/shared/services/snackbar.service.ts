@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SnackbarService {
-  private config: MatSnackBarConfig = {
+  private readonly config: MatSnackBarConfig = {
     horizontalPosition: 'right',
     verticalPosition: 'top',
     duration: 2000,
   };
 
-  constructor(private snackbar: MatSnackBar) {}
+  constructor(private readonly snackbar: MatSnackBar) { }
 
   openSuccessSnackBar(message?: string) {
     this.snackbar.open(message ?? 'Successful', '', {

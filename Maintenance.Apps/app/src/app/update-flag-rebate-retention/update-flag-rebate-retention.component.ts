@@ -12,9 +12,9 @@ export class UpdateFlagRebateRetentionComponent implements OnInit {
   public mode = 1;
 
   constructor(
-    private dialogService: ConfirmDialogService,
-    private updateFlagRebateRetentionService: UpdateFlagRebateRetentionService
-  ) {}
+    private readonly dialogService: ConfirmDialogService,
+    private readonly updateFlagRebateRetentionService: UpdateFlagRebateRetentionService
+  ) { }
 
   ngOnInit(): void {
     this.updateFlagRebateRetentionService.getInfo().subscribe((res) => {
@@ -22,19 +22,19 @@ export class UpdateFlagRebateRetentionComponent implements OnInit {
     });
   }
 
-  openConfirmDialog(e: any) {
+  openConfirmDialog(e: { checked: boolean, source: { checked: boolean } }) {
     const message = this.createDialogMessage(e.checked);
     const confirmText = e.checked ? 'ON' : 'OFF';
     const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
     this.dialogService
       .openConfirm({ message, confirmText, confirmStyle })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         if (confirm) {
           const value = e.checked ? 1 : 0;
           this.handleConfirm(value);
         } else {
-          e.source.checked = this.mode == 1 ? true : false;
+          e.source.checked = this.mode === 1 ? true : false;
         }
       });
   }

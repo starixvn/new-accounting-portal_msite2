@@ -4,11 +4,11 @@ import { LastLog } from './control-sync-service.model';
 
 @Injectable()
 export class ControlSyncService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
-  public updateStatus(status: Boolean, cacheKey: string) {
+  public updateStatus(status: boolean, cacheKey: string) {
     const url = `${this.baseUrl}/update-status`;
     return this.httpService.post(url, { status, cacheKey });
   }

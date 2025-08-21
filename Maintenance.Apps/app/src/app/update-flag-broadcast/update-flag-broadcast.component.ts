@@ -10,17 +10,17 @@ import * as _ from 'lodash';
   styleUrls: ['./update-flag-broadcast.component.scss'],
 })
 export class UpdateFlagBroadcastComponent implements OnInit {
-  private cockFighting = 11;
-  private virtualKiron = 15;
+  private readonly cockFighting = 11;
+  private readonly virtualKiron = 15;
   public flagBroadcast!: FlagBroadcast;
   public flagStatus = false;
-  public products: any;
+  public products: { id: number, name: string, isSelected: boolean }[] = [];
   public selectedProduct: number[] = [];
 
   constructor(
-    private dialogService: ConfirmDialogService,
-    private updateFlagBroadcastService: UpdateFlagBroadcastService
-  ) {}
+    private readonly dialogService: ConfirmDialogService,
+    private readonly updateFlagBroadcastService: UpdateFlagBroadcastService
+  ) { }
 
   ngOnInit(): void {
     this.products = [
@@ -51,13 +51,13 @@ export class UpdateFlagBroadcastComponent implements OnInit {
       this.flagStatus = this.flagBroadcast.currentStatus;
       const productType = this.flagBroadcast.productType.split(',');
 
-      this.products.forEach((item: any) => {
+      this.products.forEach((item: { id: number, name: string, isSelected: boolean }) => {
         item.isSelected = _.includes(productType, item.id.toString());
       });
     });
   }
 
-  openConfirmDialog(e: any) {
+  openConfirmDialog(e: { checked: boolean, source: { checked: boolean } }) {
     const message = this.createDialogMessage(e.checked);
     const confirmText = e.checked ? 'ON' : 'OFF';
     const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
@@ -83,8 +83,8 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     return message;
   }
 
-  handleConfirm(status: boolean, productType: number[], e: any) {
-    if (this.flagStatus && this.selectedProduct.length == 0) {
+  handleConfirm(status: boolean, productType: number[], e: { checked: boolean, source: { checked: boolean } }) {
+    if (this.flagStatus && this.selectedProduct.length === 0) {
       alert('Please select product to ON.');
       this.flagStatus = false;
       e.source.checked = false;
@@ -97,14 +97,14 @@ export class UpdateFlagBroadcastComponent implements OnInit {
     }
   }
 
-  openConfirmDialogStatusUm(e: any) {
+  openConfirmDialogStatusUm(e: { checked: boolean, source: { checked: boolean } }) {
     const message = this.createDialogMessageUm(e.checked);
     const confirmText = e.checked ? 'ON' : 'OFF';
     const confirmStyle = e.checked ? 'btn-confirm-ok' : 'btn-confirm-delete';
     this.dialogService
       .openConfirm({ message, confirmText, confirmStyle })
       .afterClosed()
-      .subscribe((confirm: Boolean) => {
+      .subscribe((confirm: boolean) => {
         if (confirm) {
           const status = e.checked;
           this.handleConfirmUm(status);
@@ -130,17 +130,19 @@ export class UpdateFlagBroadcastComponent implements OnInit {
 
   getCheckedItemList() {
     this.selectedProduct = [];
-    for (var i = 0; i < this.products.length; i++) {
-      if (this.products[i].isSelected) {
-        const productsId = this.products[i].id;
-        if (productsId === 10) {
+    const vsCockFighting = 10;
+    const vsKiron = 14;
+    for (const product of this.products) {
+      if (product.isSelected) {
+        const productsId = product.id;
+        if (productsId === vsCockFighting) {
           this.selectedProduct.push(productsId);
           this.selectedProduct.push(this.cockFighting);
-        } else if (productsId === 14) {
+        } else if (productsId === vsKiron) {
           this.selectedProduct.push(productsId);
           this.selectedProduct.push(this.virtualKiron);
         } else {
-          this.selectedProduct.push(this.products[i].id);
+          this.selectedProduct.push(product.id);
         }
       }
     }

@@ -12,9 +12,9 @@ import { DeleteTempVariableNumberService } from './delete-temp-variable-number.s
 })
 export class DeleteTempVariableNumberComponent implements OnInit {
   constructor(
-    private dialog: MatDialog,
-    private service: DeleteTempVariableNumberService
-  ) {}
+    private readonly dialog: MatDialog,
+    private readonly service: DeleteTempVariableNumberService
+  ) { }
 
   public matches: Match[] = [];
   public matchId?: number;

@@ -6,19 +6,24 @@ import {
     MatchParlayLocking,
 } from './match-parlay-locking.model';
 
+// Time range constants in hours
+const ONE_HOUR = 1;
+const TWELVE_HOURS = 12;
+const TWENTY_FOUR_HOURS = 24;
+
 @Component({
     selector: 'app-delete-parlay-locking',
     templateUrl: './delete-parlay-locking.component.html',
     styleUrls: ['./delete-parlay-locking.component.scss'],
 })
 export class DeleteParlayLockingComponent implements OnInit {
-    public filter: ParlayLockingRequest = { timeRange: 1 };
-    public timeRanges: number[] = [1, 12, 24];
+    public filter: ParlayLockingRequest = { timeRange: ONE_HOUR };
+    public timeRanges: number[] = [ONE_HOUR, TWELVE_HOURS, TWENTY_FOUR_HOURS];
     public matches: MatchParlayLocking[] = [];
 
     constructor(
-        private matchService: MatchParlayLockingService,
-        private dialogService: ConfirmDialogService
+        private readonly matchService: MatchParlayLockingService,
+        private readonly dialogService: ConfirmDialogService
     ) { }
 
     ngOnInit(): void {
@@ -48,7 +53,7 @@ export class DeleteParlayLockingComponent implements OnInit {
         this.dialogService
             .openConfirm({ message, confirmStyle })
             .afterClosed()
-            .subscribe((res: Boolean) => {
+            .subscribe((res: boolean) => {
                 res && this.handleDeleteItem(item);
             });
     }

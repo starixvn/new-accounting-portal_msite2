@@ -1,0 +1,46 @@
+// ::ng-deep .mat-mdc-dialog-container {
+//   .mat-mdc-dialog-surface {
+//     border-radius: 12px !important;
+//     padding: 0 !important;
+//   }
+// }
+
+// ::ng-deep .cdk-dialog-container {
+//   padding: 10px !important;
+// }
+
+
+
+.map-provider-dialog-content {
+  min-width: 300px;
+  max-width: 600px;
+  .title-dialog {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      label {
+        // font-size: 1.2em;
+        // font-weight: bold;
+      }
+
+      select {
+        width: 100%;
+      }
+    }
+    .btn-group {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+      gap: 10px;
+    }
+  }
+}

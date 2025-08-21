@@ -3,9 +3,9 @@ import { HttpService } from '../shared/services/http.service';
 
 @Injectable()
 export class UpdateFlagRebateRetentionService {
-  private baseUrl = 'api/delete-temp-variable';
+  private readonly baseUrl = 'api/delete-temp-variable';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
   public updateFlag(mode: number) {
     const url = `${this.baseUrl}/update-flag-rebate-retention`;
