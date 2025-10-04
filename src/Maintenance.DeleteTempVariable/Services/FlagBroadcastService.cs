@@ -46,7 +46,6 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
         var queueWaitingOnService = GetListMessageWaiting(CacheKey.BroadcastServiceProductWaitingCacheKey);
         var queueWaitingOnApi = GetListMessageWaiting(CacheKey.BroadcastApiProductWaitingCacheKey);
         var productWaitingOnService = await Database.ListLengthAsync(CacheKey.BroadcastServiceProductWaitingCacheKey);
-        await Database.KeyDeleteAsync(CacheKey.BroadcastApiProductWaitingCacheKey);
         var waiting = $"{productWaitingOnService} - {await Database.ListLengthAsync(CacheKey.BroadcastApiProductWaitingCacheKey)}";
         var queueNumber = $"Processing: {processing} - Waiting: {waiting}";
 
