@@ -43,9 +43,10 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
     public async Task<FlagBroadcast> GetFlagInfo()
     {
         var processing = await GetNumberMessageProcessingQueueAsync();
-        var waiting = await GetNumberMessageWaitingQueueAsync();
         var queueWaitingOnService = GetListMessageWaiting(CacheKey.BroadcastServiceProductWaitingCacheKey);
         var queueWaitingOnApi = GetListMessageWaiting(CacheKey.BroadcastApiProductWaitingCacheKey);
+        var productWaitingOnService = await Database.ListLengthAsync(CacheKey.BroadcastServiceProductWaitingCacheKey);
+        var waiting = $"{productWaitingOnService} - {await Database.ListLengthAsync(CacheKey.BroadcastApiProductWaitingCacheKey)}";
         var queueNumber = $"Processing: {processing} - Waiting: {waiting}";
 
         return new FlagBroadcast
@@ -127,12 +128,6 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
         await using var connection = await connectionFactory.CreateConnectionAsync();
         await using var channel = await connection.CreateChannelAsync();
         return await channel.MessageCountAsync("broadcast-api-processing-event");
-    }
-
-    private async Task<long> GetNumberMessageWaitingQueueAsync()
-    {
-        return await Database.ListLengthAsync(CacheKey.BroadcastServiceProductWaitingCacheKey)
-            + await Database.ListLengthAsync(CacheKey.BroadcastApiProductWaitingCacheKey);
     }
 
     private string GetListMessageWaiting(string key)
