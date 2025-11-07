@@ -14,6 +14,7 @@ namespace Maintenance.DeleteTempVariable.Services;
 using Core.Models;
 using Fanex.NAP.Client;
 using ONEbook.UM.Services;
+using RabbitMQ.Client.Exceptions;
 
 public interface FlagBroadcastService
 {
@@ -116,6 +117,7 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
 
     public virtual async Task<uint> GetNumberMessageProcessingQueueAsync()
     {
+        const string queueName = "broadcast-api-processing-event";
         var rabbitMq = appSettingsKey.RabbitMq;
         var connectionFactory = new ConnectionFactory
         {
@@ -125,9 +127,26 @@ public class FlagBroadcastServiceImp(IConnectionMultiplexer connectionMultiplexe
             VirtualHost = rabbitMq.VirtualHost
         };
 
-        await using var connection = await connectionFactory.CreateConnectionAsync();
-        await using var channel = await connection.CreateChannelAsync();
-        return await channel.MessageCountAsync("broadcast-api-processing-event");
+        try
+        {
+            await using var connection = await connectionFactory.CreateConnectionAsync();
+            await using var channel = await connection.CreateChannelAsync();
+
+            try
+            {
+                await channel.QueueDeclarePassiveAsync(queueName);
+                return await channel.MessageCountAsync(queueName);
+            }
+            catch (OperationInterruptedException)
+            {
+                return 0;
+            }
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync($"Error checking queue '{queueName}': {ex.Message}");
+            return 0;
+        }
     }
 
     private string GetListMessageWaiting(string key)
