@@ -14,6 +14,7 @@ import { ResultAmendmentCompoment } from './result-amendment/result-amendment.co
 import { LeagueSettingComponent } from './special-league-setting/league-setting.component';
 import { UpdateFlagSitedbComponent } from './update-flag-sitedb/update-flag-sitedb.component';
 import { ProviderComponent } from './provider/provider.component';
+import { SupportJacktimeComponent } from './support-jacktime/support-jacktime.component';
 
 const routes: Routes = [
   {
@@ -83,7 +84,11 @@ const routes: Routes = [
   {
     path: 'provider',
     component: ProviderComponent,
-  }
+  },
+    {
+    path: 'support-jacktime',
+    component: SupportJacktimeComponent,
+  },
 ];
 
 @NgModule({

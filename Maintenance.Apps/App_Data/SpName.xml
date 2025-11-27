@@ -311,4 +311,15 @@
 		<Setting Key="Nap_mSite2_ProviderInfoSel" SpName="Nap_mSite2_ProviderInfoSel" DbName="DBPRO.bodb02.wsv_nap" />
 		<Setting Key="NAP_mSite2_ProviderGameTypeMapping" SpName="NAP_mSite2_ProviderGameTypeMapping" DbName="DBPRO.bodb02.wsv_nap" />
 	</Function>
+
+	<Function Name="HybridParlay">
+		<Setting Key="NAP_Admin_ByPassHybridParlay_LetstalkSel" SpName="NAP_Admin_ByPassHybridParlay_LetstalkSel" DbName="DBTXN.bodb02.wsv_nap" />
+		<Function Name="NAP_Admin_ByPassHybridParlay_TicketSel">
+			<Setting Key="NAP_Admin_ByPassHybridParlay_TicketSel_DBTXN" SpName="NAP_Admin_ByPassHybridParlay_TicketSel" DbName="DBTXN.bodb02.wsv_nap" />
+			<Setting Key="NAP_Admin_ByPassHybridParlay_TicketSel_DBSITE01" SpName="NAP_Admin_ByPassHybridParlay_TicketSel" DbName="DBSITE01.bodb02.wsv_nap" />
+			<Setting Key="NAP_Admin_ByPassHybridParlay_TicketSel_DBSITE02" SpName="NAP_Admin_ByPassHybridParlay_TicketSel" DbName="DBSITE02.bodb02.wsv_nap" />
+			<Setting Key="NAP_Admin_ByPassHybridParlay_TicketSel_DBSITE03" SpName="NAP_Admin_ByPassHybridParlay_TicketSel" DbName="DBSITE03.bodb02.wsv_nap" />
+		</Function>
+	</Function>
 </Functions>
+

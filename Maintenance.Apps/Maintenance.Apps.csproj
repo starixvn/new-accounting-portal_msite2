@@ -45,6 +45,7 @@
  
   <ItemGroup>
     <ProjectReference Include="..\src\Maintenance.DeleteTempVariable\Maintenance.DeleteTempVariable.csproj" />
+    <ProjectReference Include="..\src\Maintenance.Jacktime\Maintenance.Jacktime.csproj" />
     <ProjectReference Include="..\src\Maintenance.SpecialLeagueSetting\Maintenance.SpecialLeagueSetting.csproj" />
     <ProjectReference Include="..\src\Maintenance.Sync\Maintenance.Sync.csproj" />
   </ItemGroup>

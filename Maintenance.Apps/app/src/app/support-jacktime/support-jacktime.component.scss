@@ -1,0 +1,30 @@
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #569ebc;
+    z-index: 10;
+    border-bottom: 2px solid #ddd;
+}
+
+.table tfoot tr.actions {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 10;
+    border-top: 2px solid #ddd;
+}
+
+.table tfoot tr.actions td {
+    padding: 10px;
+}

@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance.Sync.Tests", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance.SpecialLeagueSetting.Tests", "tests\Maintenance.SpecialLeagueSetting.Tests\Maintenance.SpecialLeagueSetting.Tests.csproj", "{AB8F0722-4C0A-4945-B535-E4747C67EDE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintenance.Jacktime", "src\Maintenance.Jacktime\Maintenance.Jacktime.csproj", "{92A0D51B-68A9-4313-BF58-BBB05A5B9C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{AB8F0722-4C0A-4945-B535-E4747C67EDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB8F0722-4C0A-4945-B535-E4747C67EDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB8F0722-4C0A-4945-B535-E4747C67EDE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92A0D51B-68A9-4313-BF58-BBB05A5B9C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A0D51B-68A9-4313-BF58-BBB05A5B9C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A0D51B-68A9-4313-BF58-BBB05A5B9C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A0D51B-68A9-4313-BF58-BBB05A5B9C2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{00261B19-7DCD-4A6B-8093-54E5B55F7480} = {FA55D8E6-7E79-45DE-8E76-D45F7D208B9A}
 		{C7BA2E64-F66D-4E55-9220-FE8329B8F6C8} = {2C6DC532-851D-478D-8942-ED2EF0437188}
 		{AB8F0722-4C0A-4945-B535-E4747C67EDE2} = {2C6DC532-851D-478D-8942-ED2EF0437188}
+		{92A0D51B-68A9-4313-BF58-BBB05A5B9C2E} = {FA55D8E6-7E79-45DE-8E76-D45F7D208B9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B307E835-7AA1-4D9B-8A64-AC1455A4457C}
